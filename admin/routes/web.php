@@ -38,3 +38,8 @@ Route::resource('admin/slide-menu', 'Admin\\SlideMenuController');
 Route::resource('admin/category', 'Admin\\CategoryController');
 Route::resource('admin/tag', 'Admin\\TagController');
 Route::resource('admin/contact-us', 'Admin\\ContactUsController');
+
+Route::resource('pages/home', 'Pages\\HomeController');
+Route::resource('pages/menus', 'Pages\\MenusController');
+Route::resource('pages/contact', 'Pages\\ContactController');
+Route::resource('pages/about', 'Pages\\AboutController');
