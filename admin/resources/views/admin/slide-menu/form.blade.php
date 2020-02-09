@@ -10,7 +10,7 @@
 </div>
 <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
     <label for="price" class="control-label">{{ 'Price' }}</label>
-    <input class="form-control" name="price" type="number" id="price" value="{{ isset($slidemenu->price) ? $slidemenu->price : old('price')}}" >
+    <input class="form-control" name="price" type="number" id="price"  value="{{ isset($slidemenu->price) ? $slidemenu->price : old('price')}}"  step=any />
     {!! $errors->first('price', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">

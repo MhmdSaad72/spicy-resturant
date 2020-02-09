@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateFeatureDishBodiesTable extends Migration
+class CreateBranchHeadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,11 @@ class CreateFeatureDishBodiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('feature_dish_bodies', function (Blueprint $table) {
+        Schema::create('branch_heads', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('title')->nullable();
-            $table->string('image')->nullable();
-            $table->text('content')->nullable();
-            $table->float('price')->nullable();
+            $table->string('description')->nullable();
             });
     }
 
@@ -29,6 +27,6 @@ class CreateFeatureDishBodiesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('feature_dish_bodies');
+        Schema::drop('branch_heads');
     }
 }

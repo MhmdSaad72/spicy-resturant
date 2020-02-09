@@ -100,8 +100,10 @@ class SlideMenuController extends Controller
     public function edit($id)
     {
         $slidemenu = SlideMenu::findOrFail($id);
+        $categories =  Category::all();
+        $tags = Tag::all();
 
-        return view('admin.slide-menu.edit', compact('slidemenu'));
+        return view('admin.slide-menu.edit', compact('slidemenu' , 'categories' , 'tags'));
     }
 
     /**
@@ -114,11 +116,12 @@ class SlideMenuController extends Controller
      */
     public function update(Request $request, $id)
     {
+      // regex:/^([1-9][0-9]+)/|not_in:0
         $this->validate($request, [
           'title' => 'required',
-    			'price' => 'required',
+    			'price' => 'required|min:1|max:7',
     			'content' => 'required',
-          'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg',
+          'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg',
           'category_id' => 'required',
           'tag_id' => 'required',
           'related_title' => 'required',

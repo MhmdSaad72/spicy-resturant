@@ -24,9 +24,9 @@
                                 <label for="category_id" class="control-label">Categories</label>
                                 <select name="category_id" class="form-control" id="category_id" >
                                   <option value="" selected disabled>Select Category</option>
-                                  {{-- @foreach($materialTypes as $materialType)
-                                    <option value="{{$materialType->id}}"{{$materialType->id == $material->category_id ? 'selected': ''}}>{{$materialType->name}}</option>
-                                  @endforeach --}}
+                                  @foreach($categories as $category)
+                                    <option value="{{$category->id}}"{{$category->id == $slidemenu->category_id ? 'selected': ''}}>{{$category->name}}</option>
+                                  @endforeach
 
                             </select>
                                 {!! $errors->first('category_id', '<p class="help-block text-danger">:message</p>') !!}
@@ -35,9 +35,9 @@
                                 <label for="tag_id" class="control-label">Tags</label>
                                 <select name="tag_id" class="form-control" id="tag_id" >
                                   <option value="" selected disabled>Select Tag</option>
-                                  {{-- @foreach($materialTypes as $materialType)
-                                    <option value="{{$materialType->id}}"{{$materialType->id == $material->tag_id ? 'selected': ''}}>{{$materialType->name}}</option>
-                                  @endforeach --}}
+                                  @foreach($tags as $tag)
+                                    <option value="{{$tag->id}}"{{$tag->id == $slidemenu->tag_id ? 'selected': ''}}>{{$tag->name}}</option>
+                                  @endforeach
 
                             </select>
                                 {!! $errors->first('tag_id', '<p class="help-block text-danger">:message</p>') !!}

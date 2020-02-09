@@ -17,7 +17,7 @@ class CreateSlideMenusTable extends Migration
             $table->timestamps();
             $table->string('title')->nullable();
             $table->string('image')->nullable();
-            $table->integer('price')->nullable();
+            $table->float('price')->nullable();
             $table->text('content')->nullable();
             $table->string('sku')->nullable();
             $table->integer('weight')->nullable();

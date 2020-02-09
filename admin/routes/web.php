@@ -43,3 +43,7 @@ Route::resource('pages/home', 'Pages\\HomeController');
 Route::resource('pages/menus', 'Pages\\MenusController');
 Route::resource('pages/contact', 'Pages\\ContactController');
 Route::resource('pages/about', 'Pages\\AboutController');
+
+Route::resource('admin/branch-head', 'Admin\\BranchHeadController');
+Route::resource('admin/branch-body', 'Admin\\BranchBodyController');
+Route::resource('admin/drop-line', 'Admin\\DropLineController');
