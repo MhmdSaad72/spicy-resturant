@@ -52,9 +52,9 @@ class FoodMenuController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-    			'title' => 'required',
-    			'description' => 'required',
-    			'content' => 'required',
+    			'title' => 'required|max:255',
+    			'description' => 'required|max:255',
+    			'content' => 'required|max:65535',
     		]);
         $requestData = $request->all();
 
@@ -102,9 +102,9 @@ class FoodMenuController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-    			'title' => 'required',
-    			'description' => 'required',
-    			'content' => 'required',
+    			'title' => 'required|max:255',
+    			'description' => 'required|max:255',
+    			'content' => 'required|max:65535',
     		]);
         $requestData = $request->all();
 

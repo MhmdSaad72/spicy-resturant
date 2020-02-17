@@ -287,10 +287,6 @@ return [
                 'route'  => 'food-menu.index',
               ],
               [
-                'text' => 'Menu List',
-                'route'  => 'menu-list.index',
-              ],
-              [
                 'text' => 'Slide Menu',
                 'route'  => 'slide-menu.index',
               ],
@@ -311,6 +307,21 @@ return [
               [
                 'text' => 'Contact Us Details',
                 'route'  => 'contact-us.index',
+              ],
+              [
+                  'text'    => 'Branch',
+                  'icon'    => 'fas fa-fw fa-share',
+                  'submenu' =>
+                  [
+                    [
+                        'text' => 'Header',
+                        'route'  => 'branch-head.index',
+                    ],
+                    [
+                        'text' => 'Body',
+                        'route'  => 'branch-body.index',
+                    ],
+                  ],
               ],
             ],
         ],

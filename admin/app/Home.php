@@ -27,5 +27,5 @@ class Home extends Model
      */
     protected $fillable = ['title'];
 
-    
+
 }

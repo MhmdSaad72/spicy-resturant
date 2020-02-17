@@ -25,7 +25,7 @@ class Category extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name' , 'title' , 'description'];
 
 
     public function slide_menus()

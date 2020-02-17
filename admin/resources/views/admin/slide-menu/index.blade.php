@@ -35,7 +35,7 @@
                                     <tr>
                                         <th>Title</th>
                                         <th>Price</th>
-                                        <th>Content</th>
+                                        {{-- <th>Content</th> --}}
                                         {{-- <th>Image</th> --}}
                                         <th>Actions</th>
                                     </tr>
@@ -44,8 +44,8 @@
                                 @foreach($slidemenu as $item)
                                     <tr>
                                         <td>{{ $item->title }}</td>
-                                        <td>{{ $item->price }}</td>
-                                        <td>{{ $item->content }}</td>
+                                        <td>${{ $item->price }}</td>
+                                        {{-- <td>{{ $item->content }}</td> --}}
                                         {{-- <td><img src="{{ asset('storage/' . $item->image )}}" alt=""> </td> --}}
                                         <td>
                                             <a href="{{ url('/admin/slide-menu/' . $item->id) }}" title="View SlideMenu"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>

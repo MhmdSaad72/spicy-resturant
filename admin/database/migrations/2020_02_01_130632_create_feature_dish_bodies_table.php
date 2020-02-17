@@ -19,6 +19,7 @@ class CreateFeatureDishBodiesTable extends Migration
             $table->string('image')->nullable();
             $table->text('content')->nullable();
             $table->float('price')->nullable();
+            $table->float('old_price')->nullable();
             });
     }
 

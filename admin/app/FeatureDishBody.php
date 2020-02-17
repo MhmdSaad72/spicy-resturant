@@ -25,7 +25,7 @@ class FeatureDishBody extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'image', 'content', 'price'];
+    protected $fillable = ['title', 'image', 'content', 'price', 'old_price'];
 
-    
+
 }

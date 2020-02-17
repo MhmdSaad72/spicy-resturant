@@ -37,6 +37,9 @@
                                       <th> Price </th><td> {{ $featuredishbody->price }} </td>
                                     </tr>
                                     <tr>
+                                      <th> Old Price </th><td> {{ $featuredishbody->old_price }} </td>
+                                    </tr>
+                                    <tr>
                                       <th> Image </th><td> <img src="{{ asset('storage/' . $featuredishbody->image) }}" alt=""> </td>
                                     </tr>
                                 </tbody>

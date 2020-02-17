@@ -42,7 +42,7 @@
                                       <th> Name </th><td> {{ $album->name }} </td>
                                     </tr>
                                     <tr>
-                                      <th> Image </th><td> {{ $album->image }} </td>
+                                      <th> Image </th><td> <img src="{{ asset('storage/' . $album->image)  }}" alt=""> </td>
                                     </tr>
                                 </tbody>
                             </table>

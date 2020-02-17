@@ -28,7 +28,7 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                      <th> Price </th><td> {{ $slidemenu->price }} </td>
+                                      <th> Price </th><td> ${{ $slidemenu->price }} </td>
                                     </tr>
                                     <tr>
                                       <th> Title </th><td> {{ $slidemenu->title }} </td>
@@ -46,10 +46,10 @@
                                       <th> Tag </th><td> {{ $slidemenu->tag->name }} </td>
                                     </tr>
                                     <tr>
-                                      <th> Weight </th><td> {{ $slidemenu->weight }} </td>
+                                      <th> Weight </th><td> {{ $slidemenu->weight }} Kg </td>
                                     </tr>
                                     <tr>
-                                      <th> Calories </th><td> {{ $slidemenu->calories }} </td>
+                                      <th> Calories </th><td> {{ $slidemenu->calories }} Cal </td>
                                     </tr>
                                     <tr>
                                       <th> Description </th><td> {{ $slidemenu->more_content}} </td>

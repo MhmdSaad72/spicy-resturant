@@ -25,6 +25,7 @@ class FeatureDishBodyController extends Controller
                 ->orWhere('image', 'LIKE', "%$keyword%")
                 ->orWhere('content', 'LIKE', "%$keyword%")
                 ->orWhere('price', 'LIKE', "%$keyword%")
+                ->orWhere('old_price', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $featuredishbody = FeatureDishBody::latest()->paginate($perPage);
@@ -56,7 +57,9 @@ class FeatureDishBodyController extends Controller
     			'title' => 'required',
     			'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg',
     			'content' => 'required',
-          'price' => 'required|integer',
+          'price' => 'required|max:7|gte:0',
+          'old_price' => 'max:7',
+          'old_price' => 'gte:0',
     		]);
         $requestData = $request->all();
         $requestData['image'] = $request->file('image')
@@ -109,7 +112,9 @@ class FeatureDishBodyController extends Controller
           'title' => 'required',
           'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg',
           'content' => 'required',
-          'price' => 'required|integer',
+          'price' => 'required|max:7|gte:0',
+          'old_price' => 'max:7',
+          'old_price' => 'gte:0',
 
     		]);
         $requestData = $request->all();

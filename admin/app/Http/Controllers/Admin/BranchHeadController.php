@@ -15,19 +15,9 @@ class BranchHeadController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $branchhead = BranchHead::where('title', 'LIKE', "%$keyword%")
-                ->orWhere('description', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $branchhead = BranchHead::latest()->paginate($perPage);
-        }
-
+        $branchhead = BranchHead::first();
         return view('admin.branch-head.index', compact('branchhead'));
     }
 

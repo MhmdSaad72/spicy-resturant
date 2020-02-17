@@ -50,7 +50,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-    			'name' => 'required|unique:categories,name',
+    			'name' => 'required|max:255|unique:tags,name',
     		]);
         $requestData = $request->all();
 
@@ -99,7 +99,7 @@ class TagController extends Controller
     {
         $tag = Tag::findOrFail($id);
         $this->validate($request, [
-    			'name' => 'required|unique:categories,name,'. $tag->id ,
+    			'name' => 'required|max:255|unique:tags,name,'. $tag->id ,
     		]);
         $requestData = $request->all();
 

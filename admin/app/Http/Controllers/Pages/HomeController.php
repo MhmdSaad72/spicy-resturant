@@ -5,7 +5,21 @@ namespace App\Http\Controllers\Pages;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Home;
+use App\MainDish;
+use App\Service;
+use App\OurStory;
+use App\OurServicesHead;
+use App\OurServicesBody;
+use App\FeaturDishHead;
+use App\FeatureDishBody;
+use App\FoodMenu;
+use App\Category;
+use App\Chef;
+use App\MasterChef;
+use App\Availability;
+use App\Gallary;
+use App\Album;
+use \Carbon\Carbon ;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,19 +29,28 @@ class HomeController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
 
-        if (!empty($keyword)) {
-            $home = Home::where('title', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $home = Home::latest()->paginate($perPage);
-        }
-
-        return view('pages.home.index', compact('home'));
+        $service = Service::first();
+        $mainDish = MainDish::first();
+        $ourStory = OurStory::first();
+        $ourServicesHead = OurServicesHead::first();
+        $ourServicesBody = OurServicesBody::all();
+        $featurDishHead = FeaturDishHead::first();
+        $featurDishBody = FeatureDishBody::all();
+        $foodMenu = FoodMenu::first();
+        $categories = Category::all();
+        $chefHead = MasterChef::first();
+        $chefs = Chef::all();
+        $availability = Availability::first();
+        $availability->startDay = Carbon::parse($availability->start_date)->format('l');
+        $availability->startTime = Carbon::parse($availability->start_date)->format('h:i A');
+        $availability->endDay = Carbon::parse($availability->end_date)->format('l');
+        $availability->endTime = Carbon::parse($availability->end_date)->format('h:i A');
+        $gallary = Gallary::first();
+        $album = Album::all();
+        return view('pages.home.index', compact('service' , 'mainDish' , 'ourStory' , 'ourServicesHead' , 'ourServicesBody' , 'featurDishHead' , 'featurDishBody' , 'foodMenu' , 'categories' , 'chefHead' , 'chefs' , 'availability' , 'gallary' , 'album'));
     }
 
     /**
@@ -49,9 +72,9 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         Home::create($requestData);
 
         return redirect('pages/home')->with('flash_message', 'Home added!');
@@ -95,9 +118,9 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $home = Home::findOrFail($id);
         $home->update($requestData);
 

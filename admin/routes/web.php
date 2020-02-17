@@ -33,7 +33,6 @@ Route::resource('admin/our-services-body', 'Admin\\OurServicesBodyController');
 Route::resource('admin/featur-dish-head', 'Admin\\FeaturDishHeadController');
 Route::resource('admin/feature-dish-body', 'Admin\\FeatureDishBodyController');
 Route::resource('admin/food-menu', 'Admin\\FoodMenuController');
-Route::resource('admin/menu-list', 'Admin\\MenuListController');
 Route::resource('admin/slide-menu', 'Admin\\SlideMenuController');
 Route::resource('admin/category', 'Admin\\CategoryController');
 Route::resource('admin/tag', 'Admin\\TagController');
@@ -47,3 +46,5 @@ Route::resource('pages/about', 'Pages\\AboutController');
 Route::resource('admin/branch-head', 'Admin\\BranchHeadController');
 Route::resource('admin/branch-body', 'Admin\\BranchBodyController');
 Route::resource('admin/drop-line', 'Admin\\DropLineController');
+
+Route::resource('admin/basic-details', 'Admin\\BasicDetailsController');

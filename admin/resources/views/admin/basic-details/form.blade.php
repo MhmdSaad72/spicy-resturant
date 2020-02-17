@@ -1,0 +1,30 @@
+<div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
+    <label for="name" class="control-label">{{ 'Name' }}</label>
+    <input class="form-control" name="name" type="text" id="name" value="{{ isset($basicdetail->name) ? $basicdetail->name : old('name')}}" required>
+    {!! $errors->first('name', '<p class="help-block text-danger">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('logo') ? 'has-error' : ''}}">
+    <label for="logo" class="control-label">{{ 'Logo' }}</label>
+    <input class="form-control" name="logo" type="text" id="logo" value="{{ isset($basicdetail->logo) ? $basicdetail->logo : old('logo')}}" >
+    {!! $errors->first('logo', '<p class="help-block text-danger">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('reservation') ? 'has-error' : ''}}">
+    <label for="reservation" class="control-label">{{ 'Reservation' }}</label>
+    <input class="form-control" name="reservation" type="text" id="reservation" value="{{ isset($basicdetail->reservation) ? $basicdetail->reservation : old('reservation')}}" >
+    {!! $errors->first('reservation', '<p class="help-block text-danger">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
+    <label for="content" class="control-label">{{ 'Content' }}</label>
+    <input class="form-control" name="content" type="text" id="content" value="{{ isset($basicdetail->content) ? $basicdetail->content : old('content')}}" >
+    {!! $errors->first('content', '<p class="help-block text-danger">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('hot_line') ? 'has-error' : ''}}">
+    <label for="hot_line" class="control-label">{{ 'Hot Line' }}</label>
+    <input class="form-control" name="hot_line" type="number" id="hot_line" value="{{ isset($basicdetail->hot_line) ? $basicdetail->hot_line : old('hot_line')}}" >
+    {!! $errors->first('hot_line', '<p class="help-block text-danger">:message</p>') !!}
+</div>
+
+
+<div class="form-group">
+    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+</div>

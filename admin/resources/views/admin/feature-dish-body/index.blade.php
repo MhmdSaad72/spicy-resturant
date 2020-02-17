@@ -36,6 +36,7 @@
                                         <th>Title</th>
                                         <th>Content</th>
                                         <th>Price</th>
+                                        <th>Old Price</th>
                                         <th>Image</th>
                                         <th>Actions</th>
                                     </tr>
@@ -46,6 +47,7 @@
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->content }}</td>
                                         <td>{{ $item->price }}</td>
+                                        <td>{{ $item->old_price }}</td>
                                         <td><img src="{{ asset('storage/' . $item->image) }}" alt=""> </td>
                                         <td>
                                             <a href="{{ url('/admin/feature-dish-body/' . $item->id) }}" title="View FeatureDishBody"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>

@@ -22,6 +22,8 @@ class CategoryController extends Controller
 
         if (!empty($keyword)) {
             $category = Category::where('name', 'LIKE', "%$keyword%")
+                ->orWhere('title', 'LIKE', "%$keyword%")
+                ->orWhere('description', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $category = Category::latest()->paginate($perPage);
@@ -50,7 +52,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-    			'name' => 'required|unique:categories,name',
+    			'name' => 'required|max:255|unique:categories,name',
+          'title' => 'required|max:255',
+          'description' => 'required|max:255',
     		]);
         $requestData = $request->all();
 
@@ -99,7 +103,9 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $this->validate($request, [
-    			'name' => 'required|unique:categories,name,'.$category->id,
+    			'name' => 'required|max:255|unique:categories,name,'.$category->id,
+          'title' => 'required|max:255',
+          'description' => 'required|max:255',
     		]);
         $requestData = $request->all();
 

@@ -15,8 +15,13 @@
 </div>
 <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
     <label for="price" class="control-label">{{ 'Price' }}</label>
-    <input class="form-control" name="price" type="number" id="price" value="{{ isset($featuredishbody->price) ? $featuredishbody->price : old('price')}}" >
+    <input class="form-control" name="price" type="number" id="price" value="{{ isset($featuredishbody->price) ? $featuredishbody->price : old('price')}}" step=any />
     {!! $errors->first('price', '<p class="help-block text-danger">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('old_price') ? 'has-error' : ''}}">
+    <label for="old_price" class="control-label">{{ 'Old Price' }}</label>
+    <input class="form-control" name="old_price" type="number" id="old_price" value="{{ isset($featuredishbody->old_price) ? $featuredishbody->old_price : old('old_price')}}" step=any />
+    {!! $errors->first('old_price', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 
 

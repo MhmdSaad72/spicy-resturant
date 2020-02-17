@@ -24,7 +24,6 @@ class AlbumController extends Controller
             $album = Album::where('title', 'LIKE', "%$keyword%")
                 ->orWhere('name', 'LIKE', "%$keyword%")
                 ->orWhere('description', 'LIKE', "%$keyword%")
-                ->orWhere('image', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $album = Album::latest()->paginate($perPage);
@@ -53,9 +52,9 @@ class AlbumController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-    			'title' => 'required',
-    			'name' => 'required',
-    			'description' => 'required',
+    			'title' => 'required|max:255',
+    			'name' => 'required|max:255',
+    			'description' => 'required|max:255',
     			'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg'
     		]);
         $requestData = $request->all();
@@ -106,9 +105,9 @@ class AlbumController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-    			'title' => 'required',
-    			'name' => 'required',
-    			'description' => 'required',
+    			'title' => 'required|max:255',
+    			'name' => 'required|max:255',
+    			'description' => 'required|max:255',
     			'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg'
     		]);
         $requestData = $request->all();

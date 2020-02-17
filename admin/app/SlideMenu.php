@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class SlideMenu extends Model
 {
@@ -40,6 +41,12 @@ class SlideMenu extends Model
     public function tag()
     {
       return $this->belongsTo('App\Tag' , 'tag_id');
+    }
+
+    public function str_limit($content)
+    {
+      $truncated = Str::limit($content, 40, '...');
+      return $truncated ;
     }
 
 

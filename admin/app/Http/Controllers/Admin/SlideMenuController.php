@@ -57,15 +57,17 @@ class SlideMenuController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-    			'title' => 'required',
-    			'price' => 'required',
-    			'content' => 'required',
+    			'title' => 'required|max:255',
+    			'price' => 'required|max:7|gte:0',
+    			'content' => 'required|max:65535',
           'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg',
           'category_id' => 'required',
           'tag_id' => 'required',
-          'related_title' => 'required',
-          'related_description' => 'required',
-          'more_content' => 'required',
+          'related_title' => 'required|max:255',
+          'related_description' => 'required|max:255',
+          'more_content' => 'required|max:65535',
+          'weight' => 'integer|gte:0',
+          'calories' => 'integer|gte:0'
     		]);
         $requestData = $request->all();
         $requestData['image'] = $request->file('image')
@@ -118,15 +120,17 @@ class SlideMenuController extends Controller
     {
       // regex:/^([1-9][0-9]+)/|not_in:0
         $this->validate($request, [
-          'title' => 'required',
-    			'price' => 'required|min:1|max:7',
-    			'content' => 'required',
+          'title' => 'required|max:255',
+    			'price' => 'required|max:7|gte:0',
+    			'content' => 'required|max:65535',
           'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg',
           'category_id' => 'required',
           'tag_id' => 'required',
-          'related_title' => 'required',
-          'related_description' => 'required',
-          'more_content' => 'required',
+          'related_title' => 'required|max:255',
+          'related_description' => 'required|max:255',
+          'more_content' => 'required|max:65535',
+          'weight' => 'integer|gte:0',
+          'calories' => 'integer|gte:0'
     		]);
         $requestData = $request->all();
         if ($request->hasFile('image')) {

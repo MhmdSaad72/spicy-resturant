@@ -9,7 +9,7 @@
     {!! $errors->first('image', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('price') ? 'has-error' : ''}}">
-    <label for="price" class="control-label">{{ 'Price' }}</label>
+    <label for="price" class="control-label">{{ 'Price ($)' }}</label>
     <input class="form-control" name="price" type="number" id="price"  value="{{ isset($slidemenu->price) ? $slidemenu->price : old('price')}}"  step=any />
     {!! $errors->first('price', '<p class="help-block text-danger">:message</p>') !!}
 </div>
@@ -24,12 +24,12 @@
     {!! $errors->first('sku', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('weight') ? 'has-error' : ''}}">
-    <label for="weight" class="control-label">{{ 'Weight' }}</label>
+    <label for="weight" class="control-label">{{ 'Weight (Kg)' }}</label>
     <input class="form-control" name="weight" type="number" id="weight" value="{{ isset($slidemenu->weight) ? $slidemenu->weight : old('weight')}}" >
     {!! $errors->first('weight', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('calories') ? 'has-error' : ''}}">
-    <label for="calories" class="control-label">{{ 'Calories' }}</label>
+    <label for="calories" class="control-label">{{ 'Calories (Cal)' }}</label>
     <input class="form-control" name="calories" type="number" id="calories" value="{{ isset($slidemenu->calories) ? $slidemenu->calories : old('calories')}}" >
     {!! $errors->first('calories', '<p class="help-block text-danger">:message</p>') !!}
 </div>
