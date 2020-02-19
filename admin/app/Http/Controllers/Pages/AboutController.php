@@ -6,6 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\About;
+use App\AboutU;
+use App\Chef;
+use App\MasterChef;
+use App\Gallary;
+use App\Album;
+use App\BasicDetail;
+use \Carbon\Carbon ;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -15,19 +22,15 @@ class AboutController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $about = About::where('title', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $about = About::latest()->paginate($perPage);
-        }
-
-        return view('pages.about.index', compact('about'));
+        $aboutUs = AboutU::first();
+        $chefs = Chef::all();
+        $chefHead = MasterChef::first();
+        $gallary = Gallary::first();
+        $album = Album::all();
+        $basicDetail = BasicDetail::first();
+        return view('pages.about.index', compact('aboutUs' , 'chefs' , 'chefHead' , 'gallary' , 'album', 'basicDetail'));
     }
 
     /**
@@ -49,9 +52,9 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         About::create($requestData);
 
         return redirect('pages/about')->with('flash_message', 'About added!');
@@ -95,9 +98,9 @@ class AboutController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $about = About::findOrFail($id);
         $about->update($requestData);
 

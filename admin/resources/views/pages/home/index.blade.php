@@ -1,5 +1,8 @@
 @extends('layouts.master')
 @section('title' , 'Italiano Restaurant | Laravel Restaurant Template')
+@section('meta')
+  <meta name="theme-color" content="#121618">
+@endsection
 @section('content')
     <!-- Hero Section -->
     <section class="hero bg-pattern bg-hero-text" data-text="restaurant">
@@ -185,4 +188,7 @@
         </div>
       </div>
     </div>
+@endsection
+@section('preloader')
+  @include('includes.preloader')
 @endsection

@@ -12,7 +12,7 @@
     <!-- Author meta -->
     <meta name="author" content="">
     <!-- Address bar meta -->
-    <meta name="theme-color" content="#121618">
+    @yield('meta')
     <!-- Viewport meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Robot meta - for search engins -->
@@ -56,7 +56,7 @@
       @include('includes.footer')
     </div>
   </body>
-  @include('includes.preloader')
+  @yield('preloader')
 
   <!-- Jquery Latest -->
   <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
