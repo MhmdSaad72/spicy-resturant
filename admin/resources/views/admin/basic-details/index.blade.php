@@ -9,7 +9,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <a href="{{ url('/admin/basic-details/create') }}" class="btn btn-success btn-sm" title="Add New BasicDetail">
@@ -33,14 +33,20 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Name</th><th>Logo</th><th>Reservation</th><th>Actions</th>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Hot Line</th>
+                                        <th>Reservation</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($basicdetails as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td><td>{{ $item->logo }}</td><td>{{ $item->reservation }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->hot_line }}</td>
+                                        <td>{{ $item->reservation }}</td>
                                         <td>
                                             <a href="{{ url('/admin/basic-details/' . $item->id) }}" title="View BasicDetail"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/basic-details/' . $item->id . '/edit') }}" title="Edit BasicDetail"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

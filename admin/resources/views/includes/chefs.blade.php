@@ -4,8 +4,8 @@
     <!-- Section heading-->
     <header class="bg-heading-text text-center mb-5" data-text="Chefs">
       <div class="index-forward">
-        <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$chefHead->title}}</p>
-        <h2>{{$chefHead->description}}</h2>
+        <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$chefHead->title ?? ''}}</p>
+        <h2>{{$chefHead->description ?? ''}}</h2>
       </div>
     </header>
     <div class="owl-carousel owl-theme chefs-slider owl-padding-sm">

@@ -4,8 +4,8 @@
     <!-- Section heading-->
     <header class="bg-heading-text text-center mb-5" data-text="Gallery">
       <div class="index-forward">
-        <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$gallary->title}}</p>
-        <h2>{{$gallary->description}}</h2>
+        <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$gallary->title ?? ''}}</p>
+        <h2>{{$gallary->description ?? ''}}</h2>
       </div>
     </header>
     <div class="row pt-lg-5">

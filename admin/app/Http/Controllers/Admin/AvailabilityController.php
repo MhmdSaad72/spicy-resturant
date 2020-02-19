@@ -45,8 +45,8 @@ class AvailabilityController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-    			'title' => 'required',
-          'description' => 'required',
+    			'title' => 'required|max:255',
+          'description' => 'required|max:255',
           'start_date' => 'required|date_format:Y-m-d H:i:s|after_or_equal:today',
           'end_date' => 'required|date_format:Y-m-d H:i:s|after:start_date',
     		]);

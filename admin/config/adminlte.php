@@ -354,8 +354,11 @@ return [
             ],
           ],
         ],
-
-
+        [
+          'text' => 'Basic Details',
+          'icon'    => 'fas fa-database',
+          'route' => 'basic-details.index'
+        ],
 
     ],
 

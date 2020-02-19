@@ -6,16 +6,16 @@
       <div class="container text-center text-lg-left">
         <div class="row align-items-center">
           <div class="col-lg-6 order-2 order-lg-1">
-            <p class="text-uppercase text-primary font-weight-bold mb-3">{{$service->title}}</p>
-            <h1 class="mb-4">{{$service->description}}</h1>
-            <p class="lead text-muted"><a class="reset-anchor text-muted" href="http://maps.google.com/maps?q=210+Louise+Ave,+Nashville,+TN+37203"><i class="fas fa-globe-africa text-primary mr-2"></i>{{$service->address}}</a></p>
-            <p>{{$service->content}}.</p>
+            <p class="text-uppercase text-primary font-weight-bold mb-3">{{$service->title ?? ''}}</p>
+            <h1 class="mb-4">{{$service->description ?? ''}}</h1>
+            <p class="lead text-muted"><a class="reset-anchor text-muted" href="http://maps.google.com/maps?q=210+Louise+Ave,+Nashville,+TN+37203"><i class="fas fa-globe-africa text-primary mr-2"></i>{{$service->address ?? ''}}</a></p>
+            <p>{{$service->content ?? ''}}.</p>
             <ul class="list-inline mb-0">
               <li class="list-inline-item py-1"><a class="btn btn-primary transition-link" href="booking.html">Book a table</a></li>
               <li class="list-inline-item py-1"><a class="btn btn-outline-light transition-link" href="about-2.html">Discover more </a></li>
             </ul>
           </div>
-          <div class="col-lg-6 order-1 order-lg-2 mb-5 mb-lg-0"><img class="img-fluid d-block mx-auto hero-img" src="{{asset('storage/' . $service->image)}}" alt="dish"></div>
+          <div class="col-lg-6 order-1 order-lg-2 mb-5 mb-lg-0"><img class="img-fluid d-block mx-auto hero-img" src="{{asset('storage/')}}" alt="dish"></div>
         </div>
       </div>
     </section>
@@ -26,9 +26,9 @@
           <div class="col-lg-6 pr-lg-0 order-2 order-lg-1">
             <div class="h-100 bg-dark d-flex align-items-center">
               <div class="p-5">
-                <p class="text-primary font-weight-bold small text-uppercase mb-2">{{$mainDish->title}}</p>
-                <h2>{{$mainDish->description}}</h2>
-                <p class="text-muted text-small mb-3">{{$mainDish->content}}</p>
+                <p class="text-primary font-weight-bold small text-uppercase mb-2">{{$mainDish->title ?? ''}}</p>
+                <h2>{{$mainDish->description ?? ''}}</h2>
+                <p class="text-muted text-small mb-3">{{$mainDish->content ?? ''}}</p>
                 <ul class="list-inline mb-0">
                   <li class="list-inline-item py-1"><a class="btn btn-primary transition-link" href="booking.html">Book a table</a></li>
                   <li class="list-inline-item py-1"><a class="btn btn-outline-light transition-link" href="dish.html">Dish detail</a></li>
@@ -37,7 +37,7 @@
             </div>
           </div>
           <div class="col-lg-6 pl-lg-0 order-1 order-lg-2">
-            <div class="h-100 bg-center bg-cover main-dish-image" style="background: url({{asset('storage/' . $mainDish->image)}})"></div>
+            <div class="h-100 bg-center bg-cover main-dish-image" style="background: url({{asset('storage/')}})"></div>
           </div>
         </div>
       </div>
@@ -48,13 +48,13 @@
         <!-- Section heading-->
         <header class="bg-heading-text text-center mb-4" data-text="About">
           <div class="index-forward">
-            <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$ourStory->title}}</p>
-            <h2>{{$ourStory->description}}</h2>
+            <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$ourStory->title ?? ''}}</p>
+            <h2>{{$ourStory->description ?? ''}}</h2>
           </div>
         </header>
         <div class="row text-center">
           <div class="col-lg-7 mx-auto">
-            <p class="text-muted mb-4">{{$ourStory->content}}</p><a class="btn btn-primary" href="about-1.html">Discover more</a>
+            <p class="text-muted mb-4">{{$ourStory->content ?? ''}}</p><a class="btn btn-primary" href="about-1.html">Discover more</a>
           </div>
         </div>
       </div>
@@ -65,8 +65,8 @@
         <!-- Section heading-->
         <header class="bg-heading-text text-center mb-5" data-text="Services">
           <div class="index-forward">
-            <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$ourServicesHead->title}}</p>
-            <h2>{{$ourServicesHead->description}}</h2>
+            <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$ourServicesHead->title ?? ''}}</p>
+            <h2>{{$ourServicesHead->description ?? ''}}</h2>
           </div>
         </header>
         <div class="row text-center">
@@ -88,8 +88,8 @@
         <!-- Section heading-->
         <header class="bg-heading-text text-center mb-5" data-text="Featured">
           <div class="index-forward">
-            <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$featurDishHead->title}}</p>
-            <h2>{{$featurDishHead->description}}</h2>
+            <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$featurDishHead->title ?? ''}}</p>
+            <h2>{{$featurDishHead->description ?? ''}}</h2>
           </div>
         </header>
         <div class="owl-carousel owl-theme featured-dishes-slider owl-padding owl-equalize-height">
@@ -125,8 +125,8 @@
         <!-- Section heading-->
         <header class="bg-heading-text text-center mb-5" data-text="Menu">
           <div class="index-forward">
-            <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$foodMenu->title}}</p>
-            <h2>{{$foodMenu->description}}</h2>
+            <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$foodMenu->title ?? ''}}</p>
+            <h2>{{$foodMenu->description ?? ''}}</h2>
           </div>
         </header>
         <!-- Menu tabs nav-->

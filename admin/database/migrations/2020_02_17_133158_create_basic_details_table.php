@@ -17,6 +17,7 @@ class CreateBasicDetailsTable extends Migration
             $table->timestamps();
             $table->string('name')->nullable();
             $table->string('logo')->nullable();
+            $table->string('footer_logo')->nullable();
             $table->string('reservation')->nullable();
             $table->string('content')->nullable();
             $table->integer('hot_line')->nullable();

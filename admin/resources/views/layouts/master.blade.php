@@ -46,7 +46,10 @@
   </head>
   <body>
     <div class="m-pagetransition">
-      @include('includes.header')
+      <header class="header bg-pattern">
+        @include('includes.header')
+        @include('includes.navbar')
+      </header>
       <div class="page-content">
         @yield('content')
       </div>

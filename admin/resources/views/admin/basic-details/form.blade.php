@@ -1,12 +1,17 @@
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
     <label for="name" class="control-label">{{ 'Name' }}</label>
-    <input class="form-control" name="name" type="text" id="name" value="{{ isset($basicdetail->name) ? $basicdetail->name : old('name')}}" required>
+    <input class="form-control" name="name" type="text" id="name" value="{{ isset($basicdetail->name) ? $basicdetail->name : old('name')}}" >
     {!! $errors->first('name', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('logo') ? 'has-error' : ''}}">
     <label for="logo" class="control-label">{{ 'Logo' }}</label>
-    <input class="form-control" name="logo" type="text" id="logo" value="{{ isset($basicdetail->logo) ? $basicdetail->logo : old('logo')}}" >
+    <input class="form-control" name="logo" type="file" id="logo" value="{{ isset($basicdetail->logo) ? $basicdetail->logo : old('logo')}}" >
     {!! $errors->first('logo', '<p class="help-block text-danger">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('footer_logo') ? 'has-error' : ''}}">
+    <label for="footer_logo" class="control-label">{{ 'Footer Logo' }}</label>
+    <input class="form-control" name="footer_logo" type="file" id="footer_logo" value="{{ isset($basicdetail->footer_logo) ? $basicdetail->footer_logo : old('footer_logo')}}" >
+    {!! $errors->first('footer_logo', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('reservation') ? 'has-error' : ''}}">
     <label for="reservation" class="control-label">{{ 'Reservation' }}</label>

@@ -46,9 +46,9 @@ class AboutUsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-    			'title' => 'required',
-    			'content' => 'required',
-    			'description' => 'required',
+    			'title' => 'required|max:255',
+    			'content' => 'required|max:65535',
+    			'description' => 'required|max:255',
     		]);
         $requestData = $request->all();
 

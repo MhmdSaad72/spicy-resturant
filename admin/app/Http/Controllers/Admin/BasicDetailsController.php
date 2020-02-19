@@ -22,7 +22,6 @@ class BasicDetailsController extends Controller
 
         if (!empty($keyword)) {
             $basicdetails = BasicDetail::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('logo', 'LIKE', "%$keyword%")
                 ->orWhere('reservation', 'LIKE', "%$keyword%")
                 ->orWhere('content', 'LIKE', "%$keyword%")
                 ->orWhere('hot_line', 'LIKE', "%$keyword%")
@@ -58,10 +57,13 @@ class BasicDetailsController extends Controller
           'content' => 'required|max:255',
           'reservation' => 'required|max:255',
           'logo' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg',
+          'footer_logo' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg',
           'hot_line' =>'required',
     		]);
         $requestData = $request->all();
         $requestData['logo'] = $request->file('logo')
+                                        ->store('uploads', 'public');
+        $requestData['footer_logo'] = $request->file('footer_logo')
                                         ->store('uploads', 'public');
 
         BasicDetail::create($requestData);
@@ -112,11 +114,18 @@ class BasicDetailsController extends Controller
           'content' => 'required|max:255',
           'reservation' => 'required|max:255',
           'logo' => 'file|image|mimes:jpeg,png,jpg,gif,svg',
+          'footer_logo' => 'file|image|mimes:jpeg,png,jpg,gif,svg',
           'hot_line' =>'required',
     		]);
         $requestData = $request->all();
-        $requestData['logo'] = $request->file('logo')
-                                        ->store('uploads', 'public');
+        if ($request->hasFile('logo')) {
+          $requestData['logo'] = $request->file('logo')
+                                         ->store('uploads', 'public');
+        }
+        if ($request->hasFile('footer_logo')) {
+          $requestData['footer_logo'] = $request->file('footer_logo')
+                                         ->store('uploads', 'public');
+        }
 
         $basicdetail = BasicDetail::findOrFail($id);
         $basicdetail->update($requestData);

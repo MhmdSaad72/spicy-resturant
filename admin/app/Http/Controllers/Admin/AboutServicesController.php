@@ -53,9 +53,9 @@ class AboutServicesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-    			'title' => 'required',
+    			'title' => 'required|max:255',
     			'icon' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg',
-    			'content' => 'required',
+    			'content' => 'required|max:65535',
     			'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg'
     		]);
         $requestData = $request->all();
@@ -108,9 +108,9 @@ class AboutServicesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-          'title' => 'required',
+          'title' => 'required|max:255',
     			'icon' => 'file|image|mimes:jpeg,png,jpg,gif,svg',
-    			'content' => 'required',
+    			'content' => 'required|max:65535',
     			'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg'
     		]);
         $requestData = $request->all();
