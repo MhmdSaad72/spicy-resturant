@@ -15,6 +15,8 @@ use App\BasicDetail;
 use App\Philosophy;
 use App\Statistic;
 use App\Award;
+use App\Availability;
+use App\AboutService;
 use \Carbon\Carbon ;
 use Illuminate\Http\Request;
 
@@ -73,11 +75,19 @@ class AboutController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show()
     {
-        $about = About::findOrFail($id);
-
-        return view('pages.about.show', compact('about'));
+        $aboutUs = AboutU::first();
+        $album = Album::all();
+        $basicDetail = BasicDetail::first();
+        $philosophy = Philosophy::first();
+        $availability = Availability::first();
+        $availability->startDay = Carbon::parse($availability->start_date)->format('l') ;
+        $availability->startTime = Carbon::parse($availability->start_date)->format('h:i A');
+        $availability->endDay = Carbon::parse($availability->end_date)->format('l');
+        $availability->endTime = Carbon::parse($availability->end_date)->format('h:i A');
+        $aboutservices = AboutService::all();
+        return view('pages.about.show', compact('aboutUs' , 'album' , 'basicDetail' , 'philosophy' , 'availability' , 'aboutservices'));
     }
 
     /**
