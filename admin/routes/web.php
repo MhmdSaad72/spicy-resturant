@@ -47,6 +47,7 @@ Route::get('pages/about-2' , 'Pages\\AboutController@show')->name('about.show');
 
 Route::get('pages/contact-2' , 'Pages\\ContactController@show')->name('contact.index');
 Route::get('pages/contact-1' , 'Pages\\ContactController@index')->name('contact.show');
+Route::post('pages/contact' , 'Pages\\ContactController@store')->name('contact.store');
 
 
 Route::resource('admin/branch-head', 'Admin\\BranchHeadController');

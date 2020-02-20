@@ -87,24 +87,25 @@
             <li class="list-inline-item mr-1"><a class="social-link bg-primary text-white" href="{{$contacts->youtube ?? ''}}" target="_blank"><i class="fab fa-youtube"></i></a></li>
           </ul>
           <div class="mt-4 border-top border-md border-primary p-4 p-md-5 shadow bg-body demo-rounded">
-            <form class="contact-form needs-validation" action="index.html" novalidate>
+            <form class="contact-form needs-validation" action="{{route('contact.store')}}" novalidate method="POST">
+              {{ csrf_field() }}
               <div class="row">
                 <div class="form-group col-lg-6">
                   <label class="label-required" for="fullName">Your name</label>
                   <input class="form-control form-control-lg bg-none border-gray" id="fullName" type="text" name="fullName" placeholder="Enter your name" required>
-                  <div class="invalid-feedback">Please enter your name</div>
+                  <div class="invalid-feedback">{!! $errors->first('fullName', 'message') !!}</div>
                   <div class="valid-feedback">Looks good</div>
                 </div>
                 <div class="form-group col-lg-6">
                   <label class="label-required" for="email">Email address </label>
                   <input class="form-control form-control-lg bg-none border-gray" id="email" type="text" name="email" placeholder="Enter your email address" required>
-                  <div class="invalid-feedback">Please enter your email address</div>
+                  <div class="invalid-feedback">{!! $errors->first('email', 'message') !!}</div>
                   <div class="valid-feedback">Looks good</div>
                 </div>
                 <div class="form-group col-lg-12">
                   <label class="label-required mb-0" for="message">Your message</label>
                   <textarea class="form-control form-control-lg bg-none border-gray py-3" id="message" name="message" rows="5" placeholder="Leave your message..."></textarea>
-                  <div class="invalid-feedback">Please enter your message</div>
+                  <div class="invalid-feedback">{!! $errors->first('message', 'message') !!}</div>
                   <div class="valid-feedback">Looks good</div>
                 </div>
                 <div class="form-group col-lg-12 pt-2 mb-0">
