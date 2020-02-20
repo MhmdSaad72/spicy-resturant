@@ -40,10 +40,13 @@ Route::resource('admin/contact-us', 'Admin\\ContactUsController');
 
 Route::resource('pages/home', 'Pages\\HomeController');
 Route::resource('pages/menus', 'Pages\\MenusController');
-Route::resource('pages/contact', 'Pages\\ContactController');
+// Route::resource('pages/contact', 'Pages\\ContactController');
 // Route::resource('pages/about', 'Pages\\AboutController');
 Route::get('pages/about-1' , 'Pages\\AboutController@index')->name('about.index');
 Route::get('pages/about-2' , 'Pages\\AboutController@show')->name('about.show');
+
+Route::get('pages/contact-2' , 'Pages\\ContactController@show')->name('contact.index');
+Route::get('pages/contact-1' , 'Pages\\ContactController@index')->name('contact.show');
 
 
 Route::resource('admin/branch-head', 'Admin\\BranchHeadController');

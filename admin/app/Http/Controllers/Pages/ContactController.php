@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Contact;
+use App\BasicDetail;
+use App\BranchHead;
+use App\ContactU;
+use App\BranchBody;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -15,19 +19,11 @@ class ContactController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $contact = Contact::where('title', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $contact = Contact::latest()->paginate($perPage);
-        }
-
-        return view('pages.contact.index', compact('contact'));
+        $basicDetail = BasicDetail::first();
+        $contacts = ContactU::first();
+        return view('pages.contact.index', compact('basicDetail' , 'contacts'));
     }
 
     /**
@@ -49,9 +45,9 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         Contact::create($requestData);
 
         return redirect('pages/contact')->with('flash_message', 'Contact added!');
@@ -64,11 +60,13 @@ class ContactController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show()
     {
-        $contact = Contact::findOrFail($id);
-
-        return view('pages.contact.show', compact('contact'));
+        $basicDetail = BasicDetail::first();
+        $contacts = ContactU::first();
+        $branchHead = BranchHead::first();
+        $branchBodies = BranchBody::all();
+        return view('pages.contact.show', compact('basicDetail' , 'contacts' , 'branchHead' , 'branchBodies'));
     }
 
     /**
@@ -95,9 +93,9 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $contact = Contact::findOrFail($id);
         $contact->update($requestData);
 

@@ -31,7 +31,7 @@
           <div class="dropdown-menu navSlideIn animate" aria-labelledby="navAboutPages"><a class="dropdown-item transition-link" href="{{route('about.index')}}">About style 1</a><a class="dropdown-item transition-link" href="{{route('about.show')}}">About style 2</a></div>
         </li>
         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navContactPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contact</a>
-          <div class="dropdown-menu navSlideIn animate" aria-labelledby="navContactPages"><a class="dropdown-item transition-link" href="contact-1.html">Contact style 1</a><a class="dropdown-item transition-link" href="contact-2.html">Contact style 2</a></div>
+          <div class="dropdown-menu navSlideIn animate" aria-labelledby="navContactPages"><a class="dropdown-item transition-link" href="{{route('contact.show')}}">Contact style 1</a><a class="dropdown-item transition-link" href="{{route('contact.index')}}">Contact style 2</a></div>
         </li>
         <li class="nav-item dropdown megamenu"><a class="nav-link dropdown-toggle" id="megamneu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
           <div class="dropdown-menu navSlideIn animate p-4" aria-labelledby="megamneu">
