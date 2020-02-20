@@ -22,13 +22,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <!-- Navbar link--><a class="nav-link transition-link active" href="index.html">Home</a>
+          <!-- Navbar link--><a class="nav-link transition-link active" href="{{route('home.index')}}">Home</a>
         </li>
         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navMenuPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
           <div class="dropdown-menu navSlideIn animate" aria-labelledby="navMenuPages"><a class="dropdown-item transition-link" href="menu-1.html">Menu style 1</a><a class="dropdown-item transition-link" href="menu-2.html">Menu style 2</a></div>
         </li>
         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navAboutPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
-          <div class="dropdown-menu navSlideIn animate" aria-labelledby="navAboutPages"><a class="dropdown-item transition-link" href="about-1.html">About style 1</a><a class="dropdown-item transition-link" href="about-2.html">About style 2</a></div>
+          <div class="dropdown-menu navSlideIn animate" aria-labelledby="navAboutPages"><a class="dropdown-item transition-link" href="{{route('about.index')}}">About style 1</a><a class="dropdown-item transition-link" href="{{route('about.show')}}">About style 2</a></div>
         </li>
         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navContactPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contact</a>
           <div class="dropdown-menu navSlideIn animate" aria-labelledby="navContactPages"><a class="dropdown-item transition-link" href="contact-1.html">Contact style 1</a><a class="dropdown-item transition-link" href="contact-2.html">Contact style 2</a></div>
