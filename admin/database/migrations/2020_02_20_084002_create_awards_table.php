@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateStatisticsTable extends Migration
+class CreateAwardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class CreateStatisticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('statistics', function (Blueprint $table) {
+        Schema::create('awards', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('title')->nullable();
-            $table->integer('count')->nullable();
-            $table->string('image')->nullable();
+            $table->string('description')->nullable();
             $table->text('content')->nullable();
+            $table->date('year')->nullable();
             });
     }
 
@@ -29,6 +28,6 @@ class CreateStatisticsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('statistics');
+        Schema::drop('awards');
     }
 }

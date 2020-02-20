@@ -24,14 +24,14 @@
           <!-- Section heading-->
           <header class="bg-heading-text text-center mb-5" data-text="Vision">
             <div class="index-forward">
-              <p class="text-uppercase text-primary font-weight-bold small mb-2">Our vision</p>
-              <h2>Our philosophy</h2>
+              <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$philosophy->title ?? ''}}</p>
+              <h2>{{$philosophy->description ?? ''}}</h2>
             </div>
           </header>
           <blockquote class="blockquote border-0 text-center">
-            <p class="drop-caps text-center text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <footer class="blockquote-footer">Sundar Pichai
-              <cite>Spicy restaurant CEO</cite>
+            <p class="drop-caps text-center text-muted mb-4">{{$philosophy->content ?? ''}}</p>
+            <footer class="blockquote-footer">{{$philosophy->name ?? ''}}
+              <cite>{{$philosophy->position ?? ''}}</cite>
             </footer>
           </blockquote>
         </div>
@@ -42,22 +42,12 @@
   <section class="bg-dark">
     <div class="container">
       <div class="row text-center">
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0"><img class="mb-3" src="img/stats-1-default.svg" alt="..." height="40">
-          <h2 class="line-height-sm">214</h2>
-          <p class="small text-muted">Various dishes</p>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0"><img class="mb-3" src="img/stats-2-default.svg" alt="..." height="40">
-          <h2 class="line-height-sm">2000</h2>
-          <p class="small text-muted">Daily visitors</p>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0"><img class="mb-3" src="img/stats-3-default.svg" alt="..." height="40">
-          <h2 class="line-height-sm">12</h2>
-          <p class="small text-muted">Worldwide branches</p>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0"><img class="mb-3" src="img/stats-4-default.svg" alt="..." height="40">
-          <h2 class="line-height-sm">100%</h2>
-          <p class="small text-muted">Intime delivery</p>
-        </div>
+        @foreach ($statistics as $key => $item)
+          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0"><img class="mb-3" src="{{asset('storage/' . $item->image)}}" alt="..." height="40">
+            <h2 class="line-height-sm">{{$item->count}}</h2>
+            <p class="small text-muted">{{$item->title}}</p>
+          </div>
+        @endforeach
       </div>
     </div>
   </section>
@@ -99,9 +89,9 @@
         </div>
         <div class="col-lg-4">
           <div class="border border-primary border-md border-dashed p-5 text-center demo-rounded"><i class="fas fa-award text-primary fa-3x mb-3"></i>
-            <p class="small text-gray mb-0 text-uppercase">2019 Award</p>
-            <h3 class="h5">Best restaurant in California</h3>
-            <p class="small text-gray mb-0">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.</p>
+            <p class="small text-gray mb-0 text-uppercase">{{\Carbon\Carbon::parse($award->year)->format('Y')}} Award</p>
+            <h3 class="h5">{{$award->description ?? ''}}</h3>
+            <p class="small text-gray mb-0">{{$award->content ?? ''}}</p>
           </div>
         </div>
       </div>

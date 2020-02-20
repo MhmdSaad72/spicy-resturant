@@ -1,42 +1,35 @@
 <?php
 
-namespace App\Http\Controllers\Pages;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\About;
-use App\AboutU;
-use App\Chef;
-use App\MasterChef;
-use App\Gallary;
-use App\Album;
-use App\BasicDetail;
-use App\Philosophy;
-use App\Statistic;
 use App\Award;
-use \Carbon\Carbon ;
 use Illuminate\Http\Request;
 
-class AboutController extends Controller
+class AwardController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $aboutUs = AboutU::first();
-        $chefs = Chef::all();
-        $chefHead = MasterChef::first();
-        $gallary = Gallary::first();
-        $album = Album::all();
-        $basicDetail = BasicDetail::first();
-        $philosophy = Philosophy::first();
-        $statistics = Statistic::all();
-        $award = Award::first();
-        return view('pages.about.index', compact('aboutUs' , 'chefs' , 'chefHead' , 'gallary' , 'album', 'basicDetail' , 'philosophy' , 'statistics' , 'award'));
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        if (!empty($keyword)) {
+            $award = Award::where('description', 'LIKE', "%$keyword%")
+                ->orWhere('content', 'LIKE', "%$keyword%")
+                ->orWhere('year', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $award = Award::latest()->paginate($perPage);
+        }
+
+        return view('admin.award.index', compact('award'));
     }
 
     /**
@@ -46,7 +39,7 @@ class AboutController extends Controller
      */
     public function create()
     {
-        return view('pages.about.create');
+        return view('admin.award.create');
     }
 
     /**
@@ -58,12 +51,16 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-
+        $this->validate($request, [
+    			'description' => 'required|max:255',
+          'content' => 'required|max:65535',
+    			'year' => 'required|date',
+    		]);
         $requestData = $request->all();
 
-        About::create($requestData);
+        Award::create($requestData);
 
-        return redirect('pages/about')->with('flash_message', 'About added!');
+        return redirect('admin/award')->with('flash_message', 'Award added!');
     }
 
     /**
@@ -75,9 +72,9 @@ class AboutController extends Controller
      */
     public function show($id)
     {
-        $about = About::findOrFail($id);
+        $award = Award::findOrFail($id);
 
-        return view('pages.about.show', compact('about'));
+        return view('admin.award.show', compact('award'));
     }
 
     /**
@@ -89,9 +86,9 @@ class AboutController extends Controller
      */
     public function edit($id)
     {
-        $about = About::findOrFail($id);
+        $award = Award::findOrFail($id);
 
-        return view('pages.about.edit', compact('about'));
+        return view('admin.award.edit', compact('award'));
     }
 
     /**
@@ -104,13 +101,17 @@ class AboutController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $this->validate($request, [
+          'description' => 'required|max:255',
+          'content' => 'required|max:65535',
+    			'year' => 'required|date',
+    		]);
         $requestData = $request->all();
 
-        $about = About::findOrFail($id);
-        $about->update($requestData);
+        $award = Award::findOrFail($id);
+        $award->update($requestData);
 
-        return redirect('pages/about')->with('flash_message', 'About updated!');
+        return redirect('admin/award')->with('flash_message', 'Award updated!');
     }
 
     /**
@@ -122,8 +123,8 @@ class AboutController extends Controller
      */
     public function destroy($id)
     {
-        About::destroy($id);
+        Award::destroy($id);
 
-        return redirect('pages/about')->with('flash_message', 'About deleted!');
+        return redirect('admin/award')->with('flash_message', 'Award deleted!');
     }
 }

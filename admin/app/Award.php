@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Statistic extends Model
+class Award extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'statistics';
+    protected $table = 'awards';
 
     /**
     * The database primary key value.
@@ -25,7 +25,7 @@ class Statistic extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'count', 'image' , 'content'];
+    protected $fillable = ['description', 'content', 'year'];
 
-
+    
 }

@@ -276,6 +276,10 @@ return [
                 'text' => 'Philosophy',
                 'route'  => 'philosophy.index',
               ],
+              [
+                'text' => 'Awards',
+                'route'  => 'award.index',
+              ],
             ],
         ],
         [

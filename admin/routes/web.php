@@ -48,3 +48,4 @@ Route::resource('admin/branch-body', 'Admin\\BranchBodyController');
 Route::resource('admin/drop-line', 'Admin\\DropLineController');
 
 Route::resource('admin/basic-details', 'Admin\\BasicDetailsController');
+Route::resource('admin/award', 'Admin\\AwardController');

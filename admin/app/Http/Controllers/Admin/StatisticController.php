@@ -23,6 +23,7 @@ class StatisticController extends Controller
         if (!empty($keyword)) {
             $statistic = Statistic::where('title', 'LIKE', "%$keyword%")
                 ->orWhere('count', 'LIKE', "%$keyword%")
+                ->orWhere('content', 'LIKE', "%$keyword%")
                 ->orWhere('image', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
@@ -52,9 +53,10 @@ class StatisticController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-    			'title' => 'required',
+    			'title' => 'required|max:255',
     			'count' => 'required|integer',
     			'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg',
+          'content' => 'required|max:65535'
     		]);
         $requestData = $request->all();
         $requestData['image'] = $request->file('image')
@@ -104,9 +106,10 @@ class StatisticController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-          'title' => 'required',
+          'title' => 'required|max:255',
     			'count' => 'required|integer',
     			'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg',
+          'content' => 'required|max:65535'
     		]);
         $requestData = $request->all();
         if ($request->hasFile('image')) {
