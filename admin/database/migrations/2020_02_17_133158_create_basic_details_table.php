@@ -20,7 +20,7 @@ class CreateBasicDetailsTable extends Migration
             $table->string('footer_logo')->nullable();
             $table->string('reservation')->nullable();
             $table->string('content')->nullable();
-            $table->integer('hot_line')->nullable();
+            $table->string('hot_line')->nullable();
             });
     }
 

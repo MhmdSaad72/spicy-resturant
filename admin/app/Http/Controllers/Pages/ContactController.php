@@ -47,14 +47,14 @@ class ContactController extends Controller
     {
         $this->validate($request, [
           'fullName' => 'required|max:255',
-          'email' => 'required|email',
+          'email' => 'required|email|max:255|unique:contacts',
           'message' => 'required',
         ]);
         $requestData = $request->all();
 
         Contact::create($requestData);
 
-        return redirect('pages/contact')->with('flash_message', 'Contact added!');
+        return redirect()->back()->with('flash_message', 'Contact added!');
     }
 
     /**

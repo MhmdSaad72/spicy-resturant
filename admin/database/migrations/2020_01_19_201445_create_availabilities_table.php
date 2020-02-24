@@ -18,8 +18,12 @@ class CreateAvailabilitiesTable extends Migration
             $table->softDeletes();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
-            $table->dateTime('start_date')->nullable();
-            $table->dateTime('end_date')->nullable();
+            $table->integer('start_day')->default(1);
+            $table->integer('end_day')->default(1);
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
+            // $table->dateTime('start_date')->nullable();
+            // $table->dateTime('end_date')->nullable();
             });
     }
 

@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Menu;
+use App\FoodMenu;
+use App\Category;
+use App\BasicDetail;
 use Illuminate\Http\Request;
 
 class MenusController extends Controller
@@ -15,19 +18,12 @@ class MenusController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $menus = Menu::where('title', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $menus = Menu::latest()->paginate($perPage);
-        }
-
-        return view('pages.menus.index', compact('menus'));
+        $foodMenu = FoodMenu::first();
+        $categories = Category::all();
+        $basicDetail = BasicDetail::first();
+        return view('pages.menus.index', compact('foodMenu' , 'categories' , 'basicDetail'));
     }
 
     /**
@@ -49,9 +45,9 @@ class MenusController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         Menu::create($requestData);
 
         return redirect('pages/menus')->with('flash_message', 'Menu added!');
@@ -64,11 +60,13 @@ class MenusController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show()
     {
-        $menu = Menu::findOrFail($id);
+        $foodMenu = FoodMenu::first();
+        $categories = Category::all();
+        $basicDetail = BasicDetail::first();
 
-        return view('pages.menus.show', compact('menu'));
+        return view('pages.menus.show', compact('foodMenu' , 'categories' , 'basicDetail'));
     }
 
     /**
@@ -95,9 +93,9 @@ class MenusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $menu = Menu::findOrFail($id);
         $menu->update($requestData);
 

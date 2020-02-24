@@ -107,8 +107,8 @@ class BranchBodyController extends Controller
         $this->validate($request, [
           'title' => 'required',
           'address' => 'required',
-          'phone' => 'required|unique:branch_bodies,phone' . $branchbody->id,
-          'email' => 'required|email|unique:branch_bodies,email' . $branchbody->id,
+          'phone' => 'required|unique:branch_bodies,phone,' . $branchbody->id,
+          'email' => 'required|email|unique:branch_bodies,email,' . $branchbody->id,
     		]);
         $requestData = $request->all();
 

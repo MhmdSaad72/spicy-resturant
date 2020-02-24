@@ -47,8 +47,10 @@ class AvailabilityController extends Controller
         $this->validate($request, [
     			'title' => 'required|max:255',
           'description' => 'required|max:255',
-          'start_date' => 'required|date_format:Y-m-d H:i:s|after_or_equal:today',
-          'end_date' => 'required|date_format:Y-m-d H:i:s|after:start_date',
+          'start_day' => 'required',
+          'end_day' => 'required',
+          'start_time' => 'required|date_format:H:i',
+          'end_time' => 'required|date_format:H:i',
     		]);
         $requestData = $request->all();
 

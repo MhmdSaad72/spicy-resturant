@@ -18,7 +18,6 @@ class CreateStatisticsTable extends Migration
             $table->string('title')->nullable();
             $table->integer('count')->nullable();
             $table->string('image')->nullable();
-            $table->text('content')->nullable();
             });
     }
 

@@ -81,12 +81,10 @@ class AboutController extends Controller
         $album = Album::all();
         $basicDetail = BasicDetail::first();
         $philosophy = Philosophy::first();
-        $availability = Availability::first();
-        $availability->startDay = Carbon::parse($availability->start_date)->format('l') ;
-        $availability->startTime = Carbon::parse($availability->start_date)->format('h:i A');
-        $availability->endDay = Carbon::parse($availability->end_date)->format('l');
-        $availability->endTime = Carbon::parse($availability->end_date)->format('h:i A');
         $aboutservices = AboutService::all();
+        $availability = Availability::first();
+        $availability->start_time = Carbon::parse($availability->start_time)->format('h:i A');
+        $availability->end_time = Carbon::parse($availability->end_time)->format('h:i A');
         return view('pages.about.show', compact('aboutUs' , 'album' , 'basicDetail' , 'philosophy' , 'availability' , 'aboutservices'));
     }
 

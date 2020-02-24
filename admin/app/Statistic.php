@@ -25,7 +25,7 @@ class Statistic extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'count', 'image' , 'content'];
+    protected $fillable = ['title', 'count', 'image' ];
 
 
 }

@@ -89,7 +89,7 @@
         </div>
         <div class="col-lg-4">
           <div class="border border-primary border-md border-dashed p-5 text-center demo-rounded"><i class="fas fa-award text-primary fa-3x mb-3"></i>
-            <p class="small text-gray mb-0 text-uppercase">{{\Carbon\Carbon::parse($award->year)->format('Y')}} Award</p>
+            <p class="small text-gray mb-0 text-uppercase">{{isset($award) ? \Carbon\Carbon::parse($award->year)->format('Y') : ''}} Award</p>
             <h3 class="h5">{{$award->description ?? ''}}</h3>
             <p class="small text-gray mb-0">{{$award->content ?? ''}}</p>
           </div>

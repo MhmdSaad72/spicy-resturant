@@ -8,15 +8,38 @@
     <input class="form-control" name="description" type="text" id="description" value="{{ isset($availability->description) ? $availability->description : ''}}" >
     {!! $errors->first('description', '<p class="help-block text-danger">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('start_date') ? 'has-error' : ''}}">
-    <label for="start_date" class="control-label">{{ 'Start Date' }}</label>
-    <input class="form-control" name="start_date" type="datetime" id="start_date" value="{{ isset($availability->start_date) ? $availability->start_date : ''}}" >
-    {!! $errors->first('start_date', '<p class="help-block text-danger">:message</p>') !!}
+<div class="form-group {{ $errors->has('start_day') ? 'has-error' : ''}}">
+    <label for="start_day" class="control-label">{{ 'Start Day' }}</label>
+    <select name="start_day" class="form-control" id="start_day" >
+      <option value="" selected disabled>{{'Select start day'}}</option>
+      @for ($i=1; $i <= 7; $i++)
+        <option value="{{$i}}"{{$i == $availability->start_day ? 'selected': ''}}>{{$availability->getDayAttribute($i)}}</option>
+      @endfor
+
+    </select>
+        {!! $errors->first('start_day', '<p class="help-block text-danger">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('end_date') ? 'has-error' : ''}}">
-    <label for="end_date" class="control-label">{{ 'End Date' }}</label>
-    <input class="form-control" name="end_date" type="datetime" id="end_date" value="{{ isset($availability->end_date) ? $availability->end_date : ''}}" >
-    {!! $errors->first('end_date', '<p class="help-block text-danger">:message</p>') !!}
+<div class="form-group {{ $errors->has('start_time') ? 'has-error' : ''}}">
+    <label for="start_time" class="control-label">{{ 'Start Time' }}</label>
+    <input class="form-control" name="start_time" type="time" id="start_time" value="{{ isset($availability->start_time) ? $availability->start_time : old('start_time')}}" >
+    {!! $errors->first('start_time', '<p class="help-block text-danger">:message</p>') !!}
+</div>
+
+<div class="form-group {{ $errors->has('end_day') ? 'has-error' : ''}}">
+    <label for="end_day" class="control-label">{{ 'End Day' }}</label>
+    <select name="end_day" class="form-control" id="end_day" >
+      <option value="" selected disabled>{{'Select end day'}}</option>
+      @for ($i=1; $i <= 7; $i++)
+        <option value="{{$i}}"{{$i == $availability->end_day ? 'selected': ''}}>{{$availability->getDayAttribute($i)}}</option>
+      @endfor
+
+    </select>
+        {!! $errors->first('end_day', '<p class="help-block text-danger">:message</p>') !!}
+</div>
+<div class="form-group {{ $errors->has('end_time') ? 'has-error' : ''}}">
+    <label for="end_time" class="control-label">{{ 'End Time' }}</label>
+    <input class="form-control" name="end_time" type="time" id="end_time" value="{{ isset($availability->end_time) ? $availability->end_time : old('end_time')}}" >
+    {!! $errors->first('end_time', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 
 

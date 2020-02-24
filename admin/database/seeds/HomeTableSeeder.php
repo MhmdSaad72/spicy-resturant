@@ -29,33 +29,15 @@ class HomeTableSeeder extends Seeder
           'description' => 'About our restaurant',
           'content' => 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text.',
          ]);
-        App\Availability::create([
-          'title' => 'Our story',
-          'description' => 'About our restaurant',
-          'start_date' => \Carbon\Carbon::now(),
-          'end_date' => \Carbon\Carbon::now()->addWeek(),
-         ]);
         App\OurServicesHead::create([
           'title' => 'Our services',
           'description' => 'All your needs in one place',
          ]);
-         App\OurServicesBody::create([
-           'title' => 'Awesome Drinks',
-           'content' => 'Lorem ipsum dolor sit amet, consetur adipisicing',
-           'image' => 'uploads/coffee-default.svg'
-          ]);
+
         App\FeaturDishHead::create([
           'title' => 'Featured dishes',
           'description' => 'Our Featured Dishes',
          ]);
-       App\FeatureDishBody::create([
-         'title' => 'Featured dishes',
-         'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
-         'price' => 7,
-         'image' => 'uploads/dish-2.png',
-
-        ]);
-
 
 
     }

@@ -27,10 +27,16 @@
                               <th> Description </th><td> {{ $availability->description }} </td>
                             </tr>
                             <tr>
-                              <th> Start Date </th><td> {{ $availability->start_date }} </td>
+                              <th> Start Day </th><td> {{ $availability->getDayAttribute($availability->start_day) }} </td>
                             </tr>
                             <tr>
-                              <th> End Date </th><td> {{ $availability->end_date }} </td>
+                              <th> Start Time </th><td> {{ $availability->start_time }} </td>
+                            </tr>
+                            <tr>
+                              <th> End Day </th><td> {{ $availability->getDayAttribute($availability->end_day) }} </td>
+                            </tr>
+                            <tr>
+                              <th> End Time </th><td> {{ $availability->end_time }} </td>
                             </tr>
                           </tbody>
                         </table>

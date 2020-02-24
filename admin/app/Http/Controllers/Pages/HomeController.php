@@ -45,10 +45,8 @@ class HomeController extends Controller
         $chefHead = MasterChef::first();
         $chefs = Chef::all();
         $availability = Availability::first();
-        $availability->startDay = Carbon::parse($availability->start_date)->format('l') ;
-        $availability->startTime = Carbon::parse($availability->start_date)->format('h:i A');
-        $availability->endDay = Carbon::parse($availability->end_date)->format('l');
-        $availability->endTime = Carbon::parse($availability->end_date)->format('h:i A');
+        $availability->start_time = Carbon::parse($availability->start_time)->format('h:i A');
+        $availability->end_time = Carbon::parse($availability->end_time)->format('h:i A');
         $gallary = Gallary::first();
         $album = Album::all();
         $basicDetail = BasicDetail::first();

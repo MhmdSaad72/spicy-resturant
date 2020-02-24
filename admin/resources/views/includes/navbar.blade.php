@@ -17,7 +17,7 @@
             <p class="small mb-0">bookings</p>
           </div></a></li>
     </ul>
-    <!-- Navabr brand--><a class="navbar-brand d-none position-absolute" href="index.html"><img src="{{asset('storage/' . $basicDetail->logo)}}" alt="Italiano Restaurant" width="100"></a>
+    <!-- Navabr brand--><a class="navbar-brand d-none position-absolute" href="index.html"><img src="{{isset($basicDetail->logo) ? asset('storage/' . $basicDetail->logo) : ''}}" alt="Italiano Restaurant" width="100"></a>
     <!-- Navbar menu-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
@@ -25,7 +25,7 @@
           <!-- Navbar link--><a class="nav-link transition-link active" href="{{route('home.index')}}">Home</a>
         </li>
         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navMenuPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
-          <div class="dropdown-menu navSlideIn animate" aria-labelledby="navMenuPages"><a class="dropdown-item transition-link" href="menu-1.html">Menu style 1</a><a class="dropdown-item transition-link" href="menu-2.html">Menu style 2</a></div>
+          <div class="dropdown-menu navSlideIn animate" aria-labelledby="navMenuPages"><a class="dropdown-item transition-link" href="{{route('menus.index')}}">Menu style 1</a><a class="dropdown-item transition-link" href="{{route('menus.show')}}">Menu style 2</a></div>
         </li>
         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navAboutPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
           <div class="dropdown-menu navSlideIn animate" aria-labelledby="navAboutPages"><a class="dropdown-item transition-link" href="{{route('about.index')}}">About style 1</a><a class="dropdown-item transition-link" href="{{route('about.show')}}">About style 2</a></div>

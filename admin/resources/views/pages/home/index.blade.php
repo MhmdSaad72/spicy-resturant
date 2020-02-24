@@ -154,7 +154,7 @@
                           <p class="small text-muted mb-0">{{$item->str_limit($item->content)}}</p>
                           <p class="h6 price mb-0">${{$item->price}}</p>
                         </div>
-                        <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="img/pizza-1.png" alt="Diablo"/></div></a>
+                        <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{asset('storage/' . $item->image)}}" alt="Diablo"/></div></a>
                       </div>
                     @endforeach
                 </div>
@@ -173,21 +173,7 @@
     @include('includes.gallary')
     <!-- Scroll top button-->
     <div class="scroll-top-btn" id="scrollTop"><i class="fas fa-long-arrow-alt-up"></i><span class="font-weight-bold text-uppercase small">To Top</span></div>
-    <!-- Preloader -->
-    <div class="preloader">
-      <div class="preloader-inner">
-        <div class="position-relative text-center"><span class="bg-heading-text-content center">Loading</span>
-          <p class="h4 mb-2 d-flex align-items-center"> <span>Italiano</span><i class="fas fa-hamburger fa-2x px-3 text-primary"></i><span>Restaurant</span></p>
-          <p class="text-small font-weight-light text-gray mb-0">We're loading our awesome stuff</p>
-        </div>
-        <div class="lds-ellipsis">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      </div>
-    </div>
+
 @endsection
 @section('preloader')
   @include('includes.preloader')

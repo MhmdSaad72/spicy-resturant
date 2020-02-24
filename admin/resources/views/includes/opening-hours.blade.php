@@ -15,14 +15,14 @@
         <div class="d-flex align-items-center justify-content-center justify-content-lg-end">
           <div class="text-right">
             <p class="small text-uppercase text-muted mb-0">From</p>
-            <p class="h5 mb-2">{{$availability->startDay ??''}}</p>
-            <p class="small text-muted mb-0">{{$availability->startTime ?? ''}}</p>
+            <p class="h5 mb-2">{{$availability->start_day ? $availability->getDayAttribute($availability->start_day) : ''}}</p>
+            <p class="small text-muted mb-0">{{$availability->start_time ?? ''}}</p>
           </div>
           <div class="pl-3"><i class="fas fa-clock fa-3x text-primary"></i></div>
           <div class="pl-3">
             <p class="small text-uppercase text-muted mb-0">Until</p>
-            <p class="h5 mb-2">{{$availability->endDay ?? ''}}</p>
-            <p class="small text-muted mb-0">{{$availability->endTime ?? ''}}</p>
+            <p class="h5 mb-2">{{$availability->end_day? $availability->getDayAttribute($availability->end_day) : ''}}</p>
+            <p class="small text-muted mb-0">{{$availability->end_time ?? ''}}</p>
           </div>
         </div>
       </div>
