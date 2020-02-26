@@ -8,7 +8,7 @@
           <h6 class="line-height-sm mb-0">{{isset($basicDetail) ? $basicDetail->hot_line : ''}}</h6>
         </div></a>
       <!-- Navabr brand--><a class="navbar-brand m-0 transition-link" href="index.html"><img src="{{isset($basicDetail->logo) ? asset('storage/' . $basicDetail->logo) : ''}}" alt="Italiano Restaurant" width="145"></a>
-      <!-- Make reservation button--><a class="d-flex align-items-center reset-anchor transition-link" href="booking.html">
+      <!-- Make reservation button--><a class="d-flex align-items-center reset-anchor transition-link" href="{{route('booking.index')}}">
         <div class="mr-2 text-right d-none d-lg-block">
           <p class="small text-gray mb-0">Want a table?</p>
           <h6 class="line-height-sm mb-0">{{isset($basicDetail) ? $basicDetail->reservation : ''}}</h6>

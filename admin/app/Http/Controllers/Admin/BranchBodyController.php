@@ -105,7 +105,7 @@ class BranchBodyController extends Controller
     {
         $branchbody = BranchBody::findOrFail($id);
         $this->validate($request, [
-          'title' => 'required',
+          'place' => 'required',
           'address' => 'required',
           'phone' => 'required|unique:branch_bodies,phone,' . $branchbody->id,
           'email' => 'required|email|unique:branch_bodies,email,' . $branchbody->id,

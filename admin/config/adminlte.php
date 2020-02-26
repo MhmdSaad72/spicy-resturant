@@ -201,6 +201,19 @@ return [
         //     'url'  => 'admin/settings',
         //     'icon' => 'fas fa-fw fa-lock',
         // ],
+        ['header' => 'Website Details'],
+        [
+            'text'    => 'Contacts',
+            'icon'    => 'fas fa-fw fa-phone-volume',
+            'submenu' =>
+            [
+                [
+                    'text'    => 'All Contacts',
+                    'route'     => 'contact.all',
+
+                ],
+              ],
+        ],
         ['header' => 'Pages Setting'],
         [
             'text'    => 'Home Page',

@@ -84,8 +84,8 @@
                       <li><a class="dropdown-item border-0 transition-link" href="cancelled.html">Booking cancelled</a></li>
                     </ul>
                     <ul class="list-unstyled">
-                      <li><a class="dropdown-item border-0 transition-link" href="booking-confirmation.html">Booking receipt</a></li>
-                      <li><a class="dropdown-item border-0 transition-link" href="booking-cancellation.html">Booking Cancellation</a></li>
+                      {{-- <li><a class="dropdown-item border-0 transition-link" href="{{route('booking.confirm')}}">Booking receipt</a></li> --}}
+                      <li><a class="dropdown-item border-0 transition-link" href="{{route('booking.cancel')}}">Booking Cancellation</a></li>
                       <li><a class="dropdown-item border-0 transition-link" href="https://italianolight.netlify.com">Light theme</a></li>
                       <li><a class="dropdown-item border-0 transition-link" href="#">Buy theme</a></li>
                     </ul>

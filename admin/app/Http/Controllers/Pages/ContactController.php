@@ -10,6 +10,7 @@ use App\BasicDetail;
 use App\BranchHead;
 use App\ContactU;
 use App\BranchBody;
+// use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -118,5 +119,21 @@ class ContactController extends Controller
         Contact::destroy($id);
 
         return redirect('pages/contact')->with('flash_message', 'Contact deleted!');
+    }
+
+    public function all(Request $request)
+    {
+      $keyword = $request->get('search');
+      $perPage = 10;
+
+      if (!empty($keyword)) {
+          $contacts = Contact::where('name', 'LIKE', "%$keyword%")
+              ->orWhere('email' , 'LIKE' , "%$keyword%")
+              ->latest()->paginate($perPage);
+      } else {
+          $contacts = Contact::latest()->paginate($perPage);
+      }
+
+      return view('pages.contact.all', compact('contacts'));
     }
 }

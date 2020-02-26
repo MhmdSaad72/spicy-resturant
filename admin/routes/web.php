@@ -50,6 +50,12 @@ Route::get('pages/about-2' , 'Pages\\AboutController@show')->name('about.show');
 Route::get('pages/contact-2' , 'Pages\\ContactController@show')->name('contact.index');
 Route::get('pages/contact-1' , 'Pages\\ContactController@index')->name('contact.show');
 Route::post('pages/contact' , 'Pages\\ContactController@store')->name('contact.store');
+Route::get('admin/contact' , 'Pages\\ContactController@all')->name('contact.all');
+// Route::resource('pages/booking', 'Pages\\BookingController');
+Route::get('pages/booking', 'Pages\\BookingController@index')->name('booking.index');
+Route::post('pages/booking', 'Pages\\BookingController@store')->name('booking.store');
+Route::get('pages/booking-confirmation/{id}', 'Pages\\BookingController@confirmation')->name('booking.confirm');
+Route::get('pages/booking-cancellation', 'Pages\\BookingController@cancellation')->name('booking.cancel');
 
 
 Route::resource('admin/branch-head', 'Admin\\BranchHeadController');

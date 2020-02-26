@@ -22,8 +22,6 @@ class CreateAvailabilitiesTable extends Migration
             $table->integer('end_day')->default(1);
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
-            // $table->dateTime('start_date')->nullable();
-            // $table->dateTime('end_date')->nullable();
             });
     }
 
