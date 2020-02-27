@@ -11,7 +11,7 @@
         <div class="col-lg-7 mx-auto">
           <p class="text-uppercase text-primary font-weight-bold mb-3">{{$contacts->title ?? ''}}</p>
           <h1>{{$contacts->description ?? ''}}</h1>
-          <p class="text-muted">{{$contacts->content ?? ''}}</p><a class="btn btn-primary transition-link" href="booking.html">Book a table</a>
+          <p class="text-muted">{{$contacts->content ?? ''}}</p><a class="btn btn-primary transition-link" href="{{route('booking.index')}}">Book a table</a>
         </div>
       </div>
     </div>

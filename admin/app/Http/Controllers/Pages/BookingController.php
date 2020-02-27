@@ -8,8 +8,10 @@ use App\Http\Requests;
 use App\Booking;
 use App\BasicDetail ;
 use App\Availability ;
+use App\Mail\ConfirmationMail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -45,21 +47,52 @@ class BookingController extends Controller
       * @return \Illuminate\View\View
       */
 
-      public function cancellation()
+      public function cancellation($id)
       {
+        $booking = Booking::findOrFail($id);
         $basicDetail = BasicDetail::first();
-        return view('pages.booking.cancellation', compact('basicDetail'));
+        return view('pages.booking.cancellation', compact('basicDetail' , 'booking'));
       }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('pages.booking.create');
-    }
+      /**
+       * confirm booking cancellation method.
+       *
+       * @param \Illuminate\Http\Request $request
+       *
+       * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+       */
+
+       public function confirmCancel(Request $request , $id)
+       {
+          $this->validate($request, [
+            'cancellationCode' => 'required|max:255',
+          ]);
+          $requestData = $request->cancellationCode;
+
+         $booking = Booking::findOrFail($id);
+         if ($requestData == $booking->booking_id)
+         {
+           Booking::destroy($id);
+           return redirect()->route('booking.cancelled');
+         }else {
+           return redirect()->back()->with('error','We don\'t have any bookings with this ID')->withInput();
+         }
+
+       }
+
+
+     /**
+      * confirm booking cancellation method.
+      *
+      * @param \Illuminate\Http\Request $request
+      *
+      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+      */
+      public function cancelled()
+      {
+        $basicDetail = BasicDetail::first();
+        return view('pages.booking.cancelled', compact('basicDetail'));
+      }
 
     /**
      * Store a newly created resource in storage.
@@ -72,8 +105,8 @@ class BookingController extends Controller
     {
         $this->validate($request, [
           'fullname' => 'required|max:255',
-          'email' => 'required|email|max:255|unique:bookings',
-          'phone' => 'required|max:255|unique:bookings',
+          'email' => 'required|email|max:255',
+          'phone' => 'required|max:255',
           'smokingArea' => 'required|max:255',
           'peopleNumber' => 'required|max:255',
           'tablesNumber' => 'required|max:255',
@@ -88,68 +121,24 @@ class BookingController extends Controller
         $requestData['booking_id'] = Str::random(9) ;
 
         $booking = Booking::create($requestData);
+        if ($booking) {
+          Mail::to($booking->email)->send(new ConfirmationMail($booking));
+        }
 
         return redirect()->route('booking.confirm' , ['id' => $booking->id]);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
+     * Show admin bookings details.
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
-    {
-        $booking = Booking::findOrFail($id);
 
-        return view('pages.booking.show', compact('booking'));
-    }
+     public function bookings($id)
+     {
+       return view('pages.booking.bookings');
+     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit($id)
-    {
-        $booking = Booking::findOrFail($id);
 
-        return view('pages.booking.edit', compact('booking'));
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(Request $request, $id)
-    {
-
-        $requestData = $request->all();
-
-        $booking = Booking::findOrFail($id);
-        $booking->update($requestData);
-
-        return redirect('pages/booking')->with('flash_message', 'Booking updated!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function destroy($id)
-    {
-        Booking::destroy($id);
-
-        return redirect('pages/booking')->with('flash_message', 'Booking deleted!');
-    }
 }

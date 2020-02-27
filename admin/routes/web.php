@@ -55,7 +55,10 @@ Route::get('admin/contact' , 'Pages\\ContactController@all')->name('contact.all'
 Route::get('pages/booking', 'Pages\\BookingController@index')->name('booking.index');
 Route::post('pages/booking', 'Pages\\BookingController@store')->name('booking.store');
 Route::get('pages/booking-confirmation/{id}', 'Pages\\BookingController@confirmation')->name('booking.confirm');
-Route::get('pages/booking-cancellation', 'Pages\\BookingController@cancellation')->name('booking.cancel');
+Route::get('pages/booking-cancellation/{id}', 'Pages\\BookingController@cancellation')->name('booking.cancel');
+Route::patch('pages/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
+Route::patch('pages/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
+Route::get('pages/admin-bookings/{id}', 'Pages\\BookingController@bookings')->name('booking.bookings');
 
 
 Route::resource('admin/branch-head', 'Admin\\BranchHeadController');
@@ -64,3 +67,7 @@ Route::resource('admin/drop-line', 'Admin\\DropLineController');
 
 Route::resource('admin/basic-details', 'Admin\\BasicDetailsController');
 Route::resource('admin/award', 'Admin\\AwardController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

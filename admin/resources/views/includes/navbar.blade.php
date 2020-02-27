@@ -7,7 +7,7 @@
     <ul class="admin-list list-unstyled mb-0 d-flex align-items-start align-items-lg-center py-3">
       <li class="m-0"> <a class="reset-anchor search-btn" id="toggleSearch" href="#"><i class="fas fa-search"></i><i class="fas fa-times-circle d-none"></i></a></li>
       <li class="text-muted mx-2 px-1">| </li>
-      <li class="m-0"><a class="reset-anchor transition-link" href="login.html"><i class="fas fa-user-circle"></i></a></li>
+      <li class="m-0"><a class="reset-anchor transition-link" href="{{ route('login') }}"><i class="fas fa-user-circle"></i></a></li>
       <li class="text-muted mx-2 px-1">| </li>
       <li class="m-0"><a class="media reset-anchor align-items-center transition-link" href="admin-bookings.html">
           <div class="position-relative"><i class="fas fa-calendar-minus text-light"></i>
@@ -50,7 +50,7 @@
                     <ul class="list-unstyled">
                       <li><a class="dropdown-item border-0 transition-link" href="contact-1.html">Contact one</a></li>
                       <li><a class="dropdown-item border-0 transition-link" href="contact-2.html">Contact two</a></li>
-                      <li><a class="dropdown-item border-0 transition-link" href="booking.html">Book a table</a></li>
+                      <li><a class="dropdown-item border-0 transition-link" href="{{route('booking.index')}}">Book a table</a></li>
                       <li><a class="dropdown-item border-0 transition-link" href="404.html">Error 404</a></li>
                       <li><a class="dropdown-item border-0 transition-link" href="dish.html">Dish detail</a></li>
                     </ul>
@@ -85,7 +85,7 @@
                     </ul>
                     <ul class="list-unstyled">
                       {{-- <li><a class="dropdown-item border-0 transition-link" href="{{route('booking.confirm')}}">Booking receipt</a></li> --}}
-                      <li><a class="dropdown-item border-0 transition-link" href="{{route('booking.cancel')}}">Booking Cancellation</a></li>
+                      {{-- <li><a class="dropdown-item border-0 transition-link" href="{{route('booking.cancel')}}">Booking Cancellation</a></li> --}}
                       <li><a class="dropdown-item border-0 transition-link" href="https://italianolight.netlify.com">Light theme</a></li>
                       <li><a class="dropdown-item border-0 transition-link" href="#">Buy theme</a></li>
                     </ul>

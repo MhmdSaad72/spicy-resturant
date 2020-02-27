@@ -14,8 +14,8 @@
             <p class="lead text-muted"><a class="reset-anchor text-muted" href="http://maps.google.com/maps?q=210+Louise+Ave,+Nashville,+TN+37203"><i class="fas fa-globe-africa text-primary mr-2"></i>{{$service->address ?? ''}}</a></p>
             <p>{{$service->content ?? ''}}.</p>
             <ul class="list-inline mb-0">
-              <li class="list-inline-item py-1"><a class="btn btn-primary transition-link" href="booking.html">Book a table</a></li>
-              <li class="list-inline-item py-1"><a class="btn btn-outline-light transition-link" href="about-2.html">Discover more </a></li>
+              <li class="list-inline-item py-1"><a class="btn btn-primary transition-link" href="{{route('booking.index')}}">Book a table</a></li>
+              <li class="list-inline-item py-1"><a class="btn btn-outline-light transition-link" href="{{route('about.show')}}">Discover more </a></li>
             </ul>
           </div>
           <div class="col-lg-6 order-1 order-lg-2 mb-5 mb-lg-0"><img class="img-fluid d-block mx-auto hero-img" src="{{asset('storage/')}}" alt="dish"></div>
@@ -33,7 +33,7 @@
                 <h2>{{$mainDish->description ?? ''}}</h2>
                 <p class="text-muted text-small mb-3">{{$mainDish->content ?? ''}}</p>
                 <ul class="list-inline mb-0">
-                  <li class="list-inline-item py-1"><a class="btn btn-primary transition-link" href="booking.html">Book a table</a></li>
+                  <li class="list-inline-item py-1"><a class="btn btn-primary transition-link" href="{{route('booking.index')}}">Book a table</a></li>
                   <li class="list-inline-item py-1"><a class="btn btn-outline-light transition-link" href="dish.html">Dish detail</a></li>
                 </ul>
               </div>

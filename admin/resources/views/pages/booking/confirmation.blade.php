@@ -10,7 +10,7 @@
       <div class="row mb-4 pb-3">
         <div class="col-lg-10 mx-auto"><i class="fas fa-clipboard-check fa-6x text-primary mb-4"></i>
           <h1 class="h2 mb-4">Your booking has been placed</h1>
-          <div class="alert bg-dark fade show" role="alert"><strong>Note:</strong><span class="mr-2"> Your booking ID is <span class="text-underline">{{ isset($booking) ? $booking->booking_id : ''}}</span>, you can cancel your booking with this code.</span><a class="btn btn-link transition-link p-0" href="{{route('booking.cancel')}}">Cancel Booking</a></div>
+          <div class="alert bg-dark fade show" role="alert"><strong>Note:</strong><span class="mr-2"> Your booking ID is <span class="text-underline">{{ isset($booking) ? $booking->booking_id : ''}}</span>, you can cancel your booking with this code.</span><a class="btn btn-link transition-link p-0" href="{{route('booking.cancel' ,['id' => $booking->id])}}">Cancel Booking</a></div>
           <p class="text-muted">Dear <span class="text-light">{{ isset($booking) ? $booking->fullname : ''}}</span>, we've just received a booking from you with the following Information:</p>
         </div>
       </div>
