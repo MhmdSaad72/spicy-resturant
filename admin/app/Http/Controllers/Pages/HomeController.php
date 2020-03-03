@@ -21,6 +21,8 @@ use App\Gallary;
 use App\Album;
 use App\BasicDetail;
 use \Carbon\Carbon ;
+use Auth;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -50,7 +52,13 @@ class HomeController extends Controller
         $gallary = Gallary::first();
         $album = Album::all();
         $basicDetail = BasicDetail::first();
-        return view('pages.home.index', compact('service' , 'mainDish' , 'ourStory' , 'ourServicesHead' , 'ourServicesBody' , 'featurDishHead' , 'featurDishBody' , 'foodMenu' , 'categories' , 'chefHead' , 'chefs' , 'availability' , 'gallary' , 'album' , 'basicDetail'));
+        if (Auth::check()) {
+          $user = User::findOrFail(Auth::user()->id);
+          $bookings = $user->bookings->count();
+        }else {
+          $bookings = 0 ;
+        }
+        return view('pages.home.index', compact('service' , 'mainDish' , 'ourStory' , 'ourServicesHead' , 'ourServicesBody' , 'featurDishHead' , 'featurDishBody' , 'foodMenu' , 'categories' , 'chefHead' , 'chefs' , 'availability' , 'gallary' , 'album' , 'basicDetail' , 'bookings'));
     }
 
     /**

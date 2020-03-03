@@ -5,47 +5,33 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  <!-- Login section-->
+  <section>
+    <div class="container">
+      <!-- Section heading-->
+      <header class="bg-heading-text mb-5" data-text="login">
+        <div class="index-forward">
+          {{-- <p class="text-uppercase text-primary font-weight-bold small mb-2">Login</p> --}}
+          <h1>{{ __('Reset Password') }}</h1>
         </div>
+      </header>
+      <div class="row">
+        <div class="col-lg-5">
+          <form class="login-form needs-validation" action="{{ route('password.email') }}" method="post">
+            @csrf
+            <div class="form-group">
+              <label class="label-required" for="email">Emaill address</label>
+              <input class="form-control form-control-lg " id="email" type="email" name="email" placeholder="Email address e.g. Jason@mail.com" value="{{ old('email') }}">
+              @error('email')
+                <div class="invalid-feedback d-block">{{ $message }}</div>
+              @enderror
+            </div>
+            <div class="form-group pt-2">
+              <button class="btn btn-primary" type="submit">{{ __('Send Password Reset Link') }}</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-</div>
+  </section>
 @endsection

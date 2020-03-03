@@ -25,7 +25,7 @@ class Booking extends Model
      *
      * @var array
      */
-    protected $fillable = ['fullname' , 'email' , 'phone' , 'smokingArea' , 'peopleNumber' , 'tablesNumber' , 'date' , 'time' , 'specialrequest' , 'booking_id' , 'cancelled'];
+    protected $fillable = ['fullname' , 'email' , 'phone' , 'smokingArea' , 'peopleNumber' , 'tablesNumber' , 'date' , 'time' , 'specialrequest' , 'booking_id' , 'cancelled' , 'user_id'];
 
 
     public function getSmokingAreaAttribute($attribute)
@@ -34,6 +34,12 @@ class Booking extends Model
         0 => 'Smoking area',
         1 => 'Non-smoking area',
       ][$attribute];
+    }
+
+
+    public function user()
+    {
+      return $this->belongsTo('App\User' , 'user_id');
     }
 
 

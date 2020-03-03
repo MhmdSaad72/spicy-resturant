@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\BasicDetail;
 
 class RegisterController extends Controller
 {
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = 'pages/booking';
 
     /**
      * Create a new controller instance.
@@ -39,6 +40,13 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+
+    public function index()
+    {
+      $basicDetail = BasicDetail::first() ?? '' ;
+      return view('auth.register' , compact('basicDetail'));
     }
 
     /**
@@ -52,9 +60,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            // 'country' => 'required',
-            // 'phone' => 'required'
+            'password' => ['required', 'string', 'min:8', 'confirmed' , 'max:255'],
+            'country' => 'required|max:255',
+            'phone' => 'required|max:255'
         ]);
     }
 
@@ -70,6 +78,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'country' => $data['country'],
+            'phone' => $data['phone'],
         ]);
     }
 }

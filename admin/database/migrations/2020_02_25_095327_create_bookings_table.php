@@ -27,6 +27,8 @@ class CreateBookingsTable extends Migration
             $table->string('booking_id')->nullable();
             $table->integer('cancelled')->default(0);
 
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             });
     }
 

@@ -23,14 +23,14 @@
               <label class="label-required" for="email">Emaill address</label>
               <input class="form-control form-control-lg " id="email" type="email" name="email" placeholder="Email address e.g. Jason@mail.com" value="{{ old('email') }}">
               @error('email')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback d-block">{{ $message }}</div>
               @enderror
             </div>
             <div class="form-group">
               <label class="label-required" for="password">Password</label>
               <input class="form-control form-control-lg" id="password" type="password" name="password" placeholder="Enter your password" >
               @error('password')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback d-block">{{ $message }}</div>
               @enderror
             </div>
             <div class="form-group pt-2">
@@ -41,11 +41,11 @@
             </div>
             <div class="form-group pt-2">
               <button class="btn btn-primary" type="submit">Login now</button>
-              {{-- @if (Route::has('password.request'))
+              @if (Route::has('password.request'))
                   <a class="btn btn-link" href="{{ route('password.request') }}">
                       {{ __('Forgot Your Password?') }}
                   </a>
-              @endif --}}
+              @endif
             </div>
             <div class="form-group">
               <p class="text-muted text-small d-flex align-items-center flex-wrap"> <span>Not registerd yet?</span><a class="btn btn-link transition-link px-2 btn-sm" href="{{ route('register') }}">Create an account</a></p>

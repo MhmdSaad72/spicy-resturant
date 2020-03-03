@@ -18,6 +18,8 @@ use App\Award;
 use App\Availability;
 use App\AboutService;
 use \Carbon\Carbon ;
+use Auth;
+use App\User;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -38,7 +40,13 @@ class AboutController extends Controller
         $philosophy = Philosophy::first();
         $statistics = Statistic::all();
         $award = Award::first();
-        return view('pages.about.index', compact('aboutUs' , 'chefs' , 'chefHead' , 'gallary' , 'album', 'basicDetail' , 'philosophy' , 'statistics' , 'award'));
+        if (Auth::check()) {
+          $user = User::findOrFail(Auth::user()->id);
+          $bookings = $user->bookings->count();
+        }else {
+          $bookings = 0 ;
+        }
+        return view('pages.about.index', compact('aboutUs' , 'chefs' , 'chefHead' , 'gallary' , 'album', 'basicDetail' , 'philosophy' , 'statistics' , 'award' , 'bookings'));
     }
 
     /**
@@ -85,7 +93,13 @@ class AboutController extends Controller
         $availability = Availability::first();
         $availability->start_time = Carbon::parse($availability->start_time)->format('h:i A');
         $availability->end_time = Carbon::parse($availability->end_time)->format('h:i A');
-        return view('pages.about.show', compact('aboutUs' , 'album' , 'basicDetail' , 'philosophy' , 'availability' , 'aboutservices'));
+        if (Auth::check()) {
+          $user = User::findOrFail(Auth::user()->id);
+          $bookings = $user->bookings->count();
+        }else {
+          $bookings = 0 ;
+        }
+        return view('pages.about.show', compact('aboutUs' , 'album' , 'basicDetail' , 'philosophy' , 'availability' , 'aboutservices' , 'bookings'));
     }
 
     /**

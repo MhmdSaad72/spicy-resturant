@@ -9,6 +9,8 @@ use App\Menu;
 use App\FoodMenu;
 use App\Category;
 use App\BasicDetail;
+use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class MenusController extends Controller
@@ -23,7 +25,13 @@ class MenusController extends Controller
         $foodMenu = FoodMenu::first();
         $categories = Category::all();
         $basicDetail = BasicDetail::first();
-        return view('pages.menus.index', compact('foodMenu' , 'categories' , 'basicDetail'));
+        if (Auth::check()) {
+          $user = User::findOrFail(Auth::user()->id);
+          $bookings = $user->bookings->count();
+        }else {
+          $bookings = 0 ;
+        }
+        return view('pages.menus.index', compact('foodMenu' , 'categories' , 'basicDetail' , 'bookings'));
     }
 
     /**
@@ -65,8 +73,14 @@ class MenusController extends Controller
         $foodMenu = FoodMenu::first();
         $categories = Category::all();
         $basicDetail = BasicDetail::first();
+        if (Auth::check()) {
+          $user = User::findOrFail(Auth::user()->id);
+          $bookings = $user->bookings->count();
+        }else {
+          $bookings = 0 ;
+        }
 
-        return view('pages.menus.show', compact('foodMenu' , 'categories' , 'basicDetail'));
+        return view('pages.menus.show', compact('foodMenu' , 'categories' , 'basicDetail' , 'bookings'));
     }
 
     /**

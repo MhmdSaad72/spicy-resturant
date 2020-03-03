@@ -10,6 +10,8 @@ use App\BasicDetail;
 use App\BranchHead;
 use App\ContactU;
 use App\BranchBody;
+use Auth;
+use App\User;
 // use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,13 @@ class ContactController extends Controller
     {
         $basicDetail = BasicDetail::first();
         $contacts = ContactU::first();
-        return view('pages.contact.index', compact('basicDetail' , 'contacts'));
+        if (Auth::check()) {
+          $user = User::findOrFail(Auth::user()->id);
+          $bookings = $user->bookings->count();
+        }else {
+          $bookings = 0 ;
+        }
+        return view('pages.contact.index', compact('basicDetail' , 'contacts' , 'bookings'));
     }
 
     /**
@@ -71,7 +79,13 @@ class ContactController extends Controller
         $contacts = ContactU::first();
         $branchHead = BranchHead::first();
         $branchBodies = BranchBody::all();
-        return view('pages.contact.show', compact('basicDetail' , 'contacts' , 'branchHead' , 'branchBodies'));
+        if (Auth::check()) {
+          $user = User::findOrFail(Auth::user()->id);
+          $bookings = $user->bookings->count();
+        }else {
+          $bookings = 0 ;
+        }
+        return view('pages.contact.show', compact('basicDetail' , 'contacts' , 'branchHead' , 'branchBodies' , 'bookings'));
     }
 
     /**

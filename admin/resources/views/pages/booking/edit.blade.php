@@ -10,41 +10,35 @@
       <!-- Section heading-->
       <header class="bg-heading-text text-center mb-5" data-text="Reservation">
         <div class="index-forward">
-          <p class="text-uppercase text-primary font-weight-bold small mb-2">Reserve a seat</p>
+          <p class="text-uppercase text-primary font-weight-bold small mb-2">Edit Reservation</p>
           <h1>Book your table</h1>
         </div>
       </header>
       <div class="pt-lg-5">
         <div class="booking-form-holder shadow py-5 px-4 px-md-5 shadow">
-          @guest
-            <div class="alert bg-dark alert-dismissible fade show text-muted" role="alert"><strong>Note:</strong><span class="mr-1"> We recommend to login before submit a booking, it'll be easier to track your bookings </span><a class="btn btn-link transition-link p-0" href="{{route('login')}}">Login now!</a>
-              <button class="close text-muted" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times-circle"></i></span></button>
-            </div>
-          @endguest
-          <form class="booking-form needs-validation" action="{{route('booking.store')}}" method="post">
+          <form class="booking-form needs-validation" action="{{route('booking.update' , ['id' =>$booking->id])}}" method="post">
             {{ csrf_field() }}
+            {{ method('PATCH') }}
             <div class="row">
-              @guest
-                <div class="form-group col-lg-6">
-                    <label class="label-required m-0" for="fullName">Full Name</label>
-                    <input class="form-control form-control-lg" type="text" id="fullName" name="fullname" placeholder="Full name e.g. Jason Doe" value="{{old('fullname')}}">
-                    @if ($errors->has('fullname'))
-                      <div class="invalid-feedback d-block">{!! $errors->first('fullname', ':message') !!}</div>
-                    @endif
-                </div>
+              {{-- <div class="form-group col-lg-6">
+                <label class="label-required m-0" for="fullName">Full Name</label>
+                <input class="form-control form-control-lg" type="text" id="fullName" name="fullname" placeholder="Full name e.g. Jason Doe" value="{{ $booking->fullname ?? '' }}">
+                @if ($errors->has('fullname'))
+                  <div class="invalid-feedback d-block">{!! $errors->first('fullname', ':message') !!}</div>
+                @endif
+              </div> --}}
 
-                <div class="form-group col-lg-6">
-                    <label class="label-required m-0" for="email">Email Address</label>
-                    <input class="form-control form-control-lg" type="email" id="email" name="email" placeholder="Emaill address e.g. Jason@example.com"  value="{{old('email')}}">
-                    @if ($errors->has('email'))
-                      <div class="invalid-feedback d-block">{!! $errors->first('email', ':message') !!}</div>
-                    @endif
-                </div>
-              @endguest
+              {{-- <div class="form-group col-lg-6">
+                <label class="label-required m-0" for="email">Email Address</label>
+                <input class="form-control form-control-lg" type="email" id="email" name="email" placeholder="Emaill address e.g. Jason@example.com"  value="{{ $booking->email ?? '' }}">
+                @if ($errors->has('email'))
+                  <div class="invalid-feedback d-block">{!! $errors->first('email', ':message') !!}</div>
+                @endif
+              </div> --}}
 
               <div class="form-group col-lg-6 ">
                 <label class="label-required m-0" for="phone">Phone Number</label>
-                <input class="form-control form-control-lg" type="tel" id="phone" name="phone" placeholder="e.g. 654856974" value="{{old('phone')}}">
+                <input class="form-control form-control-lg" type="tel" id="phone" name="phone" placeholder="e.g. 654856974" value="{{ $booking->phone ?? '' }}">
                 @if ($errors->has('phone'))
                   <div class="invalid-feedback d-block">{!! $errors->first('phone', ':message') !!}</div>
                 @endif
@@ -53,8 +47,8 @@
               <div class="form-group col-lg-6">
                 <label class="label-required m-0" for="smokingArea">Smoking area</label>
                 <select class="selectpicker" id="smokingArea" name="smokingArea" data-style="bs-select-form-control" data-title="Select smoking area" >
-                  <option value="0" {{old('smokingArea') == 0 ? 'selected' : ''}}>Smoking area</option>
-                  <option value="1" {{old('smokingArea') == 1 ? 'selected' : ''}}>Non-smoking area</option>
+                  <option value="0" {{ $booking->smokingArea == 0 ? 'selected' : ''}}>Smoking area</option>
+                  <option value="1" {{ $booking->smokingArea == 1 ? 'selected' : ''}}>Non-smoking area</option>
                 </select>
                 @if ($errors->has('smokingArea'))
                   <div class="invalid-feedback d-block">{!! $errors->first('smokingArea', ':message') !!}</div>
@@ -63,7 +57,7 @@
 
               <div class="form-group col-lg-6">
                 <label class="label-required m-0" for="peopleNumber">How many people</label>
-                <input class="form-control form-control-lg" type="number" id="peopleNumber" name="peopleNumber" placeholder="How many people will come"  value="{{old('peopleNumber')}}">
+                <input class="form-control form-control-lg" type="number" id="peopleNumber" name="peopleNumber" placeholder="How many people will come"  value="{{ $booking->peopleNumber ?? '' }}">
                 @if ($errors->has('peopleNumber'))
                   <div class="invalid-feedback d-block">{!! $errors->first('peopleNumber', ':message') !!} </div>
                 @endif
@@ -71,7 +65,7 @@
 
               <div class="form-group col-lg-6">
                 <label class="label-required m-0" for="tablesNumber">How many tables</label>
-                <input class="form-control form-control-lg" type="number" id="tablesNumber" name="tablesNumber" placeholder="How many tables needed"  value="{{old('tablesNumber')}}">
+                <input class="form-control form-control-lg" type="number" id="tablesNumber" name="tablesNumber" placeholder="How many tables needed"  value="{{ $booking->tablesNumber ?? '' }}">
                 @if ($errors->has('tablesNumber'))
                   <div class="invalid-feedback d-block">{!! $errors->first('tablesNumber', ':message') !!}</div>
                 @endif
@@ -79,7 +73,7 @@
 
               <div class="form-group col-lg-6">
                 <label class="label-required m-0" for="date">Desired Date</label>
-                <input class="form-control form-control-lg" type="text" id="date" name="date" placeholder="Pick your desired date" autocomplete="off" value="{{old('date')}}">
+                <input class="form-control form-control-lg" type="text" id="date" name="date" placeholder="Pick your desired date" autocomplete="off" value="{{ $booking->date ?? '' }}">
                 @if ($errors->has('date'))
                   <div class="invalid-feedback d-block">{!! $errors->first('date', ':message') !!}</div>
                 @endif
@@ -87,7 +81,7 @@
 
               <div class="form-group col-lg-6">
                 <label class="label-required m-0" for="time">Desired Time</label>
-                <input class="form-control form-control-lg" type="tel" id="time" name="time" placeholder="Pick your desired time" value="{{old('time')}}">
+                <input class="form-control form-control-lg" type="tel" id="time" name="time" placeholder="Pick your desired time" value="{{ $booking->time ?? '' }}">
                 @if ($errors->has('time'))
                   <div class="invalid-feedback d-block">{!! $errors->first('time', ':message') !!}</div>
                 @endif
@@ -95,7 +89,7 @@
 
               <div class="form-group col-lg-12">
                 <label class="label-optional m-0" for="specialRequest">Spcial Request</label>
-                <textarea class="form-control form-control-lg" name="specialrequest" id="specialRequest" placeholder="If you have any extra request, let us know" rows="5" >{{old('specialrequest')}}</textarea>
+                <textarea class="form-control form-control-lg" name="specialrequest" id="specialRequest" placeholder="If you have any extra request, let us know" rows="5" >{{ $booking->specialrequest ?? '' }}</textarea>
               </div>
 
               <div class="form-group col-lg-12">

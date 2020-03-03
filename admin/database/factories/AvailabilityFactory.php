@@ -9,7 +9,9 @@ $factory->define(Availability::class, function (Faker $faker) {
     return [
         'title' => 'Availability',
         'description' => 'Opening hours',
-        'start_date' => '2020-2-20 9:30',
-        'end_date' => '2020-2-28 18:30',
+        'start_day' => 2,
+        'end_day' => 5,
+        'start_time' => '09:30',
+        'end_time' => '20:30'
     ];
 });

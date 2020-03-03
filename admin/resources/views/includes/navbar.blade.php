@@ -9,15 +9,15 @@
       <li class="text-muted mx-2 px-1">| </li>
       <li class="m-0"><a class="reset-anchor transition-link" href="{{ route('login') }}"><i class="fas fa-user-circle"></i></a></li>
       <li class="text-muted mx-2 px-1">| </li>
-      <li class="m-0"><a class="media reset-anchor align-items-center transition-link" href="admin-bookings.html">
+      <li class="m-0"><a class="media reset-anchor align-items-center transition-link" href="{{route('booking.bookings')}}">
           <div class="position-relative"><i class="fas fa-calendar-minus text-light"></i>
-            <div class="booking-counter-number">2</div>
+            <div class="booking-counter-number">{{$bookings}}</div>
           </div>
           <div class="ml-2">
             <p class="small mb-0">bookings</p>
           </div></a></li>
     </ul>
-    <!-- Navabr brand--><a class="navbar-brand d-none position-absolute" href="index.html"><img src="{{isset($basicDetail->logo) ? asset('storage/' . $basicDetail->logo) : ''}}" alt="Italiano Restaurant" width="100"></a>
+    <!-- Navabr brand--><a class="navbar-brand d-none position-absolute" href="{{route('home.index')}}"><img src="{{isset($basicDetail->logo) ? asset('storage/' . $basicDetail->logo) : ''}}" alt="Italiano Restaurant" width="100"></a>
     <!-- Navbar menu-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
@@ -41,17 +41,17 @@
                   <h6>Sitemap</h6>
                   <div class="d-flex flex-column flex-lg-row">
                     <ul class="list-unstyled mr-lg-4">
-                      <li><a class="dropdown-item border-0 transition-link" href="index.html">Home</a></li>
-                      <li><a class="dropdown-item border-0 transition-link" href="about-1.html">About us one</a></li>
-                      <li><a class="dropdown-item border-0 transition-link" href="about-2.html">About us two</a></li>
-                      <li><a class="dropdown-item border-0 transition-link" href="menu-1.html">Our menu one</a></li>
-                      <li><a class="dropdown-item border-0 transition-link" href="menu-2.html">Our menu two</a></li>
+                      <li><a class="dropdown-item border-0 transition-link" href="{{route('home.index')}}">Home</a></li>
+                      <li><a class="dropdown-item border-0 transition-link" href="{{route('about.index')}}">About us one</a></li>
+                      <li><a class="dropdown-item border-0 transition-link" href="{{route('about.show')}}">About us two</a></li>
+                      <li><a class="dropdown-item border-0 transition-link" href="{{route('menus.index')}}">Our menu one</a></li>
+                      <li><a class="dropdown-item border-0 transition-link" href="{{route('menus.show')}}">Our menu two</a></li>
                     </ul>
                     <ul class="list-unstyled">
-                      <li><a class="dropdown-item border-0 transition-link" href="contact-1.html">Contact one</a></li>
-                      <li><a class="dropdown-item border-0 transition-link" href="contact-2.html">Contact two</a></li>
+                      <li><a class="dropdown-item border-0 transition-link" href="{{route('contact.show')}}">Contact one</a></li>
+                      <li><a class="dropdown-item border-0 transition-link" href="{{route('contact.index')}}">Contact two</a></li>
                       <li><a class="dropdown-item border-0 transition-link" href="{{route('booking.index')}}">Book a table</a></li>
-                      <li><a class="dropdown-item border-0 transition-link" href="404.html">Error 404</a></li>
+                      {{-- <li><a class="dropdown-item border-0 transition-link" href="404.html">Error 404</a></li> --}}
                       <li><a class="dropdown-item border-0 transition-link" href="dish.html">Dish detail</a></li>
                     </ul>
                   </div>
@@ -62,7 +62,7 @@
                     <ul class="list-unstyled mr-lg-4">
                       <li><a class="dropdown-item border-0 transition-link" href="admin-personal.html">Personal information</a></li>
                       <li><a class="dropdown-item border-0 transition-link" href="admin-edit-personal.html">Edit personal info</a></li>
-                      <li><a class="dropdown-item border-0 transition-link" href="admin-bookings.html">My bookings</a></li>
+                      <li><a class="dropdown-item border-0 transition-link" href="{{route('booking.bookings')}}">My bookings</a></li>
                       <li><a class="dropdown-item border-0 transition-link" href="admin-reviews.html">My reviews</a></li>
                       <li><a class="dropdown-item border-0 transition-link" href="admin-pass-change.html">Change password</a></li>
                     </ul>
