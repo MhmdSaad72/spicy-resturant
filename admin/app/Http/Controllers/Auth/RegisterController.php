@@ -46,7 +46,8 @@ class RegisterController extends Controller
     public function index()
     {
       $basicDetail = BasicDetail::first() ?? '' ;
-      return view('auth.register' , compact('basicDetail'));
+      $bookings = 0 ;
+      return view('auth.register' , compact('basicDetail' , 'bookings'));
     }
 
     /**

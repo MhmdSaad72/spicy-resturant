@@ -11,7 +11,7 @@
       <li class="text-muted mx-2 px-1">| </li>
       <li class="m-0"><a class="media reset-anchor align-items-center transition-link" href="{{route('booking.bookings')}}">
           <div class="position-relative"><i class="fas fa-calendar-minus text-light"></i>
-            <div class="booking-counter-number">{{$bookings}}</div>
+            <div class="booking-counter-number">{{$bookings ?? 0}}</div>
           </div>
           <div class="ml-2">
             <p class="small mb-0">bookings</p>

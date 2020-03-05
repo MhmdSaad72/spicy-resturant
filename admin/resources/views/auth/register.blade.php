@@ -72,3 +72,9 @@
     </div>
   </section>
 @endsection
+@section('scripts')
+  <!-- Bootstrap 4 Validation-->
+  <script src="{{asset('js/validation/validation.js')}}"></script>
+  <!-- Bootstrap Select Validation-->
+  <script src="{{asset('js/validation/bs-select-validation.js')}}"></script>
+@endsection

@@ -55,7 +55,11 @@ Route::get('admin/contact' , 'Pages\\ContactController@all')->name('contact.all'
 Route::group(['middleware' => ['auth']], function () {
   Route::get('pages/admin-bookings', 'Pages\\BookingController@bookings')->name('booking.bookings');
   Route::get('pages/personal-information/{id}' , 'UsersController@show')->name('personal.information');
+  Route::get('pages/edit-information/{id}' , 'UsersController@edit')->name('edit.information');
+  Route::patch('pages/edit-information/{id}' , 'UsersController@update')->name('update.information');
 });
+Route::get('/password/reset', 'Auth\\ResetPasswordController@index')->name('password.reset');
+
 Route::get('pages/booking', 'Pages\\BookingController@index')->name('booking.index');
 Route::post('pages/booking', 'Pages\\BookingController@store')->name('booking.store');
 Route::get('pages/booking/{id}/edit', 'Pages\\BookingController@edit')->name('booking.edit');

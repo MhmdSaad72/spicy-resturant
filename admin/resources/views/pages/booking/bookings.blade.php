@@ -15,7 +15,7 @@
         <div class="col-xl-3 mb-5 sticky-top">
           <div class="admin-nav nav flex-column nav-pills" aria-orientation="vertical">
             <a class="nav-link transition-link" href="{{route('personal.information' , ['id' => $user->id])}}"> <i class="fas fa-user-circle mr-2"></i>Personal Information</a>
-            <a class="nav-link transition-link" href="admin-edit-personal.html"> <i class="fas fa-user-edit mr-2"></i>Edit my Information</a>
+            <a class="nav-link transition-link" href="{{route('edit.information' , ['id' => $user->id])}}"> <i class="fas fa-user-edit mr-2"></i>Edit my Information</a>
             <a class="nav-link active" href="{{route('booking.bookings')}}"> <i class="fas fa-calendar-minus mr-2"></i>My Bookings</a>
             <a class="nav-link transition-link" href="#"> <i class="fas fa-star mr-2"></i>My Reviews</a><a class="nav-link transition-link" href="admin-pass-change.html"> <i class="fas fa-lock mr-2"></i>Change my Password</a></div>
         </div>
