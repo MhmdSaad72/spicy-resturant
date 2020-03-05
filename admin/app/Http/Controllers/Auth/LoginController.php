@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\BasicDetail;
+use Auth;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -42,6 +44,12 @@ class LoginController extends Controller
     public function index()
     {
       $basicDetail = BasicDetail::first() ?? '' ;
-      return view('auth.login' , compact('basicDetail'));
+      if (Auth::check()) {
+        $user = User::findOrFail(Auth::user()->id);
+        $bookings = $user->bookings->count();
+      }else {
+        $bookings = 0 ;
+      }
+      return view('auth.login' , compact('basicDetail' , 'bookings'));
     }
 }

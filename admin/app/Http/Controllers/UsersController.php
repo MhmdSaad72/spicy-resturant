@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Pages;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -15,6 +15,7 @@ class UsersController extends Controller
 
       $user = User::findOrFail($id);
       $basicDetail = BasicDetail::first();
-      return view('pages.users.personal-information' , compact('user' , 'basicDetail'));
+      $bookings = $user->bookings->count();
+      return view('pages.users.personal-information' , compact('user' , 'basicDetail' , 'bookings'));
     }
 }

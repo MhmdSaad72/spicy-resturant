@@ -54,7 +54,7 @@ Route::get('admin/contact' , 'Pages\\ContactController@all')->name('contact.all'
 // Route::resource('pages/booking', 'Pages\\BookingController');
 Route::group(['middleware' => ['auth']], function () {
   Route::get('pages/admin-bookings', 'Pages\\BookingController@bookings')->name('booking.bookings');
-  Route::get('pages/personal-information/{id}' , 'Pages\\UsersController@show')->name('personal.information');
+  Route::get('pages/personal-information/{id}' , 'UsersController@show')->name('personal.information');
 });
 Route::get('pages/booking', 'Pages\\BookingController@index')->name('booking.index');
 Route::post('pages/booking', 'Pages\\BookingController@store')->name('booking.store');

@@ -46,7 +46,13 @@ class BookingController extends Controller
        $booking = Booking::findOrFail($id);
        $booking->date = \Carbon\Carbon::parse($booking->date)->format('l d M Y');
        $booking->time = \Carbon\Carbon::parse($booking->time)->format('h:i A');
-       return view('pages.booking.confirmation', compact('basicDetail' , 'booking'));
+       if (Auth::check()) {
+         $user = User::findOrFail(Auth::user()->id);
+         $bookings = $user->bookings->count();
+       }else {
+         $bookings = 0 ;
+       }
+       return view('pages.booking.confirmation', compact('basicDetail' , 'booking' , 'bookings'));
      }
 
      /**
@@ -59,7 +65,13 @@ class BookingController extends Controller
       {
         $booking = Booking::findOrFail($id);
         $basicDetail = BasicDetail::first();
-        return view('pages.booking.cancellation', compact('basicDetail' , 'booking'));
+        if (Auth::check()) {
+          $user = User::findOrFail(Auth::user()->id);
+          $bookings = $user->bookings->count();
+        }else {
+          $bookings = 0 ;
+        }
+        return view('pages.booking.cancellation', compact('basicDetail' , 'booking' , 'bookings'));
       }
 
       /**
@@ -166,7 +178,7 @@ class BookingController extends Controller
          }else {
            $bookings = 0 ;
          }
-         return view('pages.booking.bookings' , compact('user' , 'basicDetail'));
+         return view('pages.booking.bookings' , compact('user' , 'basicDetail' , 'bookings'));
      }
 
      /**

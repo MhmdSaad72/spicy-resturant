@@ -62,8 +62,8 @@
               </div>
             </div>
             <ul class="list-inline mb-0 d-flex admin-booking-cta">
-              <li class="list-inline-item w-50 m-0"><a class="btn btn-success btn-block btn-sm" href="{{ route('bookin.edit' , ['id' => $booking->id]) }}">Edit booking</a></li>
-              <li class="list-inline-item w-50 m-0"><a class="btn btn-danger btn-block btn-sm" href="{{ route('booking.cancel' , ['id' => $data->id]) }}">Cancel booking</a></li>
+              <li class="list-inline-item w-50 m-0"><a class="btn btn-success btn-block btn-sm" href="{{ route('booking.edit' , ['id' => $booking->id]) }}">Edit booking</a></li>
+              <li class="list-inline-item w-50 m-0"><a class="btn btn-danger btn-block btn-sm" href="{{ route('booking.cancel' , ['id' => $booking->id]) }}">Cancel booking</a></li>
             </ul>
           </div>
           @endforeach
