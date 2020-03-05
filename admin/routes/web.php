@@ -57,8 +57,10 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('pages/personal-information/{id}' , 'UsersController@show')->name('personal.information');
   Route::get('pages/edit-information/{id}' , 'UsersController@edit')->name('edit.information');
   Route::patch('pages/edit-information/{id}' , 'UsersController@update')->name('update.information');
+  Route::get('pages/change-password/{id}' , 'UsersController@changePassword')->name('change.password');
+  Route::patch('pages/update-password/{id}' , 'UsersController@updatePassword')->name('update.password');
 });
-Route::get('/password/reset', 'Auth\\ResetPasswordController@index')->name('password.reset');
+// Route::get('/password/reset', 'Auth\\ResetPasswordController@index')->name('password.reset');
 
 Route::get('pages/booking', 'Pages\\BookingController@index')->name('booking.index');
 Route::post('pages/booking', 'Pages\\BookingController@store')->name('booking.store');

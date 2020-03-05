@@ -43,4 +43,12 @@ class UsersController extends Controller
 
       return redirect()->rout('personal.information' , ['id' => $user->id])->with('message' , 'User updated Successfully!');
     }
+
+    public function changePassword($id)
+    {
+      $user = User::findOrFail($id);
+      $basicDetail = BasicDetail::first();
+      $bookings = $user->bookings->count();
+      return view('pages.users.change-password' , compact('user' , 'basicDetail' , 'bookings'));
+    }
 }
