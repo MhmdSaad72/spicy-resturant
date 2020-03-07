@@ -17,20 +17,20 @@ class MenuTableSeeder extends Seeder
         'content' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
        ]);
 
-       App\MenuList::create([
-         'title' => 'Food service',
-         'description' => 'Welcome to our restaurant',
-         'content' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-         'slide_id' => 1,
-        ]);
+       // App\MenuList::create([
+       //   'title' => 'Food service',
+       //   'description' => 'Welcome to our restaurant',
+       //   'content' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+       //   'slide_id' => 1,
+       //  ]);
 
         App\SlideMenu::create([
           'title' => 'Food service',
           'image' => 'uploads/dish.png',
-          'price' => 7,
+          'price' => 7.25,
           'description' => 'Welcome to our restaurant',
           'content' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-          'slide_id' => 1,
+          // 'slide_id' => 1,
          ]);
     }
 }

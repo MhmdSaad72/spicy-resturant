@@ -7,11 +7,7 @@ $(function () {
     'use strict';
 
     $(window).on('load', function () {
-        $('<div class="invalid-feedback">Please select a smkoing area</div><div class="valid-feedback">Looks good!</div>').insertAfter('.bootstrap-select button');
-    });
-
-    $('.selectpicker').on('change', function () {
-        $(this).closest('.dropdown').find('.filter-option-inner-inner').addClass('selected');
+        $('.selecpicker').siblings('.invalid-feedback').appendTo.parent('.bootstrap-select');
     });
 
     $('form').on('submit', function () {
@@ -25,6 +21,12 @@ $(function () {
 
     $(document).on('change', '.was-validated .selectpicker', function () {
         $('.bootstrap-select button').siblings('.invalid-feedback').hide().siblings('.valid-feedback').show();
+    });
+
+    $('form').on('submit', function () {
+        $($trime($('input').vale() === '')) {
+            return false;
+        }
     });
 
 

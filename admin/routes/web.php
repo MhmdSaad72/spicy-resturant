@@ -59,6 +59,8 @@ Route::group(['middleware' => ['auth']], function () {
   Route::patch('pages/edit-information/{id}' , 'UsersController@update')->name('update.information');
   Route::get('pages/change-password/{id}' , 'UsersController@changePassword')->name('change.password');
   Route::patch('pages/update-password/{id}' , 'UsersController@updatePassword')->name('update.password');
+  Route::get('pages/reviews/{id}' , 'UsersController@review')->name('personal.review');
+  Route::post('pages/reviews/{id}' , 'UsersController@storeReview')->name('store.review');
 });
 // Route::get('/password/reset', 'Auth\\ResetPasswordController@index')->name('password.reset');
 
@@ -70,6 +72,7 @@ Route::get('pages/booking-confirmation/{id}', 'Pages\\BookingController@confirma
 Route::get('pages/booking-cancellation/{id}', 'Pages\\BookingController@cancellation')->name('booking.cancel');
 Route::patch('pages/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
 Route::patch('pages/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
+Route::get('pages/booking-cancelled' , 'pages\\BookingController@cancelled')->name('booking.cancelled');
 
 
 Route::resource('admin/branch-head', 'Admin\\BranchHeadController');

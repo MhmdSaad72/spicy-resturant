@@ -20,7 +20,12 @@
             <a class="nav-link transition-link" href="#"> <i class="fas fa-star mr-2"></i>My Reviews</a><a class="nav-link transition-link" href="admin-pass-change.html"> <i class="fas fa-lock mr-2"></i>Change my Password</a></div>
         </div>
         <div class="col-xl-9 pl-lg-4">
-          @foreach ($user->bookings as  $booking)
+
+
+
+
+
+          @forelse ($user->bookings as  $booking)
             <!-- Booking item-->
             <div class="admin-booking-item">
             <div class="p-4 bg-dark">
@@ -66,7 +71,18 @@
               <li class="list-inline-item w-50 m-0"><a class="btn btn-danger btn-block btn-sm" href="{{ route('booking.cancel' , ['id' => $booking->id]) }}">Cancel booking</a></li>
             </ul>
           </div>
-          @endforeach
+          @empty
+
+          <header class="bg-heading-text mb-4" data-text="Bookings">
+            <div class="index-forward">
+              <p class="text-uppercase text-primary font-weight-bold small mb-2">Active bookings</p>
+              <h2 class="mb-4">You have no bookings yet</h2>
+              <a href="{{route('booking.index')}}" class="btn btn-primary">Book a table</a>
+            </div>
+          </header>
+
+
+          @endforelse
 
         </div>
       </div>

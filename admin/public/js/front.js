@@ -11,6 +11,20 @@
             'use strict';
 
 
+            $(window).on('load', function () {
+
+                $('.menu-nav .nav-link').on('click', function () {
+                    var menuTab = $(this).attr('id').replace('-tab', '');
+                    if ($(this).hasClass('active')) {
+                        menuTab.toggleClass('show active');
+                    }
+
+                });
+
+
+            });
+
+
 
 
 
@@ -647,19 +661,19 @@
 
 
 
-            $(window).on('load resize', function () {
-
-
-                var obtainInputWidth = timeInput.outerWidth(),
-
-
-                    timeSelectorPopup = $('.timeselector');
-
-
-                timeSelectorPopup.css('width', obtainInputWidth + 'px');
-
-
-            });
+            // $(window).on('load resize', function () {
+            //
+            //
+            //     var obtainInputWidth = timeInput.outerWidth(),
+            //
+            //
+            //         timeSelectorPopup = $('.timeselector');
+            //
+            //
+            //     timeSelectorPopup.css('width', obtainInputWidth + 'px');
+            //
+            //
+            // });
 
 
 
@@ -909,6 +923,10 @@
 
             });
 
+            // $('#smokingArea').selectpicker({
+            //     title: 'Select smoking area'
+            // });
+
 
 
 
@@ -970,6 +988,10 @@
 
             });
 
+            $('.selectpicker').on('change', function () {
+                $(this).closest('.dropdown').find('.filter-option-inner-inner').addClass('selected');
+            });
+
 
         });
 
@@ -991,7 +1013,7 @@
           =============================================================== */
 
 
-        $.getJSON('js/countries.json', function (data) {
+        $.getJSON('https://gist.githubusercontent.com/mhmdhasan/f956110858954269769836e95b9f179d/raw/7f1263633a3349df5f87e80c12fa6ef68610c029/countries.json', function (data) {
 
 
             $.each(data, function (key, value) {

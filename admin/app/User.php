@@ -42,4 +42,14 @@ class User extends Authenticatable
     {
       return $this->hasMany('App\Booking' , 'user_id');
     }
+
+
+    public function getReviewTopicAttribute($attribute)
+    {
+        return [
+            1 => 'Atmosphere',
+            2 => 'Dishes Qulaity',
+            3 => 'Order responsiveness',
+        ][$attribute];
+    }
 }

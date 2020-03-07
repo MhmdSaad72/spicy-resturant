@@ -144,21 +144,39 @@
         </ul>
         <div class="tab-content py-4" id="menu-tabContent">
           @foreach ($categories as $key => $category)
-              <div class="tab-pane fade show active" id="{{'#menu-'.$category->name}}" role="tabpanel" aria-labelledby="{{'menu-'.$category->name.'-tab'}}">
-                <div class="row">
-                    @foreach ($category->slide_menus as $key => $item)
-                      <div class="col-lg-6 mb-4 pb-2">
-                        <!-- Menu item--><a class="menu-item ribboned d-flex align-items-center justify-content-between px-4 py-4 reset-anchor transition-link bg-body" href="dish.html">
-                        <div class="mr-2">
-                          <h2 class="h5 mb-0">{{$item->title}}</h2>
-                          <p class="small text-muted mb-0">{{$item->str_limit($item->content)}}</p>
-                          <p class="h6 price mb-0">${{$item->price}}</p>
-                        </div>
-                        <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{asset('storage/' . $item->image)}}" alt="Diablo"/></div></a>
-                      </div>
-                    @endforeach
-                </div>
-              </div>
+           @if($loop->first)
+           <div class="tab-pane fade show active" id="{{'menu-'.$category->name}}" role="tabpanel" aria-labelledby="{{'menu-'.$category->name.'-tab'}}">
+               <div class="row">
+                   @foreach ($category->slide_menus as $key => $item)
+                   <div class="col-lg-6 mb-4 pb-2">
+                       <!-- Menu item--><a class="menu-item ribboned d-flex align-items-center justify-content-between px-4 py-4 reset-anchor transition-link bg-body" href="dish.html">
+                       <div class="mr-2">
+                           <h2 class="h5 mb-0">{{$item->title}}</h2>
+                           <p class="small text-muted mb-0">{{$item->str_limit($item->content)}}</p>
+                           <p class="h6 price mb-0">${{$item->price}}</p>
+                       </div>
+                       <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{asset('storage/' . $item->image)}}" alt="Diablo"/></div></a>
+                   </div>
+                   @endforeach
+               </div>
+           </div>
+           @else
+           <div class="tab-pane fade" id="{{'menu-'.$category->name}}" role="tabpanel" aria-labelledby="{{'menu-'.$category->name.'-tab'}}">
+               <div class="row">
+                   @foreach ($category->slide_menus as $key => $item)
+                   <div class="col-lg-6 mb-4 pb-2">
+                       <!-- Menu item--><a class="menu-item ribboned d-flex align-items-center justify-content-between px-4 py-4 reset-anchor transition-link bg-body" href="dish.html">
+                       <div class="mr-2">
+                           <h2 class="h5 mb-0">{{$item->title}}</h2>
+                           <p class="small text-muted mb-0">{{$item->str_limit($item->content)}}</p>
+                           <p class="h6 price mb-0">${{$item->price}}</p>
+                       </div>
+                       <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{asset('storage/' . $item->image)}}" alt="Diablo"/></div></a>
+                   </div>
+                   @endforeach
+               </div>
+           </div>
+           @endif
           @endforeach
 
 

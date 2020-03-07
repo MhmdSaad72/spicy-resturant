@@ -17,11 +17,11 @@
             <a class="nav-link transition-link" href="{{route('personal.information' , ['id' => $user->id])}}"> <i class="fas fa-user-circle mr-2"></i>Personal Information</a>
             <a class="nav-link active" href="{{route('edit.information' , ['id' => $user->id])}}"> <i class="fas fa-user-edit mr-2"></i>Edit my Information</a>
             <a class="nav-link transition-link" href="{{route('booking.bookings')}}"> <i class="fas fa-calendar-minus mr-2"></i>My Bookings</a>
-            <a class="nav-link transition-link" href="admin-reviews.html"> <i class="fas fa-star mr-2"></i>My Reviews</a>
+            <a class="nav-link transition-link" href="{{route('personal.review' , ['id' => $user->id])}}"> <i class="fas fa-star mr-2"></i>My Reviews</a>
             <a class="nav-link transition-link" href="{{route('change.password' , ['id' => $user->id])}}"> <i class="fas fa-lock mr-2"></i>Change my Password</a></div>
         </div>
         <div class="col-lg-9 pl-lg-4">
-          <form class="admin-edit-info-form needs-validation" action="{{route('update.information' , ['id' => $user->id])}}" method="post">
+          <form class="admin-edit-info-form" action="{{route('update.information' , ['id' => $user->id])}}" method="post">
             {{ method_field('PATCH') }}
             {{csrf_field()}}
             <div class="row">
@@ -48,7 +48,7 @@
               </div>
               <div class="form-group col-lg-6">
                 <label class="label-required m-0" for="country">Country</label>
-                <select class="selectpicker" id="country" name="country" data-style="bs-select-form-control" data-title="Select your country" value="England" >
+                <select class="selectpicker" id="country" name="country" data-style="bs-select-form-control country-change" data-title="{{ $user->country ?? ''}}">
                 </select>
                 @error('country')
                   <div class="invalid-feedback d-block">{{ $message }}</div>

@@ -329,6 +329,10 @@ NAVBAR
   font-size: 0.9rem !important;
 }
 
+.text-xs {
+    font-size: 0.7rem !important;
+}
+
 .text-gray {
   color: #aaa !important;
 }
@@ -1889,6 +1893,12 @@ label:not(.input-tabs-label):not(.custom-control-label) {
   box-shadow: none;
 }
 
+.bootstrap-select .dropdown-menu {
+    -webkit-transform: none !important;
+    -ms-transform: none !important;
+    transform: none !important;
+}
+
 .bootstrap-select .bs-select-form-control.dropdown-toggle::after {
   margin-left: -0.5rem !important;
 }
@@ -1932,6 +1942,12 @@ label:not(.input-tabs-label):not(.custom-control-label) {
   font-size: 1rem;
   color: #f8f9fa;
   font-weight: 400;
+}
+
+.bootstrap-select .country-change .filter-option .filter-option-inner .filter-option-inner-inner {
+    font-size: 1rem;
+    color: #f8f9fa;
+    font-weight: 400
 }
 
 .bootstrap-select .bs-searchbox {
