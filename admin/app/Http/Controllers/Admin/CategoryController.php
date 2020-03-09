@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Category;
 use App\BasicDetail;
 use App\SlideMenu;
+use Auth;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -141,7 +142,12 @@ class CategoryController extends Controller
       $basicDetail = BasicDetail::first();
       $dishes = SlideMenu::where('category_id' , $id)->get();
       $count = $dishes->count();
-      return view('pages.categories.show' , compact('category' , 'basicDetail' , 'dishes' , 'count'));
+      if (Auth::check()) {
+        $bookings = Auth::user()->bookings->count();
+      }else {
+        $bookings = 0 ;
+      }
+      return view('pages.categories.show' , compact('category' , 'basicDetail' , 'dishes' , 'count' , 'bookings'));
     }
 
 
@@ -154,6 +160,11 @@ class CategoryController extends Controller
       $categories = Category::all();
       $basicDetail = BasicDetail::first();
       $count = $categories->count();
-      return view('pages.categories.index' , compact('categories' , 'basicDetail' , 'count'));
+      if (Auth::check()) {
+        $bookings = Auth::user()->bookings->count();
+      }else {
+        $bookings = 0 ;
+      }
+      return view('pages.categories.index' , compact('categories' , 'basicDetail' , 'count' , 'bookings'));
     }
   }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\BasicDetail;
 use Auth;
@@ -54,5 +55,10 @@ class LoginController extends Controller
         $bookings = 0 ;
       }
       return view('auth.login' , compact('basicDetail' , 'bookings'));
+    }
+
+    protected function loggedOut(Request $request)
+    {
+        return redirect()->route('login');
     }
 }

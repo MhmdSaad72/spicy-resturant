@@ -40,8 +40,8 @@
                     <div class="dropdown-menu mt-lg-0 dropdown-menu-center always-animated" aria-labelledby="adminPages">
 
                         <a class="dropdown-item transition-link" href="admin-personal.html">
-                          <h6 class="mb-0 text-white">Mohamed Hasan</h6>
-                          <p class="small mb-0">Mhmdhasan7@outlook.com</p>
+                          <h6 class="mb-0 text-white">{{Auth::user()->name}}</h6>
+                          <p class="small mb-0">{{Auth::user()->email}}</p>
                         </a>
                         <a class="dropdown-item transition-link" href="{{route('personal.information' , ['id' => Auth::user()->id])}}">Personal information</a>
                         <a class="dropdown-item transition-link" href="{{route('booking.bookings')}}">My bookings</a>

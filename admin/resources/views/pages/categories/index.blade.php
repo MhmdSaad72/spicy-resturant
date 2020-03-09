@@ -27,8 +27,7 @@
           <div class="col-md-6 mb-4"><a class="media align-items-center reset-anchor transition-link p-4 bg-dark" href="{{route('category.page' , ['id' => $item->id])}}">
               <div class="ml-3">
                 <h5>{{ $item->name }}</h5>
-                <p class="text-muted small mb-2">{{ $item->title }}</p>
-                <p class="price h6 text-muted mb-0">{{ $item->description }}</p>
+                <p class="text-muted small mb-2">{{ $item->slide_menus->count()}} dishes</p>
               </div></a></div>
         @endforeach
       </div>
