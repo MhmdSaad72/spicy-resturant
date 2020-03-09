@@ -93,6 +93,69 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- Dish Review Form -->
+                <div class="col-lg-12 mt-4">
+                    <a class="btn btn-primary", data-toggle="collapse" href="#dishReview" role="button" aria-expanded="false" aria-controls="dishReview">Review this dish</a>
+                    <div class="collapse" id="dishReview">
+                        <form class="review-form pt-5 needs-validation" action="#" method="post">
+                            <div class="row">
+                                <div class="form-group col-lg-12">
+                                    <label class="label-required m-0" for="dishStars">How many stars</label>
+                                    <select class="selectpicker" id="dishStars" name="dishStars" data-style="bs-select-form-control" data-title="How many stars" required>
+                                        <option value="1" data-content='
+                                            <i class="fas fa-star text-primary text-xs"><i>
+                                            <i class="fas fa-star text-muted text-xs"><i>
+                                            <i class="fas fa-star text-muted text-xs"><i>
+                                            <i class="fas fa-star text-muted text-xs"><i>
+                                            <i class="fas fa-star text-muted text-xs"><i>
+                                            '>hehehe</option>
+                                        <option value="2" data-content='
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-muted text-xs"><i>
+                                                <i class="fas fa-star text-muted text-xs"><i>
+                                                <i class="fas fa-star text-muted text-xs"><i>
+                                            '
+                                            >2 stars</option>
+                                        <option value="3" data-content='
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-muted text-xs"><i>
+                                                <i class="fas fa-star text-muted text-xs"><i>
+                                            '
+                                            >3 stars</option>
+                                        <option value="4" data-content='
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-muted text-xs"><i>
+                                            '
+                                            >4 stars</option>
+                                        <option value="5" data-content='
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                                <i class="fas fa-star text-primary text-xs"><i>
+                                            '
+                                            >5 stars</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="label-required mb-0" for="dishReviewBody">Your review</label>
+                                    <textarea class="form-control bg-none form-control-lg py-3" id="dishReviewBody" name="dishReviewBody" rows="5" placeholder="Leave your review..."></textarea>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <button class="btn btn-primary" type="submit">Post your review</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
               </div>
             </div>
           </div>
