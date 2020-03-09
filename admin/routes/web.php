@@ -1,63 +1,103 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::resource('admin/service', 'Admin\\ServiceController');
-Route::resource('admin/main-dish', 'Admin\\MainDishController');
-Route::resource('admin/our-story', 'Admin\\OurStoryController');
-Route::resource('admin/master-chefs', 'Admin\\MasterChefsController');
-Route::resource('admin/chefs', 'Admin\\ChefsController');
-Route::resource('admin/availability', 'Admin\\AvailabilityController');
-Route::resource('admin/gallary', 'Admin\\GallaryController');
-Route::resource('admin/album', 'Admin\\AlbumController');
-Route::resource('admin/about-us', 'Admin\\AboutUsController');
-Route::resource('admin/philosophy', 'Admin\\PhilosophyController');
-Route::resource('admin/statistic', 'Admin\\StatisticController');
-Route::resource('admin/about-services', 'Admin\\AboutServicesController');
-Route::resource('admin/our-services-head', 'Admin\\OurServicesHeadController');
-Route::resource('admin/our-services-body', 'Admin\\OurServicesBodyController');
-
-Route::resource('admin/featur-dish-head', 'Admin\\FeaturDishHeadController');
-Route::resource('admin/feature-dish-body', 'Admin\\FeatureDishBodyController');
-Route::resource('admin/food-menu', 'Admin\\FoodMenuController');
-Route::resource('admin/slide-menu', 'Admin\\SlideMenuController');
-Route::resource('admin/category', 'Admin\\CategoryController');
-Route::resource('admin/tag', 'Admin\\TagController');
-Route::resource('admin/contact-us', 'Admin\\ContactUsController');
-
+/*===========================
+  basic route for home page
+============================*/
 Route::get('/', 'Pages\\HomeController@index')->name('home.index');
+/*===========================
+  all routes for admin panel
+============================*/
+Route::prefix('admin')->group(function () {
+  Route::get('/service', 'Admin\\ServiceController@index')->name('service.index');
+  Route::get('/service/{id}/edit', 'Admin\\ServiceController@edit')->name('service.edit');
+  Route::patch('/service/{id}', 'Admin\\ServiceController@update')->name('service.update');
+  Route::get('/main-dish', 'Admin\\MainDishController@index')->name('main-dish.index');
+  Route::get('/main-dish/{id}/edit', 'Admin\\MainDishController@edit')->name('main-dish.edit');
+  Route::patch('/main-dish/{id}', 'Admin\\MainDishController@update')->name('main-dish.update');
+  Route::get('/our-story', 'Admin\\OurStoryController@index')->name('our-story.index');
+  Route::get('/our-story/{id}/edit', 'Admin\\OurStoryController@edit')->name('our-story.edit');
+  Route::patch('/our-story/{id}', 'Admin\\OurStoryController@update')->name('our-story.update');
+  Route::get('/master-chefs', 'Admin\\MasterChefsController@index')->name('master-chefs.index');
+  Route::get('/master-chefs/{id}/edit', 'Admin\\MasterChefsController@edit')->name('master-chefs.edit');
+  Route::patch('/master-chefs/{id}', 'Admin\\MasterChefsController@update')->name('master-chefs.update');
+  Route::resource('/chefs', 'Admin\\ChefsController');
+  Route::get('/availability', 'Admin\\AvailabilityController@index')->name('availability.index');
+  Route::get('/availability/{id}/edit', 'Admin\\AvailabilityController@edit')->name('availability.edit');
+  Route::patch('/availability/{id}', 'Admin\\AvailabilityController@update')->name('availability.update');
+  Route::get('/gallary', 'Admin\\GallaryController@index')->name('gallary.index');
+  Route::get('/gallary/{id}/edit', 'Admin\\GallaryController@edit')->name('gallary.edit');
+  Route::patch('/gallary/{id}', 'Admin\\GallaryController@update')->name('gallary.update');
+  Route::resource('/album', 'Admin\\AlbumController');
+  Route::get('/about-us', 'Admin\\AboutUsController@index')->name('about-us.index');
+  Route::get('/about-us/{id}/edit', 'Admin\\AboutUsController@edit')->name('about-us.edit');
+  Route::patch('/about-us/{id}', 'Admin\\AboutUsController@update')->name('about-us.update');
+  Route::get('/philosophy', 'Admin\\PhilosophyController@index')->name('philosophy.index');
+  Route::get('/philosophy/{id}/edit', 'Admin\\PhilosophyController@edit')->name('philosophy.edit');
+  Route::patch('/philosophy/{id}', 'Admin\\PhilosophyController@update')->name('philosophy.update');
+  Route::resource('/statistic', 'Admin\\StatisticController');
+  Route::resource('/about-services', 'Admin\\AboutServicesController');
+  Route::get('/our-services-head', 'Admin\\OurServicesHeadController@index')->name('our-services-head.index');
+  Route::get('/our-services-head/{id}/edit', 'Admin\\OurServicesHeadController@edit')->name('our-services-head.edit');
+  Route::patch('/our-services-head/{id}', 'Admin\\OurServicesHeadController@update')->name('our-services-head.update');
+  Route::resource('/our-services-body', 'Admin\\OurServicesBodyController');
+  Route::get('/featur-dish-head', 'Admin\\FeaturDishHeadController@index')->name('featur-dish-head.index');
+  Route::get('/featur-dish-head/{id}/edit', 'Admin\\FeaturDishHeadController@edit')->name('featur-dish-head.edit');
+  Route::patch('/featur-dish-head/{id}', 'Admin\\FeaturDishHeadController@update')->name('featur-dish-head.update');
+  Route::resource('/feature-dish-body', 'Admin\\FeatureDishBodyController');
+  Route::get('/food-menu', 'Admin\\FoodMenuController@index')->name('food-menu.index');
+  Route::get('/food-menu/{id}/edit', 'Admin\\FoodMenuController@edit')->name('food-menu.edit');
+  Route::patch('/food-menu/{id}', 'Admin\\FoodMenuController@update')->name('food-menu.update');
+  Route::resource('/slide-menu', 'Admin\\SlideMenuController');
+  Route::resource('/category', 'Admin\\CategoryController');
+  Route::resource('/tag', 'Admin\\TagController');
+  Route::get('/contact-us', 'Admin\\ContactUsController@index')->name('contact-us.index');
+  Route::get('/contact-us/{id}/edit', 'Admin\\ContactUsController@edit')->name('contact-us.edit');
+  Route::patch('/contact-us/{id}', 'Admin\\ContactUsController@update')->name('contact-us.update');
+  Route::get('/contact' , 'Pages\\ContactController@all')->name('contact.all');
+  Route::get('/branch-head', 'Admin\\BranchHeadController@index')->name('branch-head.index');
+  Route::get('/branch-head/{id}/edit', 'Admin\\BranchHeadController@edit')->name('branch-head.edit');
+  Route::patch('/branch-head/{id}', 'Admin\\BranchHeadController@update')->name('branch-head.update');
+  Route::resource('/branch-body', 'Admin\\BranchBodyController');
 
-Route::get('pages/menus-1', 'Pages\\MenusController@index')->name('menus.index');
-Route::get('pages/menus-2', 'Pages\\MenusController@show')->name('menus.show');
-// Route::resource('pages/contact', 'Pages\\ContactController');
-// Route::resource('pages/about', 'Pages\\AboutController');
-Route::get('pages/about-1' , 'Pages\\AboutController@index')->name('about.index');
-Route::get('pages/about-2' , 'Pages\\AboutController@show')->name('about.show');
+  Route::get('/basic-details', 'Admin\\BasicDetailsController@index')->name('basic-details.index');
+  Route::get('/basic-details/{id}/edit', 'Admin\\BasicDetailsController@edit')->name('basic-details.edit');
+  Route::patch('/basic-details/{id}', 'Admin\\BasicDetailsController@update')->name('basic-details.update');
+  Route::resource('/award', 'Admin\\AwardController');
+ });
 
-Route::get('pages/contact-2' , 'Pages\\ContactController@show')->name('contact.index');
-Route::get('pages/contact-1' , 'Pages\\ContactController@index')->name('contact.show');
-Route::post('pages/contact' , 'Pages\\ContactController@store')->name('contact.store');
-Route::get('admin/contact' , 'Pages\\ContactController@all')->name('contact.all');
+ /*===========================
+     all routes for site
+ ============================*/
+ Route::prefix('pages')->group(function () {
+   Route::get('/menus-1', 'Pages\\MenusController@index')->name('menus.index');
+   Route::get('/menus-2', 'Pages\\MenusController@show')->name('menus.show');
 
-Route::get('pages/dish/{id}' , 'Pages\\DishesController@show')->name('dish.show');
+   Route::get('/about-1' , 'Pages\\AboutController@index')->name('about.index');
+   Route::get('/about-2' , 'Pages\\AboutController@show')->name('about.show');
 
+   Route::get('/contact-2' , 'Pages\\ContactController@show')->name('contact.index');
+   Route::get('/contact-1' , 'Pages\\ContactController@index')->name('contact.show');
+   Route::post('/contact' , 'Pages\\ContactController@store')->name('contact.store');
 
-Route::get('pages/categories' , 'Admin\\CategoryController@allCategories')->name('categories.page');
-Route::get('pages/category/{id}' , 'Admin\\CategoryController@showCategory')->name('category.page');
-// Route::resource('pages/booking', 'Pages\\BookingController');
+   Route::get('/dish/{id}' , 'Pages\\DishesController@show')->name('dish.show');
+
+   Route::get('/categories' , 'Admin\\CategoryController@allCategories')->name('categories.page');
+   Route::get('/category/{id}' , 'Admin\\CategoryController@showCategory')->name('category.page');
+
+   Route::get('/booking', 'Pages\\BookingController@index')->name('booking.index');
+   Route::post('/booking', 'Pages\\BookingController@store')->name('booking.store');
+   Route::get('/booking/{id}/edit', 'Pages\\BookingController@edit')->name('booking.edit');
+   Route::patch('/booking/{id}/edit', 'Pages\\BookingController@update')->name('booking.update');
+   Route::get('/booking-confirmation/{id}', 'Pages\\BookingController@confirmation')->name('booking.confirm');
+   Route::get('/booking-cancellation/{id}', 'Pages\\BookingController@cancellation')->name('booking.cancel');
+   Route::patch('/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
+   Route::patch('/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
+   Route::get('/booking-cancelled' , 'pages\\BookingController@cancelled')->name('booking.cancelled');
+  });
+
+/*===========================
+all users routes
+============================*/
 Route::group(['middleware' => ['auth']], function () {
   Route::get('pages/admin-bookings', 'Pages\\BookingController@bookings')->name('booking.bookings');
   Route::get('pages/personal-information/{id}' , 'UsersController@show')->name('personal.information');
@@ -70,27 +110,11 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('pages/edit-reviews/{id}' , 'UsersController@editReview')->name('edit.review');
   Route::patch('pages/update-reviews/{id}' , 'UsersController@updateReview')->name('update.review');
 });
-// Route::get('/password/reset', 'Auth\\ResetPasswordController@index')->name('password.reset');
-
-Route::get('pages/booking', 'Pages\\BookingController@index')->name('booking.index');
-Route::post('pages/booking', 'Pages\\BookingController@store')->name('booking.store');
-Route::get('pages/booking/{id}/edit', 'Pages\\BookingController@edit')->name('booking.edit');
-Route::patch('pages/booking/{id}/edit', 'Pages\\BookingController@update')->name('booking.update');
-Route::get('pages/booking-confirmation/{id}', 'Pages\\BookingController@confirmation')->name('booking.confirm');
-Route::get('pages/booking-cancellation/{id}', 'Pages\\BookingController@cancellation')->name('booking.cancel');
-Route::patch('pages/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
-Route::patch('pages/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
-Route::get('pages/booking-cancelled' , 'pages\\BookingController@cancelled')->name('booking.cancelled');
 
 
-Route::resource('admin/branch-head', 'Admin\\BranchHeadController');
-Route::resource('admin/branch-body', 'Admin\\BranchBodyController');
-Route::resource('admin/drop-line', 'Admin\\DropLineController');
-
-Route::resource('admin/basic-details', 'Admin\\BasicDetailsController');
-Route::resource('admin/award', 'Admin\\AwardController');
-
+/*===========================
+all authentication routes
+============================*/
 Auth::routes();
-
 Route::get('/login', 'Auth\\LoginController@index')->name('login');
 Route::get('/register', 'Auth\\RegisterController@index')->name('register');

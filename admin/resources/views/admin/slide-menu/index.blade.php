@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Slide Menus')
+@section('title', 'Dishes')
 
 @section('content_header')
-    <h1>Slide Menus</h1>
+    <h1>Dishes</h1>
 @stop
 
 @section('content')

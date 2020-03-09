@@ -15,66 +15,10 @@ class FoodMenuController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->get('search');
-        $perPage = 10;
-
-        if (!empty($keyword)) {
-            $foodmenu = FoodMenu::where('title', 'LIKE', "%$keyword%")
-                ->orWhere('content', 'LIKE', "%$keyword%")
-                ->orWhere('description', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $foodmenu = FoodMenu::latest()->paginate($perPage);
-        }
-
+        $foodmenu = FoodMenu::first();
         return view('admin.food-menu.index', compact('foodmenu'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('admin.food-menu.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-    			'title' => 'required|max:255',
-    			'description' => 'required|max:255',
-    			'content' => 'required|max:65535',
-    		]);
-        $requestData = $request->all();
-
-        FoodMenu::create($requestData);
-
-        return redirect('admin/food-menu')->with('flash_message', 'FoodMenu added!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function show($id)
-    {
-        $foodmenu = FoodMenu::findOrFail($id);
-
-        return view('admin.food-menu.show', compact('foodmenu'));
     }
 
     /**
@@ -114,17 +58,4 @@ class FoodMenuController extends Controller
         return redirect('admin/food-menu')->with('flash_message', 'FoodMenu updated!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function destroy($id)
-    {
-        FoodMenu::destroy($id);
-
-        return redirect('admin/food-menu')->with('flash_message', 'FoodMenu deleted!');
-    }
 }

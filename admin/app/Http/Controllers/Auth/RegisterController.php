@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'pages/admin-bookings';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -40,6 +40,9 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        if (Auth::check()) {
+          $this->redirectTo = route('personal.information' , ['id' => Auth::user()->id]);
+        }
     }
 
 

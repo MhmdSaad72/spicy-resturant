@@ -49,8 +49,8 @@ class AvailabilityController extends Controller
           'description' => 'required|max:255',
           'start_day' => 'required',
           'end_day' => 'required',
-          'start_time' => 'required|date_format:H:i',
-          'end_time' => 'required|date_format:H:i',
+          'start_time' => 'required',
+          'end_time' => 'required|after:start_time',
     		]);
         $requestData = $request->all();
 

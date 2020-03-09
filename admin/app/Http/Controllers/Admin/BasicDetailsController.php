@@ -15,22 +15,11 @@ class BasicDetailsController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
 
-        if (!empty($keyword)) {
-            $basicdetails = BasicDetail::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('reservation', 'LIKE', "%$keyword%")
-                ->orWhere('content', 'LIKE', "%$keyword%")
-                ->orWhere('hot_line', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $basicdetails = BasicDetail::latest()->paginate($perPage);
-        }
-
-        return view('admin.basic-details.index', compact('basicdetails'));
+        $basicDetail = BasicDetail::first();
+        return view('admin.basic-details.index', compact('basicDetail'));
     }
 
     /**
