@@ -22,9 +22,9 @@
           <p class="text-gray text-small font-weight-normal mb-5">We've found {{$count}} items for this category.</p>
         </div>
       </div>
-      <div class="row">
+      <div class="row align-items-stretch">
         @foreach ($dishes as $key => $item)
-          <div class="col-md-6 mb-4"><a class="media align-items-center reset-anchor transition-link p-4 bg-dark" href="{{route('dish.show' , ['id' => $item->id])}}"><img class="img-fluid" src="{{asset('storage/' . $item->image)}}" alt="..." width="130">
+          <div class="col-md-6 mb-4"><a class="media reset-anchor transition-link p-4 bg-dark h-100" href="{{route('dish.show' , ['id' => $item->id])}}"><img class="img-fluid" src="{{asset('storage/' . $item->image)}}" alt="..." width="130">
               <div class="ml-3">
                 <h5>{{$item->title}}</h5>
                 <p class="text-muted small mb-2">{{$item->str_limit($item->content)}}</p>
