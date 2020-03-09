@@ -102,26 +102,17 @@
                     <div class="mb-4 text-center">
                         <i class="fas fa-quote-left text-primary fa-3x mb-4"></i>
                         <div class="mb-4">
-                            <h3 class="h5 mb-2">Dishes Quality</h3>
-                            <p class="text-gray small mb-0">15 Mar 2019  </p>
-                            <ul class="list-inline mb-3">
-                                <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                                <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                                <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                                <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                                <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                            </ul>
-                            <p class="text-small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                            <h3 class="h5 mb-2">{{$review->reviewTopic ?? ''}}</h3>
+                            <p class="text-gray small mb-0"> {{\Carbon\Carbon::parse($review->created_at)->format('d M Y')}} </p>
+                            {!!$review->stars!!}
+
+                            <p class="text-small text-muted">{{$review->reviewBody ?? ''}}</p>
                         </div>
-                        <a href="#" class="btn btn-primary"> Edit your review</a>
+                        <a href="{{route('edit.review' , ['id' => $user->id])}}" class="btn btn-primary"> Edit your review</a>
                     </div>
                 @endif
             </div>
         </div>
     </div>
 </section>
-
-
-
-
 @endsection

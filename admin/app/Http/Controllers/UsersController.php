@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\BasicDetail;
 use App\user;
+use App\Review;
 use Auth;
 use DB;
 
@@ -60,7 +61,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $basicDetail = BasicDetail::first();
-        $review =  DB::table('reviews')->where('user_id' , $user->id)->first();
+        $review =  Review::where('user_id' , $id)->first();
         return view('pages.users.review' , compact('user' , 'review'));
     }
 
@@ -73,13 +74,37 @@ class UsersController extends Controller
             'reviewBody' => 'required',
         ]);
 
-        // $user = User::findOrFail($id);
+        $user = User::findOrFail($id);
         $requestData = $request->all();
-        $requestData['user_id'] = $id ;
-        // $requestData = makeHidden('_token') ;
+        $requestData['user_id'] = $user->id ;
 
-        $review = DB::table('reviews')->insert($requestData);
+        $review =  Review::create($requestData);
 
         return redirect()->back();
+    }
+
+    public function editReview($id)
+    {
+      $user = User::findOrFail($id);
+      $basicDetail = BasicDetail::first();
+      $review =  Review::where('user_id' , $id)->first();
+      return view('pages.users.edit-review' , compact('user' , 'review'));
+    }
+
+    public function updateReview(Request $request , $id)
+    {
+      $this->validate($request , [
+          'stars' => 'required',
+          'reviewTopic' => 'required',
+          'reviewBody' => 'required',
+      ]);
+      $user = User::findOrFail($id);
+      $requestData = $request->all();
+      $requestData['user_id'] = $user->id ;
+
+      $review =  Review::where('user_id' , $user->id)->firstOrFail();
+      $review->update($requestData);
+
+      return redirect()->route('personal.review' , ['id' =>$user->id]);
     }
 }

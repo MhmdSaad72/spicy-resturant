@@ -61,6 +61,8 @@ Route::group(['middleware' => ['auth']], function () {
   Route::patch('pages/update-password/{id}' , 'UsersController@updatePassword')->name('update.password');
   Route::get('pages/reviews/{id}' , 'UsersController@review')->name('personal.review');
   Route::post('pages/reviews/{id}' , 'UsersController@storeReview')->name('store.review');
+  Route::get('pages/edit-reviews/{id}' , 'UsersController@editReview')->name('edit.review');
+  Route::patch('pages/update-reviews/{id}' , 'UsersController@updateReview')->name('update.review');
 });
 // Route::get('/password/reset', 'Auth\\ResetPasswordController@index')->name('password.reset');
 
