@@ -149,7 +149,7 @@
                <div class="row">
                    @foreach ($category->slide_menus as $key => $item)
                    <div class="col-lg-6 mb-4 pb-2">
-                       <!-- Menu item--><a class="menu-item ribboned d-flex align-items-center justify-content-between px-4 py-4 reset-anchor transition-link bg-body" href="dish.html">
+                       <!-- Menu item--><a class="menu-item ribboned d-flex align-items-center justify-content-between px-4 py-4 reset-anchor transition-link bg-body" href="{{route('dish.show' , ['id' => $item->id])}}">
                        <div class="mr-2">
                            <h2 class="h5 mb-0">{{$item->title}}</h2>
                            <p class="small text-muted mb-0">{{$item->str_limit($item->content)}}</p>
@@ -165,7 +165,7 @@
                <div class="row">
                    @foreach ($category->slide_menus as $key => $item)
                    <div class="col-lg-6 mb-4 pb-2">
-                       <!-- Menu item--><a class="menu-item ribboned d-flex align-items-center justify-content-between px-4 py-4 reset-anchor transition-link bg-body" href="dish.html">
+                       <!-- Menu item--><a class="menu-item ribboned d-flex align-items-center justify-content-between px-4 py-4 reset-anchor transition-link bg-body" href="{{route('dish.show' , ['id' => $item->id])}}">
                        <div class="mr-2">
                            <h2 class="h5 mb-0">{{$item->title}}</h2>
                            <p class="small text-muted mb-0">{{$item->str_limit($item->content)}}</p>

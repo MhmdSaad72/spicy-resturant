@@ -22,8 +22,8 @@ class CreateSlideMenusTable extends Migration
             $table->string('sku')->nullable();
             $table->integer('weight')->nullable();
             $table->integer('calories')->nullable();
-            $table->string('related_title')->nullable();
-            $table->string('related_description')->nullable();
+            // $table->string('related_title')->nullable();
+            // $table->string('related_description')->nullable();
             $table->text('more_content')->nullable();
 
             $table->integer('category_id')->unsigned()->nullable();

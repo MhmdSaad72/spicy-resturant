@@ -55,12 +55,6 @@
                                       <th> Description </th><td> {{ $slidemenu->more_content}} </td>
                                     </tr>
                                     <tr>
-                                      <th> Related Title </th><td> {{ $slidemenu->related_title }} </td>
-                                    </tr>
-                                    <tr>
-                                      <th> Related Description </th><td> {{ $slidemenu->related_description }} </td>
-                                    </tr>
-                                    <tr>
                                       <th> Image </th><td> <img src="{{ asset('storage/' . $slidemenu->image) }}" alt=""> </td>
                                     </tr>
                                 </tbody>

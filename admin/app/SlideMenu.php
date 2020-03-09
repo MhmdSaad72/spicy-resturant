@@ -28,11 +28,6 @@ class SlideMenu extends Model
      */
     protected $guarded = [];
 
-    public function menu_lists()
-    {
-      return $this->hasMany('App\MenuList');
-    }
-
     public function category()
     {
       return $this->belongsTo('App\Category' , 'category_id');

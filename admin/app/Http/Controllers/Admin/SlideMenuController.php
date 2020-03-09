@@ -63,8 +63,6 @@ class SlideMenuController extends Controller
           'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg',
           'category_id' => 'required',
           'tag_id' => 'required',
-          'related_title' => 'required|max:255',
-          'related_description' => 'required|max:255',
           'more_content' => 'required|max:65535',
           'weight' => 'integer|gte:0',
           'calories' => 'integer|gte:0'
@@ -126,8 +124,6 @@ class SlideMenuController extends Controller
           'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg',
           'category_id' => 'required',
           'tag_id' => 'required',
-          'related_title' => 'required|max:255',
-          'related_description' => 'required|max:255',
           'more_content' => 'required|max:65535',
           'weight' => 'integer|gte:0',
           'calories' => 'integer|gte:0'

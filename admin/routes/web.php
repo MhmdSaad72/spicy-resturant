@@ -51,6 +51,12 @@ Route::get('pages/contact-2' , 'Pages\\ContactController@show')->name('contact.i
 Route::get('pages/contact-1' , 'Pages\\ContactController@index')->name('contact.show');
 Route::post('pages/contact' , 'Pages\\ContactController@store')->name('contact.store');
 Route::get('admin/contact' , 'Pages\\ContactController@all')->name('contact.all');
+
+Route::get('pages/dish/{id}' , 'Pages\\DishesController@show')->name('dish.show');
+
+
+Route::get('pages/categories' , 'Admin\\CategoryController@allCategories')->name('categories.page');
+Route::get('pages/category/{id}' , 'Admin\\CategoryController@showCategory')->name('category.page');
 // Route::resource('pages/booking', 'Pages\\BookingController');
 Route::group(['middleware' => ['auth']], function () {
   Route::get('pages/admin-bookings', 'Pages\\BookingController@bookings')->name('booking.bookings');

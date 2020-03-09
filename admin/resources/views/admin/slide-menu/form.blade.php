@@ -33,16 +33,6 @@
     <input class="form-control" name="calories" type="number" id="calories" value="{{ isset($slidemenu->calories) ? $slidemenu->calories : old('calories')}}" >
     {!! $errors->first('calories', '<p class="help-block text-danger">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('related_title') ? 'has-error' : ''}}">
-    <label for="related_title" class="control-label">{{ 'Related Title' }}</label>
-    <input class="form-control" name="related_title" type="text" id="related_title" value="{{ isset($slidemenu->related_title) ? $slidemenu->related_title : old('related_title')}}" >
-    {!! $errors->first('related_title', '<p class="help-block text-danger">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('related_description') ? 'has-error' : ''}}">
-    <label for="related_description" class="control-label">{{ 'Related Description' }}</label>
-    <input class="form-control" name="related_description" type="text" id="related_description" value="{{ isset($slidemenu->related_description) ? $slidemenu->related_description : old('related_description')}}" >
-    {!! $errors->first('related_description', '<p class="help-block text-danger">:message</p>') !!}
-</div>
 <div class="form-group {{ $errors->has('more_content') ? 'has-error' : ''}}">
     <label for="more_content" class="control-label">{{ 'More Description' }}</label>
     <textarea class="form-control" rows="5" name="more_content" type="textarea" id="more_content" >{{ isset($slidemenu->more_content) ? $slidemenu->more_content : old('more_content')}}</textarea>

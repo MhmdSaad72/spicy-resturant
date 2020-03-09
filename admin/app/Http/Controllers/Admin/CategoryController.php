@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Category;
+use App\BasicDetail;
+use App\SlideMenu;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -127,4 +129,31 @@ class CategoryController extends Controller
 
         return redirect('admin/category')->with('flash_message', 'Category deleted!');
     }
-}
+
+
+    /* ==================================
+        Display category page on site
+    =====================================*/
+
+    public function showCategory($id)
+    {
+      $category = Category::findOrFail($id);
+      $basicDetail = BasicDetail::first();
+      $dishes = SlideMenu::where('category_id' , $id)->get();
+      $count = $dishes->count();
+      return view('pages.categories.show' , compact('category' , 'basicDetail' , 'dishes' , 'count'));
+    }
+
+
+    /* ==================================
+        Display all categories for site
+    =====================================*/
+
+    public function allCategories()
+    {
+      $categories = Category::all();
+      $basicDetail = BasicDetail::first();
+      $count = $categories->count();
+      return view('pages.categories.index' , compact('categories' , 'basicDetail' , 'count'));
+    }
+  }
