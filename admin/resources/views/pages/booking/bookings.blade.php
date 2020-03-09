@@ -39,21 +39,21 @@
                   </div>
                 </div>
                 <div class="col-md-3 py-2 py-md-0">
-                  <div class="d-flex justify-content-md-center"><i class="fas fa-fw fa-user-friends"></i>
+                  <div class="d-flex justify-content-md-center"><i class="mt-1 fas fa-fw fa-user-friends"></i>
                     <div class="ml-3">
                       <p class="text-gray font-weight-normal text-small mb-0">{{ $booking->peopleNumber ?? '' }}</p>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-3 py-2 py-md-0">
-                  <div class="d-flex justify-content-md-center"><i class="fas fa-fw fa-chair"></i>
+                  <div class="d-flex justify-content-md-center"><i class="mt-1 fas fa-fw fa-chair"></i>
                     <div class="ml-3">
                       <p class="text-gray font-weight-normal text-small mb-0">{{ $booking->tablesNumber ?? '' }}</p>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-3 py-2 py-md-0">
-                  <div class="d-flex justify-content-md-center"><i class="fas fa-fw fa-smoking"></i>
+                  <div class="d-flex justify-content-md-center"><i class="mt-1 fas fa-fw fa-smoking"></i>
                     <div class="ml-3">
                       <p class="text-small text-gray font-weight-normal mb-0">{{ $booking->smokingArea ?? '' }}</p>
                     </div>
@@ -61,7 +61,7 @@
                 </div>
               </div>
             </div>
-            <div class="admin-booking-special-request px-4 py-3 d-flex"><i class="fas fa-fw fa-marker"></i>
+            <div class="admin-booking-special-request px-4 py-3 d-flex"><i class="mt-1 fas fa-fw fa-marker"></i>
               <div class="ml-3">
                 <p class="text-small text-gray font-weight-normal mb-0">{{ $booking->specialrequest ?? 'No special request' }}</p>
               </div>

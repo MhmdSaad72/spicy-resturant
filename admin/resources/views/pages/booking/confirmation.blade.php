@@ -18,28 +18,28 @@
         <div class="col-lg-5 mx-auto">
           <div class="booking-receipt p-4 p-lg-5 bg-dark">
             <ul class="list-unstyled mb-0">
-              <li class="d-flex align-items-center border-bottom border-base mb-3 pb-3"><i class="fas fa-calendar-check fa-2x text-primary"></i>
+              <li class="d-flex align-items-top border-bottom border-base mb-3 pb-3"><i class="mt-1 fas fa-calendar-check fa-2x text-primary"></i>
                 <div class="ml-3">
                   <p class="h6 mb-0">{{ isset($booking) ? $booking->date : ''}}</p>
                   <p class="text-muted text-small font-weight-normal mb-0">{{ isset($booking) ? $booking->time : ''}}</p>
                 </div>
               </li>
-              <li class="d-flex align-items-center border-bottom border-base mb-3 pb-3"><i class="fas fa-fw fa-user-friends"></i>
+              <li class="d-flex align-items-top border-bottom border-base mb-3 pb-3"><i class="mt-1 fas fa-fw fa-user-friends"></i>
                 <div class="ml-3">
                   <p class="text-gray font-weight-normal text-small mb-0">{{ isset($booking) ? $booking->peopleNumber : ''}}</p>
                 </div>
               </li>
-              <li class="d-flex align-items-center border-bottom border-base mb-3 pb-3"><i class="fas fa-fw fa-chair"></i>
+              <li class="d-flex align-items-top border-bottom border-base mb-3 pb-3"><i class="mt-1 fas fa-fw fa-chair"></i>
                 <div class="ml-3">
                   <p class="text-gray font-weight-normal text-small mb-0">{{ isset($booking) ? $booking->tablesNumber : ''}}</p>
                 </div>
               </li>
-              <li class="d-flex align-items-center border-bottom border-base mb-3 pb-3"><i class="fas fa-fw fa-smoking"></i>
+              <li class="d-flex align-items-top border-bottom border-base mb-3 pb-3"><i class="mt-1 fas fa-fw fa-smoking"></i>
                 <div class="ml-3">
                   <p class="text-small text-gray font-weight-normal mb-0">{{ isset($booking) ? $booking->smokingArea : ''}}</p>
                 </div>
               </li>
-              <li class="d-flex align-items-center"><i class="fas fa-fw fa-marker"></i>
+              <li class="d-flex align-items-top"><i class="mt-1 fas fa-fw fa-marker"></i>
                 <div class="ml-3">
                   @isset($booking->specialrequest)
                     <p class="text-small text-gray font-weight-normal mb-0">{{$booking->specialrequest}}</p>
