@@ -24,7 +24,7 @@
             <!-- Navbar mobile toggler-->
             <button class="navbar-toggler navbar-toggler-right px-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
             <!-- Admin List-->
-            <ul class="admin-list list-unstyled mb-0 d-flex align-items-start align-items-lg-center py-3">
+            <!-- <ul class="admin-list list-unstyled mb-0 d-flex align-items-start align-items-lg-center py-3">
                 <li class="m-0">
                     <a class="reset-anchor search-btn" id="toggleSearch" href="#">
                         <i class="fas fa-search"></i>
@@ -59,7 +59,19 @@
                     <div class="ml-2">
                         <p class="small mb-0">bookings</p>
                     </div></a></li>
+                </ul> -->
+
+                <!-- Admin List If Unregistered-->
+                <ul class="admin-list list-unstyled mb-0 d-flex align-items-start align-items-lg-center py-3">
+                    <li class="m-0">
+                        <a href="#" class="reset-anchor d-flex align-items-center transition-link">
+                            <i class="fas fa-door-open mr-2 text-primary"></i>
+                            <p class="small mb-0">Login</p>
+                        </a>
+                    </li>
                 </ul>
+
+
                 <!-- Navabr brand--><a class="navbar-brand d-none position-absolute" href="{{route('home.index')}}"><img src="{{isset($basicDetail->logo) ? asset('storage/' . $basicDetail->logo) : ''}}" alt="Italiano Restaurant" width="100"></a>
                 <!-- Navbar menu-->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
