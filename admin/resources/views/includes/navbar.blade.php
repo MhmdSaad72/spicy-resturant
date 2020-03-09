@@ -187,7 +187,7 @@
                 </div>
             </div>
             <!-- Search form -->
-            <form class="search-form" action="search-results.html">
+            <form class="search-form" action="{{route('search')}}">
                 <div class="container p-2">
                     <div class="d-flex">
                         <div class="form-group mb-0 w-100 position-relative">

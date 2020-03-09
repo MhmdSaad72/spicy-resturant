@@ -92,7 +92,8 @@ Route::prefix('admin')->group(function () {
    Route::get('/booking-cancellation/{id}', 'Pages\\BookingController@cancellation')->name('booking.cancel');
    Route::patch('/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
    Route::patch('/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
-   Route::get('/booking-cancelled' , 'pages\\BookingController@cancelled')->name('booking.cancelled');
+   Route::get('/booking-cancelled' , 'Pages\\BookingController@cancelled')->name('booking.cancelled');
+   Route::get('/search' , 'Pages\\SearchController@index')->name('search');
   });
 
 /*===========================
