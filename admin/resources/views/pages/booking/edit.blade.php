@@ -18,7 +18,7 @@
         <div class="booking-form-holder shadow py-5 px-4 px-md-5 shadow">
           <form class="booking-form needs-validation" action="{{route('booking.update' , ['id' =>$booking->id])}}" method="post">
             {{ csrf_field() }}
-            {{ method('PATCH') }}
+            {{ method_field('PATCH') }}
             <div class="row">
               <div class="form-group col-lg-6 ">
                 <label class="label-required m-0" for="phone">Phone Number</label>

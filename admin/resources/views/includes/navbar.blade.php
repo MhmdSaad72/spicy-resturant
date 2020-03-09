@@ -37,14 +37,16 @@
                         <i class="fas fa-user-circle"></i>
                     </a>
                     <div class="dropdown-menu mt-lg-0 dropdown-menu-center always-animated" aria-labelledby="adminPages">
+                      {{-- @auth --}}
                         <a class="dropdown-item transition-link" href="admin-personal.html">
-                            <h6 class="mb-0 text-white">Mohamed Hasan</h6>
-                            <p class="small mb-0">Mhmdhasan7@outlook.com</p>
+                          <h6 class="mb-0 text-white">Mohamed Hasan</h6>
+                          <p class="small mb-0">Mhmdhasan7@outlook.com</p>
                         </a>
                         <a class="dropdown-item transition-link" href="admin-personal.html">Personal information</a>
                         <a class="dropdown-item transition-link" href="admin-bookings.html">My bookings</a>
                         <a class="dropdown-item transition-link" href="admin-reviews.html">My review</a>
                         <a class="dropdown-item transition-link" href="login.html">Logout</a>
+                      {{-- @endauth --}}
                     </div>
                 </li>
                 <li class="text-muted mx-2 px-1">| </li>
@@ -120,7 +122,7 @@
                                             <div class="d-flex flex-column flex-lg-row">
                                                 <ul class="list-unstyled mr-lg-4">
                                                     <li><a class="dropdown-item border-0 transition-link" href="search-results.html">Search results</a></li>
-                                                    <li><a class="dropdown-item border-0 transition-link" href="category.html">Categories</a></li>
+                                                    <li><a class="dropdown-item border-0 transition-link" href="{{route('categories.page')}}">Categories</a></li>
                                                     <li><a class="dropdown-item border-0 transition-link" href="typography.html">Typography</a></li>
                                                     <li><a class="dropdown-item border-0 transition-link" href="cancelled.html">Booking cancelled</a></li>
                                                 </ul>

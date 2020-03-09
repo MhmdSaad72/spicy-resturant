@@ -190,7 +190,8 @@ class BookingController extends Controller
       public function edit($id)
       {
         $booking = Booking::findOrFail($id);
-        return view('pages.booking.edit' , compact('booking'));
+        $availability = Availability::first();
+        return view('pages.booking.edit' , compact('booking' , 'availability'));
       }
 
 
@@ -198,6 +199,7 @@ class BookingController extends Controller
       {
         // $user_id = Auth::user()->id ;
         $booking = Booking::findOrFail($id);
+        dd($request->date);
         $this->validate($request , [
           // 'fullname' => 'required|max:255',
           // 'email' => 'required|email|max:255',

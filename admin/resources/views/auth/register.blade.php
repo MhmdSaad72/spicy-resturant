@@ -22,21 +22,21 @@
             <div class="row">
               <div class="form-group col-lg-6">
                 <label class="label-required m-0" for="fullName">Full Name</label>
-                <input class="form-control form-control-lg" type="text" id="fullName" name="name" placeholder="Full name e.g. Jason Doe" >
+                <input class="form-control form-control-lg" type="text" id="fullName" name="name" placeholder="Full name e.g. Jason Doe" value="{{old('name')}}">
                 @error('name')
                   <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror
               </div>
               <div class="form-group col-lg-6">
                 <label class="label-required m-0" for="fullName">Email Address</label>
-                <input class="form-control form-control-lg" type="email" id="email" name="email" placeholder="Emaill address e.g. Jason@example.com" >
+                <input class="form-control form-control-lg" type="email" id="email" name="email" placeholder="Emaill address e.g. Jason@example.com" value="{{old('email')}}">
                 @error('email')
                   <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror
               </div>
               <div class="form-group col-lg-6">
                 <label class="label-required m-0" for="phone">Phone Number</label>
-                <input class="form-control form-control-lg" type="tel" id="phone" name="phone" placeholder="e.g. 654856974" >
+                <input class="form-control form-control-lg" type="tel" id="phone" name="phone" placeholder="e.g. 654856974" value="{{old('phone')}}">
                 @error('phone')
                   <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror
@@ -47,14 +47,14 @@
               </div>
               <div class="form-group col-lg-6">
                 <label class="label-required" for="password">Password</label>
-                <input class="form-control form-control-lg" id="password" type="password" name="password" placeholder="Enter your password" >
+                <input class="form-control form-control-lg" id="password" type="password" name="password" placeholder="Enter your password" value="{{old('password')}}">
                 @error('password')
                   <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror
               </div>
               <div class="form-group col-lg-6">
                 <label class="label-required" for="passwordConfirm">Confirm Password</label>
-                <input class="form-control form-control-lg" id="passwordConfirm" type="password" name="password_confirmation" placeholder="Retype your password" >
+                <input class="form-control form-control-lg" id="passwordConfirm" type="password" name="password_confirmation" placeholder="Retype your password" value="{{old('password_confirmation')}}">
                 {{-- @error('password_confirmation')
                   <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror --}}
