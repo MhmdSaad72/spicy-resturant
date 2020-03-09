@@ -31,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '';
+    // protected $redirectTo = '';
 
     /**
      * Create a new controller instance.
@@ -41,9 +41,14 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        if (Auth::check()) {
-          $this->redirectTo = route('personal.information' , ['id' => Auth::user()->id]);
-        }
+
+    }
+
+    protected function redirectTo()
+    {
+      if (Auth::check()) {
+        return route('personal.information' , ['id' => Auth::user()->id]);
+      }
     }
 
 
@@ -66,7 +71,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed' , 'max:255'],
-            // 'country' => 'required|max:255',
+            'country' => 'required|max:255',
             'phone' => 'required|max:255'
         ]);
     }

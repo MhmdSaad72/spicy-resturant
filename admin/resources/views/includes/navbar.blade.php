@@ -24,7 +24,8 @@
             <!-- Navbar mobile toggler-->
             <button class="navbar-toggler navbar-toggler-right px-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
             <!-- Admin List-->
-            <!-- <ul class="admin-list list-unstyled mb-0 d-flex align-items-start align-items-lg-center py-3">
+            @auth
+             <ul class="admin-list list-unstyled mb-0 d-flex align-items-start align-items-lg-center py-3">
                 <li class="m-0">
                     <a class="reset-anchor search-btn" id="toggleSearch" href="#">
                         <i class="fas fa-search"></i>
@@ -37,16 +38,19 @@
                         <i class="fas fa-user-circle"></i>
                     </a>
                     <div class="dropdown-menu mt-lg-0 dropdown-menu-center always-animated" aria-labelledby="adminPages">
-                      {{-- @auth --}}
+
                         <a class="dropdown-item transition-link" href="admin-personal.html">
                           <h6 class="mb-0 text-white">Mohamed Hasan</h6>
                           <p class="small mb-0">Mhmdhasan7@outlook.com</p>
                         </a>
-                        <a class="dropdown-item transition-link" href="admin-personal.html">Personal information</a>
-                        <a class="dropdown-item transition-link" href="admin-bookings.html">My bookings</a>
-                        <a class="dropdown-item transition-link" href="admin-reviews.html">My review</a>
-                        <a class="dropdown-item transition-link" href="login.html">Logout</a>
-                      {{-- @endauth --}}
+                        <a class="dropdown-item transition-link" href="{{route('personal.information' , ['id' => Auth::user()->id])}}">Personal information</a>
+                        <a class="dropdown-item transition-link" href="{{route('booking.bookings')}}">My bookings</a>
+                        <a class="dropdown-item transition-link" href="{{route('personal.review' , ['id' => Auth::user()->id])}}">My review</a>
+                        <a class="dropdown-item transition-link" href="{{route('logout')}}"  onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div>
                 </li>
                 <li class="text-muted mx-2 px-1">| </li>
@@ -59,17 +63,18 @@
                     <div class="ml-2">
                         <p class="small mb-0">bookings</p>
                     </div></a></li>
-                </ul> -->
-
+                </ul>
+              @else
                 <!-- Admin List If Unregistered-->
                 <ul class="admin-list list-unstyled mb-0 d-flex align-items-start align-items-lg-center py-3">
                     <li class="m-0">
-                        <a href="#" class="reset-anchor d-flex align-items-center transition-link">
+                        <a href="{{route('login')}}" class="reset-anchor d-flex align-items-center transition-link">
                             <i class="fas fa-door-open mr-2 text-primary"></i>
                             <p class="small mb-0">Login</p>
                         </a>
                     </li>
                 </ul>
+                @endauth
 
 
                 <!-- Navabr brand--><a class="navbar-brand d-none position-absolute" href="{{route('home.index')}}"><img src="{{isset($basicDetail->logo) ? asset('storage/' . $basicDetail->logo) : ''}}" alt="Italiano Restaurant" width="100"></a>
