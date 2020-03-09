@@ -41,8 +41,9 @@
             </div>
             <div class="form-group pt-2">
               <button class="btn btn-primary" type="submit">Login now</button>
+              <br>
               @if (Route::has('password.request'))
-                  <a class="btn btn-link" href="{{ route('password.request') }}">
+                  <a class="btn btn-link p-0 btn-sm mt-3" href="{{ route('password.request') }}">
                       {{ __('Forgot Your Password?') }}
                   </a>
               @endif
