@@ -272,55 +272,67 @@ NAVBAR
   z-index: 99;
 }
 
+.navbar .dropdown-menu {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transform: translateY(0.5rem);
+  transform: translateY(0.5rem);
+  transition: .2s ease all
+}
+
 @media (min-width: 992px) {
-  .animate {
-    animation-duration: 0.3s;
-    -webkit-animation-duration: 0.3s;
-    animation-fill-mode: both;
-    -webkit-animation-fill-mode: both;
+  .navbar .dropdown-menu {
+    display: block
   }
 }
 
-@-webkit-keyframes slideIn {
-  0% {
-    -webkit-transform: translateY(1rem);
-    transform: translateY(1rem);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0rem);
-    transform: translateY(0rem);
-    opacity: 1;
-  }
-  0% {
-    -webkit-transform: translateY(1rem);
-    transform: translateY(1rem);
-    opacity: 0;
+@media (max-width: 991.98px) {
+  .navbar .dropdown-menu.always-animated {
+    display: block
   }
 }
 
-@keyframes slideIn {
-  0% {
-    -webkit-transform: translateY(1rem);
-    transform: translateY(1rem);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0rem);
-    transform: translateY(0rem);
-    opacity: 1;
-  }
-  0% {
-    -webkit-transform: translateY(1rem);
-    transform: translateY(1rem);
-    opacity: 0;
+.navbar .dropdown-menu.show {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  transition: .2s ease all
+}
+
+@media (min-width: 992px) {
+  .dropdown-menu-center {
+    right: auto;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(0.5rem) !important;
+    transform: translateX(-50%) translateY(0.5rem) !important
   }
 }
 
-.navSlideIn {
-  -webkit-animation-name: slideIn;
-  animation-name: slideIn;
+@media (max-width: 991.98px) {
+  .dropdown-menu-center.always-animated {
+    right: auto;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(0.5rem) !important;
+    transform: translateX(-50%) translateY(0.5rem) !important
+  }
 }
+
+@media (min-width: 992px) {
+  .dropdown-menu-center.show {
+    -webkit-transform: translateX(-50%) translateY(0) !important;
+    transform: translateX(-50%) translateY(0) !important
+  }
+}
+
+@media (max-width: 991.98px) {
+  .dropdown-menu-center.show.always-animated {
+    -webkit-transform: translateX(-50%) translateY(0) !important;
+    transform: translateX(-50%) translateY(0) !important
+  }
+}
+
 
 /* ===============================================================
     CUSTOM UNTILS
@@ -784,6 +796,10 @@ ol.custom-numbers li::before {
   content: counter(my-awesome-counter) ". ";
   color: #FD8A06;
   font-weight: bold;
+}
+
+.no-caret::after {
+    display: none !important;
 }
 
 /* ===============================================================

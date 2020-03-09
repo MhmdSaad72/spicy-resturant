@@ -25,12 +25,33 @@
             <button class="navbar-toggler navbar-toggler-right px-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
             <!-- Admin List-->
             <ul class="admin-list list-unstyled mb-0 d-flex align-items-start align-items-lg-center py-3">
-                <li class="m-0"> <a class="reset-anchor search-btn" id="toggleSearch" href="#"><i class="fas fa-search"></i><i class="fas fa-times-circle d-none"></i></a></li>
+                <li class="m-0">
+                    <a class="reset-anchor search-btn" id="toggleSearch" href="#">
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-times-circle d-none"></i>
+                    </a>
+                </li>
                 <li class="text-muted mx-2 px-1">| </li>
-                <li class="m-0"><a class="reset-anchor transition-link" href="{{ route('login') }}"><i class="fas fa-user-circle"></i></a></li>
+                <li class="dropdown m-0 py-lg-3">
+                    <a class="reset-anchor dropdown-toggle no-caret" id="adminPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                    <div class="dropdown-menu mt-lg-0 dropdown-menu-center always-animated" aria-labelledby="adminPages">
+                        <a class="dropdown-item transition-link" href="admin-personal.html">
+                            <h6 class="mb-0 text-white">Mohamed Hasan</h6>
+                            <p class="small mb-0">Mhmdhasan7@outlook.com</p>
+                        </a>
+                        <a class="dropdown-item transition-link" href="admin-personal.html">Personal information</a>
+                        <a class="dropdown-item transition-link" href="admin-bookings.html">My bookings</a>
+                        <a class="dropdown-item transition-link" href="admin-reviews.html">My review</a>
+                        <a class="dropdown-item transition-link" href="login.html">Logout</a>
+                    </div>
+                </li>
                 <li class="text-muted mx-2 px-1">| </li>
-                <li class="m-0"><a class="media reset-anchor align-items-center transition-link" href="{{route('booking.bookings')}}">
-                    <div class="position-relative"><i class="fas fa-calendar-minus text-light"></i>
+                <li class="m-0">
+                    <a class="media reset-anchor align-items-center transition-link" href="{{route('booking.bookings')}}">
+                    <div class="position-relative">
+                        <i class="fas fa-calendar-minus text-light"></i>
                         <div class="booking-counter-number">{{$bookings ?? 0}}</div>
                     </div>
                     <div class="ml-2">
@@ -45,16 +66,16 @@
                             <!-- Navbar link--><a class="nav-link transition-link active" href="{{route('home.index')}}">Home</a>
                         </li>
                         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navMenuPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
-                            <div class="dropdown-menu navSlideIn animate" aria-labelledby="navMenuPages"><a class="dropdown-item transition-link" href="{{route('menus.index')}}">Menu style 1</a><a class="dropdown-item transition-link" href="{{route('menus.show')}}">Menu style 2</a></div>
+                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navMenuPages"><a class="dropdown-item transition-link" href="{{route('menus.index')}}">Menu style 1</a><a class="dropdown-item transition-link" href="{{route('menus.show')}}">Menu style 2</a></div>
                         </li>
                         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navAboutPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
-                            <div class="dropdown-menu navSlideIn animate" aria-labelledby="navAboutPages"><a class="dropdown-item transition-link" href="{{route('about.index')}}">About style 1</a><a class="dropdown-item transition-link" href="{{route('about.show')}}">About style 2</a></div>
+                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navAboutPages"><a class="dropdown-item transition-link" href="{{route('about.index')}}">About style 1</a><a class="dropdown-item transition-link" href="{{route('about.show')}}">About style 2</a></div>
                         </li>
                         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navContactPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contact</a>
-                            <div class="dropdown-menu navSlideIn animate" aria-labelledby="navContactPages"><a class="dropdown-item transition-link" href="{{route('contact.show')}}">Contact style 1</a><a class="dropdown-item transition-link" href="{{route('contact.index')}}">Contact style 2</a></div>
+                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navContactPages"><a class="dropdown-item transition-link" href="{{route('contact.show')}}">Contact style 1</a><a class="dropdown-item transition-link" href="{{route('contact.index')}}">Contact style 2</a></div>
                         </li>
                         <li class="nav-item dropdown megamenu"><a class="nav-link dropdown-toggle" id="megamneu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                            <div class="dropdown-menu navSlideIn animate p-4" aria-labelledby="megamneu">
+                            <div class="dropdown-menu dropdown-menu-center p-4" aria-labelledby="megamneu">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-lg-4 mb-4">
