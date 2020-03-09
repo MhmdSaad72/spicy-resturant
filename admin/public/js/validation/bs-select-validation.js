@@ -23,11 +23,5 @@ $(function () {
         $('.bootstrap-select button').siblings('.invalid-feedback').hide().siblings('.valid-feedback').show();
     });
 
-    $('form').on('submit', function () {
-        $($trime($('input').vale() === '')) {
-            return false;
-        }
-    });
-
 
 });

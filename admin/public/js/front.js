@@ -645,16 +645,20 @@
             timeInput.timeselector({
 
 
-                min: '08:30',
+                min: '08:00',
 
 
                 max: '22:00',
+
+                step: '60',
 
 
                 hours12: false
 
 
             });
+
+            timeInput.val('08:00').timeselector('refresh');
 
 
 
