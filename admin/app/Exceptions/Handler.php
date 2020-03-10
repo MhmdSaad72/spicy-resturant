@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use App\BasicDetail;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -46,6 +47,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        $basicDetail = BasicDetail::first();
+        if ($this->isHttpException($exception)) {
+             if ($exception->getStatusCode() == 404) {
+                 return response()->view('pages.404',['basicDetail' => $basicDetail], 404 );
+             }
+         }
         return parent::render($request, $exception);
     }
 }
