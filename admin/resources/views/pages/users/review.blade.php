@@ -11,13 +11,14 @@
             <p class="text-uppercase text-primary font-weight-bold mb-0 small">Reviews</p>
             <h1 class="h2 mb-0">Review your visit</h1>
             <p class="small text-gray mb-0">You have not submitted any reviews yet!</p>
-            <ul class="list-inline mb-0">
+            {!! isset($review->stars) ? $review->stars : '<ul class="list-inline mb-0">
                 <li class="list-inline-item small m-0"><i class="fas fa-star text-lighter small"></i></li>
                 <li class="list-inline-item small m-0"><i class="fas fa-star text-lighter small"></i></li>
                 <li class="list-inline-item small m-0"><i class="fas fa-star text-lighter small"></i></li>
                 <li class="list-inline-item small m-0"><i class="fas fa-star text-lighter small"></i></li>
                 <li class="list-inline-item small m-0"><i class="fas fa-star text-lighter small"></i></li>
-            </ul>
+            </ul>'!!}
+
         </header>
         <div class="row">
             <div class="col-lg-3 mb-5">

@@ -14,6 +14,7 @@
         <div class="col-lg-6">
           <h2 class="h5 dish-single-price mb-3">${{ $dish->price ?? ''}} </h2>
           <h1 class="mb-3">{{ $dish->title ?? ''}}</h1>
+          {{-- {{ $dish->average() }} --}}
           <ul class="list-inline">
             <li class="list-inline-item m-0"><i class="fas fa-star text-primary"></i></li>
             <li class="list-inline-item m-0"><i class="fas fa-star text-primary"></i></li>
@@ -55,107 +56,88 @@
                 </div>
               </div>
             </div>
+            {{-- review --}}
             <div class="tab-pane fade" id="dish-reviews" role="tabpanel" aria-labelledby="dish-deserts-tab">
-              <p class="small text-gray mb-0">Based on 2 reviews</p>
+              <p class="small text-gray mb-0">Based on {{count($reviews)}} reviews</p>
               <p class="h4 mb-5">How clients reviewed this dish</p>
               <div class="row">
-                <div class="col-lg-6">
-                  <!-- Dish review-->
-                  <div class="media mb-4"><i class="fas fa-quote-left text-primary fa-2x"></i>
-                    <div class="media-body ml-3">
-                      <h3 class="h5 mb-0">Jason Doe</h3>
-                      <p class="text-gray small mb-0">20 Jan 2019  </p>
-                      <ul class="list-inline mb-3">
-                        <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                        <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                        <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                        <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                        <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                      </ul>
-                      <p class="text-small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                @foreach ($reviews as $key => $item)
+                  <div class="col-lg-6">
+                    <!-- Dish review-->
+                    <div class="media mb-4"><i class="fas fa-quote-left text-primary fa-2x"></i>
+                      <div class="media-body ml-3">
+                        <h3 class="h5 mb-0">{{$item->user->name}}</h3>
+                        <p class="text-gray small mb-0">{{ \Carbon\Carbon::parse($item->created_at)->format('d M Y')}}</p>
+                        {!! $item->dishStars !!}
+                        <p class="text-small text-muted">{{$item->dishReviewBody}}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-6">
-                  <!-- Dish review-->
-                  <div class="media mb-4"><i class="fas fa-quote-left text-primary fa-2x"></i>
-                    <div class="media-body ml-3">
-                      <h3 class="h5 mb-0">Patrick Wood</h3>
-                      <p class="text-gray small mb-0">15 Mar 2019  </p>
-                      <ul class="list-inline mb-3">
-                        <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                        <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                        <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                        <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                        <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
-                      </ul>
-                      <p class="text-small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                    </div>
+                @endforeach
+                @if (Auth::check() && !$user)
+                  <!-- Dish Review Form -->
+                  <div class="col-lg-12 mt-4">
+                      <a class="btn btn-primary", data-toggle="collapse" href="#dishReview" role="button" aria-expanded="false" aria-controls="dishReview">Review this dish</a>
+                      <div class="collapse" id="dishReview">
+                          <form class="review-form pt-5 needs-validation" action="{{route('review.dish', ['id' => $dish->id])}}" method="post">
+                            {{csrf_field()}}
+                              <div class="row">
+                                  <div class="form-group col-lg-12">
+                                      <label class="label-required m-0" for="dishStars">How many stars</label>
+                                      <select class="selectpicker" id="dishStars" name="dishStars" data-style="bs-select-form-control" data-title="How many stars" required>
+                                          <option value="1" data-content='
+                                              <i class="fas fa-star text-primary text-xs"><i>
+                                              <i class="fas fa-star text-muted text-xs"><i>
+                                              <i class="fas fa-star text-muted text-xs"><i>
+                                              <i class="fas fa-star text-muted text-xs"><i>
+                                              <i class="fas fa-star text-muted text-xs"><i>
+                                              '>hehehe</option>
+                                          <option value="2" data-content='
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-muted text-xs"><i>
+                                                  <i class="fas fa-star text-muted text-xs"><i>
+                                                  <i class="fas fa-star text-muted text-xs"><i>
+                                              '
+                                              >2 stars</option>
+                                          <option value="3" data-content='
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-muted text-xs"><i>
+                                                  <i class="fas fa-star text-muted text-xs"><i>
+                                              '
+                                              >3 stars</option>
+                                          <option value="4" data-content='
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-muted text-xs"><i>
+                                              '
+                                              >4 stars</option>
+                                          <option value="5" data-content='
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                                  <i class="fas fa-star text-primary text-xs"><i>
+                                              '
+                                              >5 stars</option>
+                                      </select>
+                                  </div>
+                                  <div class="form-group col-lg-12">
+                                      <label class="label-required mb-0" for="dishReviewBody">Your review</label>
+                                      <textarea class="form-control bg-none form-control-lg py-3" id="dishReviewBody" name="dishReviewBody" rows="5" placeholder="Leave your review..."></textarea>
+                                  </div>
+                                  <div class="form-group col-lg-12">
+                                      <button class="btn btn-primary" type="submit">Post your review</button>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
                   </div>
-                </div>
-
-                <!-- Dish Review Form -->
-                <div class="col-lg-12 mt-4">
-                    <a class="btn btn-primary", data-toggle="collapse" href="#dishReview" role="button" aria-expanded="false" aria-controls="dishReview">Review this dish</a>
-                    <div class="collapse" id="dishReview">
-                        <form class="review-form pt-5 needs-validation" action="#" method="post">
-                            <div class="row">
-                                <div class="form-group col-lg-12">
-                                    <label class="label-required m-0" for="dishStars">How many stars</label>
-                                    <select class="selectpicker" id="dishStars" name="dishStars" data-style="bs-select-form-control" data-title="How many stars" required>
-                                        <option value="1" data-content='
-                                            <i class="fas fa-star text-primary text-xs"><i>
-                                            <i class="fas fa-star text-muted text-xs"><i>
-                                            <i class="fas fa-star text-muted text-xs"><i>
-                                            <i class="fas fa-star text-muted text-xs"><i>
-                                            <i class="fas fa-star text-muted text-xs"><i>
-                                            '>hehehe</option>
-                                        <option value="2" data-content='
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-muted text-xs"><i>
-                                                <i class="fas fa-star text-muted text-xs"><i>
-                                                <i class="fas fa-star text-muted text-xs"><i>
-                                            '
-                                            >2 stars</option>
-                                        <option value="3" data-content='
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-muted text-xs"><i>
-                                                <i class="fas fa-star text-muted text-xs"><i>
-                                            '
-                                            >3 stars</option>
-                                        <option value="4" data-content='
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-muted text-xs"><i>
-                                            '
-                                            >4 stars</option>
-                                        <option value="5" data-content='
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                                <i class="fas fa-star text-primary text-xs"><i>
-                                            '
-                                            >5 stars</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-lg-12">
-                                    <label class="label-required mb-0" for="dishReviewBody">Your review</label>
-                                    <textarea class="form-control bg-none form-control-lg py-3" id="dishReviewBody" name="dishReviewBody" rows="5" placeholder="Leave your review..."></textarea>
-                                </div>
-                                <div class="form-group col-lg-12">
-                                    <button class="btn btn-primary" type="submit">Post your review</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
+                @endif
               </div>
             </div>
           </div>

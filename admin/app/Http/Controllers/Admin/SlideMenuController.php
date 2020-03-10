@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\SlideMenu;
 use App\Category;
 use App\Tag;
+use App\DishReview;
+use Auth;
 use Illuminate\Http\Request;
 
 class SlideMenuController extends Controller
@@ -153,4 +155,5 @@ class SlideMenuController extends Controller
 
         return redirect('admin/slide-menu')->with('flash_message', 'SlideMenu deleted!');
     }
+
 }

@@ -44,5 +44,13 @@ class SlideMenu extends Model
       return $truncated ;
     }
 
+    public function average()
+    {
+      $count = DishReview::where('dish_id' , $this->id)->count();
+      $stars = DishReview::where('dish_id' , $this->id)->sum('dishStars');
+      $average = $stars / $count ;
+      return intval($average) ;
+    }
+
 
 }

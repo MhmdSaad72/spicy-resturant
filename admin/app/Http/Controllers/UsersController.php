@@ -89,7 +89,8 @@ class UsersController extends Controller
       $user = User::findOrFail($id);
       $basicDetail = BasicDetail::first();
       $review =  Review::where('user_id' , $id)->first();
-      return view('pages.users.edit-review' , compact('user' , 'review'));
+      $bookings = $user->bookings->count();
+      return view('pages.users.edit-review' , compact('user' , 'review' , 'bookings' , 'basicDetail'));
     }
 
     public function updateReview(Request $request , $id)

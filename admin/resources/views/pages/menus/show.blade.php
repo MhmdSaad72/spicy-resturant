@@ -32,7 +32,7 @@
             </header>
             <div class="owl-carousel owl-theme signature-dishes-slider">
               @foreach ($category->slide_menus as $key => $item)
-                <!-- Signature slide--><a class="media align-items-center reset-anchor transition-link" href="dish.html">
+                <!-- Signature slide--><a class="media align-items-center reset-anchor transition-link" href="{{route('dish.show' , ['id'=>$item->id])}}">
                 <div class="rounded-circle mx-auto overflow-hidden" style="width: 130px"><img src="{{isset($item->image) ? asset('storage/' . $item->image) : ''}}" alt="Bucatini"/></div>
                 <div class="media-body ml-3">
                   <h5>{{$item->title ?? ''}}</h5>
@@ -61,7 +61,7 @@
             <div class="row pt-4">
               @foreach ($category->slide_menus as $key => $item)
                 <div class="col-lg-6 mb-2">
-                  <!-- Menu item--><a class="menu-item-minimal reset-anchor" href="dish.html">
+                  <!-- Menu item--><a class="menu-item-minimal reset-anchor" href="{{route('dish.show' , ['id'=>$item->id])}}">
                     <div class="d-flex align-items-end mb-1">
                       <h5 class="mb-0">{{$item->title ?? ''}}</h5>
                       <div class="menu-item-separator mb-1"></div>

@@ -48,4 +48,9 @@ class User extends Authenticatable
       return $this->hasOne('App\Review' , 'user_id');
     }
 
+    public function dishReview()
+    {
+      return $this->hasOne('App\DishReview' , 'user_id');
+    }
+
 }
