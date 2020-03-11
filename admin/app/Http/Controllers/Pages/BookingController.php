@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Booking;
 use App\BasicDetail ;
 use App\Availability ;
+use App\BasicReservation;
 use App\Mail\ConfirmationMail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -25,6 +26,10 @@ class BookingController extends Controller
     public function index()
     {
         $availability = Availability::first();
+        $start_day = min($availableDays);
+        $end_day = max($availableDays);
+        $array = [1,2,3,4,5,6,7];
+        $closedDays = array_diff($array , $availableDays);
         $basicDetail = BasicDetail::first();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
@@ -32,7 +37,7 @@ class BookingController extends Controller
         }else {
           $bookings = 0 ;
         }
-        return view('pages.booking.index', compact('availability' , 'basicDetail' , 'bookings'));
+        return view('pages.booking.index', compact('availability' , 'basicDetail' , 'bookings' , 'start_day' , 'closedDays' , 'end_day'));
     }
     /**
      * Show the confirmation booking page.
@@ -123,15 +128,43 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
+
+        // $x =  \Carbon\Carbon::parse($request->date)->format('l');
+        // dd($x);
+        $basicReserve = BasicReservation::first();
+        $availability = Availability::first();
+        $startTime =  \Carbon\Carbon::parse($availability->start_time)->format('H:i');
+        $endTime =  \Carbon\Carbon::parse($availability->end_time)->format('H:i');
+
+        // validation for booking form
         $this->validate($request, [
           'phone' => 'required|max:255',
           'smokingArea' => 'required|max:255',
-          'peopleNumber' => 'required|max:255',
-          'tablesNumber' => 'required|max:255',
+          'peopleNumber' => 'required|integer|gte:0|max:' . $basicReserve->maxPeople(),
+          'tablesNumber' => 'required|integer|gte:0|max:' . $basicReserve->tables,
           'date' => 'required|date_format:d/m/Y|after:' . \Carbon\Carbon::now(),
-          'time' => 'required|date_format:H:i',
+          'time' => 'required|date_format:H:i|after:' . $startTime . '|before:' . $endTime,
           'specialrequest' => 'max:65535',
         ]);
+
+        $requestData = $request->all();
+        $replaced = Str::replaceArray('/', ['-','-'], $request->date);
+        $requestData['date'] = \Carbon\Carbon::parse($replaced)->format('Y-m-d');
+        $requestData['booking_id'] = Str::random(9) ;
+
+        // available tables in chosen time
+        $tables = Booking::where('time' , $request->time)->where('date' ,$requestData['date'] )->sum('tablesNumber');
+        $availableTables = ($basicReserve->tables) - ($tables) ;
+        if ($request->tablesNumber > $availableTables) {
+          return redirect()->back()->with('timeError' , 'we only have ' . $availableTables . ' tables at this time pick another time')->withInput();
+        }
+
+        // available chairs for chosen tables
+        $chairs = ($requestData['tablesNumber']) * ($basicReserve->chairs) ;
+        if ($requestData['peopleNumber'] > $chairs) {
+          return redirect()->back()->with('peopleError' , 'Every table has a maximum number of ' . $basicReserve->chairs . ' people')->withInput();
+        }
+
 
         // if user does not have account
         if (Auth::guest()) {
@@ -141,10 +174,6 @@ class BookingController extends Controller
             ]);
         }
 
-        $requestData = $request->all();
-        $replaced = Str::replaceArray('/', ['-','-'], $request->date);
-        $requestData['date'] = \Carbon\Carbon::parse($replaced)->format('Y-m-d');
-        $requestData['booking_id'] = Str::random(9) ;
 
         // if user has acount
         if (Auth::check()) {
@@ -191,7 +220,11 @@ class BookingController extends Controller
       {
         $booking = Booking::findOrFail($id);
         $availability = Availability::first();
-        return view('pages.booking.edit' , compact('booking' , 'availability'));
+        $start_day = min($availableDays);
+        $end_day = max($availableDays);
+        $array = [1,2,3,4,5,6,7];
+        $closedDays = array_diff($array , $availableDays);
+        return view('pages.booking.edit' , compact('booking' , 'availability' , 'start_day' , 'end_day' , 'closedDays'));
       }
 
 

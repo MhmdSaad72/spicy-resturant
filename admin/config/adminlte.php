@@ -203,13 +203,18 @@ return [
         // ],
         ['header' => 'Website Details'],
         [
-            'text'    => 'Contacts',
-            'icon'    => 'fas fa-fw fa-phone-volume',
+            'text'    => 'Bookings',
+            'icon'    => 'fas fa-ticket-alt',
             'submenu' =>
             [
                 [
-                    'text'    => 'All Contacts',
-                    'route'     => 'contact.all',
+                    'text'    => 'All Bookings',
+                    'route'     => 'bookings.index',
+
+                ],
+                [
+                    'text'    => 'Basic Reservation',
+                    'route'     => 'reservation.view',
 
                 ],
               ],

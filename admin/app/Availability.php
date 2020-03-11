@@ -27,7 +27,7 @@ class Availability extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'start_day', 'end_day' , 'start_time' , 'end_time'];
+    protected $fillable = ['title', 'description', 'availability', 'start_time' , 'end_time'];
 
 
     public function getDayAttribute($attribute)

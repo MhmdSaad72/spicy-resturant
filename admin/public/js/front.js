@@ -241,7 +241,7 @@ $(document).ready(function () {
         hours12: false
     });
 
-    timeInput.val('08:00').timeselector('refresh');
+    // timeInput.val('08:00').timeselector('refresh');
 
 
     // $(window).on('load resize', function () {

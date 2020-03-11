@@ -18,7 +18,7 @@
               <li class="list-inline-item py-1"><a class="btn btn-outline-light transition-link" href="{{route('about.show')}}">Discover more </a></li>
             </ul>
           </div>
-          <div class="col-lg-6 order-1 order-lg-2 mb-5 mb-lg-0"><img class="img-fluid d-block mx-auto hero-img" src="{{asset('storage/')}}" alt="dish"></div>
+          <div class="col-lg-6 order-1 order-lg-2 mb-5 mb-lg-0"><img class="img-fluid d-block mx-auto hero-img" src="{{asset('storage/' . $service->image)}}" alt="dish"></div>
         </div>
       </div>
     </section>
@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="col-lg-6 pl-lg-0 order-1 order-lg-2">
-            <div class="h-100 bg-center bg-cover main-dish-image" style="background: url({{asset('storage/')}})"></div>
+            <div class="h-100 bg-center bg-cover main-dish-image" style="background: url({{asset('storage/' . $mainDish->image)}})"></div>
           </div>
         </div>
       </div>
