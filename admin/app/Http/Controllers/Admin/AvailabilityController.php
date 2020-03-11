@@ -18,7 +18,8 @@ class AvailabilityController extends Controller
     public function index()
     {
         $availability = Availability::first();
-        return view('admin.availability.index', compact('availability'));
+        $availableDays = explode(',' , $availability->availability);
+        return view('admin.availability.index', compact('availability' , 'availableDays'));
     }
 
     /**
@@ -31,7 +32,8 @@ class AvailabilityController extends Controller
     public function edit($id)
     {
         $availability = Availability::findOrFail($id);
-        return view('admin.availability.edit', compact('availability'));
+        $availableDays = explode(',' , $availability->availability);
+        return view('admin.availability.edit', compact('availability' , 'availableDays'));
     }
 
     /**
@@ -47,12 +49,12 @@ class AvailabilityController extends Controller
         $this->validate($request, [
     			'title' => 'required|max:255',
           'description' => 'required|max:255',
-          'start_day' => 'required',
-          'end_day' => 'required',
+          'availability' => 'required',
           'start_time' => 'required',
           'end_time' => 'required|after:start_time',
     		]);
         $requestData = $request->all();
+        $requestData['availability'] = implode($request->availability , ',') ;
 
         $availability = Availability::findOrFail($id);
         $availability->update($requestData);

@@ -162,7 +162,9 @@
             </div></a>
         </div>
         @empty
-           {{'No related dishes'}}
+          <div class="col-12">
+            {{'No related dishes'}}
+          </div>
         @endforelse
       </div>
     </div>

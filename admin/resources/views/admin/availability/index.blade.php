@@ -27,13 +27,14 @@
                               <th> Description </th><td> {{ $availability->description }} </td>
                             </tr>
                             <tr>
-                              <th> Start Day </th><td> {{ $availability->getDayAttribute($availability->start_day) }} </td>
+                              <th> Availability Days </th><td> <ul>
+                                @foreach ($availableDays as $key => $value)
+                                  <li>{{$availability->getDayAttribute($value)}}</li>
+                                @endforeach
+                              </ul> </td>
                             </tr>
                             <tr>
                               <th> Start Time </th><td> {{ $availability->start_time }} </td>
-                            </tr>
-                            <tr>
-                              <th> End Day </th><td> {{ $availability->getDayAttribute($availability->end_day) }} </td>
                             </tr>
                             <tr>
                               <th> End Time </th><td> {{ $availability->end_time }} </td>

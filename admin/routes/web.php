@@ -63,6 +63,11 @@ Route::prefix('admin')->group(function () {
   Route::get('/basic-details/{id}/edit', 'Admin\\BasicDetailsController@edit')->name('basic-details.edit');
   Route::patch('/basic-details/{id}', 'Admin\\BasicDetailsController@update')->name('basic-details.update');
   Route::resource('/award', 'Admin\\AwardController');
+  Route::get('/bookings' , 'Admin\\BookingsController@index')->name('bookings.index');
+  Route::get('/bookings/{id}' , 'Admin\\BookingsController@show')->name('bookings.show');
+  Route::get('/basic-reservation' , 'Admin\\BookingsController@view')->name('reservation.view');
+  Route::get('/basic-reservation/{id}/edit' , 'Admin\\BookingsController@edit')->name('reservation.edit');
+  Route::patch('/basic-reservation/{id}/edit' , 'Admin\\BookingsController@update')->name('reservation.update');
  });
 
  /*===========================

@@ -91,15 +91,20 @@ class AboutController extends Controller
         $philosophy = Philosophy::first();
         $aboutservices = AboutService::all();
         $availability = Availability::first();
+        $availableDays = explode(',' , $availability->availability);
         $availability->start_time = Carbon::parse($availability->start_time)->format('h:i A');
         $availability->end_time = Carbon::parse($availability->end_time)->format('h:i A');
+        $start_day = min($availableDays);
+        $end_day = max($availableDays);
+        $array = [1,2,3,4,5,6,7];
+        $closedDays = array_diff($array , $availableDays);
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
           $bookings = $user->bookings->count();
         }else {
           $bookings = 0 ;
         }
-        return view('pages.about.show', compact('aboutUs' , 'album' , 'basicDetail' , 'philosophy' , 'availability' , 'aboutservices' , 'bookings'));
+        return view('pages.about.show', compact('aboutUs' , 'album' , 'basicDetail' , 'philosophy' , 'availability' , 'aboutservices' , 'bookings' , 'start_day' , 'end_day' , 'closedDays'));
     }
 
     /**

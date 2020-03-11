@@ -58,5 +58,7 @@
   <!-- Gallery section-->
   @include('includes.gallary')
   <!-- Opening hours section-->
-  @include('includes.opening-hours')
+  <section class="pb-5 mb-5">
+      @include('includes.opening-hours')
+  </section>
 @endsection
