@@ -114,8 +114,10 @@
       </div>
     </div>
   </section>
-  <!-- Opening hours section-->
-  @include('includes.opening-hours')
+  <section class="pb-5 mb-5">
+    <!-- Opening hours section-->
+    @include('includes.opening-hours')
+  </section>
 @endsection
 @section('scripts')
   <!-- Bootstrap 4 Validation-->

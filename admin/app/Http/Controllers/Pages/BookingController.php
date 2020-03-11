@@ -26,6 +26,7 @@ class BookingController extends Controller
     public function index()
     {
         $availability = Availability::first();
+        $availableDays = explode(',' , $availability->availability);
         $start_day = min($availableDays);
         $end_day = max($availableDays);
         $array = [1,2,3,4,5,6,7];
@@ -220,6 +221,7 @@ class BookingController extends Controller
       {
         $booking = Booking::findOrFail($id);
         $availability = Availability::first();
+        $availableDays = explode(',' , $availability->availability);
         $start_day = min($availableDays);
         $end_day = max($availableDays);
         $array = [1,2,3,4,5,6,7];
