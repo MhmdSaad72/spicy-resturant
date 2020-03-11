@@ -87,6 +87,9 @@
                 @if ($errors->has('date'))
                   <div class="invalid-feedback d-block">{!! $errors->first('date', ':message') !!}</div>
                 @endif
+                @if (session('dateError'))
+                  <div class="invalid-feedback d-block">{{ session('dateError') }}</div>
+                @endif
               </div>
 
               <div class="form-group col-lg-6">

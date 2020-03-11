@@ -28,6 +28,7 @@ class CreateContactUsesTable extends Migration
             $table->string('image')->nullable();
             $table->string('place')->nullable();
             $table->string('address')->nullable();
+            $table->string('map_directions')->nullable();
             });
     }
 

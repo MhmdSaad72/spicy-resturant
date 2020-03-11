@@ -64,6 +64,7 @@ class ContactUsController extends Controller
           'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg',
           'place' => 'required',
           'address' => 'required',
+          'map_directions' => 'url',
           'facebook' => 'url',
           'twitter' => 'url',
           'youtube' => 'url',

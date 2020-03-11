@@ -28,6 +28,11 @@
     <textarea class="form-control" rows="5" name="form_content" type="textarea" id="form_content" >{{ isset($contactus->form_content) ? $contactus->form_content : old('form_content')}}</textarea>
     {!! $errors->first('form_content', '<p class="help-block text-danger">:message</p>') !!}
 </div>
+<div class="form-group {{ $errors->has('map_directions') ? 'has-error' : ''}}">
+    <label for="map_directions" class="control-label">{{ 'Map directions' }}</label>
+    <input class="form-control" name="map_directions" type="text" id="map_directions" value="{{ isset($contactus->map_directions) ? $contactus->map_directions : old('map_directions')}}" >
+    {!! $errors->first('map_directions', '<p class="help-block text-danger">:message</p>') !!}
+</div>
 <div class="form-group {{ $errors->has('facebook') ? 'has-error' : ''}}">
     <label for="facebook" class="control-label">{{ 'Facebook' }}</label>
     <input class="form-control" name="facebook" type="text" id="facebook" value="{{ isset($contactus->facebook) ? $contactus->facebook : old('facebook')}}" >

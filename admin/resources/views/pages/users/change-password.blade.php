@@ -22,26 +22,35 @@
           </div>
         </div>
         <div class="col-lg-9 pl-lg-4">
-          <form class="admin-edit-info-form needs-validation" action="admin-personal.html" >
+          <form class="admin-edit-info-form needs-validation" action="{{route('update.password' , ['id' => $user->id])}}" method="post">
+            {{csrf_field()}}
+            {{method_field('Patch')}}
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
                   <label class="label-required m-0" for="oldPass">Old password</label>
-                  <input class="form-control form-control-lg" type="password" id="oldPass" name="oldPass" placeholder="Enter your old password" required>
-                  <div class="invalid-feedback">This password is incorrect</div>
-                  <div class="valid-feedback">Looks good!</div>
+                  <input class="form-control form-control-lg" type="password" id="oldPass" name="oldPass" placeholder="Enter your old password" >
+                  @error('oldPass')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                  @enderror
+                  @if(session('error'))
+                    <div class="invalid-feedback d-block">{{ session('error') }}</div>
+                  @endif
                 </div>
-                <div class="form-group">
-                  <label class="label-required m-0" for="newPass">New password</label>
-                  <input class="form-control form-control-lg" type="password" id="newPass" name="newPass" placeholder="Type your new password" required>
-                  <div class="invalid-feedback">Please fill this field</div>
-                  <div class="valid-feedback">Looks good!</div>
+                <div class="form-group ">
+                  <label class="label-required" for="password">New Password</label>
+                  <input class="form-control form-control-lg" id="password" type="password" name="password" placeholder="Enter your password" value="{{old('password')}}">
+                  @error('password')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                  @enderror
+
                 </div>
-                <div class="form-group">
-                  <label class="label-required m-0" for="newPassConfirmation">Confirm new password</label>
-                  <input class="form-control form-control-lg" type="password" id="newPassConfirmation" name="newPassConfirmation" placeholder="Retype your new password" required>
-                  <div class="invalid-feedback">Please enter your phone number</div>
-                  <div class="valid-feedback">Looks good!</div>
+                <div class="form-group ">
+                  <label class="label-required" for="passwordConfirm">Confirm Password</label>
+                  <input class="form-control form-control-lg" id="passwordConfirm" type="password" name="password_confirmation" placeholder="Retype your password" value="{{old('password_confirmation')}}">
+                  {{-- @error('password_confirmation')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                  @enderror --}}
                 </div>
                 <div class="form-group pt-2">
                   <button class="btn btn-primary" type="submit">Save changes </button>

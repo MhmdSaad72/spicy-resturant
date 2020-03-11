@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\BasicDetail;
 use App\user;
 use App\Review;
+use Hash;
 use Auth;
 use DB;
 
@@ -108,5 +109,24 @@ class UsersController extends Controller
       $review->update($requestData);
 
       return redirect()->route('personal.review' , ['id' =>$user->id]);
+    }
+
+    public function updatePassword(Request $request , $id)
+    {
+      $this->validate($request , [
+        'oldPass' => ['required', 'string', 'min:8', 'max:255'] ,
+        'password' => ['required', 'string', 'min:8', 'confirmed' ,'max:255'] ,
+      ]);
+
+      $user = User::findOrFail($id);
+      // $oldPass = Hash::make($request->oldPass) ;
+      if (Hash::check($request->oldPass, $user->password)) {
+        $user->update([
+          'password' => Hash::make($request->password) ,
+        ]) ;
+        return redirect()->route('personal-information' , ['id' => $user->id]);
+      }else {
+        return redirect()->back()->with('error' , 'Your old password is not correct');
+      }
     }
 }

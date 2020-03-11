@@ -1,9 +1,13 @@
-<?php $navDark = isset($heroDark) ? 'bg-dark bg-pattern' : ''; ?>
+<?php  $navDark = isset($heroDark) ? 'bg-dark bg-pattern' : '' ;
+ $home = isset($home) ? 'active' : '' ;
+ $menu = isset($menu) ? 'active' : '' ;
+ $about = isset($about) ? 'active' : '';
+ $contact = isset($contact) ? 'active' : '' ; ?>
 <header class="header bg-pattern {{$navDark}}">
     <!-- Navbar top-->
     <nav class="navbar navbar-expand-lg py-4" id="navTop">
       <div class="container d-flex justify-content-between align-items-center">
-        <!-- Hotline button--><a class="d-flex align-items-center reset-anchor" href="tel:+29870988764">
+        <!-- Hotline button--><a class="d-flex align-items-center reset-anchor" href="tel:{{isset($basicDetail->hot_line) ? $basicDetail->hot_line : ''}}">
           <div class="nav-icon-rounded"><i class="fas fa-phone"></i></div>
           <div class="ml-2 d-none d-lg-block">
             <p class="small text-gray mb-0">Our hotline</p>
@@ -82,15 +86,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <!-- Navbar link--><a class="nav-link transition-link active" href="{{route('home.index')}}">Home</a>
+                            <!-- Navbar link--><a class="nav-link transition-link {{$home}}" href="{{route('home.index')}}">Home</a>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navMenuPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{$menu}}" id="navMenuPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
                             <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navMenuPages"><a class="dropdown-item transition-link" href="{{route('menus.index')}}">Menu style 1</a><a class="dropdown-item transition-link" href="{{route('menus.show')}}">Menu style 2</a></div>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navAboutPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{$about}}" id="navAboutPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
                             <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navAboutPages"><a class="dropdown-item transition-link" href="{{route('about.index')}}">About style 1</a><a class="dropdown-item transition-link" href="{{route('about.show')}}">About style 2</a></div>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navContactPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contact</a>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{$contact}}" id="navContactPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contact</a>
                             <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navContactPages"><a class="dropdown-item transition-link" href="{{route('contact.show')}}">Contact style 1</a><a class="dropdown-item transition-link" href="{{route('contact.index')}}">Contact style 2</a></div>
                         </li>
                         <li class="nav-item dropdown megamenu"><a class="nav-link dropdown-toggle" id="megamneu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>

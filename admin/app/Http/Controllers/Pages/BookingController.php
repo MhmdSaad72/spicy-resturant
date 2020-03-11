@@ -130,10 +130,9 @@ class BookingController extends Controller
     public function store(Request $request)
     {
 
-        // $x =  \Carbon\Carbon::parse($request->date)->format('l');
-        // dd($x);
         $basicReserve = BasicReservation::first();
         $availability = Availability::first();
+        $availableDays = explode(',' , $availability->availability);
         $startTime =  \Carbon\Carbon::parse($availability->start_time)->format('H:i');
         $endTime =  \Carbon\Carbon::parse($availability->end_time)->format('H:i');
 
@@ -164,6 +163,12 @@ class BookingController extends Controller
         $chairs = ($requestData['tablesNumber']) * ($basicReserve->chairs) ;
         if ($requestData['peopleNumber'] > $chairs) {
           return redirect()->back()->with('peopleError' , 'Every table has a maximum number of ' . $basicReserve->chairs . ' people')->withInput();
+        }
+
+        // avalable days
+        $date = $requestData['date'] = \Carbon\Carbon::parse($replaced)->format('N');
+        if (!in_array($date , $availableDays)) {
+          return redirect()->back()->with('dateError' , 'Sorry we are closed this day')->withInput();
         }
 
 

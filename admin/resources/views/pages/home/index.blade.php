@@ -4,6 +4,7 @@
   <meta name="theme-color" content="#121618">
 @endsection
 @section('content')
+  <?php $home = true ?>
     <!-- Hero Section -->
     <section class="hero bg-pattern bg-hero-text" data-text="restaurant">
       <div class="container text-center text-lg-left">

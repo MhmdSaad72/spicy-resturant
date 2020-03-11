@@ -47,6 +47,11 @@ class HomeController extends Controller
         $chefHead = MasterChef::first();
         $chefs = Chef::all();
         $availability = Availability::first();
+        $availableDays = explode(',' , $availability->availability);
+        $start_day = min($availableDays);
+        $end_day = max($availableDays);
+        $array = [1,2,3,4,5,6,7];
+        $closedDays = array_diff($array , $availableDays);
         $availability->start_time = Carbon::parse($availability->start_time)->format('h:i A');
         $availability->end_time = Carbon::parse($availability->end_time)->format('h:i A');
         $gallary = Gallary::first();
@@ -58,7 +63,7 @@ class HomeController extends Controller
         }else {
           $bookings = 0 ;
         }
-        return view('pages.home.index', compact('service' , 'mainDish' , 'ourStory' , 'ourServicesHead' , 'ourServicesBody' , 'featurDishHead' , 'featurDishBody' , 'foodMenu' , 'categories' , 'chefHead' , 'chefs' , 'availability' , 'gallary' , 'album' , 'basicDetail' , 'bookings'));
+        return view('pages.home.index', compact('service' , 'mainDish' , 'ourStory' , 'ourServicesHead' , 'ourServicesBody' , 'featurDishHead' , 'featurDishBody' , 'foodMenu' , 'categories' , 'chefHead' , 'chefs' , 'availability' , 'gallary' , 'album' , 'basicDetail' , 'bookings' , 'closedDays' , 'start_day' , 'end_day'));
     }
 
     /**
