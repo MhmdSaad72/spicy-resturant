@@ -363,6 +363,11 @@ $(document).ready(function () {
         $(this).closest('.dropdown').find('.filter-option-inner-inner').addClass('selected');
     });
 
+    $(window).on('load', function () {
+        var blockWidth = $('.availability-block').width();
+        $('.closed-block').css('min-width', blockWidth + 'px');
+    });
+
 });
 
 
