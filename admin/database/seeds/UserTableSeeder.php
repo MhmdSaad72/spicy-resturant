@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Spatie\Permission\Models\Role;
 
 class UserTableSeeder extends Seeder
 {
@@ -12,6 +13,10 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+      // app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+      $role = Role::create(['name' => 'admin']);
+      $role = Role::create(['name' => 'user']);
+
       $data =  [
         'name'=>'Admin',
         'email' => 'admin@admin.com',
@@ -19,10 +24,9 @@ class UserTableSeeder extends Seeder
         'password'=>12345678,
         'phone' => '01012345678',
         'country' => 'Egypt',
-        'role' => 'admin',
 
       ];
-      return User::create([
+      $admin =  User::create([
         'name' => $data['name'],
         'email' => $data['email'],
         'email_verified_at' => $data['email_verified_at'],
@@ -30,8 +34,11 @@ class UserTableSeeder extends Seeder
         'remember_token' =>Str::random(10),
         'country' => $data['country'] ,
         'phone' => $data['phone'] ,
-        'role' => $data['role'] ,
 
       ]);
+
+      $admin->assignRole('admin');
+      return $admin;
+
     }
 }

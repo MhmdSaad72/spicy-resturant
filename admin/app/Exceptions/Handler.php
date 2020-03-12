@@ -50,7 +50,9 @@ class Handler extends ExceptionHandler
         $basicDetail = BasicDetail::first();
         if ($this->isHttpException($exception)) {
              if ($exception->getStatusCode() == 404) {
-                 return response()->view('pages.404',['basicDetail' => $basicDetail] );
+                 return response()->view('pages.404',['basicDetail' => $basicDetail] , 404 );
+             }elseif ($exception->getStatusCode() == 403) {
+                 return response()->view('pages.403',['basicDetail' => $basicDetail] , 403 );
              }
          }
         return parent::render($request, $exception);

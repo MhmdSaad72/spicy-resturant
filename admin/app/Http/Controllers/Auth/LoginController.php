@@ -30,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    // protected $redirectTo ='booking';
 
     /**
      * Create a new controller instance.
@@ -40,9 +40,15 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        if (Auth::check()) {
-          $this->redirectTo = route('personal.information' , ['id' => Auth::user()->id]);
-        }
+    }
+
+    protected function redirectTo()
+    {
+      if (!Auth::guest() && Auth::user()->hasRole('user')) {
+        return route('personal.information' , ['id' => Auth::user()->id]);
+      }elseif (!Auth::guest() && Auth::user()->hasRole('admin')) {
+        return route('service.index');
+      }
     }
 
     public function index()

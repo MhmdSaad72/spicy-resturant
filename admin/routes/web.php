@@ -7,7 +7,7 @@ Route::get('/', 'Pages\\HomeController@index')->name('home.index');
 /*===========================
   all routes for admin panel
 ============================*/
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
   Route::get('/service', 'Admin\\ServiceController@index')->name('service.index');
   Route::get('/service/{id}/edit', 'Admin\\ServiceController@edit')->name('service.edit');
   Route::patch('/service/{id}', 'Admin\\ServiceController@update')->name('service.update');
@@ -105,7 +105,7 @@ Route::prefix('admin')->group(function () {
 /*===========================
 all users routes
 ============================*/
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth' , 'role:user']], function () {
   Route::get('pages/admin-bookings', 'Pages\\BookingController@bookings')->name('booking.bookings');
   Route::get('pages/personal-information/{id}' , 'UsersController@show')->name('personal.information');
   Route::get('pages/edit-information/{id}' , 'UsersController@edit')->name('edit.information');

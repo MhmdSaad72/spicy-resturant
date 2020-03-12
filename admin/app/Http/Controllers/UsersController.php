@@ -13,48 +13,64 @@ use DB;
 
 class UsersController extends Controller
 {
+
     public function show($id)
     {
-
-      $user = User::findOrFail($id);
-      $basicDetail = BasicDetail::first();
-      $bookings = $user->bookings->count();
-      return view('pages.users.personal-information' , compact('user' , 'basicDetail' , 'bookings'));
+        $user = User::findOrFail($id);
+        $basicDetail = BasicDetail::first();
+        $bookings = $user->bookings->count();
+        if (Auth::check() && Auth::user()->id == $id)
+        {
+          return view('pages.users.personal-information' , compact('user' , 'basicDetail' , 'bookings'));
+        }else {
+          abort(403);
+        }
     }
 
 
     public function edit($id)
     {
-      $user = User::findOrFail($id);
-      $basicDetail = BasicDetail::first();
-      $bookings = $user->bookings->count();
-      return view('pages.users.edit' , compact('user' , 'basicDetail' , 'bookings'));
+        $user = User::findOrFail($id);
+        $basicDetail = BasicDetail::first();
+        $bookings = $user->bookings->count();
+        if (Auth::check() && Auth::user()->id == $id)
+        {
+          return view('pages.users.edit' , compact('user' , 'basicDetail' , 'bookings'));
+        }else {
+          abort(403);
+        }
     }
 
     public function update(Request $request , $id)
     {
-      $user = User::findOrFail($id);
-      $this->validate($request , [
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
-        // 'country' => '',
-        'phone' => 'required|max:255'
-      ]);
-      $requestData = $request->all();
-      if (is_null($request->country)) {
-          $requestData['country'] = $user->country;
-      }
-      $user->update($requestData);
+        $user = User::findOrFail($id);
+        $this->validate($request , [
+          'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
+          // 'country' => '',
+          'phone' => 'required|max:255'
+        ]);
+        $requestData = $request->all();
+        if (is_null($request->country)) {
+            $requestData['country'] = $user->country;
+        }
+        $user->update($requestData);
 
-      return redirect()->route('personal.information' , ['id' => $user->id])->with('message' , 'User updated Successfully!');
+        return redirect()->route('personal.information' , ['id' => $user->id])->with('message' , 'User updated Successfully!');
     }
 
     public function changePassword($id)
     {
-      $user = User::findOrFail($id);
-      $basicDetail = BasicDetail::first();
-      $bookings = $user->bookings->count();
-      return view('pages.users.change-password' , compact('user' , 'basicDetail' , 'bookings'));
+        $user = User::findOrFail($id);
+        $basicDetail = BasicDetail::first();
+        $bookings = $user->bookings->count();
+
+        if (Auth::check() && Auth::user()->id == $id)
+        {
+          return view('pages.users.change-password' , compact('user' , 'basicDetail' , 'bookings'));
+        }else {
+          abort(403);
+        }
     }
 
 
@@ -64,7 +80,12 @@ class UsersController extends Controller
         $basicDetail = BasicDetail::first();
         $review =  Review::where('user_id' , $id)->first();
         $bookings = $user->bookings->count();
-        return view('pages.users.review' , compact('user' , 'review' , 'bookings' , 'basicDetail'));
+        if (Auth::check() && Auth::user()->id == $id)
+        {
+          return view('pages.users.review' , compact('user' , 'review' , 'bookings' , 'basicDetail'));
+        }else {
+          abort(403);
+        }
     }
 
     public function storeReview(Request $request , $id)
@@ -91,7 +112,12 @@ class UsersController extends Controller
       $basicDetail = BasicDetail::first();
       $review =  Review::where('user_id' , $id)->first();
       $bookings = $user->bookings->count();
-      return view('pages.users.edit-review' , compact('user' , 'review' , 'bookings' , 'basicDetail'));
+      if (Auth::check() && Auth::user()->id == $id)
+      {
+        return view('pages.users.edit-review' , compact('user' , 'review' , 'bookings' , 'basicDetail'));
+      }else {
+        abort(403);
+      }
     }
 
     public function updateReview(Request $request , $id)
