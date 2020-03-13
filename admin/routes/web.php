@@ -8,6 +8,7 @@ Route::get('/', 'Pages\\HomeController@index')->name('home.index');
   all routes for admin panel
 ============================*/
 Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
+  Route::get('/dashboard' , 'HomeController@index')->name('dashboard');
   Route::get('/service', 'Admin\\ServiceController@index')->name('service.index');
   Route::get('/service/{id}/edit', 'Admin\\ServiceController@edit')->name('service.edit');
   Route::patch('/service/{id}', 'Admin\\ServiceController@update')->name('service.update');
@@ -64,7 +65,12 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
   Route::patch('/basic-details/{id}', 'Admin\\BasicDetailsController@update')->name('basic-details.update');
   Route::resource('/award', 'Admin\\AwardController');
   Route::get('/bookings' , 'Admin\\BookingsController@index')->name('bookings.index');
+  Route::get('/bookings/create' , 'Admin\\BookingsController@create')->name('bookings.create');
   Route::get('/bookings/{id}' , 'Admin\\BookingsController@show')->name('bookings.show');
+  Route::delete('/bookings/{id}' , 'Admin\\BookingsController@destroy')->name('bookings.destroy');
+
+  Route::get('/clients' , 'UsersController@clients')->name('clients');
+
   Route::get('/basic-reservation' , 'Admin\\BookingsController@view')->name('reservation.view');
   Route::get('/basic-reservation/{id}/edit' , 'Admin\\BookingsController@edit')->name('reservation.edit');
   Route::patch('/basic-reservation/{id}/edit' , 'Admin\\BookingsController@update')->name('reservation.update');

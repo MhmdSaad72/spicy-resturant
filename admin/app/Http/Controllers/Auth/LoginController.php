@@ -47,7 +47,7 @@ class LoginController extends Controller
       if (!Auth::guest() && Auth::user()->hasRole('user')) {
         return route('personal.information' , ['id' => Auth::user()->id]);
       }elseif (!Auth::guest() && Auth::user()->hasRole('admin')) {
-        return route('service.index');
+        return route('dashboard');
       }
     }
 

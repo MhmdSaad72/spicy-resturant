@@ -11,9 +11,19 @@ use DB;
 
 class BookingsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-      $bookings = Booking::all();
+      $keyword = $request->get('search');
+      $perPage = 20;
+
+      if (!empty($keyword)) {
+          $bookings = Booking::where('fullname', 'LIKE', "%$keyword%")
+              ->orWhere('email', 'LIKE', "%$keyword%")
+              ->orWhere('phone', 'LIKE', "%$keyword%")
+              ->latest()->paginate($perPage);
+      } else {
+          $bookings = Booking::latest()->paginate($perPage);
+      }
       return view('admin.bookings.index' , compact('bookings'));
     }
 
@@ -21,6 +31,14 @@ class BookingsController extends Controller
     {
       $booking = Booking::findOrFail($id);
       return view('admin.bookings.show' , compact('booking'));
+    }
+
+    public function create()
+    {
+      return view('admin.bookings.create');
+    }
+    public function store()
+    {
     }
 
     public function view()
@@ -48,5 +66,12 @@ class BookingsController extends Controller
       $basicReserve->update($requestData);
 
       return redirect()->route('reservation.view');
+    }
+
+    public function destroy($id)
+    {
+      $booking = Booking::findOrFail($id);
+      Booking::destroy($id);
+      return redirect()->back()->with('flash_message' , 'Booking cancelled successfully!');
     }
 }

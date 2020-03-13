@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Auth;
+use \Carbon\Carbon;
 use App\User;
 
 class BookingController extends Controller
@@ -38,6 +39,9 @@ class BookingController extends Controller
         }else {
           $bookings = 0 ;
         }
+        if (Auth::check() && Auth::user()->hasRole('admin')) {
+          abort(403);
+        }
         return view('pages.booking.index', compact('availability' , 'basicDetail' , 'bookings' , 'start_day' , 'closedDays' , 'end_day'));
     }
     /**
@@ -50,8 +54,8 @@ class BookingController extends Controller
      {
        $basicDetail = BasicDetail::first();
        $booking = Booking::findOrFail($id);
-       $booking->date = \Carbon\Carbon::parse($booking->date)->format('l d M Y');
-       $booking->time = \Carbon\Carbon::parse($booking->time)->format('h:i A');
+       $booking->date = Carbon::parse($booking->date)->format('l d M Y');
+       $booking->time = Carbon::parse($booking->time)->format('h:i A');
        if (Auth::check()) {
          $user = User::findOrFail(Auth::user()->id);
          $bookings = $user->bookings->count();
@@ -131,8 +135,8 @@ class BookingController extends Controller
         $basicReserve = BasicReservation::first();
         $availability = Availability::first();
         $availableDays = explode(',' , $availability->availability);
-        $startTime =  \Carbon\Carbon::parse($availability->start_time)->format('H:i');
-        $endTime =  \Carbon\Carbon::parse($availability->end_time)->format('H:i');
+        $startTime =  Carbon::parse($availability->start_time)->format('H:i');
+        $endTime =  Carbon::parse($availability->end_time)->format('H:i');
 
         // validation for booking form
         $this->validate($request, [
@@ -140,7 +144,7 @@ class BookingController extends Controller
           'smokingArea' => 'required|max:255',
           'peopleNumber' => 'required|integer|gte:0|max:' . $basicReserve->maxPeople(),
           'tablesNumber' => 'required|integer|gte:0|max:' . $basicReserve->tables,
-          'date' => 'required|date_format:d/m/Y|after:' . \Carbon\Carbon::now(),
+          'date' => 'required|date_format:d/m/Y|after:' . Carbon::now(),
           'time' => 'required|date_format:H:i|after:' . $startTime . '|before:' . $endTime,
           'specialrequest' => 'max:65535',
         ]);
@@ -148,7 +152,7 @@ class BookingController extends Controller
         $requestData = $request->all();
         // convert request date to correct format
         $replaced = Str::replaceArray('/', ['-','-'], $request->date);
-        $requestData['date'] = \Carbon\Carbon::parse($replaced)->format('Y-m-d');
+        $requestData['date'] = Carbon::parse($replaced)->format('Y-m-d');
         $requestData['booking_id'] = Str::random(9) ;
 
         // available tables in chosen time
@@ -165,7 +169,7 @@ class BookingController extends Controller
         }
 
         // available days
-        $date  = \Carbon\Carbon::parse($replaced)->format('N');
+        $date  = Carbon::parse($replaced)->format('N');
         if (!in_array($date , $availableDays)) {
           return redirect()->back()->with('dateError' , 'Sorry we are closed this day')->withInput();
         }
@@ -226,14 +230,15 @@ class BookingController extends Controller
       {
         //  booking details for edit page
         $booking = Booking::findOrFail($id);
-        $booking->date = \Carbon\Carbon::parse($booking->date)->format('d/m/Y');
-        $booking->time = \Carbon\Carbon::parse($booking->time)->format('H:i');
+        $booking->date = Carbon::parse($booking->date)->format('d/m/Y');
+        $booking->time = Carbon::parse($booking->time)->format('H:i');
         // opening and closed days
         $availability = Availability::first();
         $availableDays = explode(',' , $availability->availability);
         $start_day = min($availableDays);
         $end_day = max($availableDays);
         $array = [1,2,3,4,5,6,7];
+        $closedDays = array_diff($array , $availableDays);
         // bookings number for user
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
@@ -241,7 +246,6 @@ class BookingController extends Controller
         }else {
           $bookings = 0 ;
         }
-        $closedDays = array_diff($array , $availableDays);
         return view('pages.booking.edit' , compact('booking' , 'availability' , 'start_day' , 'end_day' , 'closedDays' , 'bookings'));
       }
 
@@ -262,15 +266,15 @@ class BookingController extends Controller
         // opening and closed days
         $availability = Availability::first();
         $availableDays = explode(',' , $availability->availability);
-        $startTime =  \Carbon\Carbon::parse($availability->start_time)->format('H:i');
-        $endTime =  \Carbon\Carbon::parse($availability->end_time)->format('H:i');
+        $startTime =  Carbon::parse($availability->start_time)->format('H:i');
+        $endTime =  Carbon::parse($availability->end_time)->format('H:i');
         // validation for edit booking form
         $this->validate($request , [
           'phone' => 'required|max:255',
           'smokingArea' => 'required|max:255',
           'peopleNumber' => 'required|integer|gte:0|max:' . $basicReserve->maxPeople(),
           'tablesNumber' => 'required|integer|gte:0|max:' . $basicReserve->tables,
-          'date' => 'required|date_format:d/m/Y|after:' . \Carbon\Carbon::now(),
+          'date' => 'required|date_format:d/m/Y|after:' . Carbon::now(),
           'time' => 'required|date_format:H:i|after:' . $startTime . '|before:' . $endTime,
           'specialrequest' => 'max:65535',
         ]);
@@ -278,7 +282,7 @@ class BookingController extends Controller
         $requestData = $request->all();
         // convert request date to correct format
         $replaced = Str::replaceArray('/', ['-','-'], $request->date);
-        $requestData['date'] = \Carbon\Carbon::parse($replaced)->format('Y-m-d');
+        $requestData['date'] = Carbon::parse($replaced)->format('Y-m-d');
         $requestData['booking_id'] = Str::random(9) ;
 
         // available tables in chosen time
@@ -295,7 +299,7 @@ class BookingController extends Controller
         }
 
         // available days
-        $date  = \Carbon\Carbon::parse($replaced)->format('N');
+        $date  = Carbon::parse($replaced)->format('N');
         if (!in_array($date , $availableDays)) {
           return redirect()->back()->with('dateError' , 'Sorry we are closed this day')->withInput();
         }

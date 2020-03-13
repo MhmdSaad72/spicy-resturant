@@ -14,6 +14,9 @@ use DB;
 class UsersController extends Controller
 {
 
+    /* ===============================================
+        Display personal information page for user
+    ================================================*/
     public function show($id)
     {
         $user = User::findOrFail($id);
@@ -27,7 +30,9 @@ class UsersController extends Controller
         }
     }
 
-
+    /* =======================================
+      Display edit information page for user
+    ==========================================*/
     public function edit($id)
     {
         $user = User::findOrFail($id);
@@ -41,6 +46,9 @@ class UsersController extends Controller
         }
     }
 
+    /* =======================================
+          Update user information method
+    ==========================================*/
     public function update(Request $request , $id)
     {
         $user = User::findOrFail($id);
@@ -59,6 +67,9 @@ class UsersController extends Controller
         return redirect()->route('personal.information' , ['id' => $user->id])->with('message' , 'User updated Successfully!');
     }
 
+    /* =======================================
+      Display change password page for user
+    ==========================================*/
     public function changePassword($id)
     {
         $user = User::findOrFail($id);
@@ -73,7 +84,9 @@ class UsersController extends Controller
         }
     }
 
-
+    /* =======================================
+          Display review page for user
+    ==========================================*/
     public function review($id)
     {
         $user = User::findOrFail($id);
@@ -88,6 +101,9 @@ class UsersController extends Controller
         }
     }
 
+    /* =======================================
+        Store website review method for user
+    ==========================================*/
     public function storeReview(Request $request , $id)
     {
         // dd($request->all());
@@ -106,6 +122,9 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
+    /* =======================================
+            Display review edit page
+    ==========================================*/
     public function editReview($id)
     {
       $user = User::findOrFail($id);
@@ -120,6 +139,9 @@ class UsersController extends Controller
       }
     }
 
+    /* =======================================
+        Update website review method for user
+    ==========================================*/
     public function updateReview(Request $request , $id)
     {
       $this->validate($request , [
@@ -137,6 +159,9 @@ class UsersController extends Controller
       return redirect()->route('personal.review' , ['id' =>$user->id]);
     }
 
+    /* =======================================
+        Update password method for user
+    ==========================================*/
     public function updatePassword(Request $request , $id)
     {
       $this->validate($request , [
@@ -155,4 +180,27 @@ class UsersController extends Controller
         return redirect()->back()->with('error' , 'Your old password is not correct');
       }
     }
+
+    /* =======================================
+        Display all users in admin panel
+    ==========================================*/
+    public function clients(Request $request)
+    {
+      $keyword = $request->get('search');
+      $perPage = 20;
+
+      if (!empty($keyword)) {
+          $clients = User::where('name', 'LIKE', "%$keyword%")
+              ->orWhere('email', 'LIKE', "%$keyword%")
+              ->orWhere('phone', 'LIKE', "%$keyword%")
+              ->orWhere('country' , 'LIKE' , "%$keyword%")
+              ->latest()->paginate($perPage);
+      } else {
+          $clients = User::latest()->paginate($perPage);
+      }
+
+      return view('admin.clients.client' , compact('clients'));
+    }
+
+
 }

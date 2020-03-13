@@ -53,7 +53,7 @@
               <div class="form-group col-lg-6">
                 <label class="label-required m-0" for="smokingArea">Smoking area</label>
                 <select class="selectpicker" id="smokingArea" name="smokingArea" data-style="bs-select-form-control" data-title="Select smoking area" >
-                  <option value="0" {0 == {old('smokingArea')  ? 'selected' : ''}}>Smoking area</option>
+                  <option value="0" {{0 == old('smokingArea')  ? 'selected' : ''}}>Smoking area</option>
                   <option value="1" {{1 == old('smokingArea') ? 'selected' : ''}}>Non-smoking area</option>
                 </select>
                 @if ($errors->has('smokingArea'))
