@@ -45,6 +45,9 @@
                 @if ($errors->has('peopleNumber'))
                   <div class="invalid-feedback d-block">{!! $errors->first('peopleNumber', ':message') !!} </div>
                 @endif
+                @if (session('peopleError'))
+                  <div class="invalid-feedback d-block">{{ session('peopleError') }}</div>
+                @endif
               </div>
 
               <div class="form-group col-lg-6">
@@ -61,6 +64,9 @@
                 @if ($errors->has('date'))
                   <div class="invalid-feedback d-block">{!! $errors->first('date', ':message') !!}</div>
                 @endif
+                @if (session('dateError'))
+                  <div class="invalid-feedback d-block">{{ session('dateError') }}</div>
+                @endif
               </div>
 
               <div class="form-group col-lg-6">
@@ -68,6 +74,9 @@
                 <input class="form-control form-control-lg" type="tel" id="time" name="time" placeholder="Pick your desired time" value="{{ $booking->time ?? '' }}">
                 @if ($errors->has('time'))
                   <div class="invalid-feedback d-block">{!! $errors->first('time', ':message') !!}</div>
+                @endif
+                @if (session('timeError'))
+                  <div class="invalid-feedback d-block">{{session('timeError')}}</div>
                 @endif
               </div>
 

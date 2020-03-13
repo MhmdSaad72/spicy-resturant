@@ -13,11 +13,6 @@
     <input class="form-control" name="footer_logo" type="file" id="footer_logo" value="{{ isset($basicdetail->footer_logo) ? $basicdetail->footer_logo : old('footer_logo')}}" >
     {!! $errors->first('footer_logo', '<p class="help-block text-danger">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('reservation') ? 'has-error' : ''}}">
-    <label for="reservation" class="control-label">{{ 'Reservation' }}</label>
-    <input class="form-control" name="reservation" type="text" id="reservation" value="{{ isset($basicdetail->reservation) ? $basicdetail->reservation : old('reservation')}}" >
-    {!! $errors->first('reservation', '<p class="help-block text-danger">:message</p>') !!}
-</div>
 <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
     <label for="content" class="control-label">{{ 'Content' }}</label>
     <input class="form-control" name="content" type="text" id="content" value="{{ isset($basicdetail->content) ? $basicdetail->content : old('content')}}" >

@@ -108,11 +108,9 @@ class BookingController extends Controller
 
 
      /**
-      * confirm booking cancellation method.
+      * display cancel page after cancellation
       *
-      * @param \Illuminate\Http\Request $request
-      *
-      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+      * @return \Illuminate\View\View
       */
       public function cancelled()
       {
@@ -129,7 +127,7 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-
+        // basic details for every reservation
         $basicReserve = BasicReservation::first();
         $availability = Availability::first();
         $availableDays = explode(',' , $availability->availability);
@@ -148,6 +146,7 @@ class BookingController extends Controller
         ]);
 
         $requestData = $request->all();
+        // convert request date to correct format
         $replaced = Str::replaceArray('/', ['-','-'], $request->date);
         $requestData['date'] = \Carbon\Carbon::parse($replaced)->format('Y-m-d');
         $requestData['booking_id'] = Str::random(9) ;
@@ -165,8 +164,8 @@ class BookingController extends Controller
           return redirect()->back()->with('peopleError' , 'Every table has a maximum number of ' . $basicReserve->chairs . ' people')->withInput();
         }
 
-        // avalable days
-        $date = $requestData['date'] = \Carbon\Carbon::parse($replaced)->format('N');
+        // available days
+        $date  = \Carbon\Carbon::parse($replaced)->format('N');
         if (!in_array($date , $availableDays)) {
           return redirect()->back()->with('dateError' , 'Sorry we are closed this day')->withInput();
         }
@@ -188,6 +187,7 @@ class BookingController extends Controller
           $requestData['fullname'] = Auth::user()->name;
         }
 
+        // send mail after confirm booking
         $booking = Booking::create($requestData);
         if ($booking) {
           Mail::to($booking->email)->send(new ConfirmationMail($booking));
@@ -224,38 +224,83 @@ class BookingController extends Controller
 
       public function edit($id)
       {
+        //  booking details for edit page
         $booking = Booking::findOrFail($id);
+        $booking->date = \Carbon\Carbon::parse($booking->date)->format('d/m/Y');
+        $booking->time = \Carbon\Carbon::parse($booking->time)->format('H:i');
+        // opening and closed days
         $availability = Availability::first();
         $availableDays = explode(',' , $availability->availability);
         $start_day = min($availableDays);
         $end_day = max($availableDays);
         $array = [1,2,3,4,5,6,7];
+        // bookings number for user
+        if (Auth::check()) {
+          $user = User::findOrFail(Auth::user()->id);
+          $bookings = $user->bookings->count();
+        }else {
+          $bookings = 0 ;
+        }
         $closedDays = array_diff($array , $availableDays);
-        return view('pages.booking.edit' , compact('booking' , 'availability' , 'start_day' , 'end_day' , 'closedDays'));
+        return view('pages.booking.edit' , compact('booking' , 'availability' , 'start_day' , 'end_day' , 'closedDays' , 'bookings'));
       }
 
+      /**
+       * Update booking method for every user.
+       *
+       * @param \Illuminate\Http\Request $request
+       *
+       * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+       */
 
       public function update(Request $request , $id)
       {
-        // $user_id = Auth::user()->id ;
+
         $booking = Booking::findOrFail($id);
-        dd($request->date);
+        // basic details for every reservation
+        $basicReserve = BasicReservation::first();
+        // opening and closed days
+        $availability = Availability::first();
+        $availableDays = explode(',' , $availability->availability);
+        $startTime =  \Carbon\Carbon::parse($availability->start_time)->format('H:i');
+        $endTime =  \Carbon\Carbon::parse($availability->end_time)->format('H:i');
+        // validation for edit booking form
         $this->validate($request , [
-          // 'fullname' => 'required|max:255',
-          // 'email' => 'required|email|max:255',
           'phone' => 'required|max:255',
           'smokingArea' => 'required|max:255',
-          'peopleNumber' => 'required|max:255',
-          'tablesNumber' => 'required|max:255',
+          'peopleNumber' => 'required|integer|gte:0|max:' . $basicReserve->maxPeople(),
+          'tablesNumber' => 'required|integer|gte:0|max:' . $basicReserve->tables,
           'date' => 'required|date_format:d/m/Y|after:' . \Carbon\Carbon::now(),
-          'time' => 'required|date_format:H:i',
+          'time' => 'required|date_format:H:i|after:' . $startTime . '|before:' . $endTime,
           'specialrequest' => 'max:65535',
         ]);
 
         $requestData = $request->all();
+        // convert request date to correct format
         $replaced = Str::replaceArray('/', ['-','-'], $request->date);
         $requestData['date'] = \Carbon\Carbon::parse($replaced)->format('Y-m-d');
         $requestData['booking_id'] = Str::random(9) ;
+
+        // available tables in chosen time
+        $tables = Booking::where('time' , $request->time)->where('date' ,$requestData['date'] )->where('id' , '!=' , $id)->sum('tablesNumber');
+        $availableTables = ($basicReserve->tables) - ($tables) ;
+        if ($request->tablesNumber > $availableTables) {
+          return redirect()->back()->with('timeError' , 'we only have ' . $availableTables . ' tables at this time pick another time')->withInput();
+        }
+
+        // available chairs for chosen tables
+        $chairs = ($requestData['tablesNumber']) * ($basicReserve->chairs) ;
+        if ($requestData['peopleNumber'] > $chairs) {
+          return redirect()->back()->with('peopleError' , 'Every table has a maximum number of ' . $basicReserve->chairs . ' people')->withInput();
+        }
+
+        // available days
+        $date  = \Carbon\Carbon::parse($replaced)->format('N');
+        if (!in_array($date , $availableDays)) {
+          return redirect()->back()->with('dateError' , 'Sorry we are closed this day')->withInput();
+        }
+
+
         $requestData['user_id'] = Auth::user()->id ;
         $requestData['fullname'] = Auth::user()->name ;
         $requestData['email'] = Auth::user()->email ;

@@ -25,7 +25,7 @@ class BasicDetail extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'logo', 'reservation', 'content', 'hot_line' , 'footer_logo'];
+    protected $fillable = ['name', 'logo', 'content', 'hot_line' , 'footer_logo'];
 
 
 }

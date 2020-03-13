@@ -24,9 +24,6 @@
                               <th> Name </th><td> {{ $basicDetail->name }} </td>
                             </tr>
                             <tr>
-                              <th> Reservation </th><td> {{ $basicDetail->reservation }} </td>
-                            </tr>
-                            <tr>
                               <th> Content </th><td> {{ $basicDetail->content }} </td>
                             </tr>
                             <tr>

@@ -17,7 +17,7 @@
         <!-- Make reservation button--><a class="d-flex align-items-center reset-anchor transition-link" href="{{route('booking.index')}}">
           <div class="mr-2 text-right d-none d-lg-block">
             <p class="small text-gray mb-0">Want a table?</p>
-            <h6 class="line-height-sm mb-0">{{isset($basicDetail->reservation) ? $basicDetail->reservation : ''}}</h6>
+            <h6 class="line-height-sm mb-0">Make a reservation</h6>
           </div>
           <div class="nav-icon-rounded"><i class="fas fa-calendar-minus"></i></div></a>
       </div>
