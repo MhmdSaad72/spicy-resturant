@@ -74,9 +74,7 @@ class OurServicesBodyController extends Controller
      */
     public function show($id)
     {
-        $ourservicesbody = OurServicesBody::findOrFail($id);
-
-        return view('admin.our-services-body.show', compact('ourservicesbody'));
+        abort(403);
     }
 
     /**

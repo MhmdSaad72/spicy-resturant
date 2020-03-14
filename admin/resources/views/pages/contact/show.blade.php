@@ -42,7 +42,7 @@
             <h2 class="h4 mb-2">{{$contacts->place ?? ''}}</h2>
             <p class="text-small mb-0"><i class="fas fa-globe-africa mr-2"></i>{{$contacts->address ?? ''}}</p>
           </div>
-          <div class="col-lg-5 text-left text-lg-right"><a class="btn btn-outline-light" href="http://maps.google.com/maps?q=210+Louise+Ave,+Nashville,+TN+37203">Get location</a></div>
+          <div class="col-lg-5 text-left text-lg-right"><a class="btn btn-outline-light" href="{{$contacts->map_directions ?? ''}}">Get location</a></div>
         </div>
       </div>
     </div>
@@ -63,7 +63,9 @@
               <h3 class="h4">{{$item->place}}</h3>
               <p class="mb-1 text-muted font-weight-normal text-small"><i class="small text-primary fas fa-globe-africa fa-fw mr-2"></i>{{$item->address}}</p>
               <p class="mb-1 text-muted font-weight-normal text-small"><a class="reset-anchor" href="tel:214578536"> <i class="small text-primary fas fa-phone fa-fw mr-2"></i>{{$item->phone}}</a></p>
-              <p class="mb-3 text-small text-muted font-weight-normal"><a class="reset-anchor" href="mailto:brooklyn@spicy.com"> <i class="small text-primary fas fa-envelope fa-fw mr-2"></i>{{$item->email}}</a></p><a class="btn btn-dark btn-sm" href="#">Get location    </a>
+              <p class="mb-3 text-small text-muted font-weight-normal">
+                <a class="reset-anchor" href="mailto:{{$item->email}}"> <i class="small text-primary fas fa-envelope fa-fw mr-2"></i>{{$item->email}}</a>
+              </p><a class="btn btn-dark btn-sm" href="#">Get location    </a>
             </div>
           </div>
         @endforeach
@@ -94,21 +96,18 @@
               <div class="row">
                 <div class="form-group col-lg-6 {{ $errors->has('fullName') ? 'has-error' : ''}}">
                   <label class="label-required" for="fullName">Your name</label>
-                  <input class="form-control form-control-lg bg-none border-gray" id="fullName" type="text" name="fullName" placeholder="Enter your name" required>
-                  <div class="invalid-feedback">{!! $errors->first('fullName', ':message') !!}</div>
-                  <div class="valid-feedback">Looks good</div>
+                  <input class="form-control form-control-lg bg-none border-gray" id="fullName" type="text" name="fullName" placeholder="Enter your name" value="{{old('fullName')}}">
+                  {!! $errors->first('fullName' , '<div class="invalid-feedback d-block">:message</div>') !!}
                 </div>
                 <div class="form-group col-lg-6 {{ $errors->has('email') ? 'has-error' : ''}}">
                   <label class="label-required" for="email">Email address </label>
-                  <input class="form-control form-control-lg bg-none border-gray" id="email" type="text" name="email" placeholder="Enter your email address" required>
-                  <div class="invalid-feedback">{!! $errors->first('email', ':message') !!}</div>
-                  <div class="valid-feedback">Looks good</div>
+                  <input class="form-control form-control-lg bg-none border-gray" id="email" type="text" name="email" placeholder="Enter your email address" value="{{old('email')}}">
+                  {!! $errors->first('email' , '<div class="invalid-feedback d-block">:message</div>') !!}
                 </div>
                 <div class="form-group col-lg-12 {{ $errors->has('message') ? 'has-error' : ''}}">
                   <label class="label-required mb-0" for="message">Your message</label>
-                  <textarea class="form-control form-control-lg bg-none border-gray py-3" id="message" name="message" rows="5" placeholder="Leave your message..."></textarea>
-                  <div class="invalid-feedback">{!! $errors->first('message', ':message') !!}</div>
-                  <div class="valid-feedback">Looks good</div>
+                  <textarea class="form-control form-control-lg bg-none border-gray py-3" id="message" name="message" rows="5" placeholder="Leave your message...">{{old('message')}}</textarea>
+                  {!! $errors->first('message' , '<div class="invalid-feedback d-block">:message</div>') !!}
                 </div>
                 <div class="form-group col-lg-12 pt-2 mb-0">
                   <button class="btn btn-primary" type="submit">Send message</button>

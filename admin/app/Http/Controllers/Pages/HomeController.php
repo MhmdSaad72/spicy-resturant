@@ -11,7 +11,6 @@ use App\OurStory;
 use App\OurServicesHead;
 use App\OurServicesBody;
 use App\FeaturDishHead;
-use App\FeatureDishBody;
 use App\FoodMenu;
 use App\Category;
 use App\Chef;
@@ -20,6 +19,8 @@ use App\Availability;
 use App\Gallary;
 use App\Album;
 use App\BasicDetail;
+use App\SlideMenu;
+use App\NavBar;
 use \Carbon\Carbon ;
 use Auth;
 use App\User;
@@ -35,15 +36,16 @@ class HomeController extends Controller
     public function index()
     {
 
+        $navbar = NavBar::first();
         $service = Service::first();
         $mainDish = MainDish::first();
         $ourStory = OurStory::first();
         $ourServicesHead = OurServicesHead::first();
         $ourServicesBody = OurServicesBody::all();
         $featurDishHead = FeaturDishHead::first();
-        $featurDishBody = FeatureDishBody::all();
         $foodMenu = FoodMenu::first();
         $categories = Category::all();
+        $dishes = SlideMenu::all();
         $chefHead = MasterChef::first();
         $chefs = Chef::all();
         $availability = Availability::first();
@@ -63,94 +65,7 @@ class HomeController extends Controller
         }else {
           $bookings = 0 ;
         }
-        return view('pages.home.index', compact('service' , 'mainDish' , 'ourStory' , 'ourServicesHead' , 'ourServicesBody' , 'featurDishHead' , 'featurDishBody' , 'foodMenu' , 'categories' , 'chefHead' , 'chefs' , 'availability' , 'gallary' , 'album' , 'basicDetail' , 'bookings' , 'closedDays' , 'start_day' , 'end_day'));
+        return view('pages.home.index', compact('service' , 'mainDish' , 'ourStory' , 'ourServicesHead' , 'ourServicesBody' , 'featurDishHead' , 'foodMenu' , 'categories' , 'chefHead' , 'chefs' , 'availability' , 'gallary' , 'album' , 'basicDetail' , 'bookings' , 'closedDays' , 'start_day' , 'end_day' , 'dishes' , 'navbar'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('pages.home.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function store(Request $request)
-    {
-
-        $requestData = $request->all();
-
-        Home::create($requestData);
-
-        return redirect('pages/home')->with('flash_message', 'Home added!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function show($id)
-    {
-        $home = Home::findOrFail($id);
-
-        return view('pages.home.show', compact('home'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit($id)
-    {
-        $home = Home::findOrFail($id);
-
-        return view('pages.home.edit', compact('home'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(Request $request, $id)
-    {
-
-        $requestData = $request->all();
-
-        $home = Home::findOrFail($id);
-        $home->update($requestData);
-
-        return redirect('pages/home')->with('flash_message', 'Home updated!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function destroy($id)
-    {
-        Home::destroy($id);
-
-        return redirect('pages/home')->with('flash_message', 'Home deleted!');
-    }
 }

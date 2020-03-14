@@ -33,6 +33,7 @@
                                         {{-- <th>#</th> --}}
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Message</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -41,6 +42,7 @@
                                         {{-- <td>{{ $loop->iteration }}</td> --}}
                                         <td>{{ $item->fullName }}</td>
                                         <td>{{ $item->email }}</td>
+                                        <td>{{ $item->message }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

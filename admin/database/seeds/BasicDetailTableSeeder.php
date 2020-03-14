@@ -16,7 +16,6 @@ class BasicDetailTableSeeder extends Seeder
           'logo' => 'logo',
           'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
           'hot_line' => 987098876,
-          'footer_logo' => 'logo',
         ]);
         App\BasicReservation::create([
           'tables' => 10,

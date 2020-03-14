@@ -19,7 +19,7 @@
               <li class="list-inline-item py-1"><a class="btn btn-outline-light transition-link" href="{{route('about.show')}}">Discover more </a></li>
             </ul>
           </div>
-          <div class="col-lg-6 order-1 order-lg-2 mb-5 mb-lg-0"><img class="img-fluid d-block mx-auto hero-img" src="{{asset('storage/' . $service->image)}}" alt="dish"></div>
+          <div class="col-lg-6 order-1 order-lg-2 mb-5 mb-lg-0"><img class="img-fluid d-block mx-auto hero-img" src="{{isset($service->image) ? asset('storage/' . $service->image) : asset('img/dish.png')}}" alt="dish"></div>
         </div>
       </div>
     </section>
@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="col-lg-6 pl-lg-0 order-1 order-lg-2">
-            <div class="h-100 bg-center bg-cover main-dish-image" style="background: url({{asset('storage/' . $mainDish->image)}})"></div>
+            <div class="h-100 bg-center bg-cover main-dish-image" style="background: url({{isset($mainDish->image) ? asset('storage/' . $mainDish->image) : asset('img/plate.png')}})"></div>
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@
           @foreach ($ourServicesBody as $key => $item)
             <div class="col-lg-3 col-sm-6">
               <!-- Services item-->
-              <div class="services-item px-4 py-5"><img class="mb-3" src="{{asset('storage/' . $item->image)}}" alt="{{$item->title}}" height="50"/>
+              <div class="services-item px-4 py-5"><img class="mb-3" src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/coffe-default.svg')}}" alt="{{$item->title}}" height="50"/>
                 <h3 class="h5">{{$item->title}}</h3>
                 <p class="small text-muted mb-0">{{$item->content}}</p>
               </div>
@@ -97,26 +97,26 @@
           </div>
         </header>
         <div class="owl-carousel owl-theme featured-dishes-slider owl-padding owl-equalize-height">
-          @foreach ($featurDishBody as $key => $item)
-              @isset($item->old_price)
-                <!-- Featured dish--><a class="d-block reset-anchor transiton-link featured-dishes-item text-center p-5 m-2 h-100 d-flex flex-column justify-content-center discounted" href="dish.html"><img class="img-fluid mb-4" src="{{asset('storage/' . $item->image)}}" alt=""/>
+          @foreach ($dishes as $key => $item)
+              @isset($item->discount)
+                <!-- Featured dish--><a class="d-block reset-anchor transiton-link featured-dishes-item text-center p-5 m-2 h-100 d-flex flex-column justify-content-center discounted" href="{{route('dish.show' , ['id'=>$item->id])}}"><img class="img-fluid mb-4" src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png')}}" alt=""/>
                   <h3 class="h5">{{$item->title}}</h3>
-                  <p class="text-muted">{{$item->content}}</p>
+                  <p class="text-muted">{{$item->str_limit($item->content)}}</p>
                   <ul class="list-inline">
                     <li class="list-inline-item">
                       <p class="text-gray">
-                        <del>${{$item->old_price}}</del>
+                        <del>${{$item->price}}</del>
                       </p>
                     </li>
                     <li class="list-inline-item">
-                      <p class="h6 text-primary">${{$item->price}}</p>
+                      <p class="h6 text-primary">${{$item->afterDiscount()}}</p>
                     </li>
                   </ul>
                   <div class="discounted-ribbon">Discounted</div></a>
               @else
-                <!-- Featured dish--><a class="d-block reset-anchor transiton-link featured-dishes-item text-center p-5 m-2 h-100 d-flex flex-column justify-content-center" href="dish.html"><img class="img-fluid mb-4" src="{{asset('storage/' . $item->image)}}" alt=""/>
+                <!-- Featured dish--><a class="d-block reset-anchor transiton-link featured-dishes-item text-center p-5 m-2 h-100 d-flex flex-column justify-content-center" href="{{route('dish.show' , ['id'=>$item->id])}}"><img class="img-fluid mb-4" src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png')}}" alt=""/>
                       <h3 class="h5">{{$item->title}}</h3>
-                      <p class="text-muted">{{$item->content}}</p>
+                      <p class="text-muted">{{$item->str_limit($item->content)}}</p>
                       <p class="h6 text-primary">${{$item->price}}</p></a>
               @endisset
           @endforeach
@@ -154,9 +154,9 @@
                        <div class="mr-2">
                            <h2 class="h5 mb-0">{{$item->title}}</h2>
                            <p class="small text-muted mb-0">{{$item->str_limit($item->content)}}</p>
-                           <p class="h6 price mb-0">${{$item->price}}</p>
+                           <p class="h6 price mb-0">${{ isset($item->price) ? $item->afterDiscount() : ''}}</p>
                        </div>
-                       <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{asset('storage/' . $item->image)}}" alt="Diablo"/></div></a>
+                       <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png')}}" alt="Diablo"/></div></a>
                    </div>
                    @endforeach
                </div>
@@ -170,9 +170,9 @@
                        <div class="mr-2">
                            <h2 class="h5 mb-0">{{$item->title}}</h2>
                            <p class="small text-muted mb-0">{{$item->str_limit($item->content)}}</p>
-                           <p class="h6 price mb-0">${{$item->price}}</p>
+                           <p class="h6 price mb-0">${{ isset($item->price) ? $item->afterDiscount() : ''}}</p>
                        </div>
-                       <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{asset('storage/' . $item->image)}}" alt="Diablo"/></div></a>
+                       <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png')}}" alt="Diablo"/></div></a>
                    </div>
                    @endforeach
                </div>

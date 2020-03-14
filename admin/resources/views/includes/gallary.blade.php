@@ -11,7 +11,7 @@
     <div class="row pt-lg-5">
       @foreach ($album as $key => $item)
 
-      <div class="col-lg-3 col-sm-6 px-2 px-sm-1 mb-2"><a class="gallery-item" href="{{asset('storage/' . $item->image)}}" data-lightbox="home-gallery" data-title="{{$item->name}}" style="background: url({{asset('storage/' . $item->image)}})">
+      <div class="col-lg-3 col-sm-6 px-2 px-sm-1 mb-2"><a class="gallery-item" href="{{asset('storage/' . $item->image)}}" data-lightbox="home-gallery" data-title="{{$item->name}}" style="background: url({{isset($item->image) ? asset('storage/' . $item->image) : asset('img/gallery-2-thumb.jpg')}})">
           <div class="gallery-item-overlay">
             <div class="gallery-item-overlay-title">
               <h5 class="mb-0">{{$item->title}}</h5>

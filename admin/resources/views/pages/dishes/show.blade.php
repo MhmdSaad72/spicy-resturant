@@ -9,19 +9,12 @@
     <div class="container">
       <div class="row align-items-center text-center text-lg-left mb-5 pb-5">
         <div class="col-lg-6 mb-5 mb-lg-0">
-          <div class="dish-detail-img rounded-circle cube overflow-hidden mx-auto bg-center" style="background: url({{isset($dish) ? asset('storage/' . $dish->image) : '' }})"></div>
+          <div class="dish-detail-img rounded-circle cube overflow-hidden mx-auto bg-center" style="background: url({{isset($dish->image) ? asset('storage/' . $dish->image) : asset('img/dish-single.png') }})"></div>
         </div>
         <div class="col-lg-6">
-          <h2 class="h5 dish-single-price mb-3">${{ $dish->price ?? ''}} </h2>
+          <h2 class="h5 dish-single-price mb-3">${{ isset($dish->price) ? $dish->afterDiscount() : ''}} </h2>
           <h1 class="mb-3">{{ $dish->title ?? ''}}</h1>
-          {{-- {{ $dish->average() }} --}}
-          <ul class="list-inline">
-            <li class="list-inline-item m-0"><i class="fas fa-star text-primary"></i></li>
-            <li class="list-inline-item m-0"><i class="fas fa-star text-primary"></i></li>
-            <li class="list-inline-item m-0"><i class="fas fa-star text-primary"></i></li>
-            <li class="list-inline-item m-0"><i class="fas fa-star text-primary"></i></li>
-            <li class="list-inline-item m-0"><i class="fas fa-star text-lighter"></i></li>
-          </ul>
+          {!! $dish->average() !!}
           <p class="text-muted my-4">{{ $dish->content ?? ''}}</p>
           <div class="row">
             <div class="col-lg-6">
@@ -58,7 +51,7 @@
             </div>
             {{-- review --}}
             <div class="tab-pane fade" id="dish-reviews" role="tabpanel" aria-labelledby="dish-deserts-tab">
-              <p class="small text-gray mb-0">Based on {{count($reviews)}} reviews</p>
+              <p class="small text-gray mb-0">Based on {{$reviewCount}} reviews</p>
               <p class="h4 mb-5">How clients reviewed this dish</p>
               <div class="row">
                 @foreach ($reviews as $key => $item)
@@ -74,7 +67,7 @@
                     </div>
                   </div>
                 @endforeach
-                @if (Auth::check() && !$user)
+                @if (Auth::check() && !$user && Auth::user()->hasRole('user'))
                   <!-- Dish Review Form -->
                   <div class="col-lg-12 mt-4">
                       <a class="btn btn-primary", data-toggle="collapse" href="#dishReview" role="button" aria-expanded="false" aria-controls="dishReview">Review this dish</a>
@@ -84,7 +77,7 @@
                               <div class="row">
                                   <div class="form-group col-lg-12">
                                       <label class="label-required m-0" for="dishStars">How many stars</label>
-                                      <select class="selectpicker" id="dishStars" name="dishStars" data-style="bs-select-form-control" data-title="How many stars" required>
+                                      <select class="selectpicker" id="dishStars" name="dishStars" data-style="bs-select-form-control" data-title="How many stars" >
                                           <option value="1" data-content='
                                               <i class="fas fa-star text-primary text-xs"><i>
                                               <i class="fas fa-star text-muted text-xs"><i>
@@ -125,10 +118,12 @@
                                               '
                                               >5 stars</option>
                                       </select>
+                                      {!! $errors->first('dishStars' , '<div class="invalid-feedback d-block">:message</div>') !!}
                                   </div>
                                   <div class="form-group col-lg-12">
                                       <label class="label-required mb-0" for="dishReviewBody">Your review</label>
-                                      <textarea class="form-control bg-none form-control-lg py-3" id="dishReviewBody" name="dishReviewBody" rows="5" placeholder="Leave your review..."></textarea>
+                                      <textarea class="form-control bg-none form-control-lg py-3" id="dishReviewBody" name="dishReviewBody" rows="5" placeholder="Leave your review...">{{old('dishReviewBody')}}</textarea>
+                                      {!! $errors->first('dishReviewBody' , '<div class="invalid-feedback d-block">:message</div>') !!}
                                   </div>
                                   <div class="form-group col-lg-12">
                                       <button class="btn btn-primary" type="submit">Post your review</button>
@@ -153,12 +148,12 @@
       <div class="row">
         @forelse ($similarDishes as $key => $item)
           <div class="col-lg-4 mb-4 mb-lg-0">
-          <!-- Related dishes item--><a class="media align-items-center reset-anchor transition-link" href="dish.html">
-            <div class="rounded-circle overflow-hidden" style="width: 130px"><img class="img-fluid" src="{{asset('storage/' . $item->image)}}" alt="Bucatini"/></div>
+          <!-- Related dishes item--><a class="media align-items-center reset-anchor transition-link" href="{{route('dish.show' , ['id'=>$item->id])}}">
+            <div class="rounded-circle overflow-hidden" style="width: 130px"><img class="img-fluid" src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png') }}" alt="Bucatini"/></div>
             <div class="media-body ml-3">
               <h5>{{ $item->title}}</h5>
               <p class="text-muted small mb-2">{{$item->str_limit($item->content)}}</p>
-              <p class="price h6 text-primary mb-0">${{$item->price}}</p>
+              <p class="price h6 text-primary mb-0">${{ isset($item->price) ? $item->afterDiscount() : ''}}</p>
             </div></a>
         </div>
         @empty

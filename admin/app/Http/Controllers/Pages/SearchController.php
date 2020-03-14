@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\SlideMenu;
 use App\BasicDetail;
+use App\NavBar;
 use Auth;
 
 class SearchController extends Controller
@@ -28,12 +29,13 @@ class SearchController extends Controller
           $dishes = null;
       }
       $basicDetail = BasicDetail::first();
+      $navbar = NavBar::first();
       if (Auth::check()) {
         $bookings = Auth::user()->bookings->count();
       }else {
         $bookings = 0 ;
       }
 
-      return view('pages.search.index', compact('dishes' , 'basicDetail' , 'bookings'));
+      return view('pages.search.index', compact('dishes' , 'basicDetail' , 'bookings' , 'navbar'));
     }
 }

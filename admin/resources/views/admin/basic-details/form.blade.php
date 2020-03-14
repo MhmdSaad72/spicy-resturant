@@ -20,7 +20,7 @@
 </div>
 <div class="form-group {{ $errors->has('hot_line') ? 'has-error' : ''}}">
     <label for="hot_line" class="control-label">{{ 'Hot Line' }}</label>
-    <input class="form-control" name="hot_line" type="number" id="hot_line" value="{{ isset($basicdetail->hot_line) ? $basicdetail->hot_line : old('hot_line')}}" >
+    <input class="form-control" name="hot_line" type="tel" id="hot_line" value="{{ isset($basicdetail->hot_line) ? $basicdetail->hot_line : old('hot_line')}}" >
     {!! $errors->first('hot_line', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 

@@ -13,7 +13,7 @@
             <p class="small text-gray mb-0">Our hotline</p>
             <h6 class="line-height-sm mb-0">{{isset($basicDetail->hot_line) ? $basicDetail->hot_line : ''}}</h6>
           </div></a>
-        <!-- Navabr brand--><a class="navbar-brand m-0 transition-link" href="index.html"><img src="{{isset($basicDetail->logo) ? asset('storage/' . $basicDetail->logo) : ''}}" alt="Italiano Restaurant" width="145"></a>
+        <!-- Navabr brand--><a class="navbar-brand m-0 transition-link" href="index.html"><img src="{{isset($basicDetail->logo) ? asset('storage/' . $basicDetail->logo) : asset('img/logo-default.svg')}}" alt="Italiano Restaurant" width="145"></a>
         <!-- Make reservation button--><a class="d-flex align-items-center reset-anchor transition-link" href="{{route('booking.index')}}">
           <div class="mr-2 text-right d-none d-lg-block">
             <p class="small text-gray mb-0">Want a table?</p>
@@ -86,18 +86,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <!-- Navbar link--><a class="nav-link transition-link {{$home}}" href="{{route('home.index')}}">Home</a>
+                            <!-- Navbar link--><a class="nav-link transition-link {{$home}}" href="{{route('home.index')}}">{{$navbar->home ?? ''}}</a>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{$menu}}" id="navMenuPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
-                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navMenuPages"><a class="dropdown-item transition-link" href="{{route('menus.index')}}">Menu style 1</a><a class="dropdown-item transition-link" href="{{route('menus.show')}}">Menu style 2</a></div>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{$menu}}" id="navMenuPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$navbar->menu ?? ''}}</a>
+                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navMenuPages"><a class="dropdown-item transition-link" href="{{route('menus.index')}}">{{$navbar->menu_1 ?? ''}}</a><a class="dropdown-item transition-link" href="{{route('menus.show')}}">{{$navbar->menu_2 ?? ''}}</a></div>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{$about}}" id="navAboutPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
-                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navAboutPages"><a class="dropdown-item transition-link" href="{{route('about.index')}}">About style 1</a><a class="dropdown-item transition-link" href="{{route('about.show')}}">About style 2</a></div>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{$about}}" id="navAboutPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$navbar->about ?? ''}}</a>
+                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navAboutPages"><a class="dropdown-item transition-link" href="{{route('about.index')}}">{{$navbar->about_1 ?? ''}}</a><a class="dropdown-item transition-link" href="{{route('about.show')}}">{{$navbar->about_2 ?? ''}}</a></div>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{$contact}}" id="navContactPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contact</a>
-                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navContactPages"><a class="dropdown-item transition-link" href="{{route('contact.show')}}">Contact style 1</a><a class="dropdown-item transition-link" href="{{route('contact.index')}}">Contact style 2</a></div>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle {{$contact}}" id="navContactPages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$navbar->contact ?? ''}}</a>
+                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navContactPages"><a class="dropdown-item transition-link" href="{{route('contact.show')}}">{{$navbar->contact_1 ?? ''}}</a><a class="dropdown-item transition-link" href="{{route('contact.index')}}">{{$navbar->contact_2 ?? ''}}</a></div>
                         </li>
-                        <li class="nav-item dropdown megamenu"><a class="nav-link dropdown-toggle" id="megamneu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+                        <li class="nav-item dropdown megamenu"><a class="nav-link dropdown-toggle" id="megamneu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$navbar->pages ?? ''}}</a>
                             <div class="dropdown-menu dropdown-menu-center p-4" aria-labelledby="megamneu">
                                 <div class="container">
                                     <div class="row">

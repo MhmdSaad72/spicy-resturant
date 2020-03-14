@@ -9,6 +9,7 @@ use App\Booking;
 use App\BasicDetail ;
 use App\Availability ;
 use App\BasicReservation;
+use App\NavBar;
 use App\Mail\ConfirmationMail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -27,6 +28,7 @@ class BookingController extends Controller
     public function index()
     {
         $availability = Availability::first();
+        $navbar = NavBar::first();
         $availableDays = explode(',' , $availability->availability);
         $start_day = min($availableDays);
         $end_day = max($availableDays);
@@ -42,7 +44,7 @@ class BookingController extends Controller
         if (Auth::check() && Auth::user()->hasRole('admin')) {
           abort(403);
         }
-        return view('pages.booking.index', compact('availability' , 'basicDetail' , 'bookings' , 'start_day' , 'closedDays' , 'end_day'));
+        return view('pages.booking.index', compact('availability' , 'basicDetail' , 'bookings' , 'start_day' , 'closedDays' , 'end_day' , 'navbar'));
     }
     /**
      * Show the confirmation booking page.
@@ -54,6 +56,7 @@ class BookingController extends Controller
      {
        $basicDetail = BasicDetail::first();
        $booking = Booking::findOrFail($id);
+       $navbar = NavBar::first();
        $booking->date = Carbon::parse($booking->date)->format('l d M Y');
        $booking->time = Carbon::parse($booking->time)->format('h:i A');
        if (Auth::check()) {
@@ -62,7 +65,7 @@ class BookingController extends Controller
        }else {
          $bookings = 0 ;
        }
-       return view('pages.booking.confirmation', compact('basicDetail' , 'booking' , 'bookings'));
+       return view('pages.booking.confirmation', compact('basicDetail' , 'booking' , 'bookings' , 'navbar'));
      }
 
      /**
@@ -75,13 +78,14 @@ class BookingController extends Controller
       {
         $booking = Booking::findOrFail($id);
         $basicDetail = BasicDetail::first();
+        $navbar = NavBar::first();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
           $bookings = $user->bookings->count();
         }else {
           $bookings = 0 ;
         }
-        return view('pages.booking.cancellation', compact('basicDetail' , 'booking' , 'bookings'));
+        return view('pages.booking.cancellation', compact('basicDetail' , 'booking' , 'bookings' , 'navbar'));
       }
 
       /**
@@ -119,7 +123,8 @@ class BookingController extends Controller
       public function cancelled()
       {
         $basicDetail = BasicDetail::first();
-        return view('pages.booking.cancelled', compact('basicDetail'));
+        $navbar = NavBar::first();
+        return view('pages.booking.cancelled', compact('basicDetail' , 'navbar'));
       }
 
     /**
@@ -144,15 +149,14 @@ class BookingController extends Controller
           'smokingArea' => 'required|max:255',
           'peopleNumber' => 'required|integer|gte:0|max:' . $basicReserve->maxPeople(),
           'tablesNumber' => 'required|integer|gte:0|max:' . $basicReserve->tables,
-          'date' => 'required|date_format:d/m/Y|after:' . Carbon::now(),
+          'date' => 'required|date|after:' . Carbon::now(),
           'time' => 'required|date_format:H:i|after:' . $startTime . '|before:' . $endTime,
           'specialrequest' => 'max:65535',
         ]);
 
         $requestData = $request->all();
         // convert request date to correct format
-        $replaced = Str::replaceArray('/', ['-','-'], $request->date);
-        $requestData['date'] = Carbon::parse($replaced)->format('Y-m-d');
+        $requestData['date'] = Carbon::parse($request->date)->format('Y-m-d');
         $requestData['booking_id'] = Str::random(9) ;
 
         // available tables in chosen time
@@ -169,7 +173,7 @@ class BookingController extends Controller
         }
 
         // available days
-        $date  = Carbon::parse($replaced)->format('N');
+        $date  = Carbon::parse($request->date)->format('N');
         if (!in_array($date , $availableDays)) {
           return redirect()->back()->with('dateError' , 'Sorry we are closed this day')->withInput();
         }
@@ -211,13 +215,14 @@ class BookingController extends Controller
          $id = Auth::user()->id ;
          $user = User::findOrFail($id);
          $basicDetail = BasicDetail::first();
+         $navbar = NavBar::first();
          if (Auth::check()) {
            $user = User::findOrFail(Auth::user()->id);
            $bookings = $user->bookings->count();
          }else {
            $bookings = 0 ;
          }
-         return view('pages.booking.bookings' , compact('user' , 'basicDetail' , 'bookings'));
+         return view('pages.booking.bookings' , compact('user' , 'basicDetail' , 'bookings' , 'navbar'));
      }
 
      /**
@@ -234,6 +239,7 @@ class BookingController extends Controller
         $booking->time = Carbon::parse($booking->time)->format('H:i');
         // opening and closed days
         $availability = Availability::first();
+        $navbar = NavBar::first();
         $availableDays = explode(',' , $availability->availability);
         $start_day = min($availableDays);
         $end_day = max($availableDays);
@@ -246,7 +252,7 @@ class BookingController extends Controller
         }else {
           $bookings = 0 ;
         }
-        return view('pages.booking.edit' , compact('booking' , 'availability' , 'start_day' , 'end_day' , 'closedDays' , 'bookings'));
+        return view('pages.booking.edit' , compact('booking' , 'availability' , 'start_day' , 'end_day' , 'closedDays' , 'bookings' , 'navbar'));
       }
 
       /**
@@ -274,15 +280,14 @@ class BookingController extends Controller
           'smokingArea' => 'required|max:255',
           'peopleNumber' => 'required|integer|gte:0|max:' . $basicReserve->maxPeople(),
           'tablesNumber' => 'required|integer|gte:0|max:' . $basicReserve->tables,
-          'date' => 'required|date_format:d/m/Y|after:' . Carbon::now(),
+          'date' => 'required|date|after:' . Carbon::now(),
           'time' => 'required|date_format:H:i|after:' . $startTime . '|before:' . $endTime,
           'specialrequest' => 'max:65535',
         ]);
 
         $requestData = $request->all();
         // convert request date to correct format
-        $replaced = Str::replaceArray('/', ['-','-'], $request->date);
-        $requestData['date'] = Carbon::parse($replaced)->format('Y-m-d');
+        $requestData['date'] = Carbon::parse($request->date)->format('Y-m-d');
         $requestData['booking_id'] = Str::random(9) ;
 
         // available tables in chosen time
@@ -299,7 +304,7 @@ class BookingController extends Controller
         }
 
         // available days
-        $date  = Carbon::parse($replaced)->format('N');
+        $date  = Carbon::parse($request->date)->format('N');
         if (!in_array($date , $availableDays)) {
           return redirect()->back()->with('dateError' , 'Sorry we are closed this day')->withInput();
         }

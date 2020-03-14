@@ -66,8 +66,9 @@ class SlideMenuController extends Controller
           'category_id' => 'required',
           'tag_id' => 'required',
           'more_content' => 'required|max:65535',
-          'weight' => 'integer|gte:0',
-          'calories' => 'integer|gte:0'
+          'weight' => 'nullable|integer|gte:0',
+          'calories' => 'nullable|integer|gte:0',
+          'discount' =>'nullable|integer|gte:0|max:100',
     		]);
         $requestData = $request->all();
         $requestData['image'] = $request->file('image')
@@ -104,6 +105,7 @@ class SlideMenuController extends Controller
         $slidemenu = SlideMenu::findOrFail($id);
         $categories =  Category::all();
         $tags = Tag::all();
+        $slidemenu->afterDiscount();
 
         return view('admin.slide-menu.edit', compact('slidemenu' , 'categories' , 'tags'));
     }
@@ -127,8 +129,9 @@ class SlideMenuController extends Controller
           'category_id' => 'required',
           'tag_id' => 'required',
           'more_content' => 'required|max:65535',
-          'weight' => 'integer|gte:0',
-          'calories' => 'integer|gte:0'
+          'weight' => 'nullable|integer|gte:0',
+          'calories' => 'nullable|integer|gte:0',
+          'discount' =>'nullable|integer|gte:0|max:100',
     		]);
         $requestData = $request->all();
         if ($request->hasFile('image')) {

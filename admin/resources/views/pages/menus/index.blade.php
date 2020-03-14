@@ -41,7 +41,7 @@
                         <p class="small text-muted mb-0">{{$item->content ? $item->str_limit($item->content) : ''}}</p>
                         <p class="price h6 price mb-0">${{$item->price ?? ''}}</p>
                       </div>
-                      <div class="menu-home-item-image rounded-circle overflow-hidden"><img src="{{asset('storage/' . $item->image)}}" alt="Diablo"/></div></a>
+                      <div class="menu-home-item-image rounded-circle overflow-hidden"><img src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png') }}" alt="Diablo"/></div></a>
                   </div>
                   @endforeach
                 </div>
@@ -74,7 +74,7 @@
                     <p class="small text-muted mb-0">{{$item->content ? $item->str_limit($item->content) : ''}}</p>
                     <p class="h6 price mb-0">${{$item->price ?? ''}}</p>
                   </div>
-                  <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{asset('storage/' . $item->image)}}" alt="Diablo"/></div></a>
+                  <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png') }}" alt="Diablo"/></div></a>
               </div>
               @endforeach
             </div>

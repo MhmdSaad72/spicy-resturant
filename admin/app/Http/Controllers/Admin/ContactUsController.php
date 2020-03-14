@@ -64,11 +64,11 @@ class ContactUsController extends Controller
           'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg',
           'place' => 'required',
           'address' => 'required',
-          'map_directions' => 'url',
-          'facebook' => 'url',
-          'twitter' => 'url',
-          'youtube' => 'url',
-          'instagram' => 'url',
+          'map_directions' => 'nullable|url',
+          'facebook' => 'nullable|url',
+          'twitter' => 'nullable|url',
+          'youtube' => 'nullable|url',
+          'instagram' => 'nullable|url',
         ]);
 
         $requestData = $request->all();

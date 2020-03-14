@@ -223,7 +223,7 @@ $(document).ready(function () {
     dateInput.datepicker({
         todayHighlight: true,
         autoclose: true,
-        format: 'dd/mm/yyyy',
+        format: 'mm/dd/yyyy',
         container: datePickerHolder
     });
 

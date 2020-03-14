@@ -13,6 +13,11 @@
     <input class="form-control" name="price" type="number" id="price"  value="{{ isset($slidemenu->price) ? $slidemenu->price : old('price')}}"  step=any />
     {!! $errors->first('price', '<p class="help-block text-danger">:message</p>') !!}
 </div>
+<div class="form-group {{ $errors->has('discount') ? 'has-error' : ''}}">
+    <label for="discount" class="control-label">{{ 'Discount (%)' }}</label>
+    <input class="form-control" name="discount" type="number" id="discount"  value="{{ isset($slidemenu->discount) ? $slidemenu->discount : old('discount')}}"  step=any />
+    {!! $errors->first('discount', '<p class="help-block text-danger">:message</p>') !!}
+</div>
 <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
     <label for="content" class="control-label">{{ 'Content' }}</label>
     <textarea class="form-control" rows="5" name="content" type="textarea" id="content" >{{ isset($slidemenu->content) ? $slidemenu->content : old('content')}}</textarea>

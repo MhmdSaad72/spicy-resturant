@@ -17,6 +17,7 @@ use App\Statistic;
 use App\Award;
 use App\Availability;
 use App\AboutService;
+use App\NavBar;
 use \Carbon\Carbon ;
 use Auth;
 use App\User;
@@ -40,13 +41,14 @@ class AboutController extends Controller
         $philosophy = Philosophy::first();
         $statistics = Statistic::all();
         $award = Award::first();
+        $navbar = NavBar::first();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
           $bookings = $user->bookings->count();
         }else {
           $bookings = 0 ;
         }
-        return view('pages.about.index', compact('aboutUs' , 'chefs' , 'chefHead' , 'gallary' , 'album', 'basicDetail' , 'philosophy' , 'statistics' , 'award' , 'bookings'));
+        return view('pages.about.index', compact('aboutUs' , 'chefs' , 'chefHead' , 'gallary' , 'album', 'basicDetail' , 'philosophy' , 'statistics' , 'award' , 'bookings' , 'navbar'));
     }
 
     /**

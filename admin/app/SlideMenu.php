@@ -48,8 +48,62 @@ class SlideMenu extends Model
     {
       $count = DishReview::where('dish_id' , $this->id)->count();
       $stars = DishReview::where('dish_id' , $this->id)->sum('dishStars');
-      $average = $stars / $count ;
-      return intval($average) ;
+      if ($count > 0) {
+        $average = $stars / $count ;
+        $rate = intval($average);
+        $rateStars = $this->getDishStarsAttribute($rate) ;
+      }else {
+        $rateStars = '<p class="text-primary">This dish has no review yet</p>';
+      }
+      return $rateStars;
+    }
+
+    public function afterDiscount()
+    {
+      $realDiscount = (100 - $this->discount)/100 ;
+      $price = $realDiscount * $this->price ;
+      return $price ;
+    }
+
+    public function getDishStarsAttribute($attribute)
+    {
+      return [
+        1 => '<ul class="list-inline mb-3">
+            <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+            <li class="list-inline-item small m-0"><i class="fas fa-star text-muted small"></i></li>
+            <li class="list-inline-item small m-0"><i class="fas fa-star text-muted small"></i></li>
+            <li class="list-inline-item small m-0"><i class="fas fa-star text-muted small"></i></li>
+            <li class="list-inline-item small m-0"><i class="fas fa-star text-muted small"></i></li>
+          </ul>',
+       2 => '<ul class="list-inline mb-3">
+           <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+           <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+           <li class="list-inline-item small m-0"><i class="fas fa-star text-muted small"></i></li>
+           <li class="list-inline-item small m-0"><i class="fas fa-star text-muted small"></i></li>
+           <li class="list-inline-item small m-0"><i class="fas fa-star text-muted small"></i></li>
+         </ul>',
+        3 => '<ul class="list-inline mb-3">
+            <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+            <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+            <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+            <li class="list-inline-item small m-0"><i class="fas fa-star text-muted small"></i></li>
+            <li class="list-inline-item small m-0"><i class="fas fa-star text-muted small"></i></li>
+          </ul>' ,
+        4 => '<ul class="list-inline mb-3">
+              <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+              <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+              <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+              <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+              <li class="list-inline-item small m-0"><i class="fas fa-star text-muted small"></i></li>
+            </ul>' ,
+          5 => '<ul class="list-inline mb-3">
+                <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+                <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+                <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+                <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+                <li class="list-inline-item small m-0"><i class="fas fa-star text-primary small"></i></li>
+              </ul>' ,
+        ][$attribute];
     }
 
 

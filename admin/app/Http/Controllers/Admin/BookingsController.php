@@ -11,6 +11,9 @@ use DB;
 
 class BookingsController extends Controller
 {
+    /*=================================
+        Display all bookins to admn
+    ===================================*/
     public function index(Request $request)
     {
       $keyword = $request->get('search');
@@ -27,32 +30,44 @@ class BookingsController extends Controller
       return view('admin.bookings.index' , compact('bookings'));
     }
 
+    /*========================================
+      Display all bookin details in show page
+    ==========================================*/
     public function show($id)
     {
       $booking = Booking::findOrFail($id);
       return view('admin.bookings.show' , compact('booking'));
     }
 
+    /*====================================
+      Display create booking age for admin
+    ======================================*/
     public function create()
     {
       return view('admin.bookings.create');
     }
-    public function store()
-    {
-    }
 
+    /*===================================
+      Display basic reservation view page
+    =====================================*/
     public function view()
     {
       $basicReserve = BasicReservation::first();
       return view('admin.bookings.view' , compact('basicReserve'));
     }
 
+    /*====================================
+      Display basic reservation edit page
+    ======================================*/
     public function edit($id)
     {
       $basicReserve = BasicReservation::findOrFail($id);
       return view('admin.bookings.edit' , compact('basicReserve'));
     }
 
+    /*=================================
+      Update basic reservation method
+    ===================================*/
     public function update(Request $request , $id)
     {
       $basicReserve = BasicReservation::findOrFail($id);
@@ -68,6 +83,9 @@ class BookingsController extends Controller
       return redirect()->route('reservation.view');
     }
 
+    /*=================================
+      Cancel booking method for admin
+    ===================================*/
     public function destroy($id)
     {
       $booking = Booking::findOrFail($id);

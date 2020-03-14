@@ -26,7 +26,7 @@
           <div class="branch-img-holder bg-center bg-cover" style="background: url({{ isset($contacts->image) ? asset('storage/' . $contacts->image) : ''}})">
             <div class="branch-info px-4 py-3 text-white">
               <h5 class="mb-0">{{$contacts->place ?? ''}}</h5>
-              <p class="mb-0"><a class="reset-anchor text-white small mb-0" href="http://maps.google.com/maps?q=210+Louise+Ave,+Nashville,+TN+37203"><i class="fas fa-globe-africa mr-2"></i>{{$contacts->address ?? ''}}</a></p>
+              <p class="mb-0"><a class="reset-anchor text-white small mb-0" href="{{$contacts->map_directions ?? ''}}"><i class="fas fa-globe-africa mr-2"></i>{{$contacts->address ?? ''}}</a></p>
             </div>
           </div>
           <div class="contact-map" id="map"></div>
@@ -47,25 +47,22 @@
               <li class="list-inline-item mr-1"><a class="social-link bg-primary text-white" href="{{$contacts->instagram ?? ''}}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
               <li class="list-inline-item mr-1"><a class="social-link bg-primary text-white" href="{{$contacts->youtube ?? ''}}" target="_blank"><i class="fab fa-youtube"></i></a></li>
             </ul>
-            <form class="contact-form needs-validation" action="{{route('contact.store')}}"  method="POST" novalidate>
+            <form class="contact-form needs-validation" action="{{route('contact.store')}}"  method="POST">
               {{ csrf_field() }}
-              <div class="form-group {{ $errors->has('fullName') ? 'has-error' : ''}}">
+              <div class="form-group">
                 <label class="label-required" for="fullName">Your name</label>
                 <input class="form-control form-control-lg bg-none border-gray" id="fullName" type="text" name="fullName" placeholder="Enter your name" value="{{old('fullName')}}">
-                <div class="invalid-feedback">{!! $errors->first('fullName', ':message') !!}</div>
-                <div class="valid-feedback">Looks good</div>
+                {!! $errors->first('fullName' , '<div class="invalid-feedback d-block">:message</div>') !!}
               </div>
-              <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
+              <div class="form-group">
                 <label class="label-required" for="email">Email address </label>
                 <input class="form-control form-control-lg bg-none border-gray" id="email" type="text" name="email" placeholder="Enter your email address" value="{{old('email')}}">
-                <div class="invalid-feedback">{!! $errors->first('email', ':message') !!}</div>
-                <div class="valid-feedback">Looks good</div>
+                {!! $errors->first('email' , '<div class="invalid-feedback d-block">:message</div>') !!}
               </div>
-              <div class="form-group {{ $errors->has('message') ? 'has-error' : ''}}">
+              <div class="form-group">
                 <label class="label-required mb-0" for="message">Your message</label>
                 <textarea class="form-control form-control-lg bg-none border-gray py-3" id="message" name="message" rows="5" placeholder="Leave your message..." >{{old('message')}}</textarea>
-                <div class="invalid-feedback">{!! $errors->first('message', ':message') !!}</div>
-                <div class="valid-feedback">Looks good</div>
+                {!! $errors->first('message' , '<div class="invalid-feedback d-block">:message</div>') !!}
               </div>
               <div class="form-group pt-2 mb-0">
                 <button class="btn btn-primary" type="submit">Send message</button>

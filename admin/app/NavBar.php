@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FeatureDishBody extends Model
+class NavBar extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'feature_dish_bodies';
+    protected $table = 'nav_bars';
 
     /**
     * The database primary key value.
@@ -25,7 +25,7 @@ class FeatureDishBody extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'image', 'content', 'price', 'old_price'];
+    protected $fillable = ['home', 'about', 'about_1', 'about_2', 'contact', 'contact_1', 'contact_2', 'menu', 'menu_1', 'menu_2', 'pages'];
 
-
+    
 }

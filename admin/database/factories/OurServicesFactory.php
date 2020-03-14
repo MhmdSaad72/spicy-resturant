@@ -9,6 +9,6 @@ $factory->define(OurServicesBody::class, function (Faker $faker) {
     return [
       'title' => 'Awesome Drinks',
       'content' => 'Lorem ipsum dolor sit amet, consetur adipisicing',
-      'image' => 'uploads/coffee-default.svg'
+      // 'image' => 'uploads/coffee-default.svg'
     ];
 });

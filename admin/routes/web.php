@@ -44,7 +44,6 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
   Route::get('/featur-dish-head', 'Admin\\FeaturDishHeadController@index')->name('featur-dish-head.index');
   Route::get('/featur-dish-head/{id}/edit', 'Admin\\FeaturDishHeadController@edit')->name('featur-dish-head.edit');
   Route::patch('/featur-dish-head/{id}', 'Admin\\FeaturDishHeadController@update')->name('featur-dish-head.update');
-  Route::resource('/feature-dish-body', 'Admin\\FeatureDishBodyController');
   Route::get('/food-menu', 'Admin\\FoodMenuController@index')->name('food-menu.index');
   Route::get('/food-menu/{id}/edit', 'Admin\\FoodMenuController@edit')->name('food-menu.edit');
   Route::patch('/food-menu/{id}', 'Admin\\FoodMenuController@update')->name('food-menu.update');
@@ -74,6 +73,7 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
   Route::get('/basic-reservation' , 'Admin\\BookingsController@view')->name('reservation.view');
   Route::get('/basic-reservation/{id}/edit' , 'Admin\\BookingsController@edit')->name('reservation.edit');
   Route::patch('/basic-reservation/{id}/edit' , 'Admin\\BookingsController@update')->name('reservation.update');
+  Route::resource('/nav-bar', 'Admin\\NavBarController');
  });
 
  /*===========================

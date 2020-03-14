@@ -10,7 +10,7 @@
     </header>
     <div class="owl-carousel owl-theme chefs-slider owl-padding-sm">
       @foreach ($chefs as $key => $item)
-        <div class="chefs-item"><img class="img-fluid d-block mx-auto" src="{{asset('storage/' .$item->image)}}" alt=""/>
+        <div class="chefs-item"><img class="img-fluid d-block mx-auto" src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/chef-1.jpg')}}" alt=""/>
         <div class="chef-info text-center p-4">
           <h3 class="h5 mb-1">{{$item->name}}</h3>
           <p class="small text-muted">{{$item->description}}</p>

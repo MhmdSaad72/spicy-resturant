@@ -16,13 +16,13 @@ class HomeTableSeeder extends Seeder
         'description' => 'Welcome to our restaurant',
         'address' => '32 Radwan El-Tayeb, Giza Governorate, Egypt',
         'content' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-        'image' => 'uploads/dish.png',
+        // 'image' => 'uploads/dish.png',
        ]);
       App\MainDish::create([
         'title' => 'Today\'s main dish',
         'description' => 'Vegetable omelete',
         'content' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
-        'image' => 'uploads/plate.png',
+        // 'image' => 'uploads/plate.png',
        ]);
         App\OurStory::create([
           'title' => 'Our story',

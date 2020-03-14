@@ -9,7 +9,6 @@ $factory->define(Album::class, function (Faker $faker) {
     return [
         'title' => 'View Image',
         'description' => 'Click to open',
-        'image' => 'image',
         'name' => 'Gallary item'
     ];
 });

@@ -45,7 +45,7 @@
     <div class="container">
       <div class="row text-center">
         @foreach ($statistics as $key => $item)
-          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0"><img class="mb-3" src="{{asset('storage/' . $item->image)}}" alt="..." height="40">
+          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0"><img class="mb-3" src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png') }}" alt="..." height="40">
             <h2 class="line-height-sm">{{$item->count}}</h2>
             <p class="small text-muted">{{$item->title}}</p>
           </div>

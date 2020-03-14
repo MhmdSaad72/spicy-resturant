@@ -207,7 +207,17 @@ return [
             'route'  => 'clients',
             'icon' => 'fas fa-fw fa-user',
         ],
+        [
+            'text' => 'Contacts',
+            'route'  => 'contact.all',
+            'icon' => 'fas fa-fw fa-phone',
+        ],
         ['header' => 'Pages Setting'],
+        [
+            'text' => 'Navabr',
+            'route'  => 'nav-bar.index',
+            'icon' => 'fas fa-fw fa-bars',
+        ],
         [
             'text'    => 'Home Page',
             'icon'    => 'fas fa-fw fa-home',
@@ -247,18 +257,7 @@ return [
                 ],
                 [
                     'text'    => 'Featured Dishes',
-                    'icon'    => 'fas fa-fw fa-share',
-                    'submenu' =>
-                    [
-                      [
-                          'text' => 'Header',
-                          'route'  => 'featur-dish-head.index',
-                      ],
-                      [
-                          'text' => 'Body',
-                          'route'  => 'feature-dish-body.index',
-                      ],
-                    ],
+                    'route'  => 'featur-dish-head.index',
                 ],
             ],
         ],
