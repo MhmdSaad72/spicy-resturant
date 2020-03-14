@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Statistic::class, function (Faker $faker) {
     return [
-      'title' => 'Food service',
+      'title' => 'Various dishes',
       'count' => 12,
     ];
 });

@@ -23,7 +23,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 mb-5 mb-lg-0">
-          <div class="branch-img-holder bg-center bg-cover" style="background: url({{ isset($contacts->image) ? asset('storage/' . $contacts->image) : ''}})">
+          <div class="branch-img-holder bg-center bg-cover" style="background: url({{ isset($contacts->image) ? asset('storage/' . $contacts->image) : asset('img/contact-img-1.jpg')}})">
             <div class="branch-info px-4 py-3 text-white">
               <h5 class="mb-0">{{$contacts->place ?? ''}}</h5>
               <p class="mb-0"><a class="reset-anchor text-white small mb-0" href="{{$contacts->map_directions ?? ''}}"><i class="fas fa-globe-africa mr-2"></i>{{$contacts->address ?? ''}}</a></p>

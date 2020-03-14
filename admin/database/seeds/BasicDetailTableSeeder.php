@@ -13,7 +13,6 @@ class BasicDetailTableSeeder extends Seeder
     {
         App\BasicDetail::create([
           'name' => 'Italiano',
-          'logo' => 'logo',
           'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt',
           'hot_line' => 987098876,
         ]);

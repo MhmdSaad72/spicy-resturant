@@ -74,6 +74,7 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
   Route::get('/basic-reservation/{id}/edit' , 'Admin\\BookingsController@edit')->name('reservation.edit');
   Route::patch('/basic-reservation/{id}/edit' , 'Admin\\BookingsController@update')->name('reservation.update');
   Route::resource('/nav-bar', 'Admin\\NavBarController');
+  Route::resource('/awards-accordion', 'Admin\\AwardsAccordionController');
  });
 
  /*===========================

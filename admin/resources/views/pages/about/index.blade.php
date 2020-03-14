@@ -45,7 +45,7 @@
     <div class="container">
       <div class="row text-center">
         @foreach ($statistics as $key => $item)
-          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0"><img class="mb-3" src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png') }}" alt="..." height="40">
+          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0"><img class="mb-3" src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/stats-1-default.svg') }}" alt="..." height="40">
             <h2 class="line-height-sm">{{$item->count}}</h2>
             <p class="small text-muted">{{$item->title}}</p>
           </div>
@@ -63,30 +63,16 @@
       <div class="row">
         <div class="col-lg-8 mb-5 mb-lg-0">
           <div class="accordion" id="awardsAccordion">
-            <div class="card border-0 mb-2">
-              <div class="card-header p-0 border-0" id="headingOne"><a class="accordion-toggle" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Our philosophy</a></div>
-              <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#awardsAccordion">
+            @foreach ($awardsaccordion as $kay => $item)
+              <div class="card border-0 mb-2">
+              <div class="card-header p-0 border-0" id="{{$item->title}}"><a class="accordion-toggle" href="#" data-toggle="collapse" data-target="{{'#collapse'. $kay}}" aria-expanded="false" aria-controls="collapseOne">{{$item->title}}</a></div>
+              <div class="collapse" id="{{'collapse'. $kay}}" aria-labelledby="{{$item->title}}" data-parent="#awardsAccordion">
                 <div class="card-body bg-body">
-                  <p class="text-small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+                  <p class="text-small text-muted mb-0">{{$item->content}}</p>
                 </div>
               </div>
             </div>
-            <div class="card border-0 mb-2">
-              <div class="card-header p-0 border-0" id="headingTwo"><a class="accordion-toggle" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Our purpose</a></div>
-              <div class="collapse show" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#awardsAccordion">
-                <div class="card-body bg-body">
-                  <p class="text-small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-                </div>
-              </div>
-            </div>
-            <div class="card border-0 mb-2">
-              <div class="card-header p-0 border-0" id="headingThree"><a class="accordion-toggle" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Best services</a></div>
-              <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#awardsAccordion">
-                <div class="card-body bg-body">
-                  <p class="text-small text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
         </div>
         <div class="col-lg-4">

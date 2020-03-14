@@ -28,9 +28,20 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $branchbody->id }}</td>
+                                      <th> Place </th><td> {{ $branchbody->place }} </td>
                                     </tr>
-                                    <tr><th> Place </th><td> {{ $branchbody->place }} </td></tr><tr><th> Address </th><td> {{ $branchbody->address }} </td></tr><tr><th> Phone </th><td> {{ $branchbody->phone }} </td></tr>
+                                    <tr>
+                                      <th> Address </th><td> {{ $branchbody->address }} </td>
+                                    </tr>
+                                    <tr>
+                                      <th> Phone </th><td> {{ $branchbody->phone }} </td>
+                                    </tr>
+                                    <tr>
+                                      <th> Email </th><td> {{ $branchbody->email }} </td>
+                                    </tr>
+                                    <tr>
+                                      <th> Map directions </th><td> {{ $branchbody->map_directions }} </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

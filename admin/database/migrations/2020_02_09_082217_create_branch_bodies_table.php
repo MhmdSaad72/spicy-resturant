@@ -19,6 +19,7 @@ class CreateBranchBodiesTable extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
+            $table->string('map_directions')->nullable();
             });
     }
 

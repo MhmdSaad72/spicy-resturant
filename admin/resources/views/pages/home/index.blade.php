@@ -58,7 +58,7 @@
         </header>
         <div class="row text-center">
           <div class="col-lg-7 mx-auto">
-            <p class="text-muted mb-4">{{$ourStory->content ?? ''}}</p><a class="btn btn-primary" href="about-1.html">Discover more</a>
+            <p class="text-muted mb-4">{{$ourStory->content ?? ''}}</p><a class="btn btn-primary" href="{{route('about.index')}}">Discover more</a>
           </div>
         </div>
       </div>

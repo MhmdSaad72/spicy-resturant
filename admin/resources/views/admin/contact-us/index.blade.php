@@ -57,6 +57,10 @@
                               <th> Address </th><td> {{ $contactus->address }} </td>
                             </tr>
                             <tr>
+                              <tr>
+                                <th> Map directions </th><td> {{ $contactus->map_directions }} </td>
+                              </tr>
+                              <tr>
                               <th> Image </th><td> <img src="{{ asset('storage/' . $contactus->image)  }}" alt=""> </td>
                             </tr>
                           </tbody>

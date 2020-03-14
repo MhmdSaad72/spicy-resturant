@@ -55,20 +55,21 @@ class ContactUsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-          'title' => 'required',
-          'description' => 'required',
-          'content' => 'required',
-          'form_title' => 'required',
-          'form_content' => 'required',
-          'form_description' => 'required',
+          'title' => 'required|max:255',
+          'description' => 'required|max:255',
+          'content' => 'required|max:65535',
+          'form_title' => 'required|max:255',
+          'form_content' => 'required|max:65535',
+          'form_description' => 'required|max:255',
           'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg',
-          'place' => 'required',
-          'address' => 'required',
-          'map_directions' => 'nullable|url',
-          'facebook' => 'nullable|url',
-          'twitter' => 'nullable|url',
-          'youtube' => 'nullable|url',
-          'instagram' => 'nullable|url',
+          'place' => 'required|max:255',
+          'address' => 'required|max:255',
+          'map_directions' => 'nullable|url|max:255',
+          'facebook' => 'nullable|url|max:255',
+          'twitter' => 'nullable|url|max:255',
+          'youtube' => 'nullable|url|max:255',
+          'instagram' => 'nullable|url|max:255',
+          'map_directions' => 'nullable|url|max:255',
         ]);
 
         $requestData = $request->all();

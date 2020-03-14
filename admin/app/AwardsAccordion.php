@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BranchBody extends Model
+class AwardsAccordion extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'branch_bodies';
+    protected $table = 'awards_accordions';
 
     /**
     * The database primary key value.
@@ -25,7 +25,7 @@ class BranchBody extends Model
      *
      * @var array
      */
-    protected $fillable = ['place', 'address', 'phone', 'email','map_directions'];
+    protected $fillable = ['title', 'content'];
 
-
+    
 }

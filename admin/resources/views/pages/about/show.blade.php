@@ -24,9 +24,9 @@
       <div class="row align-items-stretch p-4 p-lg-0 demo-rounded overlay-hidden">
         @foreach ($aboutservices as $key => $item)
           <!-- Image block -->
-          <div class="col-lg-4 col-md-6 mb-2 mb-lg-0 p-0 about-services-block" style="background: url({{asset('storage/' . $item->image)}})"></div>
+          <div class="col-lg-4 col-md-6 mb-2 mb-lg-0 p-0 about-services-block" style="background: url({{isset($item->image) ? asset('storage/' . $item->image) : asset('img/about-us-1.jpg')}})"></div>
           <!-- Text block -->
-          <div class="col-lg-4 col-md-6 mb-2 mb-lg-0 p-5 about-services-block bg-dark"><img class="mb-3" src="{{asset('storage/' . $item->icon)}}" alt="cutlery" height="40">
+          <div class="col-lg-4 col-md-6 mb-2 mb-lg-0 p-5 about-services-block bg-dark"><img class="mb-3" src="{{isset($item->icon) ? asset('storage/' . $item->icon) : asset('img/cutlery-default.svg')}}" alt="cutlery" height="40">
             <h3 class="h4 mb-3">{{$item->title}}</h3>
             <p class="mb-0 text-small text-muted">{{$item->content}}</p>
           </div>

@@ -22,9 +22,9 @@ class ContactTableSeeder extends Seeder
           'twitter' => 'https://www.twitter.com',
           'youtube' => 'https://www.youtube.com',
           'instagram' => 'https://www.instagram.com',
-          'image' => 'image',
           'place' => 'Brooklyn',
           'address' => '32 Radwan El-Tayeb, Giza Governorate, Egypt',
+          'map_directions' => 'https://www.example.com',
         ]);
 
         App\BranchHead::create([

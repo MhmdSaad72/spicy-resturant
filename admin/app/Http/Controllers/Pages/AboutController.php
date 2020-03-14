@@ -15,6 +15,7 @@ use App\BasicDetail;
 use App\Philosophy;
 use App\Statistic;
 use App\Award;
+use App\AwardsAccordion;
 use App\Availability;
 use App\AboutService;
 use App\NavBar;
@@ -40,6 +41,7 @@ class AboutController extends Controller
         $basicDetail = BasicDetail::first();
         $philosophy = Philosophy::first();
         $statistics = Statistic::all();
+        $awardsaccordion = AwardsAccordion::all();
         $award = Award::first();
         $navbar = NavBar::first();
         if (Auth::check()) {
@@ -48,36 +50,8 @@ class AboutController extends Controller
         }else {
           $bookings = 0 ;
         }
-        return view('pages.about.index', compact('aboutUs' , 'chefs' , 'chefHead' , 'gallary' , 'album', 'basicDetail' , 'philosophy' , 'statistics' , 'award' , 'bookings' , 'navbar'));
+        return view('pages.about.index', compact('aboutUs' , 'chefs' , 'chefHead' , 'gallary' , 'album', 'basicDetail' , 'philosophy' , 'statistics' , 'award' , 'bookings' , 'navbar' , 'awardsaccordion'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('pages.about.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function store(Request $request)
-    {
-
-        $requestData = $request->all();
-
-        About::create($requestData);
-
-        return redirect('pages/about')->with('flash_message', 'About added!');
-    }
-
     /**
      * Display the specified resource.
      *
@@ -93,6 +67,7 @@ class AboutController extends Controller
         $philosophy = Philosophy::first();
         $aboutservices = AboutService::all();
         $availability = Availability::first();
+        $navbar = NavBar::first();
         $availableDays = explode(',' , $availability->availability);
         $availability->start_time = Carbon::parse($availability->start_time)->format('h:i A');
         $availability->end_time = Carbon::parse($availability->end_time)->format('h:i A');
@@ -106,53 +81,7 @@ class AboutController extends Controller
         }else {
           $bookings = 0 ;
         }
-        return view('pages.about.show', compact('aboutUs' , 'album' , 'basicDetail' , 'philosophy' , 'availability' , 'aboutservices' , 'bookings' , 'start_day' , 'end_day' , 'closedDays'));
+        return view('pages.about.show', compact('aboutUs' , 'album' , 'basicDetail' , 'philosophy' , 'availability' , 'aboutservices' , 'bookings' , 'start_day' , 'end_day' , 'closedDays' , 'navbar'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit($id)
-    {
-        $about = About::findOrFail($id);
-
-        return view('pages.about.edit', compact('about'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(Request $request, $id)
-    {
-
-        $requestData = $request->all();
-
-        $about = About::findOrFail($id);
-        $about->update($requestData);
-
-        return redirect('pages/about')->with('flash_message', 'About updated!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function destroy($id)
-    {
-        About::destroy($id);
-
-        return redirect('pages/about')->with('flash_message', 'About deleted!');
-    }
 }

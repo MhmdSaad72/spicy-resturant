@@ -30,7 +30,7 @@
       </header>
       <div class="row align-items-stretch">
         <div class="col-lg-6 pr-lg-0">
-          <div class="branch-img-holder bg-center bg-cover" style="background: url({{ isset($contacts->image) ? asset('storage/' . $contacts->image) : ''}})"></div>
+          <div class="branch-img-holder bg-center bg-cover" style="background: url({{ isset($contacts->image) ? asset('storage/' . $contacts->image) : asset('img/contact-img-1.jpg')}})"></div>
         </div>
         <div class="col-lg-6 pl-lg-0">
           <div class="contact-map h-100" id="map"></div>
@@ -65,7 +65,7 @@
               <p class="mb-1 text-muted font-weight-normal text-small"><a class="reset-anchor" href="tel:214578536"> <i class="small text-primary fas fa-phone fa-fw mr-2"></i>{{$item->phone}}</a></p>
               <p class="mb-3 text-small text-muted font-weight-normal">
                 <a class="reset-anchor" href="mailto:{{$item->email}}"> <i class="small text-primary fas fa-envelope fa-fw mr-2"></i>{{$item->email}}</a>
-              </p><a class="btn btn-dark btn-sm" href="#">Get location    </a>
+              </p><a class="btn btn-dark btn-sm" href="{{$item->map_directions}}">Get location    </a>
             </div>
           </div>
         @endforeach

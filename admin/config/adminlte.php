@@ -183,7 +183,7 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-
+//
         ['header' => 'Website Details'],
         [
             'text'    => 'Bookings',
@@ -285,6 +285,11 @@ return [
                 'text' => 'Awards',
                 'route'  => 'award.index',
               ],
+              [
+                'text' => 'Awards accordion',
+                'route'  => 'awards-accordion.index',
+              ],
+
             ],
         ],
         [

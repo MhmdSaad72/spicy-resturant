@@ -11,5 +11,6 @@ $factory->define(BranchBody::class, function (Faker $faker) {
         'address' => 'St Johns Nostrand, Brooklyn',
         'phone' => 21457853,
         'email' => 'Brooklyn@spicy.com',
+        'map_directions' => 'https://www.example.com',
     ];
 });
