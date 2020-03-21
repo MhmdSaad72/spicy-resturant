@@ -242,22 +242,7 @@ return [
                 ],
                 [
                     'text'    => 'Our Services',
-                    'icon'    => 'fas fa-fw fa-share',
-                    'submenu' =>
-                    [
-                      [
-                          'text' => 'Header',
-                          'route'  => 'our-services-head.index',
-                      ],
-                      [
-                          'text' => 'Body',
-                          'route'  => 'our-services-body.index',
-                      ],
-                    ],
-                ],
-                [
-                    'text'    => 'Featured Dishes',
-                    'route'  => 'featur-dish-head.index',
+                    'route'  => 'our-services-body.index',
                 ],
             ],
         ],
@@ -343,30 +328,11 @@ return [
         [
           'text' => 'Gallary',
           'icon'    => 'fas fa-fw fa-images',
-          'submenu' =>[
-            [
-              'text' => 'Header',
-              'route'  => 'gallary.index',
-            ],
-            [
-              'text' => 'Body',
-              'route'  => 'album.index',
-            ],
-          ],
+          'route'  => 'album.index',
         ],
         [
           'text' => 'Master Chefs',
-          'icon'    => 'fas fa-fw fa-share',
-          'submenu' =>[
-            [
-              'text' => 'Header',
-              'route'  => 'master-chefs.index',
-            ],
-            [
-              'text' => 'Body',
-              'route'  => 'chefs.index',
-            ],
-          ],
+          'route'  => 'chefs.index',
         ],
         [
           'text' => 'Basic Details',

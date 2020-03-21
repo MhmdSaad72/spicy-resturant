@@ -20,8 +20,21 @@
                             {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
-                            @include ('admin.main-dish.form', ['formMode' => 'edit'])
+                            <div class="form-group {{ $errors->has('dish_id') ? 'has-error' : ''}}">
+                                <label for="dish_id" class="control-label">Dishes</label>
+                                <select name="dish_id" class="form-control" id="dish_id" >
+                                  <option value="" selected disabled>Select dish</option>
+                                  @foreach($dishes as $dish)
+                                    <option value="{{$dish->id}}"{{$dish->id == $maindish->dish_id ? 'selected': ''}}>{{$dish->title}}</option>
+                                  @endforeach
 
+                            </select>
+                                {!! $errors->first('dish_id', '<p class="help-block text-danger">:message</p>') !!}
+                            </div>
+
+                            <div class="form-group">
+                                <input class="btn btn-primary" type="submit" value="{{ 'Update' }}">
+                            </div>
                         </form>
 
                     </div>

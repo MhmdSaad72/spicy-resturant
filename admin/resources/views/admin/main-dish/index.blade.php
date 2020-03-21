@@ -21,16 +21,7 @@
                         <table class="table">
                           <tbody>
                             <tr>
-                              <th> Title </th><td> {{ $maindish->title }} </td>
-                            </tr>
-                            <tr>
-                              <th> Description </th><td> {{ $maindish->description }} </td>
-                            </tr>
-                            <tr>
-                              <th> Content </th><td> {{ $maindish->content }} </td>
-                            </tr>
-                            <tr>
-                              <th> Image </th><td> <img src="{{asset('storage/' . $maindish->image)}}" alt=""> </td>
+                              <th> Dish name</th><td> {{ $maindish->dish->title }} </td>
                             </tr>
                           </tbody>
                         </table>

@@ -8,15 +8,11 @@ use App\Http\Requests;
 use App\MainDish;
 use App\Service;
 use App\OurStory;
-use App\OurServicesHead;
 use App\OurServicesBody;
-use App\FeaturDishHead;
 use App\FoodMenu;
 use App\Category;
 use App\Chef;
-use App\MasterChef;
 use App\Availability;
-use App\Gallary;
 use App\Album;
 use App\BasicDetail;
 use App\SlideMenu;
@@ -40,13 +36,10 @@ class HomeController extends Controller
         $service = Service::first();
         $mainDish = MainDish::first();
         $ourStory = OurStory::first();
-        $ourServicesHead = OurServicesHead::first();
         $ourServicesBody = OurServicesBody::all();
-        $featurDishHead = FeaturDishHead::first();
         $foodMenu = FoodMenu::first();
         $categories = Category::all();
         $dishes = SlideMenu::where('featured', 1)->get();
-        $chefHead = MasterChef::first();
         $chefs = Chef::all();
         $availability = Availability::first();
         $availableDays = explode(',' , $availability->availability);
@@ -56,7 +49,6 @@ class HomeController extends Controller
         $closedDays = array_diff($array , $availableDays);
         $availability->start_time = Carbon::parse($availability->start_time)->format('h:i A');
         $availability->end_time = Carbon::parse($availability->end_time)->format('h:i A');
-        $gallary = Gallary::first();
         $album = Album::latest()->take(8)->get();
         $basicDetail = BasicDetail::first();
         if (Auth::check()) {
@@ -65,7 +57,7 @@ class HomeController extends Controller
         }else {
           $bookings = 0 ;
         }
-        return view('pages.home.index', compact('service' , 'mainDish' , 'ourStory' , 'ourServicesHead' , 'ourServicesBody' , 'featurDishHead' , 'foodMenu' , 'categories' , 'chefHead' , 'chefs' , 'availability' , 'gallary' , 'album' , 'basicDetail' , 'bookings' , 'closedDays' , 'start_day' , 'end_day' , 'dishes' , 'navbar'));
+        return view('pages.home.index', compact('service' , 'mainDish' , 'ourStory' , 'ourServicesBody' , 'foodMenu' , 'categories' , 'chefs' , 'availability' , 'album' , 'basicDetail' , 'bookings' , 'closedDays' , 'start_day' , 'end_day' , 'dishes' , 'navbar'));
     }
 
 }

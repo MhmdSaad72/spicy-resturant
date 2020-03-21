@@ -19,5 +19,6 @@ class IncludesTableSeeder extends Seeder
         factory(App\OurServicesBody::class, 4)->create();
         factory(App\Statistic::class, 4)->create();
         factory(App\SlideMenu::class, 12)->create();
+        factory(App\MainDish::class, 1)->create();
     }
 }

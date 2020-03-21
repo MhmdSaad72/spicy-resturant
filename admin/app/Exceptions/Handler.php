@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use App\BasicDetail;
+use App\NavBar;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -48,11 +49,12 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         $basicDetail = BasicDetail::first();
+        $navbar = NavBar::first();
         if ($this->isHttpException($exception)) {
              if ($exception->getStatusCode() == 404) {
-                 return response()->view('pages.404',['basicDetail' => $basicDetail] , 404 );
+                 return response()->view('pages.404',compact('basicDetail','navbar') , 404 );
              }elseif ($exception->getStatusCode() == 403) {
-                 return response()->view('pages.403',['basicDetail' => $basicDetail] , 403 );
+                 return response()->view('pages.403',compact('basicDetail','navbar') , 403 );
              }
          }
         return parent::render($request, $exception);

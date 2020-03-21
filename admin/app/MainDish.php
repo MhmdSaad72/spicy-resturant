@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MainDish extends Model
 {
-    use SoftDeletes;
     /**
      * The database table used by the model.
      *
@@ -27,7 +26,12 @@ class MainDish extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'content', 'image'];
+    protected $fillable = ['dish_id'];
 
-    
+    public function dish()
+    {
+      return $this->belongsTo('App\SlideMenu' , 'dish_id');
+    }
+
+
 }

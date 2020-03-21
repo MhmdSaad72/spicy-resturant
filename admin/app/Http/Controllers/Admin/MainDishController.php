@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\MainDish;
+use App\SlideMenu;
 use Illuminate\Http\Request;
 
 class MainDishController extends Controller
@@ -31,8 +32,9 @@ class MainDishController extends Controller
     public function edit($id)
     {
         $maindish = MainDish::findOrFail($id);
+        $dishes = SlideMenu::all();
 
-        return view('admin.main-dish.edit', compact('maindish'));
+        return view('admin.main-dish.edit', compact('maindish' , 'dishes'));
     }
 
     /**
@@ -46,16 +48,9 @@ class MainDishController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-          'title' => 'required',
-          'description' => 'required',
-          'content' => 'required',
-          'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg',
+          'dish_id' => 'required',
     		]);
         $requestData = $request->all();
-        if ($request->hasFile('image')) {
-            $requestData['image'] = $request->file('image')
-                                            ->store('uploads', 'public');
-        }
 
         $maindish = MainDish::findOrFail($id);
         $maindish->update($requestData);

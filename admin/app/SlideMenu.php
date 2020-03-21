@@ -38,6 +38,11 @@ class SlideMenu extends Model
       return $this->belongsTo('App\Tag' , 'tag_id');
     }
 
+    public function mainDish()
+    {
+      return $this->hasOne('App\MainDish' , 'dish_id');
+    }
+
     public function str_limit($content)
     {
       $truncated = Str::limit($content, 40, '...');

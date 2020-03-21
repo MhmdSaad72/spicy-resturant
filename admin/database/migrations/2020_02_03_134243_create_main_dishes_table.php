@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateGallariesTable extends Migration
+class CreateMainDishesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class CreateGallariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('gallaries', function (Blueprint $table) {
+        Schema::create('main_dishes', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->softDeletes();
-            $table->string('title')->nullable();
-            $table->string('description')->nullable();
-            // $table->string('album')->nullable();
+            
+            $table->bigInteger('dish_id')->unsigned()->nullable();
+            $table->foreign('dish_id')->references('id')->on('slide_menus')->onDelete('cascade');
             });
     }
 
@@ -29,6 +28,6 @@ class CreateGallariesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('gallaries');
+        Schema::drop('main_dishes');
     }
 }

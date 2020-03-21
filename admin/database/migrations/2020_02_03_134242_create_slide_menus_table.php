@@ -13,7 +13,7 @@ class CreateSlideMenusTable extends Migration
     public function up()
     {
         Schema::create('slide_menus', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->timestamps();
             $table->string('title')->nullable();
             $table->string('image')->nullable();

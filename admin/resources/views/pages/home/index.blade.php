@@ -30,15 +30,15 @@
           <div class="col-lg-6 pr-lg-0 order-2 order-lg-1">
             <div class="h-100 bg-dark d-flex align-items-center">
               <div class="p-5">
-                <p class="text-primary font-weight-bold small text-uppercase mb-2">{{$mainDish->title ?? ''}}</p>
-                <h2>{{$mainDish->description ?? ''}}</h2>
-                <p class="text-muted text-small mb-3">{{$mainDish->content ?? ''}}</p>
+                <p class="text-primary font-weight-bold small text-uppercase mb-2">Today's main dish</p>
+                <h2>{{ $mainDish->dish ? $mainDish->dish->title : ''}}</h2>
+                <p class="text-muted text-small mb-3">{{ $mainDish->dish ? $mainDish->dish->content : ''}}</p>
                 <ul class="list-inline mb-0">
                   <li class="list-inline-item py-1">
                     <a class="btn btn-primary transition-link" href="{{route('booking.index')}}">Book a table</a>
                   </li>
                   <li class="list-inline-item py-1">
-                    <a class="btn btn-outline-light transition-link" href="dish.html">Dish detail</a>
+                    <a class="btn btn-outline-light transition-link" href="{{route('dish.show' , ['id' => $mainDish->dish->id])}}">Dish detail</a>
                   </li>
                 </ul>
               </div>
@@ -73,8 +73,8 @@
         <!-- Section heading-->
         <header class="bg-heading-text text-center mb-5" data-text="Services">
           <div class="index-forward">
-            <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$ourServicesHead->title ?? ''}}</p>
-            <h2>{{$ourServicesHead->description ?? ''}}</h2>
+            <p class="text-uppercase text-primary font-weight-bold small mb-2">Our services</p>
+            <h2>All your needs in one place</h2>
           </div>
         </header>
         <div class="row text-center">
@@ -97,8 +97,8 @@
         <!-- Section heading-->
         <header class="bg-heading-text text-center mb-5" data-text="Featured">
           <div class="index-forward">
-            <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$featurDishHead->title ?? ''}}</p>
-            <h2>{{$featurDishHead->description ?? ''}}</h2>
+            <p class="text-uppercase text-primary font-weight-bold small mb-2">Featured dishes</p>
+            <h2>Our Featured Dishes</h2>
           </div>
         </header>
         <div class="owl-carousel owl-theme featured-dishes-slider owl-padding owl-equalize-height">
@@ -164,9 +164,11 @@
                        <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png')}}" alt="Diablo"/></div></a>
                    </div>
                    @endforeach
-                   <div class="m-auto">
-                      <a class="btn btn-outline-light transition-link" href="{{route('category.page' , ['id' => $category->id])}}">Discover more</a>
-                   </div>
+               </div>
+               <div class="row">
+                 <div class="m-auto">
+                   <a class="btn btn-outline-light transition-link" href="{{route('category.page' , ['id' => $category->id])}}">Discover more</a>
+                 </div>
                </div>
            </div>
            @else
@@ -183,9 +185,11 @@
                        <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png')}}" alt="Diablo"/></div></a>
                    </div>
                    @endforeach
-                   <div class="m-auto">
-                     <a class="btn btn-outline-light transition-link" href="{{route('category.page' , ['id' => $category->id])}}">Discover more</a>
-                   </div>
+               </div>
+               <div class="row">
+                 <div class="mx-auto">
+                   <a class="btn btn-outline-light transition-link" href="{{route('category.page' , ['id' => $category->id])}}">Discover more</a>
+                 </div>
                </div>
            </div>
            @endif
