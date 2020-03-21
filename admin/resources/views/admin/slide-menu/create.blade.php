@@ -19,6 +19,8 @@
                         <form method="POST" action="{{ url('/admin/slide-menu') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
+                            @include ('admin.slide-menu.form', ['formMode' => 'create'])
+
                             <div class="form-group {{ $errors->has('category_id') ? 'has-error' : ''}}">
                                 <label for="category_id" class="control-label">Categories</label>
                                 <select name="category_id" class="form-control" id="category_id" >
@@ -41,8 +43,15 @@
                             </select>
                                 {!! $errors->first('tag_id', '<p class="help-block text-danger">:message</p>') !!}
                             </div>
+                            <div class="form-group {{ $errors->has('featured') ? 'has-error' : ''}}">
+                                <input type="checkbox" id="featured" name="featured" value="1" {{1 == old('featured') ? 'checked' : ''}}>
+                                <label for="featured" class="control-label">{{ 'Featured' }}</label>
+                                {!! $errors->first('featured', '<p class="help-block text-danger">:message</p>') !!}
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn-primary" type="submit" value="{{ 'Create' }}">
+                            </div>
 
-                            @include ('admin.slide-menu.form', ['formMode' => 'create'])
 
                         </form>
 

@@ -33,5 +33,11 @@ class Category extends Model
       return $this->hasMany('App\SlideMenu');
     }
 
+    public function dishes()
+    {
+      $dishes = SlideMenu::where('category_id' , $this->id)->latest()->take(6)->get();
+      return $dishes ;
+    }
+
 
 }

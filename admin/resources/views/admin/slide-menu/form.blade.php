@@ -43,8 +43,3 @@
     <textarea class="form-control" rows="5" name="more_content" type="textarea" id="more_content" >{{ isset($slidemenu->more_content) ? $slidemenu->more_content : old('more_content')}}</textarea>
     {!! $errors->first('more_content', '<p class="help-block text-danger">:message</p>') !!}
 </div>
-
-
-<div class="form-group">
-    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
-</div>

@@ -45,7 +45,7 @@ class HomeController extends Controller
         $featurDishHead = FeaturDishHead::first();
         $foodMenu = FoodMenu::first();
         $categories = Category::all();
-        $dishes = SlideMenu::all();
+        $dishes = SlideMenu::where('featured', 1)->get();
         $chefHead = MasterChef::first();
         $chefs = Chef::all();
         $availability = Availability::first();
@@ -57,7 +57,7 @@ class HomeController extends Controller
         $availability->start_time = Carbon::parse($availability->start_time)->format('h:i A');
         $availability->end_time = Carbon::parse($availability->end_time)->format('h:i A');
         $gallary = Gallary::first();
-        $album = Album::all();
+        $album = Album::latest()->take(8)->get();
         $basicDetail = BasicDetail::first();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);

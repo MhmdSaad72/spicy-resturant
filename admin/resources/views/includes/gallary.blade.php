@@ -19,6 +19,9 @@
             </div>
           </div></a></div>
       @endforeach
+      <div class="m-auto">
+        <a class="btn btn-outline-light transition-link" href="#">Discover more</a>
+      </div>
     </div>
   </div>
 </section>

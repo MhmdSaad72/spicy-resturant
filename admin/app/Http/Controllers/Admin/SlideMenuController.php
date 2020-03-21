@@ -58,6 +58,7 @@ class SlideMenuController extends Controller
      */
     public function store(Request $request)
     {
+      // dd($request->all());
         $this->validate($request, [
     			'title' => 'required|max:255',
     			'price' => 'required|max:7|gte:0',
@@ -66,8 +67,10 @@ class SlideMenuController extends Controller
           'category_id' => 'required',
           'tag_id' => 'required',
           'more_content' => 'required|max:65535',
-          'weight' => 'nullable|integer|gte:0',
-          'calories' => 'nullable|integer|gte:0',
+          'weight' => 'nullable|gte:0',
+          'weight' => 'nullable|max:7',
+          'calories' => 'nullable|gte:0',
+          'calories' => 'nullable|max:7',
           'discount' =>'nullable|integer|gte:0|max:100',
     		]);
         $requestData = $request->all();
@@ -106,6 +109,7 @@ class SlideMenuController extends Controller
         $categories =  Category::all();
         $tags = Tag::all();
         $slidemenu->afterDiscount();
+        // dd($slidemenu);
 
         return view('admin.slide-menu.edit', compact('slidemenu' , 'categories' , 'tags'));
     }
@@ -120,7 +124,6 @@ class SlideMenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-      // regex:/^([1-9][0-9]+)/|not_in:0
         $this->validate($request, [
           'title' => 'required|max:255',
     			'price' => 'required|max:7|gte:0',
@@ -129,8 +132,10 @@ class SlideMenuController extends Controller
           'category_id' => 'required',
           'tag_id' => 'required',
           'more_content' => 'required|max:65535',
-          'weight' => 'nullable|integer|gte:0',
-          'calories' => 'nullable|integer|gte:0',
+          'weight' => ['nullable', 'gte:0'],
+          'weight' => ['nullable', 'max:7'],
+          'calories' => ['nullable', 'gte:0'],
+          'calories' => ['nullable', 'max:7'],
           'discount' =>'nullable|integer|gte:0|max:100',
     		]);
         $requestData = $request->all();

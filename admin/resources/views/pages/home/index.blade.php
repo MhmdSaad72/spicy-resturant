@@ -34,8 +34,12 @@
                 <h2>{{$mainDish->description ?? ''}}</h2>
                 <p class="text-muted text-small mb-3">{{$mainDish->content ?? ''}}</p>
                 <ul class="list-inline mb-0">
-                  <li class="list-inline-item py-1"><a class="btn btn-primary transition-link" href="{{route('booking.index')}}">Book a table</a></li>
-                  <li class="list-inline-item py-1"><a class="btn btn-outline-light transition-link" href="dish.html">Dish detail</a></li>
+                  <li class="list-inline-item py-1">
+                    <a class="btn btn-primary transition-link" href="{{route('booking.index')}}">Book a table</a>
+                  </li>
+                  <li class="list-inline-item py-1">
+                    <a class="btn btn-outline-light transition-link" href="dish.html">Dish detail</a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -77,7 +81,8 @@
           @foreach ($ourServicesBody as $key => $item)
             <div class="col-lg-3 col-sm-6">
               <!-- Services item-->
-              <div class="services-item px-4 py-5"><img class="mb-3" src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/coffe-default.svg')}}" alt="{{$item->title}}" height="50"/>
+              <div class="services-item px-4 py-5">
+                <img class="mb-3" src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/coffee-default.svg')}}" alt="{{$item->title}}" height="50"/>
                 <h3 class="h5">{{$item->title}}</h3>
                 <p class="small text-muted mb-0">{{$item->content}}</p>
               </div>
@@ -148,7 +153,7 @@
            @if($loop->first)
            <div class="tab-pane fade show active" id="{{'menu-'.$category->name}}" role="tabpanel" aria-labelledby="{{'menu-'.$category->name.'-tab'}}">
                <div class="row">
-                   @foreach ($category->slide_menus as $key => $item)
+                   @foreach ($category->dishes() as $key => $item)
                    <div class="col-lg-6 mb-4 pb-2">
                        <!-- Menu item--><a class="menu-item ribboned d-flex align-items-center justify-content-between px-4 py-4 reset-anchor transition-link bg-body" href="{{route('dish.show' , ['id' => $item->id])}}">
                        <div class="mr-2">
@@ -159,12 +164,15 @@
                        <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png')}}" alt="Diablo"/></div></a>
                    </div>
                    @endforeach
+                   <div class="m-auto">
+                      <a class="btn btn-outline-light transition-link" href="{{route('category.page' , ['id' => $category->id])}}">Discover more</a>
+                   </div>
                </div>
            </div>
            @else
            <div class="tab-pane fade" id="{{'menu-'.$category->name}}" role="tabpanel" aria-labelledby="{{'menu-'.$category->name.'-tab'}}">
                <div class="row">
-                   @foreach ($category->slide_menus as $key => $item)
+                   @foreach ($category->dishes() as $key => $item)
                    <div class="col-lg-6 mb-4 pb-2">
                        <!-- Menu item--><a class="menu-item ribboned d-flex align-items-center justify-content-between px-4 py-4 reset-anchor transition-link bg-body" href="{{route('dish.show' , ['id' => $item->id])}}">
                        <div class="mr-2">
@@ -175,6 +183,9 @@
                        <div class="menu-item-image rounded-circle mx-auto overflow-hidden"><img src="{{isset($item->image) ? asset('storage/' . $item->image) : asset('img/dish-single.png')}}" alt="Diablo"/></div></a>
                    </div>
                    @endforeach
+                   <div class="m-auto">
+                     <a class="btn btn-outline-light transition-link" href="{{route('category.page' , ['id' => $category->id])}}">Discover more</a>
+                   </div>
                </div>
            </div>
            @endif
