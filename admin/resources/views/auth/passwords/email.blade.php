@@ -11,8 +11,12 @@
       <!-- Section heading-->
       <header class="bg-heading-text mb-5" data-text="login">
         <div class="index-forward">
-          {{-- <p class="text-uppercase text-primary font-weight-bold small mb-2">Login</p> --}}
           <h1>{{ __('Reset Password') }}</h1>
+          @if (session('status'))
+              <div class="alert alert-warning w-50" role="alert">
+                  {{ session('status') }}
+              </div>
+          @endif
         </div>
       </header>
       <div class="row">

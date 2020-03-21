@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Notifications\MailResetPasswordToken;
 
 class User extends Authenticatable
 {
@@ -38,6 +39,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function sendPasswordResetNotification($token)
+    {
+      $this->notify(new MailResetPasswordToken($token));
+    }
 
     public function bookings()
     {
@@ -53,5 +58,6 @@ class User extends Authenticatable
     {
       return $this->hasOne('App\DishReview' , 'user_id');
     }
+
 
 }

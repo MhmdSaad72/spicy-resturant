@@ -28,7 +28,7 @@
                 @enderror
               </div>
               <div class="form-group col-lg-6">
-                <label class="label-required m-0" for="fullName">Email Address</label>
+                <label class="label-required m-0" for="email">Email Address</label>
                 <input class="form-control form-control-lg" type="email" id="email" name="email" placeholder="Emaill address e.g. Jason@example.com" value="{{old('email')}}">
                 @error('email')
                   <div class="invalid-feedback d-block">{{ $message }}</div>

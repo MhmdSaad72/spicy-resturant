@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\BasicDetail;
+use App\NavBar;
 use Auth;
 use App\User;
 
@@ -54,13 +55,14 @@ class LoginController extends Controller
     public function index()
     {
       $basicDetail = BasicDetail::first() ?? '' ;
+      $navbar = NavBar::first();
       if (Auth::check()) {
         $user = User::findOrFail(Auth::user()->id);
         $bookings = $user->bookings->count();
       }else {
         $bookings = 0 ;
       }
-      return view('auth.login' , compact('basicDetail' , 'bookings'));
+      return view('auth.login' , compact('basicDetail' , 'bookings' , 'navbar'));
     }
 
     protected function loggedOut(Request $request)

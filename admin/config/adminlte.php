@@ -301,7 +301,7 @@ return [
                 'route'  => 'food-menu.index',
               ],
               [
-                'text' => 'Slide Menu',
+                'text' => 'Dishes',
                 'route'  => 'slide-menu.index',
               ],
               [

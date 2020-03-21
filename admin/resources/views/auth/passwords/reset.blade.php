@@ -1,65 +1,61 @@
-@extends('layouts.app')
+@extends('layouts.master')
+@section('title' , 'Italiano Restaurant | Laravel Restaurant Template')
+@section('meta')
+  <meta name="theme-color" content="#121618">
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  <!-- Login section-->
+  <section>
+    <div class="container">
+      <!-- Section heading-->
+      <header class="bg-heading-text mb-5" data-text="login">
+        <div class="index-forward">
+          <p class="text-uppercase text-primary font-weight-bold small mb-2">{{ __('Reset Password') }}</p>
+          <h1>{{ __('Reset Password') }}</h1>
         </div>
-    </div>
-</div>
+      </header>
+      <div class="row">
+        <div class="col-lg-5">
+            <form method="POST" action="{{ route('password.update') }}">
+                @csrf
+
+                <input type="hidden" name="token" value="{{ $token }}">
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                      <label class="label-required m-0" for="email">Email Address</label>
+                      <input class="form-control form-control-lg" type="email" id="email" name="email" placeholder="Emaill address e.g. Jason@example.com" value="{{old('email')}}">
+                      @error('email')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                      @enderror
+                    </div>
+
+                    <div class="form-group col-lg-12">
+                      <label class="label-required" for="password">Password</label>
+                      <input class="form-control form-control-lg" id="password" type="password" name="password" placeholder="Enter your password" value="{{old('password')}}">
+                      @error('password')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                      @enderror
+                    </div>
+
+                    <div class="form-group col-lg-12">
+                      <label class="label-required" for="passwordConfirm">Confirm Password</label>
+                      <input class="form-control form-control-lg" id="passwordConfirm" type="password" name="password_confirmation" placeholder="Retype your password" value="{{old('password_confirmation')}}">
+                    </div>
+                    <div class="form-group col-lg-12 pt-2">
+                      <button class="btn btn-primary" type="submit">{{ __('Reset Password') }}</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+          </div>
+      </div>
+  </section>
+@endsection
+@section('scripts')
+  <!-- Bootstrap 4 Validation-->
+  <script src="{{asset('js/validation/validation.js')}}"></script>
+  <!-- Bootstrap Select Validation-->
+  <script src="{{asset('js/validation/bs-select-validation.js')}}"></script>
+  <script src="{{asset('js/front.js')}}"></script>
 @endsection
