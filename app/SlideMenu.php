@@ -67,7 +67,7 @@ class SlideMenu extends Model
     {
       $realDiscount = (100 - $this->discount)/100 ;
       $price = $realDiscount * $this->price ;
-      return $price ;
+      return number_format($price , 2) ;
     }
 
     public function getDishStarsAttribute($attribute)
