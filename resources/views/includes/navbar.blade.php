@@ -13,7 +13,7 @@
             <p class="small text-gray mb-0">Our hotline</p>
             <h6 class="line-height-sm mb-0">{{isset($basicDetail->hot_line) ? $basicDetail->hot_line : ''}}</h6>
           </div></a>
-        <!-- Navabr brand--><a class="navbar-brand m-0 transition-link" href="index.html"><img src="{{isset($basicDetail->logo) ? asset('storage/' . $basicDetail->logo) : asset('img/logo-default.svg')}}" alt="Italiano Restaurant" width="145"></a>
+        <!-- Navabr brand--><a class="navbar-brand m-0 transition-link" href="{{route('home.index')}}"><img src="{{isset($basicDetail->logo) ? asset('storage/' . $basicDetail->logo) : asset('img/logo-default.svg')}}" alt="Italiano Restaurant" width="145"></a>
         <!-- Make reservation button--><a class="d-flex align-items-center reset-anchor transition-link" href="{{route('booking.index')}}">
           <div class="mr-2 text-right d-none d-lg-block">
             <p class="small text-gray mb-0">Want a table?</p>
@@ -116,7 +116,7 @@
                                                     <li><a class="dropdown-item border-0 transition-link" href="{{route('contact.index')}}">Contact two</a></li>
                                                     <li><a class="dropdown-item border-0 transition-link" href="{{route('booking.index')}}">Book a table</a></li>
                                                     {{-- <li><a class="dropdown-item border-0 transition-link" href="404.html">Error 404</a></li> --}}
-                                                    <li><a class="dropdown-item border-0 transition-link" href="dish.html">Dish detail</a></li>
+                                                    {{-- <li><a class="dropdown-item border-0 transition-link" href="{{route}}">Dish detail</a></li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -131,8 +131,8 @@
                                                     <li><a class="dropdown-item border-0 transition-link" href="admin-pass-change.html">Change password</a></li>
                                                 </ul>
                                                 <ul class="list-unstyled">
-                                                    <li><a class="dropdown-item border-0 transition-link" href="login.html">Login</a></li>
-                                                    <li><a class="dropdown-item border-0 transition-link" href="register.html">Create account</a></li>
+                                                    <li><a class="dropdown-item border-0 transition-link" href="{{route('login')}}">Login</a></li>
+                                                    <li><a class="dropdown-item border-0 transition-link" href="{{route('register')}}">Create account</a></li>
                                                     <li><a class="dropdown-item border-0 transition-link" href="verfication-code.html">Verify account</a></li>
                                                     <li><a class="dropdown-item border-0 transition-link" href="verified.html">Account verified</a></li>
                                                 </ul>
