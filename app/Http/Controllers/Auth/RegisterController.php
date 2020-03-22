@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\BasicDetail;
+use App\NavBar;
 
 class RegisterController extends Controller
 {
@@ -55,8 +56,9 @@ class RegisterController extends Controller
     public function index()
     {
       $basicDetail = BasicDetail::first() ?? '' ;
+      $navbar = NavBar::first();
       $bookings = 0 ;
-      return view('auth.register' , compact('basicDetail' , 'bookings'));
+      return view('auth.register' , compact('basicDetail' , 'bookings' , 'navbar'));
     }
 
     /**
@@ -71,7 +73,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed' , 'max:255'],
-            // 'country' => 'required|max:255',
+            'country' => 'required|max:255',
             'phone' => 'required|max:255'
         ]);
     }

@@ -97,7 +97,7 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
 /*===========================
 all users routes
 ============================*/
-Route::group(['middleware' => ['auth' , 'role:user']], function () {
+Route::group(['middleware' => ['auth' , 'role:user' , 'verified']], function () {
   Route::get('pages/admin-bookings', 'Pages\\BookingController@bookings')->name('booking.bookings');
   Route::get('pages/personal-information/{id}' , 'UsersController@show')->name('personal.information');
   Route::get('pages/edit-information/{id}' , 'UsersController@edit')->name('edit.information');
@@ -114,6 +114,6 @@ Route::group(['middleware' => ['auth' , 'role:user']], function () {
 /*===========================
 all authentication routes
 ============================*/
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('/login', 'Auth\\LoginController@index')->name('login');
 Route::get('/register', 'Auth\\RegisterController@index')->name('register');
