@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css?family=Original+Surfer&display=swap");
+.btn {
+  font-family: "Original Surfer", serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Original Surfer", serif;
+}
+
+.blockquote-footer {
+  font-family: "Original Surfer", serif;
+}
+
+label {
+  font-family: "Original Surfer", serif;
+}
+
+.nav-pills .nav-link {
+  font-family: "Original Surfer", serif;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  font-family: "Original Surfer", serif;
+}
+
+.lb-dataContainer .lb-caption {
+  font-family: "Original Surfer", serif;
+}
+
+.datepicker thead td, .datepicker thead th {
+  font-family: "Original Surfer", serif;
+}
+
+.bg-hero-text span.bg-hero-text-content {
+  font-family: "Original Surfer", serif;
+}
+
+.bg-heading-text, .position-relative {
+  position: relative;
+}
+
+.bg-heading-text span.bg-heading-text-content, .position-relative span.bg-heading-text-content {
+  font-family: "Original Surfer", serif;
+}
+
+.accordion-toggle {
+  font-family: "Original Surfer", serif;
+}
