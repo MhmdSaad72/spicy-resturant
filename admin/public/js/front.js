@@ -240,7 +240,7 @@ $(document).ready(function () {
         step: '60',
         hours12: false
     });
-
+    timeInput.val('08:00').timeselector();
     // timeInput.val('08:00').timeselector('refresh');
 
 

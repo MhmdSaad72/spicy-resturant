@@ -13,21 +13,6 @@
     <input class="form-control" name="description" type="text" id="description" value="{{ isset($contactus->description) ? $contactus->description : old('description')}}" >
     {!! $errors->first('description', '<p class="help-block text-danger">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('form_title') ? 'has-error' : ''}}">
-    <label for="form_title" class="control-label">{{ 'Form Title' }}</label>
-    <input class="form-control" name="form_title" type="text" id="form_title" value="{{ isset($contactus->form_title) ? $contactus->form_title : old('form_title')}}" >
-    {!! $errors->first('form_title', '<p class="help-block text-danger">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('form_description') ? 'has-error' : ''}}">
-    <label for="form_description" class="control-label">{{ 'Form Description' }}</label>
-    <input class="form-control" name="form_description" type="text" id="form_description" value="{{ isset($contactus->form_description) ? $contactus->form_description : old('form_description')}}" >
-    {!! $errors->first('form_description', '<p class="help-block text-danger">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('form_content') ? 'has-error' : ''}}">
-    <label for="form_content" class="control-label">{{ 'Form Content' }}</label>
-    <textarea class="form-control" rows="5" name="form_content" type="textarea" id="form_content" >{{ isset($contactus->form_content) ? $contactus->form_content : old('form_content')}}</textarea>
-    {!! $errors->first('form_content', '<p class="help-block text-danger">:message</p>') !!}
-</div>
 <div class="form-group {{ $errors->has('map_directions') ? 'has-error' : ''}}">
     <label for="map_directions" class="control-label">{{ 'Map directions' }}</label>
     <input class="form-control" name="map_directions" type="text" id="map_directions" value="{{ isset($contactus->map_directions) ? $contactus->map_directions : old('map_directions')}}" >

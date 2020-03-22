@@ -30,15 +30,6 @@
                               <th> Content </th><td> {{ $contactus->content }} </td>
                             </tr>
                             <tr>
-                              <th> Form Title </th><td> {{ $contactus->form_title }} </td>
-                            </tr>
-                            <tr>
-                              <th> Form Description </th><td> {{ $contactus->form_description }} </td>
-                            </tr>
-                            <tr>
-                              <th> Form Content </th><td> {{ $contactus->form_content }} </td>
-                            </tr>
-                            <tr>
                               <th> Facebook </th><td> {{ $contactus->facebook }} </td>
                             </tr>
                             <tr>

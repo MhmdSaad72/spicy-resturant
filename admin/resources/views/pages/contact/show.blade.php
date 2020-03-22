@@ -79,11 +79,11 @@
           <!-- Section heading-->
           <header class="bg-heading-text text-center" data-text="Contact">
             <div class="index-forward">
-              <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$contacts->form_title ?? ''}}</p>
-              <h2>{{$contacts->form_description ?? ''}}</h2>
+              <p class="text-uppercase text-primary font-weight-bold small mb-2">Contact us</p>
+              <h2>Drop us a line</h2>
             </div>
           </header>
-          <p class="text-muted text-center">{{$contacts->form_description ?? ''}}</p>
+          <p class="text-muted text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
           <ul class="list-inline mb-5 text-center">
             <li class="list-inline-item mr-1"><a class="social-link bg-primary text-white" href="{{$contacts->facebook ?? ''}}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
             <li class="list-inline-item mr-1"><a class="social-link bg-primary text-white" href="{{$contacts->twitter ?? ''}}" target="_blank"><i class="fab fa-twitter"></i></a></li>

@@ -18,9 +18,6 @@ class CreateContactUsesTable extends Migration
             $table->string('title')->nullable();
             $table->text('content')->nullable();
             $table->string('description')->nullable();
-            $table->string('form_title')->nullable();
-            $table->string('form_description')->nullable();
-            $table->text('form_content')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('youtube')->nullable();
