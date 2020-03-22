@@ -7,7 +7,6 @@ use App\Http\Requests;
 
 use App\Contact;
 use App\BasicDetail;
-use App\BranchHead;
 use App\ContactU;
 use App\BranchBody;
 use App\NavBar;
@@ -79,7 +78,6 @@ class ContactController extends Controller
     {
         $basicDetail = BasicDetail::first();
         $contacts = ContactU::first();
-        $branchHead = BranchHead::first();
         $branchBodies = BranchBody::all();
         $navbar = NavBar::first();
         if (Auth::check()) {
@@ -88,7 +86,7 @@ class ContactController extends Controller
         }else {
           $bookings = 0 ;
         }
-        return view('pages.contact.show', compact('basicDetail' , 'contacts' , 'branchHead' , 'branchBodies' , 'bookings' , 'navbar'));
+        return view('pages.contact.show', compact('basicDetail' , 'contacts' , 'branchBodies' , 'bookings' , 'navbar'));
     }
 
     /**

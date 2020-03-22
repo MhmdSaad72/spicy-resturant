@@ -42,9 +42,6 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
   Route::get('/contact-us/{id}/edit', 'Admin\\ContactUsController@edit')->name('contact-us.edit');
   Route::patch('/contact-us/{id}', 'Admin\\ContactUsController@update')->name('contact-us.update');
   Route::get('/contact' , 'Pages\\ContactController@all')->name('contact.all');
-  Route::get('/branch-head', 'Admin\\BranchHeadController@index')->name('branch-head.index');
-  Route::get('/branch-head/{id}/edit', 'Admin\\BranchHeadController@edit')->name('branch-head.edit');
-  Route::patch('/branch-head/{id}', 'Admin\\BranchHeadController@update')->name('branch-head.update');
   Route::resource('/branch-body', 'Admin\\BranchBodyController');
 
   Route::get('/basic-details', 'Admin\\BasicDetailsController@index')->name('basic-details.index');

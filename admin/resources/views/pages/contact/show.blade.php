@@ -52,8 +52,8 @@
       <!-- Section heading-->
       <header class="bg-heading-text mb-5" data-text="Branches">
         <div class="index-forward">
-          <p class="text-uppercase text-primary font-weight-bold small mb-2">{{$branchHead->title ?? ''}}</p>
-          <h2>{{$branchHead->description ?? ''}}</h2>
+          <p class="text-uppercase text-primary font-weight-bold small mb-2">Branches</p>
+          <h2>Our branches</h2>
         </div>
       </header>
       <div class="row align-items-stretch">

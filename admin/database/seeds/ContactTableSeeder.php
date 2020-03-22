@@ -26,10 +26,5 @@ class ContactTableSeeder extends Seeder
           'address' => '32 Radwan El-Tayeb, Giza Governorate, Egypt',
           'map_directions' => 'https://www.example.com',
         ]);
-
-        App\BranchHead::create([
-          'title' => 'Branches',
-          'description' => 'Our branches',
-        ]);
     }
 }

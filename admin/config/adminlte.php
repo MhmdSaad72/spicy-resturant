@@ -308,19 +308,8 @@ return [
                 'route'  => 'contact-us.index',
               ],
               [
-                  'text'    => 'Branch',
-                  'icon'    => 'fas fa-fw fa-share',
-                  'submenu' =>
-                  [
-                    [
-                        'text' => 'Header',
-                        'route'  => 'branch-head.index',
-                    ],
-                    [
-                        'text' => 'Body',
-                        'route'  => 'branch-body.index',
-                    ],
-                  ],
+                  'text'    => 'Branches',
+                  'route'  => 'branch-body.index',
               ],
             ],
         ],
