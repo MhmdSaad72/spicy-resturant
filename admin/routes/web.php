@@ -43,7 +43,6 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
   Route::patch('/contact-us/{id}', 'Admin\\ContactUsController@update')->name('contact-us.update');
   Route::get('/contact' , 'Pages\\ContactController@all')->name('contact.all');
   Route::resource('/branch-body', 'Admin\\BranchBodyController');
-
   Route::get('/basic-details', 'Admin\\BasicDetailsController@index')->name('basic-details.index');
   Route::get('/basic-details/{id}/edit', 'Admin\\BasicDetailsController@edit')->name('basic-details.edit');
   Route::patch('/basic-details/{id}', 'Admin\\BasicDetailsController@update')->name('basic-details.update');
@@ -52,9 +51,7 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
   Route::get('/bookings/create' , 'Admin\\BookingsController@create')->name('bookings.create');
   Route::get('/bookings/{id}' , 'Admin\\BookingsController@show')->name('bookings.show');
   Route::delete('/bookings/{id}' , 'Admin\\BookingsController@destroy')->name('bookings.destroy');
-
   Route::get('/clients' , 'UsersController@clients')->name('clients');
-
   Route::get('/basic-reservation' , 'Admin\\BookingsController@view')->name('reservation.view');
   Route::get('/basic-reservation/{id}/edit' , 'Admin\\BookingsController@edit')->name('reservation.edit');
   Route::patch('/basic-reservation/{id}/edit' , 'Admin\\BookingsController@update')->name('reservation.update');
@@ -68,19 +65,14 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
  Route::prefix('pages')->group(function () {
    Route::get('/menus-1', 'Pages\\MenusController@index')->name('menus.index');
    Route::get('/menus-2', 'Pages\\MenusController@show')->name('menus.show');
-
    Route::get('/about-1' , 'Pages\\AboutController@index')->name('about.index');
    Route::get('/about-2' , 'Pages\\AboutController@show')->name('about.show');
-
    Route::get('/contact-2' , 'Pages\\ContactController@show')->name('contact.index');
    Route::get('/contact-1' , 'Pages\\ContactController@index')->name('contact.show');
    Route::post('/contact' , 'Pages\\ContactController@store')->name('contact.store');
-
    Route::get('/dish/{id}' , 'Pages\\DishesController@show')->name('dish.show');
-
    Route::get('/categories' , 'Admin\\CategoryController@allCategories')->name('categories.page');
    Route::get('/category/{id}' , 'Admin\\CategoryController@showCategory')->name('category.page');
-
    Route::get('/booking', 'Pages\\BookingController@index')->name('booking.index');
    Route::post('/booking', 'Pages\\BookingController@store')->name('booking.store');
    Route::get('/booking/{id}/edit', 'Pages\\BookingController@edit')->name('booking.edit');
@@ -92,6 +84,7 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
    Route::get('/booking-cancelled' , 'Pages\\BookingController@cancelled')->name('booking.cancelled');
    Route::get('/search' , 'Pages\\SearchController@index')->name('search');
    Route::post('/dish-review/{id}' , 'Pages\\DishesController@review')->name('review.dish');
+   Route::get('/gallery' , 'Admin\\AlbumController@gallery')->name('gallery');
   });
 
 /*===========================

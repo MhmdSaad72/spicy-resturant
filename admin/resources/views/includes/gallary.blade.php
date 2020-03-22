@@ -20,7 +20,7 @@
           </div></a></div>
       @endforeach
       <div class="m-auto">
-        <a class="btn btn-outline-light transition-link" href="#">Discover more</a>
+        <a class="btn btn-outline-light transition-link" href="{{route('gallery')}}">Discover more</a>
       </div>
     </div>
   </div>

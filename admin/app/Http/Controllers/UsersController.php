@@ -77,10 +77,11 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $basicDetail = BasicDetail::first();
         $bookings = $user->bookings->count();
+        $navbar = NavBar::first();
 
         if (Auth::check() && Auth::user()->id == $id)
         {
-          return view('pages.users.change-password' , compact('user' , 'basicDetail' , 'bookings'));
+          return view('pages.users.change-password' , compact('user' , 'basicDetail' , 'bookings' , 'navbar'));
         }else {
           abort(403);
         }
