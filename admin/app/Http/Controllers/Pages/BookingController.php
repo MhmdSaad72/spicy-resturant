@@ -136,6 +136,7 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
+
         // basic details for every reservation
         $basicReserve = BasicReservation::first();
         $availability = Availability::first();
@@ -178,6 +179,11 @@ class BookingController extends Controller
           return redirect()->back()->with('dateError' , 'Sorry we are closed this day')->withInput();
         }
 
+        // condition for time
+        $minutes = Carbon::parse($request->time)->format('i');
+        if ($minutes != 0) {
+          return redirect()->back()->with('timeError' , 'we only accept hours, don\'t pick minutes')->withInput();
+        }
 
         // if user does not have account
         if (Auth::guest()) {

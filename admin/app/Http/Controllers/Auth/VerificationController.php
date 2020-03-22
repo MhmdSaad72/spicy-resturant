@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use App\BasicDetail;
+use App\NavBar;
 
 class VerificationController extends Controller
 {
@@ -26,7 +28,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -38,5 +40,13 @@ class VerificationController extends Controller
         $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
+    }
+
+    public function show()
+    {
+      $basicDetail = BasicDetail::first();
+      $navbar = NavBar::first();
+
+      return view('auth.verify' , compact('basicDetail' , 'navbar'));
     }
 }
