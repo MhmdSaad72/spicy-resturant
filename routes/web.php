@@ -85,6 +85,7 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
    Route::get('/search' , 'Pages\\SearchController@index')->name('search');
    Route::post('/dish-review/{id}' , 'Pages\\DishesController@review')->name('review.dish');
    Route::get('/gallery' , 'Admin\\AlbumController@gallery')->name('gallery');
+   Route::get('/typography' , 'Admin\\AlbumController@typography')->name('typography');
   });
 
 /*===========================

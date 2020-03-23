@@ -30,16 +30,7 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>ID</th><td>{{ $album->id }}</td>
-                                    </tr>
-                                    <tr>
                                       <th> Title </th><td> {{ $album->title }} </td>
-                                    </tr>
-                                    <tr>
-                                      <th> Description </th><td> {{ $album->description }} </td>
-                                    </tr>
-                                    <tr>
-                                      <th> Name </th><td> {{ $album->name }} </td>
                                     </tr>
                                     <tr>
                                       <th> Image </th><td> <img src="{{ asset('storage/' . $album->image)  }}" alt=""> </td>

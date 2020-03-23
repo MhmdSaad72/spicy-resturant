@@ -7,6 +7,8 @@ use App\Http\Requests;
 
 use App\Album;
 use App\BasicDetail;
+use App\SlideMenu;
+use App\MainDish;
 use App\NavBar;
 use Illuminate\Http\Request;
 
@@ -24,8 +26,6 @@ class AlbumController extends Controller
 
         if (!empty($keyword)) {
             $album = Album::where('title', 'LIKE', "%$keyword%")
-                ->orWhere('name', 'LIKE', "%$keyword%")
-                ->orWhere('description', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $album = Album::latest()->paginate($perPage);
@@ -55,8 +55,6 @@ class AlbumController extends Controller
     {
         $this->validate($request, [
     			'title' => 'required|max:255',
-    			'name' => 'required|max:255',
-    			'description' => 'required|max:255',
     			'image' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg'
     		]);
         $requestData = $request->all();
@@ -108,8 +106,6 @@ class AlbumController extends Controller
     {
         $this->validate($request, [
     			'title' => 'required|max:255',
-    			'name' => 'required|max:255',
-    			'description' => 'required|max:255',
     			'image' => 'file|image|mimes:jpeg,png,jpg,gif,svg'
     		]);
         $requestData = $request->all();
@@ -145,7 +141,21 @@ class AlbumController extends Controller
     {
       $basicDetail = BasicDetail::first();
       $navbar = NavBar::first();
+      $mainDish = MainDish::first();
+      $newDishes = SlideMenu::latest()->take(3)->get();
       $album = Album::all();
-      return view('pages.gallery.gallery' , compact('basicDetail' , 'navbar' , 'album'));
+      return view('pages.gallery.gallery' , compact('basicDetail' , 'navbar' , 'album' , 'newDishes' , 'mainDish'));
+    }
+
+    /*======================================
+            display typography page
+    ========================================*/
+    public function typography()
+    {
+      $basicDetail = BasicDetail::first();
+      $navbar = NavBar::first();
+      $mainDish = MainDish::first();
+      $newDishes = SlideMenu::latest()->take(3)->get();
+      return view('pages.typography' , compact('basicDetail' , 'navbar' , 'newDishes' , 'mainDish'));
     }
 }

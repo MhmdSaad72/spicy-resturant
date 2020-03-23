@@ -21,7 +21,7 @@
 
             <div class="owl-carousel gallery-slider owl-theme">
               @foreach ($album as  $img)
-                <a class="d-block gallery-slider-item shadow overflow-hidden" href="{{asset('storage/' . $img->image)}}" data-lightbox="Gallery" title="{{$img->name}}">
+                <a class="d-block gallery-slider-item shadow overflow-hidden" href="{{asset('storage/' . $img->image)}}" data-lightbox="Gallery" title="{{$img->title}}">
                   <img class="img-fluid" src="{{asset('storage/' . $img->image)}}" alt="...">
                 </a>
               @endforeach

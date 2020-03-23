@@ -34,10 +34,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        {{-- <th>#</th> --}}
                                         <th>Title</th>
-                                        <th>Description</th>
-                                        <th>Name</th>
                                         <th>Image</th>
                                         <th>Actions</th>
                                     </tr>
@@ -45,10 +42,7 @@
                                 <tbody>
                                 @foreach($album as $item)
                                     <tr>
-                                        {{-- <td>{{ $loop->iteration }}</td> --}}
                                         <td>{{ $item->title }}</td>
-                                        <td>{{ $item->description }}</td>
-                                        <td>{{ $item->name }}</td>
                                         <td><img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" style="width:200px; height:200px;"> </td>
                                         <td>
                                             <a href="{{ url('/admin/album/' . $item->id) }}" title="View Album"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
