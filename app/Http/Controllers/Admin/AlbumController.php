@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Album;
+use App\BasicDetail;
+use App\NavBar;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -134,5 +136,16 @@ class AlbumController extends Controller
         Album::destroy($id);
 
         return redirect('admin/album')->with('flash_message', 'Album deleted!');
+    }
+
+    /*======================================
+            display gallery page
+    ========================================*/
+    public function gallery()
+    {
+      $basicDetail = BasicDetail::first();
+      $navbar = NavBar::first();
+      $album = Album::all();
+      return view('pages.gallery.gallery' , compact('basicDetail' , 'navbar' , 'album'));
     }
 }
