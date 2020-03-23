@@ -8,8 +8,6 @@ use App\Http\Requests;
 use App\About;
 use App\AboutU;
 use App\Chef;
-use App\MasterChef;
-use App\Gallary;
 use App\Album;
 use App\BasicDetail;
 use App\Philosophy;
@@ -37,8 +35,6 @@ class AboutController extends Controller
     {
         $aboutUs = AboutU::first();
         $chefs = Chef::all();
-        $chefHead = MasterChef::first();
-        $gallary = Gallary::first();
         $album = Album::all();
         $basicDetail = BasicDetail::first();
         $philosophy = Philosophy::first();
@@ -54,7 +50,7 @@ class AboutController extends Controller
         }else {
           $bookings = 0 ;
         }
-        return view('pages.about.index', compact('aboutUs' , 'chefs' , 'chefHead' , 'gallary' , 'album', 'basicDetail' , 'philosophy' , 'statistics' , 'award' , 'bookings' , 'navbar' , 'awardsaccordion' , 'newDishes' , 'mainDish'));
+        return view('pages.about.index', compact('aboutUs' , 'chefs'  , 'album', 'basicDetail' , 'philosophy' , 'statistics' , 'award' , 'bookings' , 'navbar' , 'awardsaccordion' , 'newDishes' , 'mainDish'));
     }
     /**
      * Display the specified resource.

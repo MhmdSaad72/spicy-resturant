@@ -26,6 +26,7 @@ class UsersController extends Controller
         $basicDetail = BasicDetail::first();
         $bookings = $user->bookings->count();
         $navbar = NavBar::first();
+        dd($user);
         $mainDish = MainDish::first();
         $newDishes = SlideMenu::latest()->take(3)->get();
         if (Auth::check() && Auth::user()->id == $id)

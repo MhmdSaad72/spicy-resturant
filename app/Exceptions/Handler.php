@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Exception;
 use App\BasicDetail;
+use App\SlideMenu;
+use App\MainDish;
 use App\NavBar;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -50,11 +52,13 @@ class Handler extends ExceptionHandler
     {
         $basicDetail = BasicDetail::first();
         $navbar = NavBar::first();
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
         if ($this->isHttpException($exception)) {
              if ($exception->getStatusCode() == 404) {
-                 return response()->view('pages.404',compact('basicDetail','navbar') , 404 );
+                 return response()->view('pages.404',compact('basicDetail','navbar','newDishes','mainDish') , 404 );
              }elseif ($exception->getStatusCode() == 403) {
-                 return response()->view('pages.403',compact('basicDetail','navbar') , 403 );
+                 return response()->view('pages.403',compact('basicDetail','navbar','newDishes','mainDish') , 403 );
              }
          }
         return parent::render($request, $exception);

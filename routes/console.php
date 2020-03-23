@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Inspiring;
+use App\Booking;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,14 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('clean:bookings' , function(){
+  $this->info('Cleaning!');
+  $date = \Carbon\Carbon::now();
+  Booking::where('date' , '<' , $date)
+           ->get()
+           ->each(function($booking){
+             $booking->delete();
+             $this->warn('Deleted: ' . $booking->booking_id);
+           });
+})->describe('Clean expired bookings');
