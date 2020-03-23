@@ -40,6 +40,7 @@ class HomeController extends Controller
         $foodMenu = FoodMenu::first();
         $categories = Category::all();
         $dishes = SlideMenu::where('featured', 1)->get();
+        $newDishes = SlideMenu::latest()->take(3)->get();
         $chefs = Chef::all();
         $availability = Availability::first();
         $availableDays = explode(',' , $availability->availability);
@@ -57,7 +58,7 @@ class HomeController extends Controller
         }else {
           $bookings = 0 ;
         }
-        return view('pages.home.index', compact('service' , 'mainDish' , 'ourStory' , 'ourServicesBody' , 'foodMenu' , 'categories' , 'chefs' , 'availability' , 'album' , 'basicDetail' , 'bookings' , 'closedDays' , 'start_day' , 'end_day' , 'dishes' , 'navbar'));
+        return view('pages.home.index', compact('service' , 'mainDish' , 'ourStory' , 'ourServicesBody' , 'foodMenu' , 'categories' , 'chefs' , 'availability' , 'album' , 'basicDetail' , 'bookings' , 'closedDays' , 'start_day' , 'end_day' , 'dishes' , 'navbar' , 'newDishes'));
     }
 
 }

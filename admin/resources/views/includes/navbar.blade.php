@@ -134,11 +134,11 @@
                                         <div class="col-lg-5 mb-4">
                                             <h6 class="mb-4">Today's main dish</h6>
                                             <!-- Related dishes item-->
-                                            <a class="media align-items-center reset-anchor transition-link" href="dish.html"><img class="img-fluid" src="img/signature-slide-1.png" alt="Bucatini" width="100"/>
+                                            <a class="media align-items-center reset-anchor transition-link" href="{{route('dish.show' , ['id' => $mainDish->dish->id])}}"><img class="img-fluid" src="{{asset('storage/' . $mainDish->dish->image)}}" alt="Bucatini" width="100"/>
                                             <div class="media-body ml-3">
-                                                <h6>Bucatini</h6>
-                                                <p class="text-muted small mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-                                                <p class="price h6 text-primary mb-0">$5.70</p>
+                                                <h6>{{$mainDish->dish->title}}</h6>
+                                                <p class="text-muted small mb-2">{{$mainDish->dish->str_limit($mainDish->dish->content)}}</p>
+                                                <p class="price h6 text-primary mb-0">${{$mainDish->dish->afterDiscount()}}</p>
                                             </div></a>
                                         </div>
                                     </div>
@@ -146,31 +146,17 @@
                                         <h6>New dishes</h6>
                                         <p class="small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                                         <div class="row">
+                                          @foreach ($newDishes as  $dish)
                                             <div class="col-lg-4 mb-4 mb-lg-0">
                                                 <!-- Related dishes item-->
-                                                <a class="media align-items-center reset-anchor transition-link" href="dish.html"><img class="img-fluid" src="img/signature-slide-1.png" alt="Bucatini" width="100"/>
+                                                <a class="media align-items-center reset-anchor transition-link" href="{{route('dish.show' , ['id' => $dish->id])}}"><img class="img-fluid" src="{{asset('storage/' . $dish->image)}}" alt="Bucatini" width="100"/>
                                                 <div class="media-body ml-3">
-                                                    <h6>Bucatini</h6>
-                                                    <p class="text-muted small mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-                                                    <p class="price h6 text-primary mb-0">$5.70</p>
+                                                    <h6>{{$dish->title}}</h6>
+                                                    <p class="text-muted small mb-2">{{$dish->str_limit($dish->content)}}</p>
+                                                    <p class="price h6 text-primary mb-0">${{$dish->afterDiscount()}}</p>
                                                 </div></a>
                                             </div>
-                                            <div class="col-lg-4 mb-4 mb-lg-0">
-                                                <!-- Related dishes item--><a class="media align-items-center reset-anchor transition-link" href="dish.html"><img class="img-fluid" src="img/signature-slide-2.png" alt="Canellonni" width="100"/>
-                                                <div class="media-body ml-3">
-                                                    <h6>Canellonni</h6>
-                                                    <p class="text-muted small mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-                                                    <p class="price h6 text-primary mb-0">$5.70</p>
-                                                </div></a>
-                                            </div>
-                                            <div class="col-lg-4 mb-4 mb-lg-0">
-                                                <!-- Related dishes item--><a class="media align-items-center reset-anchor transition-link" href="dish.html"><img class="img-fluid" src="img/signature-slide-3.png" alt="Margherita" width="100"/>
-                                                <div class="media-body ml-3">
-                                                    <h6>Margherita</h6>
-                                                    <p class="text-muted small mb-2">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-                                                    <p class="price h6 text-primary mb-0">$5.70</p>
-                                                </div></a>
-                                            </div>
+                                          @endforeach
                                         </div>
                                     </div>
                                 </div>
