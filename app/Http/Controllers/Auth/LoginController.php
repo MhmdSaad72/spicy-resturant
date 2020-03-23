@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\BasicDetail;
 use App\NavBar;
+use App\SlideMenu;
+use App\MainDish;
 use Auth;
 use App\User;
 
@@ -56,13 +58,15 @@ class LoginController extends Controller
     {
       $basicDetail = BasicDetail::first() ?? '' ;
       $navbar = NavBar::first();
+      $mainDish = MainDish::first();
+      $newDishes = SlideMenu::latest()->take(3)->get();
       if (Auth::check()) {
         $user = User::findOrFail(Auth::user()->id);
         $bookings = $user->bookings->count();
       }else {
         $bookings = 0 ;
       }
-      return view('auth.login' , compact('basicDetail' , 'bookings' , 'navbar'));
+      return view('auth.login' , compact('basicDetail' , 'bookings' , 'navbar' , 'newDishes' , 'mainDish'));
     }
 
     protected function loggedOut(Request $request)

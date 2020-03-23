@@ -19,6 +19,8 @@ use App\AwardsAccordion;
 use App\Availability;
 use App\AboutService;
 use App\NavBar;
+use App\MainDish;
+use App\SlideMenu;
 use \Carbon\Carbon ;
 use Auth;
 use App\User;
@@ -44,13 +46,15 @@ class AboutController extends Controller
         $awardsaccordion = AwardsAccordion::all();
         $award = Award::first();
         $navbar = NavBar::first();
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
           $bookings = $user->bookings->count();
         }else {
           $bookings = 0 ;
         }
-        return view('pages.about.index', compact('aboutUs' , 'chefs' , 'chefHead' , 'gallary' , 'album', 'basicDetail' , 'philosophy' , 'statistics' , 'award' , 'bookings' , 'navbar' , 'awardsaccordion'));
+        return view('pages.about.index', compact('aboutUs' , 'chefs' , 'chefHead' , 'gallary' , 'album', 'basicDetail' , 'philosophy' , 'statistics' , 'award' , 'bookings' , 'navbar' , 'awardsaccordion' , 'newDishes' , 'mainDish'));
     }
     /**
      * Display the specified resource.
@@ -68,6 +72,8 @@ class AboutController extends Controller
         $aboutservices = AboutService::all();
         $availability = Availability::first();
         $navbar = NavBar::first();
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
         $availableDays = explode(',' , $availability->availability);
         $availability->start_time = Carbon::parse($availability->start_time)->format('h:i A');
         $availability->end_time = Carbon::parse($availability->end_time)->format('h:i A');
@@ -81,7 +87,7 @@ class AboutController extends Controller
         }else {
           $bookings = 0 ;
         }
-        return view('pages.about.show', compact('aboutUs' , 'album' , 'basicDetail' , 'philosophy' , 'availability' , 'aboutservices' , 'bookings' , 'start_day' , 'end_day' , 'closedDays' , 'navbar'));
+        return view('pages.about.show', compact('aboutUs' , 'album' , 'basicDetail' , 'philosophy' , 'availability' , 'aboutservices' , 'bookings' , 'start_day' , 'end_day' , 'closedDays' , 'navbar' , 'newDishes' , 'mainDish'));
     }
 
 }

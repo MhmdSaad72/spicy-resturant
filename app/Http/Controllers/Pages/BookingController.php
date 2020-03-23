@@ -10,6 +10,8 @@ use App\BasicDetail ;
 use App\Availability ;
 use App\BasicReservation;
 use App\NavBar;
+use App\MainDish;
+use App\SlideMenu;
 use App\Mail\ConfirmationMail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -29,6 +31,8 @@ class BookingController extends Controller
     {
         $availability = Availability::first();
         $navbar = NavBar::first();
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
         $availableDays = explode(',' , $availability->availability);
         $start_day = min($availableDays);
         $end_day = max($availableDays);
@@ -44,7 +48,7 @@ class BookingController extends Controller
         if (Auth::check() && Auth::user()->hasRole('admin')) {
           abort(403);
         }
-        return view('pages.booking.index', compact('availability' , 'basicDetail' , 'bookings' , 'start_day' , 'closedDays' , 'end_day' , 'navbar'));
+        return view('pages.booking.index', compact('availability' , 'basicDetail' , 'bookings' , 'start_day' , 'closedDays' , 'end_day' , 'navbar' , 'mainDish' , 'newDishes'));
     }
     /**
      * Show the confirmation booking page.
@@ -57,6 +61,8 @@ class BookingController extends Controller
        $basicDetail = BasicDetail::first();
        $booking = Booking::findOrFail($id);
        $navbar = NavBar::first();
+       $mainDish = MainDish::first();
+       $newDishes = SlideMenu::latest()->take(3)->get();
        $booking->date = Carbon::parse($booking->date)->format('l d M Y');
        $booking->time = Carbon::parse($booking->time)->format('h:i A');
        if (Auth::check()) {
@@ -65,7 +71,7 @@ class BookingController extends Controller
        }else {
          $bookings = 0 ;
        }
-       return view('pages.booking.confirmation', compact('basicDetail' , 'booking' , 'bookings' , 'navbar'));
+       return view('pages.booking.confirmation', compact('basicDetail' , 'booking' , 'bookings' , 'navbar' , 'newDishes' , 'mainDish'));
      }
 
      /**
@@ -79,13 +85,15 @@ class BookingController extends Controller
         $booking = Booking::findOrFail($id);
         $basicDetail = BasicDetail::first();
         $navbar = NavBar::first();
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
           $bookings = $user->bookings->count();
         }else {
           $bookings = 0 ;
         }
-        return view('pages.booking.cancellation', compact('basicDetail' , 'booking' , 'bookings' , 'navbar'));
+        return view('pages.booking.cancellation', compact('basicDetail' , 'booking' , 'bookings' , 'navbar' , 'newDishes' , 'mainDish'));
       }
 
       /**
@@ -124,7 +132,9 @@ class BookingController extends Controller
       {
         $basicDetail = BasicDetail::first();
         $navbar = NavBar::first();
-        return view('pages.booking.cancelled', compact('basicDetail' , 'navbar'));
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
+        return view('pages.booking.cancelled', compact('basicDetail' , 'navbar' , 'newDishes' , 'mainDish'));
       }
 
     /**
@@ -222,13 +232,15 @@ class BookingController extends Controller
          $user = User::findOrFail($id);
          $basicDetail = BasicDetail::first();
          $navbar = NavBar::first();
+         $mainDish = MainDish::first();
+         $newDishes = SlideMenu::latest()->take(3)->get();
          if (Auth::check()) {
            $user = User::findOrFail(Auth::user()->id);
            $bookings = $user->bookings->count();
          }else {
            $bookings = 0 ;
          }
-         return view('pages.booking.bookings' , compact('user' , 'basicDetail' , 'bookings' , 'navbar'));
+         return view('pages.booking.bookings' , compact('user' , 'basicDetail' , 'bookings' , 'navbar' , 'mainDish' , 'newDishes'));
      }
 
      /**
@@ -246,6 +258,8 @@ class BookingController extends Controller
         // opening and closed days
         $availability = Availability::first();
         $navbar = NavBar::first();
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
         $availableDays = explode(',' , $availability->availability);
         $start_day = min($availableDays);
         $end_day = max($availableDays);
@@ -258,7 +272,7 @@ class BookingController extends Controller
         }else {
           $bookings = 0 ;
         }
-        return view('pages.booking.edit' , compact('booking' , 'availability' , 'start_day' , 'end_day' , 'closedDays' , 'bookings' , 'navbar'));
+        return view('pages.booking.edit' , compact('booking' , 'availability' , 'start_day' , 'end_day' , 'closedDays' , 'bookings' , 'navbar' , 'newDishes' , 'mainDish'));
       }
 
       /**

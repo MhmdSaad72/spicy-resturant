@@ -6,6 +6,7 @@ use App\BasicDetail;
 use App\SlideMenu;
 use App\DishReview;
 use App\NavBar;
+use App\MainDish;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,6 +21,8 @@ class DishesController extends Controller
       $basicDetail = BasicDetail::first();
       $dish = SlideMenu::findOrFail($id);
       $navbar = NavBar::first();
+      $mainDish = MainDish::first();
+      $newDishes = SlideMenu::latest()->take(3)->get();
       if (Auth::check()) {
         $bookings = Auth::user()->bookings->count();
         $user= DishReview::where('dish_id' , $id)->where('user_id' , Auth::user()->id)->first();
@@ -30,7 +33,7 @@ class DishesController extends Controller
 
       $reviews = DishReview::where('dish_id' , $dish->id)->latest()->take(2)->get();
       $reviewCount = DishReview::where('dish_id' , $dish->id)->count();
-      return view('pages.dishes.show' , compact('basicDetail' , 'dish' , 'similarDishes' , 'bookings' , 'reviews' , 'user' , 'reviewCount' , 'navbar'));
+      return view('pages.dishes.show' , compact('basicDetail' , 'dish' , 'similarDishes' , 'bookings' , 'reviews' , 'user' , 'reviewCount' , 'navbar' , 'newDishes' , 'mainDish'));
     }
 
     /*====================================

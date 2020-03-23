@@ -10,6 +10,8 @@ use App\BasicDetail;
 use App\ContactU;
 use App\BranchBody;
 use App\NavBar;
+use App\MainDish;
+use App\SlideMenu;
 use Auth;
 use App\User;
 // use Illuminate\Support\Str;
@@ -27,13 +29,15 @@ class ContactController extends Controller
         $basicDetail = BasicDetail::first();
         $contacts = ContactU::first();
         $navbar = NavBar::first();
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
           $bookings = $user->bookings->count();
         }else {
           $bookings = 0 ;
         }
-        return view('pages.contact.index', compact('basicDetail' , 'contacts' , 'bookings' , 'navbar'));
+        return view('pages.contact.index', compact('basicDetail' , 'contacts' , 'bookings' , 'navbar' , 'newDishes' , 'mainDish'));
     }
 
     /**
@@ -80,13 +84,15 @@ class ContactController extends Controller
         $contacts = ContactU::first();
         $branchBodies = BranchBody::all();
         $navbar = NavBar::first();
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
           $bookings = $user->bookings->count();
         }else {
           $bookings = 0 ;
         }
-        return view('pages.contact.show', compact('basicDetail' , 'contacts' , 'branchBodies' , 'bookings' , 'navbar'));
+        return view('pages.contact.show', compact('basicDetail' , 'contacts' , 'branchBodies' , 'bookings' , 'navbar' , 'newDishes' , 'mainDish'));
     }
 
     /**

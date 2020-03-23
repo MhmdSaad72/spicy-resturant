@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\NavBar;
 use App\BasicDetail;
+use App\SlideMenu;
+use App\MainDish;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
@@ -36,6 +38,8 @@ class ResetPasswordController extends Controller
     public function showResetForm(Request $request , $token = null)
     {
       $navbar = NavBar::first();
+      $mainDish = MainDish::first();
+      $newDishes = SlideMenu::latest()->take(3)->get();
       $basicDetail = BasicDetail::first();
 
         if (is_null($token)) {
@@ -49,9 +53,9 @@ class ResetPasswordController extends Controller
         }
 
         if (view()->exists('auth.passwords.reset')) {
-            return view('auth.passwords.reset')->with(compact('token', 'email' , 'navbar' , 'basicDetail'));
+            return view('auth.passwords.reset')->with(compact('token', 'email' , 'navbar' , 'basicDetail' , 'mainDish' , 'newDishes'));
         }
 
-        return view('auth.reset')->with(compact('token', 'email' , 'basicDetail' , 'navbar'));
+        return view('auth.reset')->with(compact('token', 'email' , 'basicDetail' , 'navbar' , 'newDishes' , 'mainDish'));
     }
 }

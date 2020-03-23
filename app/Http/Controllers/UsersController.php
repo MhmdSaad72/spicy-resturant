@@ -8,6 +8,8 @@ use App\BasicDetail;
 use App\user;
 use App\Review;
 use App\NavBar ;
+use App\SlideMenu ;
+use App\MainDish ;
 use Hash;
 use Auth;
 use DB;
@@ -24,9 +26,11 @@ class UsersController extends Controller
         $basicDetail = BasicDetail::first();
         $bookings = $user->bookings->count();
         $navbar = NavBar::first();
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
         if (Auth::check() && Auth::user()->id == $id)
         {
-          return view('pages.users.personal-information' , compact('user' , 'basicDetail' , 'bookings' , 'navbar'));
+          return view('pages.users.personal-information' , compact('user' , 'basicDetail' , 'bookings' , 'navbar' , 'mainDish' , 'newDishes'));
         }else {
           abort(403);
         }
@@ -39,10 +43,13 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $basicDetail = BasicDetail::first();
+        $navbar = NavBar::first();
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
         $bookings = $user->bookings->count();
         if (Auth::check() && Auth::user()->id == $id)
         {
-          return view('pages.users.edit' , compact('user' , 'basicDetail' , 'bookings'));
+          return view('pages.users.edit' , compact('user' , 'basicDetail' , 'bookings' , 'newDishes' , 'mainDish' , 'navbar'));
         }else {
           abort(403);
         }
@@ -78,10 +85,12 @@ class UsersController extends Controller
         $basicDetail = BasicDetail::first();
         $bookings = $user->bookings->count();
         $navbar = NavBar::first();
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
 
         if (Auth::check() && Auth::user()->id == $id)
         {
-          return view('pages.users.change-password' , compact('user' , 'basicDetail' , 'bookings' , 'navbar'));
+          return view('pages.users.change-password' , compact('user' , 'basicDetail' , 'bookings' , 'navbar' , 'mainDish' , 'newDishes'));
         }else {
           abort(403);
         }
@@ -95,10 +104,13 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $basicDetail = BasicDetail::first();
         $review =  Review::where('user_id' , $id)->first();
+        $navbar = NavBar::first();
+        $mainDish = MainDish::first();
+        $newDishes = SlideMenu::latest()->take(3)->get();
         $bookings = $user->bookings->count();
         if (Auth::check() && Auth::user()->id == $id)
         {
-          return view('pages.users.review' , compact('user' , 'review' , 'bookings' , 'basicDetail'));
+          return view('pages.users.review' , compact('user' , 'review' , 'bookings' , 'basicDetail' , 'navbar' , 'mainDish' , 'newDishes'));
         }else {
           abort(403);
         }
@@ -133,10 +145,13 @@ class UsersController extends Controller
       $user = User::findOrFail($id);
       $basicDetail = BasicDetail::first();
       $review =  Review::where('user_id' , $id)->first();
+      $navbar = NavBar::first();
+      $mainDish = MainDish::first();
+      $newDishes = SlideMenu::latest()->take(3)->get();
       $bookings = $user->bookings->count();
       if (Auth::check() && Auth::user()->id == $id)
       {
-        return view('pages.users.edit-review' , compact('user' , 'review' , 'bookings' , 'basicDetail'));
+        return view('pages.users.edit-review' , compact('user' , 'review' , 'bookings' , 'basicDetail' , 'navbar' , 'newDishes' , 'mainDish'));
       }else {
         abort(403);
       }
