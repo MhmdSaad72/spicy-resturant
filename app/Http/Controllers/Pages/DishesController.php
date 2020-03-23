@@ -24,7 +24,7 @@ class DishesController extends Controller
       $mainDish = MainDish::first();
       $newDishes = SlideMenu::latest()->take(3)->get();
       if (Auth::check()) {
-        $bookings = Auth::user()->bookings->count();
+        $bookings = Auth::user()->userBookings()->count();
         $user= DishReview::where('dish_id' , $id)->where('user_id' , Auth::user()->id)->first();
       }else {
         $bookings = 0 ;

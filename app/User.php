@@ -59,5 +59,12 @@ class User extends Authenticatable implements MustVerifyEmail
       return $this->hasOne('App\DishReview' , 'user_id');
     }
 
+    public function userBookings()
+    {
+      $date = \Carbon\Carbon::now();
+      $bookings = Booking::where('date' , '>=' , $date)->where('user_id' , $this->id)->get();
+      return $bookings;
+    }
+
 
 }

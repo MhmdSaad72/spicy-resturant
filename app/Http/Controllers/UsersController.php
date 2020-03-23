@@ -24,9 +24,8 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $basicDetail = BasicDetail::first();
-        $bookings = $user->bookings->count();
+        $bookings = $user->userBookings()->count();
         $navbar = NavBar::first();
-        dd($user);
         $mainDish = MainDish::first();
         $newDishes = SlideMenu::latest()->take(3)->get();
         if (Auth::check() && Auth::user()->id == $id)
@@ -47,7 +46,7 @@ class UsersController extends Controller
         $navbar = NavBar::first();
         $mainDish = MainDish::first();
         $newDishes = SlideMenu::latest()->take(3)->get();
-        $bookings = $user->bookings->count();
+        $bookings = $user->userBookings()->count();
         if (Auth::check() && Auth::user()->id == $id)
         {
           return view('pages.users.edit' , compact('user' , 'basicDetail' , 'bookings' , 'newDishes' , 'mainDish' , 'navbar'));
@@ -84,7 +83,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $basicDetail = BasicDetail::first();
-        $bookings = $user->bookings->count();
+        $bookings = $user->userBookings()->count();
         $navbar = NavBar::first();
         $mainDish = MainDish::first();
         $newDishes = SlideMenu::latest()->take(3)->get();
@@ -108,7 +107,7 @@ class UsersController extends Controller
         $navbar = NavBar::first();
         $mainDish = MainDish::first();
         $newDishes = SlideMenu::latest()->take(3)->get();
-        $bookings = $user->bookings->count();
+        $bookings = $user->userBookings()->count();
         if (Auth::check() && Auth::user()->id == $id)
         {
           return view('pages.users.review' , compact('user' , 'review' , 'bookings' , 'basicDetail' , 'navbar' , 'mainDish' , 'newDishes'));
@@ -149,7 +148,7 @@ class UsersController extends Controller
       $navbar = NavBar::first();
       $mainDish = MainDish::first();
       $newDishes = SlideMenu::latest()->take(3)->get();
-      $bookings = $user->bookings->count();
+      $bookings = $user->userBookings()->count();
       if (Auth::check() && Auth::user()->id == $id)
       {
         return view('pages.users.edit-review' , compact('user' , 'review' , 'bookings' , 'basicDetail' , 'navbar' , 'newDishes' , 'mainDish'));

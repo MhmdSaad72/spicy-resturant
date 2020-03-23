@@ -34,7 +34,7 @@ class SearchController extends Controller
       $mainDish = MainDish::first();
       $newDishes = SlideMenu::latest()->take(3)->get();
       if (Auth::check()) {
-        $bookings = Auth::user()->bookings->count();
+        $bookings = Auth::user()->userBookings()->count();
       }else {
         $bookings = 0 ;
       }

@@ -54,7 +54,7 @@ class HomeController extends Controller
         $basicDetail = BasicDetail::first();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
-          $bookings = $user->bookings->count();
+          $bookings = $user->userBookings()->count();
         }else {
           $bookings = 0 ;
         }

@@ -33,7 +33,7 @@ class ContactController extends Controller
         $newDishes = SlideMenu::latest()->take(3)->get();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
-          $bookings = $user->bookings->count();
+          $bookings = $user->userBookings()->count();
         }else {
           $bookings = 0 ;
         }
@@ -88,7 +88,7 @@ class ContactController extends Controller
         $newDishes = SlideMenu::latest()->take(3)->get();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
-          $bookings = $user->bookings->count();
+          $bookings = $user->userBookings()->count();
         }else {
           $bookings = 0 ;
         }

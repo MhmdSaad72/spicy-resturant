@@ -80,7 +80,6 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
    Route::get('/booking-confirmation/{id}', 'Pages\\BookingController@confirmation')->name('booking.confirm');
    Route::get('/booking-cancellation/{id}', 'Pages\\BookingController@cancellation')->name('booking.cancel');
    Route::patch('/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
-   Route::patch('/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
    Route::get('/booking-cancelled' , 'Pages\\BookingController@cancelled')->name('booking.cancelled');
    Route::get('/search' , 'Pages\\SearchController@index')->name('search');
    Route::post('/dish-review/{id}' , 'Pages\\DishesController@review')->name('review.dish');

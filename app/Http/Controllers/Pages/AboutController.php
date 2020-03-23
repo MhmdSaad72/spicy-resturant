@@ -46,7 +46,7 @@ class AboutController extends Controller
         $newDishes = SlideMenu::latest()->take(3)->get();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
-          $bookings = $user->bookings->count();
+          $bookings = $user->userBookings()->count();
         }else {
           $bookings = 0 ;
         }
@@ -79,7 +79,7 @@ class AboutController extends Controller
         $closedDays = array_diff($array , $availableDays);
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
-          $bookings = $user->bookings->count();
+          $bookings = $user->userBookings()->count();
         }else {
           $bookings = 0 ;
         }

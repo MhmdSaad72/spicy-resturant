@@ -41,7 +41,7 @@ class BookingController extends Controller
         $basicDetail = BasicDetail::first();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
-          $bookings = $user->bookings->count();
+          $bookings = $user->userBookings()->count();
         }else {
           $bookings = 0 ;
         }
@@ -67,7 +67,7 @@ class BookingController extends Controller
        $booking->time = Carbon::parse($booking->time)->format('h:i A');
        if (Auth::check()) {
          $user = User::findOrFail(Auth::user()->id);
-         $bookings = $user->bookings->count();
+         $bookings = $user->userBookings()->count();
        }else {
          $bookings = 0 ;
        }
@@ -89,7 +89,7 @@ class BookingController extends Controller
         $newDishes = SlideMenu::latest()->take(3)->get();
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
-          $bookings = $user->bookings->count();
+          $bookings = $user->userBookings()->count();
         }else {
           $bookings = 0 ;
         }
@@ -134,7 +134,13 @@ class BookingController extends Controller
         $navbar = NavBar::first();
         $mainDish = MainDish::first();
         $newDishes = SlideMenu::latest()->take(3)->get();
-        return view('pages.booking.cancelled', compact('basicDetail' , 'navbar' , 'newDishes' , 'mainDish'));
+        if (Auth::check()) {
+          $user = User::findOrFail(Auth::user()->id);
+          $bookings = $user->userBookings()->count();
+        }else {
+          $bookings = 0 ;
+        }
+        return view('pages.booking.cancelled', compact('basicDetail' , 'navbar' , 'newDishes' , 'mainDish' , 'bookings'));
       }
 
     /**
@@ -236,7 +242,7 @@ class BookingController extends Controller
          $newDishes = SlideMenu::latest()->take(3)->get();
          if (Auth::check()) {
            $user = User::findOrFail(Auth::user()->id);
-           $bookings = $user->bookings->count();
+           $bookings = $user->userBookings()->count();
          }else {
            $bookings = 0 ;
          }
@@ -268,7 +274,7 @@ class BookingController extends Controller
         // bookings number for user
         if (Auth::check()) {
           $user = User::findOrFail(Auth::user()->id);
-          $bookings = $user->bookings->count();
+          $bookings = $user->userBookings()->count();
         }else {
           $bookings = 0 ;
         }
