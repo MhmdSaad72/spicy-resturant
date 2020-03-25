@@ -14,9 +14,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
-    'title_prefix' => '',
-    'title_postfix' => '',
+    'title' => 'Italiano Restaurant | Laravel Restaurant Template',
+    'title_prefix' => 'Italiano Restaurant | Laravel Restaurant Template',
+    'title_postfix' => 'Italiano Restaurant | Laravel Restaurant Template',
 
     /*
     |--------------------------------------------------------------------------
@@ -30,12 +30,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b> Italiano</b>',
+    'logo_img' => 'img/logo-footer-default.svg',
     'logo_img_class' => 'brand-image-xl',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'Italiano Restaurant | Laravel Restaurant Template',
 
     /*
     |--------------------------------------------------------------------------
