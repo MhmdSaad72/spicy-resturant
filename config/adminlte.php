@@ -205,12 +205,12 @@ return [
         [
             'text' => 'Clients',
             'route'  => 'clients',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-users',
         ],
         [
             'text' => 'Contacts',
             'route'  => 'contact.all',
-            'icon' => 'fas fa-fw fa-phone',
+            'icon' => 'fas fa-fw fa-address-book',
         ],
         ['header' => 'Pages Setting'],
         [
@@ -321,6 +321,7 @@ return [
         ],
         [
           'text' => 'Master Chefs',
+          'icon'    => 'fas fa-fw fa-user',
           'route'  => 'chefs.index',
         ],
         [

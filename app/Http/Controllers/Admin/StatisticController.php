@@ -76,9 +76,7 @@ class StatisticController extends Controller
      */
     public function show($id)
     {
-        $statistic = Statistic::findOrFail($id);
-
-        return view('admin.statistic.show', compact('statistic'));
+      abort(404);
     }
 
     /**

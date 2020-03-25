@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-12">
+            <div class="col-md-9">
                 <div class="card">
                     <div class="card-body">
                         <a href="{{ url('/admin/album/create') }}" class="btn btn-success btn-sm" title="Add New Album">
@@ -45,7 +45,6 @@
                                         <td>{{ $item->title }}</td>
                                         <td><img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" style="width:200px; height:200px;"> </td>
                                         <td>
-                                            <a href="{{ url('/admin/album/' . $item->id) }}" title="View Album"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/album/' . $item->id . '/edit') }}" title="Edit Album"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
                                             <form method="POST" action="{{ url('/admin/album' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">

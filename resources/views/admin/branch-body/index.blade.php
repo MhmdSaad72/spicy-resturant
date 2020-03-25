@@ -33,7 +33,6 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
                                         <th>Place</th>
                                         <th>Address</th>
                                         <th>Phone</th>
@@ -43,7 +42,6 @@
                                 <tbody>
                                 @foreach($branchbody as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->place }}</td><td>{{ $item->address }}</td><td>{{ $item->phone }}</td>
                                         <td>
                                             <a href="{{ url('/admin/branch-body/' . $item->id) }}" title="View BranchBody"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>

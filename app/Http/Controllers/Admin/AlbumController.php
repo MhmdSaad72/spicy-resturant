@@ -75,9 +75,7 @@ class AlbumController extends Controller
      */
     public function show($id)
     {
-        $album = Album::findOrFail($id);
-
-        return view('admin.album.show', compact('album'));
+        abort(404);
     }
 
     /**
