@@ -148,7 +148,7 @@ class CategoryController extends Controller
       $dishes = SlideMenu::where('category_id' , $id)->get();
       $count = $dishes->count();
       if (Auth::check()) {
-        $bookings = Auth::user()->userBooking()->count();
+        $bookings = Auth::user()->userBookings()->count();
       }else {
         $bookings = 0 ;
       }
@@ -169,7 +169,7 @@ class CategoryController extends Controller
       $newDishes = SlideMenu::latest()->take(3)->get();
       $count = $categories->count();
       if (Auth::check()) {
-        $bookings = Auth::user()->userBooking()->count();
+        $bookings = Auth::user()->userBookings()->count();
       }else {
         $bookings = 0 ;
       }
