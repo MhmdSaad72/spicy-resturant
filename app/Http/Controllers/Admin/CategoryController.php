@@ -7,7 +7,9 @@ use App\Http\Requests;
 
 use App\Category;
 use App\BasicDetail;
+use App\MainDish;
 use App\SlideMenu;
+use App\NavBar;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -140,14 +142,17 @@ class CategoryController extends Controller
     {
       $category = Category::findOrFail($id);
       $basicDetail = BasicDetail::first();
+      $navbar = NavBar::first();
+      $mainDish = MainDish::first();
+      $newDishes = SlideMenu::latest()->take(3)->get();
       $dishes = SlideMenu::where('category_id' , $id)->get();
       $count = $dishes->count();
       if (Auth::check()) {
-        $bookings = Auth::user()->bookings->count();
+        $bookings = Auth::user()->userBooking()->count();
       }else {
         $bookings = 0 ;
       }
-      return view('pages.categories.show' , compact('category' , 'basicDetail' , 'dishes' , 'count' , 'bookings'));
+      return view('pages.categories.show' , compact('category' , 'basicDetail' , 'dishes' , 'count' , 'bookings' , 'navbar' , 'mainDish' , 'newDishes'));
     }
 
 
@@ -159,12 +164,15 @@ class CategoryController extends Controller
     {
       $categories = Category::all();
       $basicDetail = BasicDetail::first();
+      $navbar = NavBar::first();
+      $mainDish = MainDish::first();
+      $newDishes = SlideMenu::latest()->take(3)->get();
       $count = $categories->count();
       if (Auth::check()) {
-        $bookings = Auth::user()->bookings->count();
+        $bookings = Auth::user()->userBooking()->count();
       }else {
         $bookings = 0 ;
       }
-      return view('pages.categories.index' , compact('categories' , 'basicDetail' , 'count' , 'bookings'));
+      return view('pages.categories.index' , compact('categories' , 'basicDetail' , 'count' , 'bookings' , 'navbar' , 'newDishes' , 'mainDish'));
     }
   }
