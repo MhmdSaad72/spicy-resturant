@@ -110,3 +110,8 @@ all authentication routes
 Auth::routes(['verify' => true]);
 Route::get('/login', 'Auth\\LoginController@index')->name('login');
 Route::get('/register', 'Auth\\RegisterController@index')->name('register');
+
+/*==============================
+api routes for charts dashboard
+================================*/
+Route::get('/chart/booking' , 'HomeController@chartBooking') ;

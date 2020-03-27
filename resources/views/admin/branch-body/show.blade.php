@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Branch Body')
+@section('title', 'Branch')
 
 @section('content_header')
-    <h1>Branch Body</h1>
+    <h1>Branch</h1>
 @stop
 
 @section('content')

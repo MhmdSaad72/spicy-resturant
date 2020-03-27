@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Branch Body')
+@section('title', 'Branches')
 
 @section('content_header')
-    <h1>Branch Body</h1>
+    <h1>Branches</h1>
 @stop
 
 @section('content')
@@ -12,7 +12,7 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ url('/admin/branch-body/create') }}" class="btn btn-success btn-sm" title="Add New BranchBody">
+                        <a href="{{ url('/admin/branch-body/create') }}" class="btn btn-success btn-sm" title="Add New Branch">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 

@@ -1,0 +1,37 @@
+[
+{
+    "label": "Sat",
+    "activeBookings": 40,
+    "cancelledBookings": 7
+},
+{
+    "label": "Sun",
+    "activeBookings": 35,
+    "cancelledBookings": 12
+},
+{
+    "label": "Mon",
+    "activeBookings": 15,
+    "cancelledBookings": 4
+},
+{
+    "label": "Tue",
+    "activeBookings": 20,
+    "cancelledBookings": 6
+},
+{
+    "label": "Wed",
+    "activeBookings": 30,
+    "cancelledBookings": 12
+},
+{
+    "label": "Thu",
+    "activeBookings": 27,
+    "cancelledBookings": 10
+},
+{
+    "label": "Fri",
+    "activeBookings": 18,
+    "cancelledBookings": 12
+}
+]
