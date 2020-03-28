@@ -27,7 +27,7 @@
 @endsection
 
 @section('content')
-  <section>
+  <section class="pt-0">
       <div class="container">
           <!-- Section heading-->
           <header class="bg-heading-text mb-5" data-text="Statistics">
@@ -76,7 +76,7 @@
                   <div class="card border-0 overflow-hidden p-4 p-lg-0">
                       <div class="card-body p-lg-5">
                           <h2 class="h4 text-dark">New visitors</h2>
-                          <p class="text-small text-muted mb-5">Trach new visitors for this week</p>
+                          <p class="text-small text-muted mb-5">Trach new visitors for last week</p>
                           <!-- Visitors Chart-->
                           <canvas id="visitorsChart"></canvas>
                       </div>
@@ -90,14 +90,14 @@
                       <div class="card-body p-lg-5">
                           <div class="row align-items-center text-center text-lg-left">
                               <div class="col-lg-4">
-                                  <h2 class="h4 mb-0 text-dark">Total reviews</h2>
+                                  <h2 class="h4 my-3 text-dark">Total reviews</h2>
                               </div>
                               <div class="col-lg-4 text-center py-2 py-lg-0">
-                                  <p class="text-muted mb-0">Based on {{$reviewCount}} reviews</p>
+                                  <p class="text-muted my-3">Based on {{$reviewCount}} reviews</p>
                               </div>
                               <div class="col-lg-4">
-                                  <div class="d-flex align-items-center justify-content-center justify-content-lg-end">
-                                      <h6 class="mb-0 mr-3 text-dark">{{$reviewAverage}}</h6>
+                                  <div class="d-flex mt-3 align-items-center justify-content-center justify-content-lg-end">
+                                      <h6 class="mb-3 mr-3 text-dark">{{$reviewAverage}}</h6>
                                      {!! $reviews !!}
                                   </div>
                               </div>
@@ -162,7 +162,7 @@
                   <div class="card border-0 overflow-hidden p-4 p-lg-0">
                       <div class="card-body p-lg-5">
                           <h2 class="h4 text-dark">Week bookings</h2>
-                          <p class="text-small text-muted mb-5">Trach the active and cancelled bookings of this week</p>
+                          <p class="text-small text-muted mb-5">Trach the active and cancelled bookings of this month</p>
                           <!-- Bookings Chart-->
                           <canvas id="bookingChart"></canvas>
                       </div>
@@ -280,12 +280,190 @@
   <!-- Chart.js configuration -->
   <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
   <script src="{{asset('js/charts/charts-config.js')}}"></script>
-  <script src="{{asset('js/charts/visitors.chart.js')}}"></script>
-  <script src="{{asset('js/charts/bookings.chart.js')}}"></script>
   <script>
-  $.getJSON("chart/booking", function (incomeChartJson) {
-    alert(incomeChartJson);
-  });
+    /* ==============================================
+        Bar Chart Main
+    ============================================== */
+    $.getJSON("{{route('booking.chart')}}", function (incomeChartJson) {
+
+        var barChartLabels,
+            barChartData1Values,
+            barChartData1Backgrounds,
+            barChartData1Hovers,
+            barChartData2Values,
+            barChartData2Backgrounds,
+            barChartData2Hovers;
+
+        barChartLabels = incomeChartJson.dayOfTheWeek ;
+        barChartData1Values = incomeChartJson.bookings ;
+        // barChartData2Values = incomeChartJson
+
+        var bookingChartValConfig = {
+            type: 'bar',
+            options: {
+                tooltips: {
+                    backgroundColor: "rgba(10, 10, 10, 0.85)",
+                    xPadding: 30,
+                    yPadding: 20,
+                    multiKeyBackground: 'transparent',
+                },
+                scales: {
+                    xAxes: [{
+                        barPercentage: 0.3,
+                        display: true,
+                        // stacked: true,
+                        gridLines: {
+                            display: false,
+                            color: '#fafafa'
+                        },
+                        ticks: {
+                            fontColor: "#777"
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        // stacked: true,
+                        gridLines: {
+                            display: false,
+                            color: '#fafafa'
+                        },
+                        ticks: {
+                            fontColor: "#777",
+                            max: 60,
+                            min: 0
+                        },
+                    }]
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        fontColor: 'rgb(77, 77, 77)',
+                        padding: 30,
+                        boxWidth: 6,
+                        usePointStyle: true,
+                    }
+                },
+                layout: {
+                     padding: {
+                         bottom: 0
+                     }
+                 }
+            },
+            data: {
+                labels: barChartLabels,
+                datasets: [{
+                        label: "   Active Bookings",
+                        backgroundColor: "rgba(254, 156, 44, 0.84)",
+                        borderColor: "rgba(254, 156, 44, 0.84)",
+                        hoverBackgroundColor: "rgba(254, 156, 44, 0.84)",
+                        borderWidth: 10,
+                        data: barChartData1Values,
+                    },
+                    // {
+                    //     label: "   Cancelled Bookings",
+                    //     backgroundColor: "rgba(236, 236, 236, 1)",
+                    //     borderColor: "rgba(236, 236, 236, 1)",
+                    //     hoverBackgroundColor: "rgba(236, 236, 236, 1)",
+                    //     borderWidth: 10,
+                    //     data: barChartData2Values,
+                    // }
+                ]
+            }
+        };
+
+        bookingChartVal = new Chart('bookingChart', bookingChartValConfig);
+    });
+    /* ==============================================
+         Chart New Vistors
+    ============================================== */
+    $.getJSON("{{route('newVistors')}}", function (data) {
+        var lineChartLabels,
+            lineChartData1Values;
+
+        lineChartLabels = data.dayOfTheWeek;
+        lineChartData1Values = data.newVistors;
+
+        var visitorsChartConfig = {
+            type: 'line',
+            options: {
+                responsive: true,
+                tooltips: {
+                    backgroundColor: "rgba(10, 10, 10, 0.85)",
+                    xPadding: 30,
+                    yPadding: 15,
+                    multiKeyBackground: 'rgba(0, 0, 0, 0)',
+                },
+                layout: {
+                    padding: {
+                        left: 15,
+                        right: 15
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        gridLines: {
+                            color: 'rgba(249, 249, 249, 0.0)'
+                        },
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: {
+                            fontColor: "#555",
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        gridLines: {
+                            color: 'rgba(249, 249, 249, 0.0)'
+                        },
+                        ticks: {
+                            min: 10,
+                            fontColor: "#555",
+                        },
+                    }]
+                },
+                legend: {
+                    display: false,
+                    labels: {
+                        fontColor: '#3e3e3e',
+                        padding: 0,
+                        boxWidth: 6,
+                        usePointStyle: true,
+                    }
+                }
+            },
+            data: {
+                labels: lineChartLabels,
+                datasets: [{
+                    label: " New visitors",
+                    fill: true,
+                    lineTension: 0.35,
+                    backgroundColor: config.gradientTransparent,
+                    borderColor: config.gradientPrimary,
+                    pointBorderColor: config.gradientPrimary,
+                    pointHoverBackgroundColor: config.gradientPrimary,
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 2,
+                    pointBackgroundColor: config.gradientPrimary,
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 2,
+                    pointBorderColor: "rgba(236, 165, 21, 0.85)",
+                    pointHoverBorderColor: "rgba(236, 165, 21, 0.85)",
+                    pointHoverBorderWidth: 15,
+                    pointRadius: 0,
+                    pointHitRadius: 5,
+                    data: lineChartData1Values,
+                    spanGaps: false
+                }]
+            }
+        };
+
+        visitorsChart = new Chart('visitorsChart', visitorsChartConfig);
+    });
   </script>
   <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">

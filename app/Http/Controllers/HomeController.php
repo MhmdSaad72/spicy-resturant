@@ -127,16 +127,37 @@ $this->chartBooking();
     =====================================*/
     public function chartBooking()
     {
-      $dayOfTheWeek = [] ;
-      $bookings = [] ;
-      for ($i=0; $i <7 ; $i++) {
-        $dayOfTheWeek[] = \Carbon\Carbon::now()->addDays($i)->format('D');
-        $bookings[] = Booking::where('date' , \Carbon\Carbon::now()->addDays($i)->format('Y-m-d'))->count();
-      }
-      return response()->json([
-        'dayOfTheWeek' => $dayOfTheWeek ,
-        'bookings' => $bookings ,
-      ], 200);
+        $dayOfTheWeek = [] ; $bookings = [] ;
 
+        for ($i=0; $i <7 ; $i++) {
+            $dayOfTheWeek[] = \Carbon\Carbon::now()->addDays($i)->format('D');
+            $bookings_1[] = Booking::where('date' , \Carbon\Carbon::now()->addDays($i)->format('Y-m-d'))->count();
+        }
+        for ($i=7; $i <14 ; $i++) {
+            $bookings_2[] = Booking::where('date' , \Carbon\Carbon::now()->addDays($i)->format('Y-m-d'))->count();
+        }
+        for ($i=14; $i <21 ; $i++) {
+            $bookings_3[] = Booking::where('date' , \Carbon\Carbon::now()->addDays($i)->format('Y-m-d'))->count();
+        }
+        for ($i=21; $i <28 ; $i++) {
+            $bookings_4[] = Booking::where('date' , \Carbon\Carbon::now()->addDays($i)->format('Y-m-d'))->count();
+        }
+        foreach ($bookings_1 as $key => $value) {
+          $bookings[] = $bookings_1[$key] + $bookings_2[$key] + $bookings_3[$key] + $bookings_4[$key] ;
+        }
+        return response()->json([ 'dayOfTheWeek' => $dayOfTheWeek , 'bookings' => $bookings ]);
+    }
+    /*==================================
+         Display chart for new vistors
+    =====================================*/
+    public function chartNewVistors()
+    {
+        $dayOfTheWeek = [] ; $newVistors = [] ;
+
+        for ($i=0; $i <7 ; $i++) {
+            $dayOfTheWeek[] = \Carbon\Carbon::now()->subDays($i)->format('D');
+            $newVistors[] = Booking::where('date' , \Carbon\Carbon::now()->subDays($i)->format('Y-m-d'))->sum('peopleNumber');
+        }
+        return response()->json([ 'dayOfTheWeek' => $dayOfTheWeek , 'newVistors' => $newVistors ]);
     }
 }

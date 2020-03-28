@@ -112,6 +112,7 @@ Route::get('/login', 'Auth\\LoginController@index')->name('login');
 Route::get('/register', 'Auth\\RegisterController@index')->name('register');
 
 /*==============================
-api routes for charts dashboard
+api routes for dashboard charts 
 ================================*/
-Route::get('/chart/booking' , 'HomeController@chartBooking') ;
+Route::get('/chart/booking' , 'HomeController@chartBooking')->name('booking.chart');
+Route::get('/chart/new-vistors' , 'HomeController@chartNewVistors')->name('newVistors');
