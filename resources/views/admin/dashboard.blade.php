@@ -205,54 +205,58 @@
           </div>
           <div class="row">
               <!-- Dashboard Card-->
-              <div class="col-lg-6 mb-4">
+              @isset($latestReview)
+                <div class="col-lg-6 mb-4">
                   <div class="card border-0 overflow-hidden p-4 p-lg-0">
-                      <div class="card-body p-lg-5">
-                          <h2 class="h4 text-dark">Latest review</h2>
-                          <p class="text-small text-muted mb-4">Lorem ipsum dolor sit amet.</p>
-                          <!-- Dashboard Latest review-->
-                          <div class="row">
-                              <div class="col-lg-7 mb-3">
-                                  <div class="media">
-                                      <i class="fas fa-quote-left text-primary fa-2x"></i>
-                                      <div class="media-body ml-3">
-                                          <h3 class="h5 mb-0 text-dark">{{$latestReview->user->name}}</h3>
-                                          <p class="text-gray small mb-0">{{\Carbon\Carbon::parse($latestReview->created_at)->format('d M Y')}}  </p>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-lg-5 text-lg-right">
-                                {!! $latestReview->stars !!}
-                              </div>
+                    <div class="card-body p-lg-5">
+                      <h2 class="h4 text-dark">Latest review</h2>
+                      <p class="text-small text-muted mb-4">Lorem ipsum dolor sit amet.</p>
+                      <!-- Dashboard Latest review-->
+                      <div class="row">
+                        <div class="col-lg-7 mb-3">
+                          <div class="media">
+                            <i class="fas fa-quote-left text-primary fa-2x"></i>
+                            <div class="media-body ml-3">
+                              <h3 class="h5 mb-0 text-dark">{{$latestReview->user->name }}</h3>
+                              <p class="text-gray small mb-0">{{ \Carbon\Carbon::parse($latestReview->created_at)->format('d M Y')}}  </p>
+                            </div>
                           </div>
-                          <p class="text-small text-muted mb-1">{{$latestReview->reviewBody}}</p>
+                        </div>
+                        <div class="col-lg-5 text-lg-right">
+                          {!! $latestReview->stars !!}
+                        </div>
                       </div>
+                      <p class="text-small text-muted mb-1">{{$latestReview->reviewBody}}</p>
+                    </div>
                   </div>
-              </div>
+                </div>
+              @endisset
+              @isset($topDishReview)
               <div class="col-lg-6 mb-4">
                   <!-- Dashboard Card-->
-                  <div class="card border-0 overflow-hidden p-4 p-lg-0">
+                    <div class="card border-0 overflow-hidden p-4 p-lg-0">
                       <div class="card-body p-lg-5">
-                          <h2 class="h4 text-dark">Top rated dish</h2>
-                          <p class="text-small text-muted mb-4">Lorem ipsum dolor sit amet.</p>
-                          <div class="row align-items-center">
-                              <div class="col-sm-4 mb-4 mb-lg-0">
-                                  <img class="rounded-circle img-fluid" src="{{asset('storage/' . $topDishReview->image)}}" alt="Carbonara">
-                              </div>
-                              <div class="col-sm-8">
-                                  <div class="d-flex flex-wrap flex-column flex-lg-row justify-content-lg-between">
-                                      <h5 class="mb-0 mr-2">
-                                          <a class="reset-anchor text-dark" href="#">{{$topDishReview->title}}</a>
-                                      </h5>
-                                      {!! $topDishReview->rate !!}
-                                  </div>
-                                  <p class="text-small text-muted mb-3">{{$topDishReview->str_limit($topDishReview->content)}}</p>
-                                  <p class="price h6 text-primary mb-0">${{$topDishReview->afterDiscount()}}</p>
-                              </div>
+                        <h2 class="h4 text-dark">Top rated dish</h2>
+                        <p class="text-small text-muted mb-4">Lorem ipsum dolor sit amet.</p>
+                        <div class="row align-items-center">
+                          <div class="col-sm-4 mb-4 mb-lg-0">
+                            <img class="rounded-circle img-fluid" src="{{asset('storage/' . $topDishReview->image)}}" alt="Carbonara">
                           </div>
+                          <div class="col-sm-8">
+                            <div class="d-flex flex-wrap flex-column flex-lg-row justify-content-lg-between">
+                              <h5 class="mb-0 mr-2">
+                                <a class="reset-anchor text-dark" href="#">{{$topDishReview->title}}</a>
+                              </h5>
+                              {!! $topDishReviewRate !!}
+                            </div>
+                            <p class="text-small text-muted mb-3">{{$topDishReview->str_limit($topDishReview->content)}}</p>
+                            <p class="price h6 text-primary mb-0">${{$topDishReview->afterDiscount()}}</p>
+                          </div>
+                        </div>
                       </div>
-                  </div>
+                    </div>
               </div>
+            @endisset
           </div>
       </div>
   </section>

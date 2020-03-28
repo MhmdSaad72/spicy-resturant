@@ -35,32 +35,44 @@ class HomeController extends Controller
      */
     public function index()
     {
+      // number of registed users
       $userCount = User::whereHas('roles', function($query) {
             $query->where('name', 'user');
         })->count();
+
+      // number of confirmed bookings
       $now = \Carbon\Carbon::now();
       $bookingCount = Booking::where('date' , '>=' , $now)->count();
 
+      // average of total review
       $reviewCount = Review::count();
       $stars = Review::sum('stars');
-      $reviewAverage = intval($stars / $reviewCount) ;
-      $reviews =  $this->getStarsAttribute($reviewAverage) ;
+      $reviewAverage = $stars ? intval($stars / $reviewCount) : 0 ;
+      $reviews =  $stars ? $this->getStarsAttribute($reviewAverage) : 'No reviews yet!' ;
+
+      // number of tables
       $disheCount = SlideMenu::count();
       $tables = BasicReservation::first();
-      $tableCount = $tables->tables ;
+      $tableCount = $tables ? $tables->tables : 0 ;
 
+      // number of gallery
       $galleryCount = Album::count();
+
+      // latest user review
       $latestReview =  Review::latest()->first();
+
+      // top dish in review
       $topReview = $this->topDishReview();
       $topDishReview =SlideMenu::where('id' , $topReview['id'])->first();
-      $topDishReview->rate = $this->getStarsAttribute($topReview['average']) ;
+      $topDishReviewRate = $topReview ? $this->getStarsAttribute($topReview['average']) : 'No reviews yet!' ;
 
+      // number of branches
       $brancheCount = BranchBody::count();
 
+      // number of total employees
       $employeeCount = (Chef::count()) + (Baristum::count()) + (Waiter::count());
 
-
-      return view('admin.dashboard' , compact('userCount' , 'bookingCount' , 'reviews' , 'reviewAverage' , 'reviewCount' , 'disheCount' , 'tableCount' , 'galleryCount' , 'latestReview' , 'topDishReview' , 'brancheCount' , 'employeeCount'));
+      return view('admin.dashboard' , compact('userCount' , 'bookingCount' , 'reviews' , 'reviewAverage' , 'reviewCount' , 'disheCount' , 'tableCount' , 'galleryCount' , 'latestReview' , 'topDishReview' , 'brancheCount' , 'employeeCount' , 'topDishReviewRate'));
     }
 
     /*==================================
@@ -114,12 +126,18 @@ class HomeController extends Controller
     {
        $dishes = SlideMenu::select('id')->get();
        $stars = [] ;
-       foreach ($dishes as $dish) {
-         $count = DishReview::where('dish_id' , $dish->id)->count() ;
-         if ($count > 0) {
-           $average =(DishReview::where('dish_id' , $dish->id)->sum('dishStars')) / $count ;
-           $stars[] =['average' =>  $average ,'id' => $dish->id ];
-         }
+       if (count($dishes) > 0) {
+           foreach ($dishes as $dish) {
+             $count = DishReview::where('dish_id' , $dish->id)->count() ;
+             if ($count > 0) {
+                 $average =(DishReview::where('dish_id' , $dish->id)->sum('dishStars')) / $count ;
+                 $stars[] =['average' =>  $average ,'id' => $dish->id ];
+             }else {
+                 $stars[] = 0;
+             }
+           }
+       }else {
+         $stars[] = 0;
        }
        $topReview = max($stars);
        return $topReview ;
