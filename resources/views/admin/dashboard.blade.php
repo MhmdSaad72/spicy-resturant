@@ -127,11 +127,11 @@
                   <!-- Dashboard Card-->
                   <div class="card border-0 overflow-hidden p-4 p-lg-0">
                       <div class="card-body p-lg-5">
-                          <h2 class="h1 mb-0 text-dark">14</h2>
+                          <h2 class="h1 mb-0 text-dark">{{$employeeCount}}</h2>
                           <p class="text-muted mb-0">Hardworking employees</p>
                           <i class="dash-card-icon fas fa-users-cog"></i>
                           <div class="pt-2">
-                              <a class="btn btn-link p-0 btn-arrow" href="#">
+                              <a class="btn btn-link p-0 btn-arrow" href="{{route('chefs.index')}}">
                                   <span>View details</span>
                                   <i class="fas fa-long-arrow-alt-right"></i>
                               </a>

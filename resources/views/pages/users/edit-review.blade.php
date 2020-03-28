@@ -34,8 +34,9 @@
                                 <option value="2" {{ $review->reviewTopic == $review->getReviewTopicAttribute(2) ? 'selected' : ''}}>Dishes quality</option>
                                 <option value="3" {{ $review->reviewTopic == $review->getReviewTopicAttribute(3) ? 'selected' : ''}}>Order responsiveness</option>
                             </select>
-                            <div class="invalid-feedback">Please enter your review title</div>
-                            <div class="valid-feedback">Looks good!</div>
+                            @if ($errors->has('reviewTopic'))
+                              <div class="invalid-feedback d-block">{!! $errors->first('reviewTopic', ':message') !!}</div>
+                            @endif
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="label-required m-0" for="stars">How many stars</label>
@@ -80,10 +81,16 @@
                                     '
                                     >5 stars</option>
                             </select>
+                            @if ($errors->has('stars'))
+                              <div class="invalid-feedback d-block">{!! $errors->first('stars', ':message') !!}</div>
+                            @endif
                         </div>
                         <div class="form-group col-lg-12">
                             <label class="label-required mb-0" for="reviewBody">Your review</label>
                             <textarea class="form-control form-control-lg py-3" id="reviewBody" name="reviewBody" rows="5" placeholder="Leave your review...">{{$review->reviewBody ?? ''}}</textarea>
+                            @if ($errors->has('reviewBody'))
+                              <div class="invalid-feedback d-block">{!! $errors->first('reviewBody', ':message') !!}</div>
+                            @endif
                         </div>
                         <div class="form-group col-lg-12">
                             <button class="btn btn-primary" type="submit">Update your review</button>

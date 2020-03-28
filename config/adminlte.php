@@ -320,9 +320,23 @@ return [
           'route'  => 'album.index',
         ],
         [
-          'text' => 'Master Chefs',
-          'icon'    => 'fas fa-fw fa-user',
-          'route'  => 'chefs.index',
+          'text' => 'Employees',
+          'icon'    => 'fas fa-fw fa-users',
+          'submenu' =>
+          [
+            [
+              'text' => 'Master Chefs' ,
+              'route'  => 'chefs.index',
+            ],
+            [
+              'text' => 'Waiters' ,
+              'route' => 'waiter.index',
+            ],
+            [
+              'text' => 'Barista',
+              'route' => 'barista.index',
+            ]
+          ]
         ],
         [
           'text' => 'Basic Details',

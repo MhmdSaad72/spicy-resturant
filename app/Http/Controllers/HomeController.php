@@ -11,6 +11,9 @@ use App\Album;
 use App\BasicReservation;
 use App\DishReview;
 use App\BranchBody;
+use App\Baristum;
+use App\Waiter;
+use App\Chef;
 use DB;
 
 class HomeController extends Controller
@@ -54,10 +57,10 @@ class HomeController extends Controller
 
       $brancheCount = BranchBody::count();
 
-$this->chartBooking();
+      $employeeCount = (Chef::count()) + (Baristum::count()) + (Waiter::count());
 
 
-      return view('admin.dashboard' , compact('userCount' , 'bookingCount' , 'reviews' , 'reviewAverage' , 'reviewCount' , 'disheCount' , 'tableCount' , 'galleryCount' , 'latestReview' , 'topDishReview' , 'brancheCount'));
+      return view('admin.dashboard' , compact('userCount' , 'bookingCount' , 'reviews' , 'reviewAverage' , 'reviewCount' , 'disheCount' , 'tableCount' , 'galleryCount' , 'latestReview' , 'topDishReview' , 'brancheCount' , 'employeeCount'));
     }
 
     /*==================================

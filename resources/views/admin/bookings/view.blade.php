@@ -10,7 +10,7 @@
   @if ($basicReserve)
   <div class="container">
       <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-9">
               <div class="card">
                   <div class="card-body">
                       <a href="{{ url('/admin/basic-reservation/' . $basicReserve->id . '/edit') }}" title="Edit Basic Reservation"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

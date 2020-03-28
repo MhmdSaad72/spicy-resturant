@@ -116,3 +116,6 @@ api routes for dashboard charts
 ================================*/
 Route::get('/chart/booking' , 'HomeController@chartBooking')->name('booking.chart');
 Route::get('/chart/new-vistors' , 'HomeController@chartNewVistors')->name('newVistors');
+
+Route::resource('admin/waiter', 'Admin\\WaiterController');
+Route::resource('admin/barista', 'Admin\\BaristaController');
