@@ -4408,3 +4408,16 @@ DASHBOARD
     opacity: 1;
     margin-left: 0;
 }
+.admin-page-holder {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-copyrights-text {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    width: 100%;
+}

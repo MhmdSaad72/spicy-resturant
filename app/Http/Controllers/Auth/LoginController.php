@@ -76,19 +76,27 @@ class LoginController extends Controller
     /*======================================
          login function for users
     ========================================*/
-    public function login(Request $request)
-    {
-      $validator = $this->validate($request , [
-                      'email' => 'required',
-                      'password' => 'required',
-                    ]);
+    // public function login(Request $request)
+    // {
+    //   $validator = $this->validate($request , [
+    //                   'email' => 'required',
+    //                   'password' => 'required',
+    //                 ]);
+    //
+    //   if (Auth::attempt($validator) && Auth::user()->hasRole('user')) {
+    //      return redirect()->route('personal.information' , ['id' => Auth::user()->id]);
+    //   }else {
+    //     Auth::logout();
+    //     return redirect()->back()->with('emailError' , 'These credentials do not match our records.')->withInput();
+    //   }
+    // }
 
-      if (Auth::attempt($validator) && Auth::user()->hasRole('user')) {
-         return redirect()->route('personal.information' , ['id' => Auth::user()->id]);
-      }else {
-        Auth::logout();
-        return redirect()->back()->with('emailError' , 'These credentials do not match our records.')->withInput();
-      }
+    /*=======================================
+         Display login page for admin
+    =========================================*/
+    public function loginView()
+    {
+      return view('admin.login');
     }
 
     protected function loggedOut(Request $request)
