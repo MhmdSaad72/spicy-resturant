@@ -41,6 +41,21 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
+  <style media="screen">
+      .admin-page-holder {
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .admin-copyrights-text {
+          position: absolute;
+          bottom: 1rem;
+          left: 0;
+          width: 100%;
+      }
+  </style>
   <body>
     <div class="m-pagetransition">
       <div class="page-content">
@@ -63,7 +78,7 @@
                     @csrf
                     <div class="form-group">
                       <label class="label-required" for="email">Emaill address</label>
-                      <input class="form-control form-control-lg" id="email" type="email" name="email" placeholder="Email address e.g. Jason@mail.com" value="{{ old('email') }}">
+                      <input class="form-control form-control-lg bg-dark" id="email" type="email" name="email" placeholder="Email address e.g. Jason@mail.com" value="{{ old('email') }}">
                       @error('email')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
                       @enderror
@@ -73,7 +88,7 @@
                     </div>
                     <div class="form-group">
                       <label class="label-required" for="password">Password</label>
-                      <input class="form-control form-control-lg" id="password" type="password" name="password" placeholder="Enter your password" >
+                      <input class="form-control form-control-lg bg-dark" id="password" type="password" name="password" placeholder="Enter your password" >
                       @error('password')
                         <div class="invalid-feedback d-block">{{ $message }}</div>
                       @enderror
@@ -98,72 +113,6 @@
             </div>
           </div>
           <p class="small text-muted mb-0 admin-copyrights-text text-center">&copy; 2020 All rights reserved. Italiano.com</p>
-        </div>
-      </div>
-      <div class="style-switcher" id="style-switch">
-        <button type="button" id="style-switch-button"><i class="fa fa-palette"></i></button>
-        <h5 class="mb-1">Customize your theme</h5>
-        <p class="small text-muted font-weight-light mb-4">Stylesheet switching is done via JavaScript and can cause a blink while page loads. This will not happen in your production code.</p>
-        <div class="mb-2">
-          <h6 class="small">Pick your font style</h6>
-          <div class="toggle-switcher mb-4">
-            <input type="checkbox" name="demoFont" id="demoFont">
-            <label class="toggle-switcher-label" for="demoFont">
-              <div class="span span-left">Aclonica</div>
-              <div class="span span-right">Surfer</div>
-            </label>
-          </div>
-        </div>
-        <div class="mb-2">
-          <h6 class="small">Choose rounded or sharp corners</h6>
-          <div class="toggle-switcher mb-4">
-            <input type="checkbox" name="demoRounded" id="demoRounded">
-            <label class="toggle-switcher-label" for="demoRounded">
-              <div class="span span-left">Sharp</div>
-              <div class="span span-right">Rounded</div>
-            </label>
-          </div>
-        </div>
-        <div class="mb-4">
-          <h6 class="small">Choose between light &amp; Dark</h6>
-          <div class="toggle-switcher mb-4">
-            <input type="checkbox" name="demoTheme" id="demoTheme">
-            <label class="toggle-switcher-label" for="demoTheme">
-              <div class="span span-left">Light</div>
-              <div class="span span-right">Dark</div>
-            </label>
-          </div>
-        </div>
-        <div class="mb-4">
-          <h6 class="small">Pick your desired color</h6>
-          <div class="theme-color-pallete">
-            <div class="row px-3">
-              <div class="col-4 p-1">
-                <label class="theme-color-label red" for="themeRed">Red</label>
-                <input type="radio" name="themecolor" id="themeRed" data-theme-path="css/style.red.css" data-theme-color="red">
-              </div>
-              <div class="col-4 p-1">
-                <label class="theme-color-label blue" for="themeBlue">Blue</label>
-                <input type="radio" name="themecolor" id="themeBlue" data-theme-path="css/style.blue.css" data-theme-color="blue">
-              </div>
-              <div class="col-4 p-1">
-                <label class="theme-color-label pink" for="themePink">Pink</label>
-                <input type="radio" name="themecolor" id="themePink" data-theme-path="css/style.pink.css" data-theme-color="pink">
-              </div>
-              <div class="col-4 p-1">
-                <label class="theme-color-label green" for="themeGreen">Green</label>
-                <input type="radio" name="themecolor" id="themeGreen" data-theme-path="css/style.green.css" data-theme-color="green">
-              </div>
-              <div class="col-4 p-1">
-                <label class="theme-color-label sea" for="themeSea">Sea</label>
-                <input type="radio" name="themecolor" id="themeSea" data-theme-path="css/style.sea.css" data-theme-color="sea">
-              </div>
-              <div class="col-4 p-1">
-                <label class="theme-color-label yellow" for="themeYellow">Yellow</label>
-                <input type="radio" name="themecolor" id="themeYellow" data-theme-path="css/style.default.css" data-theme-color="default">
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
