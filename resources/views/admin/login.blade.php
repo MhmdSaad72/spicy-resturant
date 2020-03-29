@@ -6,7 +6,7 @@
     <!-- IE compatibility meta -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Page title -->
-    <title>Italiano Restaurant | Laravel Restaurant Template </title>
+    <title>Italiano Restaurant | Laravel Restaurant Template</title>
     <!-- Description meta -->
     <meta name="description" content="">
     <!-- Author meta -->
@@ -25,29 +25,26 @@
     <link rel="stylesheet" href="{{asset('vendor/owl.carousel2/assets/owl.theme.default.min.css')}}">
     <!-- Lightbox2 -->
     <link rel="stylesheet" href="{{asset('vendor/lightbox2/css/lightbox.min.css')}}">
-    <!-- Chart.js -->
-    <link rel="stylesheet" href="{{asset('vendor/chart.js/Chart.min.css')}}">
     <!-- Bootstrap select -->
     <link rel="stylesheet" href="{{asset('vendor/bootstrap-select/css/bootstrap-select.min.css')}}">
     <!-- Datepicker -->
     <link rel="stylesheet" href="{{asset('vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}">
     <!-- Timepicker -->
-    <link rel="stylesheet" href="{{asset('3rd-parties/timepicker/src/theme/jquery.timeselector.css')}}">
+    <link rel="stylesheet" href="{{asset('vendor/timepicker/src/theme/jquery.timeselector.css')}}">
     <!-- Page transition-->
-    <link rel="stylesheet" href="{{asset('3rd-parties/page-transition/m-pagetransition-styles.css')}}">
+    <link rel="stylesheet" href="{{asset('vendor/page-transition/m-pagetransition-styles.css')}}">
     <!-- theme stylesheet -->
     <link rel="stylesheet" href="{{asset('css/style.default.css')}}" id="theme-stylesheet">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{asset('img/favicon.dee60710.png')}}" id="favicon">
+    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
     <!-- Tweaks for older IEs --><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-
   </head>
   <body>
     <div class="m-pagetransition">
       <div class="page-content">
-        <div class="admin-page-holder bg-light py-5 py-lg-0">
+        <div class="admin-page-holder py-5 py-lg-0">
           <div class="row w-100">
             <div class="col-12">
               <!-- Section heading-->
@@ -61,41 +58,52 @@
             </div>
             <div class="col-lg-5 mx-auto">
               <div class="card border-0 p-4 p-lg-0 mb-5">
-                <div class="card-body p-lg-5 position-relative">
-                  <form class="login-form needs-validation" action="index.html" novalidate>
+                <div class="card-body bg-dark p-lg-5 position-relative">
+                  <form class="login-form needs-validation" action="{{route('admin.login')}}" method="POST">
+                    @csrf
                     <div class="form-group">
                       <label class="label-required" for="email">Emaill address</label>
-                      <input class="form-control form-control-lg" id="email" type="email" name="email" placeholder="Email address e.g. Jason@mail.com" required>
-                      <div class="invalid-feedback">Please enter your email address</div>
-                      <div class="valid-feedback">Looks good</div>
+                      <input class="form-control form-control-lg" id="email" type="email" name="email" placeholder="Email address e.g. Jason@mail.com" value="{{ old('email') }}">
+                      @error('email')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                      @enderror
+                      @if (session('emailError'))
+                        <div class="invalid-feedback kh d-block">{{ session('emailError') }}</div>
+                      @endif
                     </div>
                     <div class="form-group">
                       <label class="label-required" for="password">Password</label>
-                      <input class="form-control form-control-lg" id="password" type="password" name="password" placeholder="Enter your password" required>
-                      <div class="invalid-feedback">This password doesn't associate with this email address</div>
-                      <div class="valid-feedback">Looks good</div>
+                      <input class="form-control form-control-lg" id="password" type="password" name="password" placeholder="Enter your password" >
+                      @error('password')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                      @enderror
                     </div>
                     <div class="form-group pt-2">
                       <button class="btn btn-primary btn-block" type="submit"> <i class="fas fa-door-open mr-2"></i>Login now</button>
                     </div>
-                    <div class="form-group mb-0 text-gray d-flex align-items-center justify-content-between flex-wrap">
+                    <div class="form-group mb-0 text-muted d-flex align-items-center justify-content-between flex-wrap">
                       <div class="custom-control custom-checkbox mr-2">
                         <input class="custom-control-input" id="rememberMe" type="checkbox">
-                        <label class="custom-control-label" for="rememberMe">Remember me</label>
-                      </div><a class="transition-link reset-anchor font-weight-normal small" href="register.html">Forget your password?</a>
+                        <label class="custom-control-label" for="rememberMe" {{ old('remember') ? 'checked' : '' }}>Remember me</label>
+                      </div>
+                      @if (Route::has('password.request'))
+                          <a class="btn btn-link p-0 btn-sm mt-3" href="{{ route('password.request') }}">
+                              {{ __('Forgot Your Password?') }}
+                          </a>
+                      @endif
                     </div>
                   </form>
                 </div>
               </div>
             </div>
           </div>
-          <p class="small text-gray mb-0 admin-copyrights-text text-center">&copy; 2020 All rights reserved. Italiano.com</p>
+          <p class="small text-muted mb-0 admin-copyrights-text text-center">&copy; 2020 All rights reserved. Italiano.com</p>
         </div>
       </div>
       <div class="style-switcher" id="style-switch">
         <button type="button" id="style-switch-button"><i class="fa fa-palette"></i></button>
         <h5 class="mb-1">Customize your theme</h5>
-        <p class="small text-gray font-weight-light mb-4">Stylesheet switching is done via JavaScript and can cause a blink while page loads. This will not happen in your production code.</p>
+        <p class="small text-muted font-weight-light mb-4">Stylesheet switching is done via JavaScript and can cause a blink while page loads. This will not happen in your production code.</p>
         <div class="mb-2">
           <h6 class="small">Pick your font style</h6>
           <div class="toggle-switcher mb-4">
@@ -160,31 +168,24 @@
       </div>
     </div>
   </body>
-    <!-- Jquery Latest -->
-    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-    <!-- Bootstrap 4 Latest-->
-    <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <!-- Owl Carousel 2-->
-    <script src="{{asset('vendor/owl.carousel2/owl.carousel.min.js')}}"></script>
-    <!-- Lightbox 2 -->
-    <script src="{{asset('vendor/lightbox2/js/lightbox.min.js')}}"></script>
-    <!-- Page Transition-->
-    <script src="{{asset('3rd-parties/page-transition/m-pagetransition.0d6313a6.js')}}"></script>
-    <!-- Bootstrap Date Picker-->
-    <script src="{{asset('vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <!-- Bootstrap Select-->
-    <script src="{{asset('vendor/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
-    <!-- Jquery Time Selector-->
-    <script src="{{asset('3rd-parties/timepicker/src/jquery.timeselector.3a3717e9.js')}}"></script>
-    <!-- Bootstrap 4 Validation-->
-    <script src="{{asset('js/validation/validation.48bb409d.js')}}"></script>
-    <!-- Bootstrap Select Validation-->
-    <script src="{{asset('js/validation/bs-select-validation.69d66705.js')}}"></script>
-    <!-- Custom JS File-->
-    <script src="{{asset('js/front.d8d264f3.js')}}"></script>
-    <!-- Style Switcher-->
-    <script src="{{asset('vendor/jquery.cookie/jquery.cookie.js')}}"> </script>
-    <script src="{{asset('js/demo.3cae39f8.js')}}"> </script>
-    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!-- Jquery Latest -->
+  <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+  <!-- Bootstrap 4 Latest-->
+  <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <!-- Owl Carousel 2-->
+  <script src="{{asset('vendor/owl.carousel2/owl.carousel.min.js')}}"></script>
+  <!-- Lightbox 2 -->
+  <script src="{{asset('vendor/lightbox2/js/lightbox.min.js')}}"></script>
+  <!-- Page Transition-->
+  <script src="{{asset('vendor/page-transition/m-pagetransition.js')}}"></script>
+  <!-- Bootstrap Date Picker-->
+  <script src="{{asset('vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+  <!-- Bootstrap Select-->
+  <script src="{{asset('vendor/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
+  <!-- Jquery Time Selector-->
+  <script src="{{asset('vendor/timepicker/src/jquery.timeselector.js')}}"></script>
+  <!-- Custom JS File-->
+  <script src="{{asset('js/front.js')}}"></script>
+  <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </html>

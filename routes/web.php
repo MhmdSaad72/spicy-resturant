@@ -110,7 +110,8 @@ all authentication routes
 Auth::routes(['verify' => true]);
 Route::get('/login', 'Auth\\LoginController@index')->name('login');
 Route::get('/register', 'Auth\\RegisterController@index')->name('register');
-Route::get('admin/login' , 'Auth\\LoginController@loginView' )->name('admin.login');
+Route::get('admin/login' , 'Auth\\LoginController@loginView' )->name('login.view');
+Route::post('admin/login' , 'Auth\\LoginController@adminLogin' )->name('admin.login');
 
 /*==============================
 api routes for dashboard charts

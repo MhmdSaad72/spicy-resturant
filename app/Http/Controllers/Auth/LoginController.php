@@ -76,20 +76,20 @@ class LoginController extends Controller
     /*======================================
          login function for users
     ========================================*/
-    // public function login(Request $request)
-    // {
-    //   $validator = $this->validate($request , [
-    //                   'email' => 'required',
-    //                   'password' => 'required',
-    //                 ]);
-    //
-    //   if (Auth::attempt($validator) && Auth::user()->hasRole('user')) {
-    //      return redirect()->route('personal.information' , ['id' => Auth::user()->id]);
-    //   }else {
-    //     Auth::logout();
-    //     return redirect()->back()->with('emailError' , 'These credentials do not match our records.')->withInput();
-    //   }
-    // }
+    public function login(Request $request)
+    {
+      $validator = $this->validate($request , [
+                      'email' => 'required',
+                      'password' => 'required',
+                    ]);
+
+      if (Auth::attempt($validator) && Auth::user()->hasRole('user')) {
+         return redirect()->route('personal.information' , ['id' => Auth::user()->id]);
+      }else {
+        Auth::logout();
+        return redirect()->back()->with('emailError' , 'These credentials do not match our records.')->withInput();
+      }
+    }
 
     /*=======================================
          Display login page for admin
@@ -97,6 +97,24 @@ class LoginController extends Controller
     public function loginView()
     {
       return view('admin.login');
+    }
+
+    /*======================================
+         login function for admin
+    ========================================*/
+    public function adminLogin(Request $request)
+    {
+      $validator = $this->validate($request , [
+                      'email' => 'required',
+                      'password' => 'required',
+                    ]);
+
+      if (Auth::attempt($validator) && Auth::user()->hasRole('admin')) {
+         return redirect()->route('dashboard');
+      }else {
+        Auth::logout();
+        return redirect()->back()->with('emailError' , 'These credentials do not match our records.')->withInput();
+      }
     }
 
     protected function loggedOut(Request $request)
