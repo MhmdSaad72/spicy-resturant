@@ -8,7 +8,6 @@ Route::get('/', 'Pages\\HomeController@index')->name('home.index');
   all routes for admin panel
 ============================*/
 Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
-  Route::get('/login' , 'Auth\\LoginController@loginView' )->name('admin.login');
   Route::get('/dashboard' , 'HomeController@index')->name('dashboard');
   Route::get('/service', 'Admin\\ServiceController@index')->name('service.index');
   Route::get('/service/{id}/edit', 'Admin\\ServiceController@edit')->name('service.edit');
@@ -111,6 +110,7 @@ all authentication routes
 Auth::routes(['verify' => true]);
 Route::get('/login', 'Auth\\LoginController@index')->name('login');
 Route::get('/register', 'Auth\\RegisterController@index')->name('register');
+Route::get('admin/login' , 'Auth\\LoginController@loginView' )->name('admin.login');
 
 /*==============================
 api routes for dashboard charts
