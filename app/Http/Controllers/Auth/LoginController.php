@@ -44,7 +44,9 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
+    /*======================================
+     Display redirect page after user login
+    ========================================*/
     protected function redirectTo()
     {
       if (!Auth::guest() && Auth::user()->hasRole('user')) {
@@ -53,7 +55,9 @@ class LoginController extends Controller
         return route('dashboard');
       }
     }
-
+    /*======================================
+         Display login page for users
+    ========================================*/
     public function index()
     {
       $basicDetail = BasicDetail::first() ?? '' ;
@@ -67,6 +71,24 @@ class LoginController extends Controller
         $bookings = 0 ;
       }
       return view('auth.login' , compact('basicDetail' , 'bookings' , 'navbar' , 'newDishes' , 'mainDish'));
+    }
+
+    /*======================================
+         login function for users
+    ========================================*/
+    public function login(Request $request)
+    {
+      $validator = $this->validate($request , [
+                      'email' => 'required',
+                      'password' => 'required',
+                    ]);
+
+      if (Auth::attempt($validator) && Auth::user()->hasRole('user')) {
+         return redirect()->route('personal.information' , ['id' => Auth::user()->id]);
+      }else {
+        Auth::logout();
+        return redirect()->back()->with('emailError' , 'These credentials do not match our records.')->withInput();
+      }
     }
 
     protected function loggedOut(Request $request)
