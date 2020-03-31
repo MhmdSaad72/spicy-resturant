@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Federo', sans-serif;
+    background: #212529;
 }
 
 .text-small {
@@ -16,7 +17,7 @@ body {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: 700;
-    color: #343a40;
+    color: #212529;
 }
 
 body::-webkit-scrollbar {
@@ -39,7 +40,7 @@ body::-webkit-scrollbar-thumb {
 
 .wrapper {
     padding: 0.7rem;
-    background: #343a40;
+    background: #212529;
 }
 
 .content-wrapper {
@@ -57,7 +58,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 [class*=sidebar-dark-] {
-    background: #343a40;
+    background: #212529;
     box-shadow: none !important;
 }
 
@@ -72,20 +73,30 @@ body::-webkit-scrollbar-thumb {
 }
 
 .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
-    background: #24292f;
+    background: #1db689;
+}
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active i, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active i {
+    color: #fff;
 }
 
 [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(45, 51, 56);
     color: #fff;
 }
 [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(45, 51, 56);
 }
+/* [class*=sidebar-dark-] .nav-sidebar>.nav-item:hover>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link:focus {
+    background: rgb(45, 51, 56);
+} */
 
 .card {
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.07);
     border-radius: 0.5rem;
+}
+
+.card table {
+    margin-bottom: 0;
 }
 
 .navbar-nav .nav-link {
@@ -109,6 +120,16 @@ body::-webkit-scrollbar-thumb {
     font-size: 2.5rem;
 }
 
+.nav.nav-treeview {
+    background: #1c1f22 !important;
+    border-radius: 0.25rem;
+    margin-bottom: .2rem;
+}
+
+.nav-treeview .nav-link i {
+    opacity: 0;
+}
+
 [class*=sidebar-dark-] .sidebar a {
     font-size: 0.85rem;
     font-weight: 400;
@@ -117,7 +138,9 @@ body::-webkit-scrollbar-thumb {
 
 .main-sidebar .nav-link i {
     color: #bdbdbd;
-    margin-right: 0.5rem;
+}
+.main-sidebar .nav-link p {
+    margin-left: 0.5rem;
 }
 
 .table td, .table th {
@@ -160,11 +183,7 @@ select.form-control {
 }
 
 .brand-link .brand-image {
-    margin-left: 0;
-    max-width: 100%;
     float: none;
-    opacity: 1 !important;
-    box-shadow: none !important;
 }
 
 .img-circle {
@@ -176,9 +195,9 @@ select.form-control {
     border-color:#1db689;
     box-shadow: 0 2px 2px rgba(29, 182, 137, 0.28);
 }
-.btn-primary:hover, .btn-primary:focus {
-    background: #19a77d;
-    border-color: #19a77d;
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background: #19a77d !important;
+    border-color: #19a77d !important;
 }
 .btn-secondary {
     box-shadow: 0 2px 2px rgba(108, 117, 125, 0.28);

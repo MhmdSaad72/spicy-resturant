@@ -6,7 +6,7 @@
     <h1 class="mb-2">Restaurant capacity</h1>
     <div class="row">
         <div class="col-lg-7">
-            <p class="text-gray text-small font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p class="text-gray text-small font-weight-light">Restaurant capacity shows how many tables and how many chairs exist in the restaurant, this information is important for booking actions.</p>
         </div>
     </div>
 @stop

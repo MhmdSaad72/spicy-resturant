@@ -6,7 +6,7 @@
     <h1 class="mb-2">Edit restaurant capacity</h1>
     <div class="row">
         <div class="col-lg-7">
-            <p class="text-gray text-small font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p class="text-gray text-small font-weight-light">Restaurant capacity shows how many tables and how many chairs exist in the restaurant, this information is important for booking actions.</p>
         </div>
     </div>
 @stop
@@ -17,10 +17,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ url('/admin/basic-reservation') }}" title="Back"><button class="btn btn-dark btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
-
                         <form method="POST" action="{{ url('/admin/basic-reservation/' . $basicReserve->id . '/edit') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             {{ csrf_field() }}
@@ -36,8 +32,9 @@
                                 {!! $errors->first('chairs', '<p class="help-block text-danger">:message</p>') !!}
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-0">
                                 <input class="btn btn-primary" type="submit" value="{{'Update'}}">
+                                <a href="{{ url('/admin/basic-reservation') }}" title="Back"><button class="btn btn-secondary">Back</button></a>
                             </div>
 
                         </form>
