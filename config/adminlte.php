@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b> Italiano</b>',
+    'logo' => '<b></b>',
     'logo_img' => 'img/logo-footer-default.svg',
     'logo_img_class' => 'brand-image-xl',
     'logo_img_xl' => null,
