@@ -1,0 +1,81 @@
+/* body {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+}
+
+.content-wrapper {
+    padding: 3rem;
+    background: #f8f9fa;
+}
+
+.content-header {
+    padding: 1rem;
+}
+
+.content-wrapper .card {
+    box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+}
+
+@media (min-width: 991px) {
+    .content-wrapper .card .card-body {
+        padding: 2.5rem;
+    }
+}
+
+.brand-link .brand-image {
+    float: none;
+    width: 50px;
+    max-width: 50px;
+    height: 50px;
+    max-height: 50px;
+}
+
+.btn-primary {
+    background: #FD8A06;
+    border-color: #FD8A06;
+}
+
+.btn {
+    font-family: "Poppins", sans-serif;
+}
+
+.btn-sm {
+    font-size: 0.8rem;
+}
+
+.btn:not(.btn-sm):not(.btn-lg) {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background: #db7602;
+    border-color: #db7602;
+}
+
+table th {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+table td {
+    color: #666;
+}
+
+table th, table td {
+    border-top: 1px solid #f5f5f5 !important;
+}
+
+.form-control {
+    font-weight: 300;
+    border: 1px solid #e4e4e4;
+    border-radius: 0;
+} */

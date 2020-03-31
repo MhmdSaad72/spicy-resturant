@@ -41,21 +41,6 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
-  <style media="screen">
-      .admin-page-holder {
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-      }
-
-      .admin-copyrights-text {
-          position: absolute;
-          bottom: 1rem;
-          left: 0;
-          width: 100%;
-      }
-  </style>
   <body>
     <div class="m-pagetransition">
       <div class="page-content">
