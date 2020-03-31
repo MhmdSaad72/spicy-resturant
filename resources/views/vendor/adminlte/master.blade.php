@@ -34,11 +34,15 @@
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 
+<script src="{{ asset('js/bootstrap-filestyle.min.js') }}"></script>
+<script src="{{ asset('js/admin.js') }}"></script>
+
 @include('adminlte::plugins', ['type' => 'js'])
 
 @yield('adminlte_js')
 @else
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/admin.js') }}"></script>
 @endif
 
 </body>
