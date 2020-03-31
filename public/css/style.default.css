@@ -338,6 +338,10 @@ body {
     color: #aaa !important
 }
 
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
 .bg-cover {
     background-size: cover !important
 }
