@@ -152,7 +152,7 @@
             <div class="container">
             @endif
 
-            <div class="content-header">
+            <div class="content-header px-3">
                 <div class="{{config('adminlte.classes_content_header', 'container-fluid')}}">
                     @yield('content_header')
                 </div>

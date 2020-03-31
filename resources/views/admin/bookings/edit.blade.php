@@ -3,16 +3,21 @@
 @section('title', 'Edit Basic Details')
 
 @section('content_header')
-    <h1>Edit Basic Details</h1>
+    <h1 class="mb-2">Edit restaurant capacity</h1>
+    <div class="row">
+        <div class="col-lg-7">
+            <p class="text-gray text-small font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
 @stop
 
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ url('/admin/basic-reservation') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/basic-reservation') }}" title="Back"><button class="btn btn-dark btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
