@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\BasicDetail;
 use App\NavBar;
+use App\SlideMenu;
+use App\MainDish;
 
 class RegisterController extends Controller
 {
@@ -57,8 +59,10 @@ class RegisterController extends Controller
     {
       $basicDetail = BasicDetail::first() ?? '' ;
       $navbar = NavBar::first();
+      $mainDish = MainDish::first();
+      $newDishes = SlideMenu::latest()->take(3)->get();
       $bookings = 0 ;
-      return view('auth.register' , compact('basicDetail' , 'bookings' , 'navbar'));
+      return view('auth.register' , compact('basicDetail' , 'bookings' , 'navbar' , 'newDishes' , 'mainDish'));
     }
 
     /**

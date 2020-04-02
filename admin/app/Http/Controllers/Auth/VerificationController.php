@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use App\BasicDetail;
+use App\SlideMenu;
+use App\MainDish;
 use App\NavBar;
 
 class VerificationController extends Controller
@@ -46,7 +48,9 @@ class VerificationController extends Controller
     {
       $basicDetail = BasicDetail::first();
       $navbar = NavBar::first();
+      $mainDish = MainDish::first();
+      $newDishes = SlideMenu::latest()->take(3)->get();
 
-      return view('auth.verify' , compact('basicDetail' , 'navbar'));
+      return view('auth.verify' , compact('basicDetail' , 'navbar' , 'mainDish' , 'newDishes'));
     }
 }

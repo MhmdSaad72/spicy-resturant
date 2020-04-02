@@ -7,23 +7,18 @@
 @stop
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="{{ url('/admin/statistic') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST" action="{{ url('/admin/statistic') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
 
-                        <form method="POST" action="{{ url('/admin/statistic') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                            {{ csrf_field() }}
+                        {{ csrf_field() }}
 
-                            @include ('admin.statistic.form', ['formMode' => 'create'])
+                        @include ('admin.statistic.form', ['formMode' => 'create'])
 
-                        </form>
+                    </form>
 
-                    </div>
                 </div>
             </div>
         </div>

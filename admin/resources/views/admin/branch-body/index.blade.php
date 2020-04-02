@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Branch Body')
+@section('title', 'Branches')
 
 @section('content_header')
-    <h1>Branch Body</h1>
+    <h1>Branches</h1>
 @stop
 
 @section('content')
@@ -12,7 +12,7 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ url('/admin/branch-body/create') }}" class="btn btn-success btn-sm" title="Add New BranchBody">
+                        <a href="{{ url('/admin/branch-body/create') }}" class="btn btn-success btn-sm" title="Add New Branch">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
@@ -33,7 +33,6 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
                                         <th>Place</th>
                                         <th>Address</th>
                                         <th>Phone</th>
@@ -43,7 +42,6 @@
                                 <tbody>
                                 @foreach($branchbody as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->place }}</td><td>{{ $item->address }}</td><td>{{ $item->phone }}</td>
                                         <td>
                                             <a href="{{ url('/admin/branch-body/' . $item->id) }}" title="View BranchBody"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>

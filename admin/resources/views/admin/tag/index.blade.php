@@ -42,14 +42,15 @@
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/tag/' . $item->id) }}" title="View Tag"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/tag/' . $item->id . '/edit') }}" title="Edit Tag"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-
-                                            <form method="POST" action="{{ url('/admin/tag' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                            @if ($item->slide_menus->count() == 0)
+                                              <form method="POST" action="{{ url('/admin/tag' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-danger btn-sm" title="Delete Tag" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                            </form>
+                                              </form>
+                                            @endif
+
                                         </td>
                                     </tr>
                                 @endforeach

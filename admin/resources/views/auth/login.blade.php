@@ -25,6 +25,9 @@
               @error('email')
                 <div class="invalid-feedback d-block">{{ $message }}</div>
               @enderror
+              @if (session('emailError'))
+                <div class="invalid-feedback kh d-block">{{ session('emailError') }}</div>
+              @endif
             </div>
             <div class="form-group">
               <label class="label-required" for="password">Password</label>

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\BasicDetail;
 use App\NavBar;
+use App\SlideMenu;
+use App\MainDish;
 use Auth;
 use App\User;
 
@@ -42,7 +44,9 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
+    /*======================================
+     Display redirect page after user login
+    ========================================*/
     protected function redirectTo()
     {
       if (!Auth::guest() && Auth::user()->hasRole('user')) {
@@ -51,18 +55,66 @@ class LoginController extends Controller
         return route('dashboard');
       }
     }
-
+    /*======================================
+         Display login page for users
+    ========================================*/
     public function index()
     {
       $basicDetail = BasicDetail::first() ?? '' ;
       $navbar = NavBar::first();
+      $mainDish = MainDish::first();
+      $newDishes = SlideMenu::latest()->take(3)->get();
       if (Auth::check()) {
         $user = User::findOrFail(Auth::user()->id);
         $bookings = $user->bookings->count();
       }else {
         $bookings = 0 ;
       }
-      return view('auth.login' , compact('basicDetail' , 'bookings' , 'navbar'));
+      return view('auth.login' , compact('basicDetail' , 'bookings' , 'navbar' , 'newDishes' , 'mainDish'));
+    }
+
+    /*======================================
+         login function for users
+    ========================================*/
+    public function login(Request $request)
+    {
+      $validator = $this->validate($request , [
+                      'email' => 'required',
+                      'password' => 'required',
+                    ]);
+
+      if (Auth::attempt($validator) && Auth::user()->hasRole('user')) {
+         return redirect()->route('personal.information' , ['id' => Auth::user()->id]);
+      }else {
+        Auth::logout();
+        return redirect()->back()->with('emailError' , 'These credentials do not match our records.')->withInput();
+      }
+    }
+
+    /*=======================================
+         Display login page for admin
+    =========================================*/
+    public function loginView()
+    {
+      return view('admin.login');
+    }
+
+    /*======================================
+         login function for admin
+    ========================================*/
+    public function adminLogin(Request $request)
+    {
+      $validator = $this->validate($request , [
+                      'email' => 'required',
+                      'password' => 'required',
+                    ]);
+
+      if (Auth::attempt($validator) && Auth::user()->hasRole('admin')) {
+         return redirect()->route('dashboard');
+      }else {
+        Auth::logout();
+        return redirect()->back()->with('emailError' , 'These credentials do not match our records.')->withInput();
+      }
     }
 
     protected function loggedOut(Request $request)

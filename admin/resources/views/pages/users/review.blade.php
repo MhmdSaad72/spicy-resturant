@@ -10,14 +10,11 @@
         <header class="mb-5 jumbotron">
             <p class="text-uppercase text-primary font-weight-bold mb-0 small">Reviews</p>
             <h1 class="h2 mb-0">Review your visit</h1>
-            <p class="small text-gray mb-0">You have not submitted any reviews yet!</p>
-            {!! isset($review->stars) ? $review->stars : '<ul class="list-inline mb-0">
-                <li class="list-inline-item small m-0"><i class="fas fa-star text-lighter small"></i></li>
-                <li class="list-inline-item small m-0"><i class="fas fa-star text-lighter small"></i></li>
-                <li class="list-inline-item small m-0"><i class="fas fa-star text-lighter small"></i></li>
-                <li class="list-inline-item small m-0"><i class="fas fa-star text-lighter small"></i></li>
-                <li class="list-inline-item small m-0"><i class="fas fa-star text-lighter small"></i></li>
-            </ul>'!!}
+            @isset($review->stars)
+              {!! $review->stars !!}
+            @else
+              <p class="small text-gray mb-0">You have not submitted any reviews yet!</p>
+            @endisset
 
         </header>
         <div class="row">
@@ -36,24 +33,25 @@
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label class="label-required m-0" for="reviewTopic">Review topic</label>
-                                <select class="selectpicker" id="reviewTopic" name="reviewTopic" data-style="bs-select-form-control" data-title="Choose your review topic" required>
-                                    <option value="1">Atmosphere</option>
-                                    <option value="2">Dishes quality</option>
-                                    <option value="3">Order responsiveness</option>
+                                <select class="selectpicker" id="reviewTopic" name="reviewTopic" data-style="bs-select-form-control" data-title="Choose your review topic" >
+                                    <option value="1" {{ 1 == old('reviewTopic') ? 'selected' : ''}}>Atmosphere</option>
+                                    <option value="2" {{ 2 == old('reviewTopic') ? 'selected' : ''}}>Dishes quality</option>
+                                    <option value="3" {{ 3 == old('reviewTopic') ? 'selected' : ''}}>Order responsiveness</option>
                                 </select>
-                                <div class="invalid-feedback">Please enter your review title</div>
-                                <div class="valid-feedback">Looks good!</div>
+                                @if ($errors->has('reviewTopic'))
+                                  <div class="invalid-feedback d-block">{!! $errors->first('reviewTopic', ':message') !!}</div>
+                                @endif
                             </div>
                             <div class="form-group col-lg-6">
                                 <label class="label-required m-0" for="stars">How many stars</label>
-                                <select class="selectpicker" id="stars" name="stars" data-style="bs-select-form-control" data-title="How many stars" required>
+                                <select class="selectpicker" id="stars" name="stars" data-style="bs-select-form-control" data-title="How many stars" >
                                     <option value="1" data-content='
                                         <i class="fas fa-star text-primary text-xs"><i>
                                         <i class="fas fa-star text-muted text-xs"><i>
                                         <i class="fas fa-star text-muted text-xs"><i>
                                         <i class="fas fa-star text-muted text-xs"><i>
                                         <i class="fas fa-star text-muted text-xs"><i>
-                                        '>hehehe</option>
+                                        '{{ 1 == old('stars') ? 'selected' : ''}}>1 star</option>
                                     <option value="2" data-content='
                                             <i class="fas fa-star text-primary text-xs"><i>
                                             <i class="fas fa-star text-primary text-xs"><i>
@@ -61,7 +59,7 @@
                                             <i class="fas fa-star text-muted text-xs"><i>
                                             <i class="fas fa-star text-muted text-xs"><i>
                                         '
-                                        >2 stars</option>
+                                        {{ 2 == old('stars') ? 'selected' : ''}}>2 stars</option>
                                     <option value="3" data-content='
                                             <i class="fas fa-star text-primary text-xs"><i>
                                             <i class="fas fa-star text-primary text-xs"><i>
@@ -69,7 +67,7 @@
                                             <i class="fas fa-star text-muted text-xs"><i>
                                             <i class="fas fa-star text-muted text-xs"><i>
                                         '
-                                        >3 stars</option>
+                                        {{ 3 == old('stars') ? 'selected' : ''}}>3 stars</option>
                                     <option value="4" data-content='
                                             <i class="fas fa-star text-primary text-xs"><i>
                                             <i class="fas fa-star text-primary text-xs"><i>
@@ -77,7 +75,7 @@
                                             <i class="fas fa-star text-primary text-xs"><i>
                                             <i class="fas fa-star text-muted text-xs"><i>
                                         '
-                                        >4 stars</option>
+                                        {{ 4 == old('stars') ? 'selected' : ''}}>4 stars</option>
                                     <option value="5" data-content='
                                             <i class="fas fa-star text-primary text-xs"><i>
                                             <i class="fas fa-star text-primary text-xs"><i>
@@ -85,12 +83,18 @@
                                             <i class="fas fa-star text-primary text-xs"><i>
                                             <i class="fas fa-star text-primary text-xs"><i>
                                         '
-                                        >5 stars</option>
+                                        {{ 5 == old('stars') ? 'selected' : ''}}>5 stars</option>
                                 </select>
+                                @if ($errors->has('stars'))
+                                  <div class="invalid-feedback d-block">{!! $errors->first('stars', ':message') !!}</div>
+                                @endif
                             </div>
                             <div class="form-group col-lg-12">
                                 <label class="label-required mb-0" for="reviewBody">Your review</label>
-                                <textarea class="form-control form-control-lg py-3" id="reviewBody" name="reviewBody" rows="5" placeholder="Leave your review..."></textarea>
+                                <textarea class="form-control form-control-lg py-3" id="reviewBody" name="reviewBody" rows="5" placeholder="Leave your review...">{{old('reviewBody')}}</textarea>
+                                @if ($errors->has('reviewBody'))
+                                  <div class="invalid-feedback d-block">{!! $errors->first('reviewBody', ':message') !!}</div>
+                                @endif
                             </div>
                             <div class="form-group col-lg-12">
                                 <button class="btn btn-primary" type="submit">Post your review</button>

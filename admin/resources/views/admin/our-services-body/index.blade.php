@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Our Services Body')
+@section('title', 'Our Services')
 
 @section('content_header')
-    <h1>Our Services Body</h1>
+    <h1>Our Services</h1>
 @stop
 
 @section('content')
@@ -12,7 +12,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ url('/admin/our-services-body/create') }}" class="btn btn-success btn-sm" title="Add New OurServicesBody">
+                        <a href="{{ url('/admin/our-services-body/create') }}" class="btn btn-success btn-sm" title="Add New Our Services">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 

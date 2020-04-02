@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\SlideMenu;
 use App\BasicDetail;
 use App\NavBar;
+use App\MainDish;
 use Auth;
 
 class SearchController extends Controller
@@ -30,12 +31,14 @@ class SearchController extends Controller
       }
       $basicDetail = BasicDetail::first();
       $navbar = NavBar::first();
+      $mainDish = MainDish::first();
+      $newDishes = SlideMenu::latest()->take(3)->get();
       if (Auth::check()) {
-        $bookings = Auth::user()->bookings->count();
+        $bookings = Auth::user()->userBookings()->count();
       }else {
         $bookings = 0 ;
       }
 
-      return view('pages.search.index', compact('dishes' , 'basicDetail' , 'bookings' , 'navbar'));
+      return view('pages.search.index', compact('dishes' , 'basicDetail' , 'bookings' , 'navbar' , 'newDishes' , 'mainDish'));
     }
 }

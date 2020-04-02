@@ -115,8 +115,6 @@
                                                     <li><a class="dropdown-item border-0 transition-link" href="{{route('contact.show')}}">Contact one</a></li>
                                                     <li><a class="dropdown-item border-0 transition-link" href="{{route('contact.index')}}">Contact two</a></li>
                                                     <li><a class="dropdown-item border-0 transition-link" href="{{route('booking.index')}}">Book a table</a></li>
-                                                    {{-- <li><a class="dropdown-item border-0 transition-link" href="404.html">Error 404</a></li> --}}
-                                                    {{-- <li><a class="dropdown-item border-0 transition-link" href="{{route}}">Dish detail</a></li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -124,23 +122,23 @@
                                             <h6>Other pages</h6>
                                             <div class="d-flex flex-column flex-lg-row">
                                                 <ul class="list-unstyled mr-lg-4">
-                                                    <li><a class="dropdown-item border-0 transition-link" href="typography.html">Typography</a></li>
-                                                    <li><a class="dropdown-item border-0 transition-link" href="gallery.html">Gallery</a></li>
+                                                    <li><a class="dropdown-item border-0 transition-link" href="{{route('typography')}}">Typography</a></li>
+                                                    <li><a class="dropdown-item border-0 transition-link" href="{{route('gallery')}}">Gallery</a></li>
                                                     <li><a class="dropdown-item border-0 transition-link" href="https://italianolight.netlify.com">Light theme</a></li>
                                                     <li><a class="dropdown-item border-0 transition-link" href="#">Buy theme</a></li>
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="col-lg-5 mb-4">
+                                        {{-- <div class="col-lg-5 mb-4">
                                             <h6 class="mb-4">Today's main dish</h6>
                                             <!-- Related dishes item-->
-                                            <a class="media align-items-center reset-anchor transition-link" href="{{route('dish.show' , ['id' => $mainDish->dish->id])}}"><img class="img-fluid" src="{{asset('storage/' . $mainDish->dish->image)}}" alt="Bucatini" width="100"/>
+                                            <a class="media align-items-center reset-anchor transition-link" href="{{route('dish.show' , ['id' => $mainDish->dish->id])}}"><img class="img-fluid" src="{{asset('storage/' . $mainDish->dish->image)}}" alt="{{$mainDish->dish->title}}" width="100"/>
                                             <div class="media-body ml-3">
                                                 <h6>{{$mainDish->dish->title}}</h6>
                                                 <p class="text-muted small mb-2">{{$mainDish->dish->str_limit($mainDish->dish->content)}}</p>
                                                 <p class="price h6 text-primary mb-0">${{$mainDish->dish->afterDiscount()}}</p>
                                             </div></a>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="pt-2">
                                         <h6>New dishes</h6>
@@ -149,7 +147,7 @@
                                           @foreach ($newDishes as  $dish)
                                             <div class="col-lg-4 mb-4 mb-lg-0">
                                                 <!-- Related dishes item-->
-                                                <a class="media align-items-center reset-anchor transition-link" href="{{route('dish.show' , ['id' => $dish->id])}}"><img class="img-fluid" src="{{asset('storage/' . $dish->image)}}" alt="Bucatini" width="100"/>
+                                                <a class="media align-items-center reset-anchor transition-link" href="{{route('dish.show' , ['id' => $dish->id])}}"><img class="img-fluid" src="{{asset('storage/' . $dish->image)}}" alt="{{$dish->title}}" width="100"/>
                                                 <div class="media-body ml-3">
                                                     <h6>{{$dish->title}}</h6>
                                                     <p class="text-muted small mb-2">{{$dish->str_limit($dish->content)}}</p>

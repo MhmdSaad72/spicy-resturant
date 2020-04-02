@@ -26,7 +26,7 @@
 
 
 
-          @forelse ($user->bookings as  $booking)
+          @forelse ($user->userBookings() as  $booking)
             <!-- Booking item-->
             <div class="admin-booking-item">
             <div class="p-4 bg-dark">

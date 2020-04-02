@@ -16,11 +16,6 @@
                         <a href="{{ url('/admin/chefs/create') }}" class="btn btn-success btn-sm" title="Add New Chef">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
-                        {{-- @if (session('flash_message'))
-                            <div class="alert alert-success">
-                                    <p>{{ session('flash_message') }}</p>
-                            </div>
-                        @endif --}}
 
                         <form method="GET" action="{{ url('/admin/chefs') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
@@ -39,7 +34,6 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        {{-- <th>#</th> --}}
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Facebook</th>
@@ -49,7 +43,6 @@
                                 <tbody>
                                 @foreach($chefs as $item)
                                     <tr>
-                                        {{-- <td>{{ $loop->iteration }}</td> --}}
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->description }}</td>
                                         <td>{{ $item->facebook }}</td>

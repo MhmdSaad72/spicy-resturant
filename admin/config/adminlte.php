@@ -14,9 +14,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
-    'title_prefix' => '',
-    'title_postfix' => '',
+    'title' => 'Italiano Restaurant | Laravel Restaurant Template',
+    'title_prefix' => 'Italiano Restaurant | Laravel Restaurant Template',
+    'title_postfix' => 'Italiano Restaurant | Laravel Restaurant Template',
 
     /*
     |--------------------------------------------------------------------------
@@ -30,12 +30,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b></b>',
+    'logo_img' => 'img/logo-footer-default.svg',
     'logo_img_class' => 'brand-image-xl',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'Italiano Restaurant | Laravel Restaurant Template',
 
     /*
     |--------------------------------------------------------------------------
@@ -196,7 +196,7 @@ return [
 
                 ],
                 [
-                    'text'    => 'Basic Reservation',
+                    'text'    => 'Restaurant Capacity',
                     'route'     => 'reservation.view',
 
                 ],
@@ -205,12 +205,12 @@ return [
         [
             'text' => 'Clients',
             'route'  => 'clients',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-users',
         ],
         [
             'text' => 'Contacts',
             'route'  => 'contact.all',
-            'icon' => 'fas fa-fw fa-phone',
+            'icon' => 'fas fa-fw fa-address-book',
         ],
         ['header' => 'Pages Setting'],
         [
@@ -320,8 +320,23 @@ return [
           'route'  => 'album.index',
         ],
         [
-          'text' => 'Master Chefs',
-          'route'  => 'chefs.index',
+          'text' => 'Employees',
+          'icon'    => 'fas fa-fw fa-users',
+          'submenu' =>
+          [
+            [
+              'text' => 'Master Chefs' ,
+              'route'  => 'chefs.index',
+            ],
+            [
+              'text' => 'Waiters' ,
+              'route' => 'waiter.index',
+            ],
+            [
+              'text' => 'Barista',
+              'route' => 'barista.index',
+            ]
+          ]
         ],
         [
           'text' => 'Basic Details',

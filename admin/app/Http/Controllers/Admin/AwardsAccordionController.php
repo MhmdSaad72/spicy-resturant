@@ -70,9 +70,7 @@ class AwardsAccordionController extends Controller
      */
     public function show($id)
     {
-        $awardsaccordion = AwardsAccordion::findOrFail($id);
-
-        return view('admin.awards-accordion.show', compact('awardsaccordion'));
+      abort(404);
     }
 
     /**

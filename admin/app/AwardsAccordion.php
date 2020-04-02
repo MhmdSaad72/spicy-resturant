@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class AwardsAccordion extends Model
 {
@@ -27,5 +28,11 @@ class AwardsAccordion extends Model
      */
     protected $fillable = ['title', 'content'];
 
-    
+    public function str_limit()
+    {
+      $truncated = Str::limit($this->content, 40, '...');
+      return $truncated ;
+    }
+
+
 }

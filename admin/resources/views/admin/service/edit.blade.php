@@ -38,3 +38,19 @@
         </div>
     </div>
 @endsection
+{{-- @section('js')
+  <script src="{{ asset('js/bootstrap-filestyle.min.js') }}"></script>
+
+  <script type="text/javascript">
+  $(function () {
+      /* ==========================================
+         CUSTOM FILE UPLOAD
+      ============================================ */
+      $(":file").filestyle({
+          buttonBefore: true,
+          btnClass: "btn-dark",
+          placeholder: "No file chosen"
+      });
+  });
+  </script>
+@endsection --}}

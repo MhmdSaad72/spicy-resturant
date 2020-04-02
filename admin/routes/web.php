@@ -80,11 +80,11 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
    Route::get('/booking-confirmation/{id}', 'Pages\\BookingController@confirmation')->name('booking.confirm');
    Route::get('/booking-cancellation/{id}', 'Pages\\BookingController@cancellation')->name('booking.cancel');
    Route::patch('/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
-   Route::patch('/booking-cancellation/{id}', 'Pages\\BookingController@confirmCancel')->name('booking.confirm.cancel');
    Route::get('/booking-cancelled' , 'Pages\\BookingController@cancelled')->name('booking.cancelled');
    Route::get('/search' , 'Pages\\SearchController@index')->name('search');
    Route::post('/dish-review/{id}' , 'Pages\\DishesController@review')->name('review.dish');
    Route::get('/gallery' , 'Admin\\AlbumController@gallery')->name('gallery');
+   Route::get('/typography' , 'Admin\\AlbumController@typography')->name('typography');
   });
 
 /*===========================
@@ -110,3 +110,14 @@ all authentication routes
 Auth::routes(['verify' => true]);
 Route::get('/login', 'Auth\\LoginController@index')->name('login');
 Route::get('/register', 'Auth\\RegisterController@index')->name('register');
+Route::get('admin/login' , 'Auth\\LoginController@loginView' )->name('login.view');
+Route::post('admin/login' , 'Auth\\LoginController@adminLogin' )->name('admin.login');
+
+/*==============================
+api routes for dashboard charts
+================================*/
+Route::get('/chart/booking' , 'HomeController@chartBooking')->name('booking.chart');
+Route::get('/chart/new-vistors' , 'HomeController@chartNewVistors')->name('newVistors');
+
+Route::resource('admin/waiter', 'Admin\\WaiterController');
+Route::resource('admin/barista', 'Admin\\BaristaController');

@@ -15,20 +15,9 @@ class AwardController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->get('search');
-        $perPage = 25;
-
-        if (!empty($keyword)) {
-            $award = Award::where('description', 'LIKE', "%$keyword%")
-                ->orWhere('content', 'LIKE', "%$keyword%")
-                ->orWhere('year', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $award = Award::latest()->paginate($perPage);
-        }
-
+        $award = Award::first();
         return view('admin.award.index', compact('award'));
     }
 
@@ -39,30 +28,8 @@ class AwardController extends Controller
      */
     public function create()
     {
-        return view('admin.award.create');
+        abort(404);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-    			'description' => 'required|max:255',
-          'content' => 'required|max:65535',
-    			'year' => 'required|date',
-    		]);
-        $requestData = $request->all();
-
-        Award::create($requestData);
-
-        return redirect('admin/award')->with('flash_message', 'Award added!');
-    }
-
     /**
      * Display the specified resource.
      *
@@ -72,9 +39,7 @@ class AwardController extends Controller
      */
     public function show($id)
     {
-        $award = Award::findOrFail($id);
-
-        return view('admin.award.show', compact('award'));
+        abort(404);
     }
 
     /**
@@ -112,19 +77,5 @@ class AwardController extends Controller
         $award->update($requestData);
 
         return redirect('admin/award')->with('flash_message', 'Award updated!');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function destroy($id)
-    {
-        Award::destroy($id);
-
-        return redirect('admin/award')->with('flash_message', 'Award deleted!');
     }
 }
