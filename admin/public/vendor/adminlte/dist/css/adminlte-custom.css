@@ -117,13 +117,6 @@ table td img[src*=".svg"] {
     position: relative;
 }
 
-/* .file-input-val {
-    position: absolute;
-    bottom: 7px;
-    left: 8rem;
-    z-index: 999;
-    color: #999;
-} */
 
 .navbar-nav .nav-link {
     font-size: 0.8rem;
@@ -242,8 +235,8 @@ select.form-control {
     box-shadow: 0 2px 2px rgba(255, 193, 6, 0.28);
     color: #fff;
 }
-.btn-warning:hover, .btn-warning:focus {
-    color: #fff;
+.btn-warning:hover, .btn-warning:focus, .btn-warning:active {
+    color: #fff !important;
 }
 .btn-danger {
     box-shadow: 0 2px 2px rgba(221, 53, 69, 0.28);

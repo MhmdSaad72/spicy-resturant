@@ -251,7 +251,7 @@ return [
             'icon'    => 'fas fa-fw fa-address-book',
             'submenu' =>[
               [
-                'text' => 'About Hero Section',
+                'text' => 'Hero Section',
                 'route'  => 'about-us.index',
               ],
               [
@@ -282,7 +282,7 @@ return [
             'icon'    => 'fas fa-fw fa-bars',
             'submenu' =>[
               [
-                'text' => 'Food Menu',
+                'text' => 'Hero Section',
                 'route'  => 'food-menu.index',
               ],
               [
@@ -304,7 +304,7 @@ return [
             'icon'    => 'fas fa-fw fa-phone',
             'submenu' =>[
               [
-                'text' => 'Contact Us Details',
+                'text' => 'Hero Section',
                 'route'  => 'contact-us.index',
               ],
               [

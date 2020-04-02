@@ -27,4 +27,5 @@
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+    <a class="btn btn-warning" href="{{ url('/admin/hero') }}" title="Back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
 </div>

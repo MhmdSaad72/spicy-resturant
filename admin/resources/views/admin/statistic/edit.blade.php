@@ -19,8 +19,6 @@
                         @include ('admin.statistic.form', ['formMode' => 'edit'])
 
                     </form>
-
-
                 </div>
             </div>
         </div>

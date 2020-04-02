@@ -1,10 +1,10 @@
 <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
-    <label for="title" class="control-label">{{ 'Title' }}</label>
+    <label for="title" class="control-label">{{ 'Subtitle' }} <span class="text-muted small ml-2">- Small colored heading</span></label>
     <input class="form-control" name="title" type="text" id="title" value="{{ isset($foodmenu->title) ? $foodmenu->title : old('title')}}" >
     {!! $errors->first('title', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
-  <label for="description" class="control-label">{{ 'Description' }}</label>
+  <label for="description" class="control-label">{{ 'Title' }}</label>
   <input class="form-control" name="description" type="text" id="description" value="{{ isset($foodmenu->description) ? $foodmenu->description : old('description')}}" >
   {!! $errors->first('description', '<p class="help-block text-danger">:message</p>') !!}
 </div>
@@ -17,4 +17,5 @@
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
+    <a class="btn btn-warning" href="{{ url('/admin/food-menu') }}" title="Back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
 </div>

@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ url('/admin/about-services/create') }}" class="btn btn-success btn-sm" title="Add New AboutService">
+                    <a href="{{ url('/admin/about-services/create') }}" class="btn btn-success" title="Add New AboutService">
                         <i class="fa fa-plus" aria-hidden="true"></i> Add New
                     </a>
 

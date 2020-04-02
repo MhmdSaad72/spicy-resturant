@@ -11,13 +11,6 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ url('/admin/about-services') }}" title="Back">
-                        <button class="btn btn-dark btn-sm">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        </button>
-                    </a>
-                    <br />
-                    <br />
 
                     <form method="POST" action="{{ url('/admin/about-services') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                         {{ csrf_field() }}

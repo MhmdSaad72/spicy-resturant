@@ -1,29 +1,24 @@
 @extends('adminlte::page')
 
-@section('title', 'Create New Awards Accordion')
+@section('title', 'Create New Awards Accordion Item')
 
 @section('content_header')
-    <h1>Create New Awards Accordion</h1>
+    <h1>Create New Awards Accordion Item</h1>
 @stop
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="{{ url('/admin/awards-accordion') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
 
-                        <form method="POST" action="{{ url('/admin/awards-accordion') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                            {{ csrf_field() }}
+                    <form method="POST" action="{{ url('/admin/awards-accordion') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        {{ csrf_field() }}
 
-                            @include ('admin.awards-accordion.form', ['formMode' => 'create'])
+                        @include ('admin.awards-accordion.form', ['formMode' => 'create'])
 
-                        </form>
+                    </form>
 
-                    </div>
                 </div>
             </div>
         </div>
