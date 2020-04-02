@@ -17,5 +17,5 @@
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
-    <a href="{{ url('/admin/statistic') }}" title="Back"><button class="btn btn-warning"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+    <a class="btn btn-warning" href="{{ url('/admin/statistic') }}" title="Back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
 </div>
