@@ -9,9 +9,9 @@ Route::get('/', 'Pages\\HomeController@index')->name('home.index');
 ============================*/
 Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
   Route::get('/dashboard' , 'HomeController@index')->name('dashboard');
-  Route::get('/service', 'Admin\\ServiceController@index')->name('service.index');
-  Route::get('/service/{id}/edit', 'Admin\\ServiceController@edit')->name('service.edit');
-  Route::patch('/service/{id}', 'Admin\\ServiceController@update')->name('service.update');
+  Route::get('/hero', 'Admin\\ServiceController@index')->name('hero.index');
+  Route::get('/hero/{id}/edit', 'Admin\\ServiceController@edit')->name('hero.edit');
+  Route::patch('/hero/{id}', 'Admin\\ServiceController@update')->name('hero.update');
   Route::get('/main-dish', 'Admin\\MainDishController@index')->name('main-dish.index');
   Route::get('/main-dish/{id}/edit', 'Admin\\MainDishController@edit')->name('main-dish.edit');
   Route::patch('/main-dish/{id}', 'Admin\\MainDishController@update')->name('main-dish.update');

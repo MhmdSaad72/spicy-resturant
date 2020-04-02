@@ -91,9 +91,6 @@ body::-webkit-scrollbar-thumb {
 [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link:hover {
     background: rgb(45, 51, 56);
 }
-/* [class*=sidebar-dark-] .nav-sidebar>.nav-item:hover>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link:focus {
-    background: rgb(45, 51, 56);
-} */
 
 .card {
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.07);
@@ -103,6 +100,30 @@ body::-webkit-scrollbar-thumb {
 .card table {
     margin-bottom: 0;
 }
+
+table td img:not([src*='.svg']) {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 0.2rem;
+}
+
+table td img[src*=".svg"] {
+    width: 40px;
+    height: 40px;
+}
+
+.form-group {
+    position: relative;
+}
+
+/* .file-input-val {
+    position: absolute;
+    bottom: 7px;
+    left: 8rem;
+    z-index: 999;
+    color: #999;
+} */
 
 .navbar-nav .nav-link {
     font-size: 0.8rem;

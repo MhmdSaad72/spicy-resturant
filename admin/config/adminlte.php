@@ -223,25 +223,25 @@ return [
             'icon'    => 'fas fa-fw fa-home',
             'submenu' => [
                 [
-                    'text'    => 'Food Service',
-                    'route'     => 'service.index',
+                    'text'    => 'Hero Section',
+                    'route'     => 'hero.index',
 
                 ],
                 [
-                    'text'    => 'Main Dish',
+                    'text'    => 'Main Dish Section',
                     'route'     => 'main-dish.index',
 
                 ],
                 [
-                    'text' => 'Our Story',
+                    'text' => 'Our Story Section',
                     'route'  => 'our-story.index',
                 ],
                 [
-                    'text' => 'Availability',
+                    'text' => 'Availability Section',
                     'route'  => 'availability.index',
                 ],
                 [
-                    'text'    => 'Our Services',
+                    'text'    => 'Our Services Section',
                     'route'  => 'our-services-body.index',
                 ],
             ],
@@ -251,27 +251,27 @@ return [
             'icon'    => 'fas fa-fw fa-address-book',
             'submenu' =>[
               [
-                'text' => 'About Us Details',
+                'text' => 'About Hero Section',
                 'route'  => 'about-us.index',
               ],
               [
-                'text' => 'Statistic',
+                'text' => 'Statistic Section',
                 'route'  => 'statistic.index',
               ],
               [
-                'text' => 'About Services',
+                'text' => 'Services Section',
                 'route'  => 'about-services.index',
               ],
               [
-                'text' => 'Philosophy',
+                'text' => 'Philosophy Section',
                 'route'  => 'philosophy.index',
               ],
               [
-                'text' => 'Awards',
+                'text' => 'Awards Section',
                 'route'  => 'award.index',
               ],
               [
-                'text' => 'Awards accordion',
+                'text' => 'Awards accordion Section',
                 'route'  => 'awards-accordion.index',
               ],
 

@@ -15,7 +15,7 @@
 </div>
 <div class="form-group {{ $errors->has('icon') ? 'has-error' : ''}}">
     <label for="icon" class="control-label">{{ 'Icon' }}</label>
-    <input class="form-control" name="icon" type="file" id="icon" value="{{ isset($aboutservice->icon) ? $aboutservice->icon : old('icon')}}" >
+    <input class="form-control" name="icon" type="file" id="icon" value="{{ isset($aboutservice->icon) ? $aboutservice->icon : old('icon')}}">
     {!! $errors->first('icon', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 

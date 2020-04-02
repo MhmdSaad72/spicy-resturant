@@ -78,9 +78,7 @@ class AboutServicesController extends Controller
      */
     public function show($id)
     {
-        $aboutservice = AboutService::findOrFail($id);
-
-        return view('admin.about-services.show', compact('aboutservice'));
+        abort(404);
     }
 
     /**

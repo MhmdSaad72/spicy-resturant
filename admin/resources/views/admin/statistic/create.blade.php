@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Create New Statistic')
+@section('title', 'Create New Statistic Item')
 
 @section('content_header')
-    <h1>Create New Statistic</h1>
+    <h1>Create New Statistic Item</h1>
 @stop
 
 @section('content')

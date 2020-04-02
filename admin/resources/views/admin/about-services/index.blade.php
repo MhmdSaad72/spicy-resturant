@@ -43,11 +43,10 @@
                             @foreach($aboutservices as $item)
                                 <tr>
                                     <td>{{ $item->title }}</td>
-                                    <td>{{ $item->content }}</td>
+                                    <td>{{ $item->str_limit() }}</td>
                                     <td><img src="{{ asset('storage/' . $item->icon) }}" alt=""></td>
                                     <td><img src="{{ asset('storage/' . $item->image) }}" alt=""> </td>
                                     <td>
-                                        <a href="{{ url('/admin/about-services/' . $item->id) }}" title="View AboutService"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                         <a href="{{ url('/admin/about-services/' . $item->id . '/edit') }}" title="Edit AboutService"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
                                         <form method="POST" action="{{ url('/admin/about-services' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">

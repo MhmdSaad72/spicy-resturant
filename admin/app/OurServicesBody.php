@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class OurServicesBody extends Model
 {
@@ -27,5 +28,11 @@ class OurServicesBody extends Model
      */
     protected $fillable = ['title', 'image', 'content'];
 
-    
+    public function str_limit()
+    {
+      $truncated = Str::limit($this->content, 40, '...');
+      return $truncated ;
+    }
+
+
 }

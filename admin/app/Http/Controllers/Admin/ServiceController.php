@@ -18,7 +18,7 @@ class ServiceController extends Controller
     public function index()
     {
         $service = Service::first();
-        return view('admin.service.index', compact('service'));
+        return view('admin.hero.index', compact('service'));
     }
 
     /**
@@ -32,7 +32,7 @@ class ServiceController extends Controller
     {
         $service = Service::findOrFail($id);
 
-        return view('admin.service.edit', compact('service'));
+        return view('admin.hero.edit', compact('service'));
     }
 
     /**
@@ -46,7 +46,7 @@ class ServiceController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-    			'title' => 'required',
+    	  'title' => 'required',
           'address' => 'required',
           'description' => 'required',
           'content' => 'required',
@@ -61,7 +61,7 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
         $service->update($requestData);
 
-        return redirect('admin/service')->with('flash_message', 'Service updated!');
+        return redirect('admin/hero')->with('flash_message', 'Service updated!');
     }
 
 }
