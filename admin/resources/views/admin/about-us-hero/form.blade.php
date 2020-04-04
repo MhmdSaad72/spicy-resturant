@@ -17,7 +17,7 @@
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">
-    <a class="btn btn-warning" href="{{ url('/admin/about-services') }}" title="Back">
+    <a class="btn btn-warning" href="{{ route('about-us.index') }}" title="Back">
         <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
     </a>
 </div>

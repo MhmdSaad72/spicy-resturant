@@ -18,17 +18,7 @@ class ContactUsController extends Controller
     public function index()
     {
         $contactus = ContactU::first();
-        return view('admin.contact-us.index', compact('contactus'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('admin.contact-us.create');
+        return view('admin.contact-us-hero.index', compact('contactus'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -41,7 +31,7 @@ class ContactUsController extends Controller
     {
         $contactus = ContactU::findOrFail($id);
 
-        return view('admin.contact-us.edit', compact('contactus'));
+        return view('admin.contact-us-hero.edit', compact('contactus'));
     }
 
     /**
@@ -78,6 +68,6 @@ class ContactUsController extends Controller
         $contactus = ContactU::findOrFail($id);
         $contactus->update($requestData);
 
-        return redirect('admin/contact-us')->with('flash_message', 'ContactU updated!');
+        return redirect()->route('contact-us.index')->with('flash_message', 'Contact us hero section updated!');
     }
 }

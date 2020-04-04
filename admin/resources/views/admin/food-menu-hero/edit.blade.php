@@ -12,11 +12,11 @@
             <div class="card">
                 <div class="card-body">
 
-                    <form method="POST" action="{{ url('/admin/food-menu/' . $foodmenu->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('food-menu.update', $foodmenu->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                         {{ method_field('PATCH') }}
                         {{ csrf_field() }}
 
-                        @include ('admin.food-menu.form', ['formMode' => 'edit'])
+                        @include ('admin.food-menu-hero.form', ['formMode' => 'edit'])
 
                     </form>
 

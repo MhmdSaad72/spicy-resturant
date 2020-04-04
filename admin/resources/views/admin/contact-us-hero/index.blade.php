@@ -1,19 +1,24 @@
 @extends('adminlte::page')
 
-@section('title', 'Contact us')
+@section('title', 'Contact Us Hero Section')
 
 @section('content_header')
-    <h1>Contact us</h1>
+    <h1>Contact Us Hero Section</h1>
 @stop
 
 @section('content')
   @if ($contactus)
   <div class="container">
+    @if (session('flash_message'))
+      <div class="alert alert-success col-12">
+        {{ session('flash_message') }}
+      </div>
+    @endif
       <div class="row">
           <div class="col-md-12">
               <div class="card">
                   <div class="card-body">
-                      <a href="{{ url('/admin/contact-us/' . $contactus->id . '/edit') }}" title="Edit Contact Us"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                      <a href="{{ route('contact-us.edit' , $contactus->id ) }}" title="Edit Contact Us"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
                       <br/>
                       <br/>

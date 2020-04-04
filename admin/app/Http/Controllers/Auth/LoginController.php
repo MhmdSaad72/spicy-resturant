@@ -42,7 +42,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logout','logoutAdmin');
     }
     /*======================================
      Display redirect page after user login
@@ -116,9 +116,17 @@ class LoginController extends Controller
         return redirect()->back()->with('emailError' , 'These credentials do not match our records.')->withInput();
       }
     }
-
-    protected function loggedOut(Request $request)
-    {
+    
+    /*=================================
+     logout function for user and admin
+    ===================================*/
+    public function logout(Request $request) {
+      if (Auth::user()->hasRole('admin')) {
+        Auth::logout();
+        return redirect()->route('login.view');
+      }else {
+        Auth::logout();
         return redirect()->route('login');
+      }
     }
 }

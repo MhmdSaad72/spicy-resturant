@@ -18,7 +18,7 @@ class FoodMenuController extends Controller
     public function index()
     {
         $foodmenu = FoodMenu::first();
-        return view('admin.food-menu.index', compact('foodmenu'));
+        return view('admin.food-menu-hero.index', compact('foodmenu'));
     }
 
     /**
@@ -32,7 +32,7 @@ class FoodMenuController extends Controller
     {
         $foodmenu = FoodMenu::findOrFail($id);
 
-        return view('admin.food-menu.edit', compact('foodmenu'));
+        return view('admin.food-menu-hero.edit', compact('foodmenu'));
     }
 
     /**
@@ -55,7 +55,7 @@ class FoodMenuController extends Controller
         $foodmenu = FoodMenu::findOrFail($id);
         $foodmenu->update($requestData);
 
-        return redirect('admin/food-menu')->with('flash_message', 'FoodMenu updated!');
+        return redirect()->route('food-menu.index')->with('flash_message', 'FoodMenu updated!');
     }
 
 }

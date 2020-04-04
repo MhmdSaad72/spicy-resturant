@@ -12,7 +12,7 @@
       <div class="col-md-12">
           <div class="card">
               <div class="card-body">
-                  <a class="btn btn-primary" href="{{ url('/admin/food-menu/' . $foodmenu->id . '/edit') }}" title="Edit Menu Page Hero Section"><i class="fas fa-pen" aria-hidden="true"></i> Edit</a>
+                  <a class="btn btn-primary" href="{{ route('food-menu.edit' , $foodmenu->id) }}" title="Edit Menu Page Hero Section"><i class="fas fa-pen" aria-hidden="true"></i> Edit</a>
 
                   <br/>
                   <br/>

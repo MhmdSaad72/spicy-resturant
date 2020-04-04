@@ -18,7 +18,7 @@ class AboutUsController extends Controller
     public function index()
     {
         $aboutus = AboutU::first();
-        return view('admin.about-us.index', compact('aboutus'));
+        return view('admin.about-us-hero.index', compact('aboutus'));
     }
 
     /**
@@ -32,7 +32,7 @@ class AboutUsController extends Controller
     {
         $aboutus = AboutU::findOrFail($id);
 
-        return view('admin.about-us.edit', compact('aboutus'));
+        return view('admin.about-us-hero.edit', compact('aboutus'));
     }
 
     /**
@@ -55,6 +55,6 @@ class AboutUsController extends Controller
         $aboutus = AboutU::findOrFail($id);
         $aboutus->update($requestData);
 
-        return redirect('admin/about-us')->with('flash_message', 'AboutU updated!');
+        return redirect('admin/about-us/hero-section')->with('flash_message', 'AboutU updated!');
     }
 }

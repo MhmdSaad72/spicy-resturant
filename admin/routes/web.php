@@ -7,7 +7,7 @@ Route::get('/', 'Pages\\HomeController@index')->name('home.index');
 /*===========================
   all routes for admin panel
 ============================*/
-Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
+Route::prefix('admin')->middleware(['auth' , 'role:admin' ])->group(function () {
   Route::get('/dashboard' , 'HomeController@index')->name('dashboard');
   Route::get('/hero', 'Admin\\ServiceController@index')->name('hero.index');
   Route::get('/hero/{id}/edit', 'Admin\\ServiceController@edit')->name('hero.edit');
@@ -23,24 +23,24 @@ Route::prefix('admin')->middleware(['auth' , 'role:admin'])->group(function () {
   Route::get('/availability/{id}/edit', 'Admin\\AvailabilityController@edit')->name('availability.edit');
   Route::patch('/availability/{id}', 'Admin\\AvailabilityController@update')->name('availability.update');
   Route::resource('/album', 'Admin\\AlbumController');
-  Route::get('/about-us', 'Admin\\AboutUsController@index')->name('about-us.index');
-  Route::get('/about-us/{id}/edit', 'Admin\\AboutUsController@edit')->name('about-us.edit');
-  Route::patch('/about-us/{id}', 'Admin\\AboutUsController@update')->name('about-us.update');
+  Route::get('/about-us/hero-section', 'Admin\\AboutUsController@index')->name('about-us.index');
+  Route::get('/about-us/hero-section/{id}/edit', 'Admin\\AboutUsController@edit')->name('about-us.edit');
+  Route::patch('/about-us/hero-section/{id}', 'Admin\\AboutUsController@update')->name('about-us.update');
   Route::get('/philosophy', 'Admin\\PhilosophyController@index')->name('philosophy.index');
   Route::get('/philosophy/{id}/edit', 'Admin\\PhilosophyController@edit')->name('philosophy.edit');
   Route::patch('/philosophy/{id}', 'Admin\\PhilosophyController@update')->name('philosophy.update');
   Route::resource('/statistic', 'Admin\\StatisticController');
   Route::resource('/about-services', 'Admin\\AboutServicesController');
   Route::resource('/our-services-body', 'Admin\\OurServicesBodyController');
-  Route::get('/food-menu', 'Admin\\FoodMenuController@index')->name('food-menu.index');
-  Route::get('/food-menu/{id}/edit', 'Admin\\FoodMenuController@edit')->name('food-menu.edit');
-  Route::patch('/food-menu/{id}', 'Admin\\FoodMenuController@update')->name('food-menu.update');
+  Route::get('/food-menu/hero-section', 'Admin\\FoodMenuController@index')->name('food-menu.index');
+  Route::get('/food-menu/hero-section/{id}/edit', 'Admin\\FoodMenuController@edit')->name('food-menu.edit');
+  Route::patch('/food-menu/hero-section/{id}', 'Admin\\FoodMenuController@update')->name('food-menu.update');
   Route::resource('/slide-menu', 'Admin\\SlideMenuController');
   Route::resource('/category', 'Admin\\CategoryController');
   Route::resource('/tag', 'Admin\\TagController');
-  Route::get('/contact-us', 'Admin\\ContactUsController@index')->name('contact-us.index');
-  Route::get('/contact-us/{id}/edit', 'Admin\\ContactUsController@edit')->name('contact-us.edit');
-  Route::patch('/contact-us/{id}', 'Admin\\ContactUsController@update')->name('contact-us.update');
+  Route::get('/contact-us/hero-section', 'Admin\\ContactUsController@index')->name('contact-us.index');
+  Route::get('/contact-us/hero-section/{id}/edit', 'Admin\\ContactUsController@edit')->name('contact-us.edit');
+  Route::patch('/contact-us/hero-section/{id}', 'Admin\\ContactUsController@update')->name('contact-us.update');
   Route::get('/contact' , 'Pages\\ContactController@all')->name('contact.all');
   Route::resource('/branch-body', 'Admin\\BranchBodyController');
   Route::get('/basic-details', 'Admin\\BasicDetailsController@index')->name('basic-details.index');

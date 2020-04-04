@@ -12,11 +12,11 @@
             <div class="card">
                 <div class="card-body">
 
-                    <form method="POST" action="{{ url('/admin/about-us/' . $aboutus->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('about-us.update' , ['id'=>$aboutus->id])}}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                         {{ method_field('PATCH') }}
                         {{ csrf_field() }}
 
-                        @include ('admin.about-us.form', ['formMode' => 'edit'])
+                        @include ('admin.about-us-hero.form', ['formMode' => 'edit'])
 
                     </form>
 

@@ -12,7 +12,7 @@
       <div class="col-md-12">
           <div class="card">
               <div class="card-body">
-                  <a class="btn btn-primary" href="{{ url('/admin/about-us/' . $aboutus->id . '/edit') }}" title="Edit About Us"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                  <a class="btn btn-primary" href="{{ route('about-us.edit' , ['id' => $aboutus->id])}}" title="Edit About Us"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
 
                   <br/>
                   <br/>
