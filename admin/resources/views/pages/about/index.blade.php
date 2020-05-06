@@ -4,8 +4,10 @@
   <meta name="theme-color" content="#0f1214">
 @endsection
 @section('content')
-  <?php $heroDark = true ;
-        $about = true ?>
+  @php
+    $heroDark = true  ;
+    $about = true ;
+  @endphp
   <!-- Hero Section -->
   <section class="hero-sm bg-pattern bg-dark">
     <div class="container text-center">

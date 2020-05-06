@@ -58,7 +58,6 @@ class SlideMenuController extends Controller
      */
     public function store(Request $request)
     {
-      // dd($request->all());
         $this->validate($request, [
     			'title' => 'required|max:255',
     			'price' => 'required|max:7|gte:0',

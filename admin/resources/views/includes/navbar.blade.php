@@ -1,8 +1,10 @@
-<?php  $navDark = isset($heroDark) ? 'bg-dark bg-pattern' : '' ;
+@php
+ $navDark = isset($heroDark) ? 'bg-dark bg-pattern' : '' ;
  $home = isset($home) ? 'active' : '' ;
  $menu = isset($menu) ? 'active' : '' ;
  $about = isset($about) ? 'active' : '';
- $contact = isset($contact) ? 'active' : '' ; ?>
+ $contact = isset($contact) ? 'active' : '' ;
+@endphp
 <header class="header bg-pattern {{$navDark}}">
     <!-- Navbar top-->
     <nav class="navbar navbar-expand-lg py-4" id="navTop">
@@ -129,16 +131,6 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        {{-- <div class="col-lg-5 mb-4">
-                                            <h6 class="mb-4">Today's main dish</h6>
-                                            <!-- Related dishes item-->
-                                            <a class="media align-items-center reset-anchor transition-link" href="{{route('dish.show' , ['id' => $mainDish->dish->id])}}"><img class="img-fluid" src="{{asset('storage/' . $mainDish->dish->image)}}" alt="{{$mainDish->dish->title}}" width="100"/>
-                                            <div class="media-body ml-3">
-                                                <h6>{{$mainDish->dish->title}}</h6>
-                                                <p class="text-muted small mb-2">{{$mainDish->dish->str_limit($mainDish->dish->content)}}</p>
-                                                <p class="price h6 text-primary mb-0">${{$mainDish->dish->afterDiscount()}}</p>
-                                            </div></a>
-                                        </div> --}}
                                     </div>
                                     <div class="pt-2">
                                         <h6>New dishes</h6>
